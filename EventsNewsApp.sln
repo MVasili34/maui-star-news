@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34018.315
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{90B4124F-AF4C-47A3-BD3F-754101A5FAF9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{F5B117B0-43BF-4A7D-8BC6-572491EAED06}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{DAFF931B-BD21-4040-AD4A-44AF68FD24A8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MobileApp", "MobileApp", "{1761B937-2EA2-4F41-8C6B-204A7AFE3B1C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApp", "WebApp", "{CF26BA79-A26B-461A-94DA-6467A99EB769}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Application\Services\Services.csproj", "{D307CD15-90DE-45BA-92B7-81554AC3898E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D307CD15-90DE-45BA-92B7-81554AC3898E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D307CD15-90DE-45BA-92B7-81554AC3898E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D307CD15-90DE-45BA-92B7-81554AC3898E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D307CD15-90DE-45BA-92B7-81554AC3898E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D307CD15-90DE-45BA-92B7-81554AC3898E} = {F5B117B0-43BF-4A7D-8BC6-572491EAED06}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D0C1AC4C-B478-4F60-BEBE-A821F9DC1DDA}
+	EndGlobalSection
+EndGlobal
