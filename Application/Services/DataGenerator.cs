@@ -1,4 +1,6 @@
-﻿namespace Services;
+﻿using Bogus;
+
+namespace Services;
 
 public class DataGenerator
 {
