@@ -1,0 +1,76 @@
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace EntityModels;
+
+public partial class NewsAppDbContext : DbContext
+{
+    public NewsAppDbContext() 
+    {
+    }
+
+    public NewsAppDbContext(DbContextOptions<NewsAppDbContext> options) 
+        : base(options) 
+    {
+    }
+
+    public virtual DbSet<Section> Sections { get; set; }
+
+    public virtual DbSet<Role> Roles { get; set; }
+
+    public virtual DbSet<User> Users { get; set; }
+
+    public virtual DbSet<Article> Articles { get; set; }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        if (!optionsBuilder.IsConfigured)
+        {
+            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=NewsAppDB;Username=postgres;Password=sqlserver");
+        }
+    }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.HasPostgresExtension("uuid-ossp");
+
+        modelBuilder.Entity<Role>(entity =>
+        {
+            entity.HasKey(e => e.RoleId).HasName("role_pkey");
+
+            entity.Property(e => e.RoleId).UseIdentityAlwaysColumn();
+        });
+
+        modelBuilder.Entity<Section>(entity =>
+        {
+            entity.HasKey(e => e.SectionId).HasName("section_pkey");
+
+            entity.Property(e => e.SectionId).UseIdentityAlwaysColumn();
+        });
+
+        modelBuilder.Entity<Article>(entity =>
+        {
+            entity.HasKey(e => e.ArticleId).HasName("article_pkey");
+
+            entity.Property(e => e.ArticleId).HasDefaultValueSql("uuid_generate_v4()");
+            entity.Property(e => e.PublishTime).HasDefaultValueSql("now()");
+
+            entity.HasOne(d => d.Section).WithMany(p => p.Articles);
+            entity.HasOne(d => d.Publisher).WithMany(p => p.Articles);
+        });
+
+        modelBuilder.Entity<User>(entity =>
+        {
+            entity.HasKey(e => e.UserId).HasName("user_pkey");
+
+            entity.Property(e => e.UserId).HasDefaultValueSql("uuid_generate_v4()");
+            entity.Property(e => e.Registered).HasDefaultValueSql("now()");
+
+            entity.HasOne(d => d.Role).WithMany(p => p.Users);
+        });
+
+        OnModelCreatingPartial(modelBuilder);
+    }
+
+    partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
+}

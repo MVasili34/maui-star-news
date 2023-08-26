@@ -1,4 +1,4 @@
-﻿namespace Services
+﻿namespace CryptographyTool
 {
     public class Class1
     {
