@@ -35,7 +35,7 @@ public partial class Article
 
     [ForeignKey("PublisherId")]
     [InverseProperty("Articles")]
-    public virtual User Publisher { get; set; } = null!;
+    public virtual User? Publisher { get; set; }
 
     [ForeignKey("SectionId")]
     [InverseProperty("Articles")]

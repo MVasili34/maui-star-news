@@ -20,6 +20,12 @@ public class ArticleService : IArticleService
         .Articles.FindAsync(id);
 
     /// <summary>
+    /// Метод получения всех категорий новостей
+    /// </summary>
+    /// <returns>Все категории из базы данных</returns>
+    public async Task<IEnumerable<Section>> RetrieveSectionsAsync() => await _newsAppContext.Sections.ToListAsync();
+
+    /// <summary>
     /// Метод получения всех статей из базы данных
     /// (для реализации OData сервиса)
     /// </summary>
@@ -40,5 +46,30 @@ public class ArticleService : IArticleService
             return await RetrieveArticleAsync(article.ArticleId);
         }
         return null;
+    }
+
+    public async Task<Section?> AddSectionAsync(Section section)
+    {
+        return await Task.FromResult(new Section());
+    }
+
+    public async Task<Article?> UpdateArticleAsync(Guid id, Article article)
+    {
+        return await Task.FromResult(new Article());
+    }
+
+    public async Task<Section?> UpdateSectionAsync(int id, Section section)
+    {
+        return await Task.FromResult(new Section());
+    }
+
+    public async Task<bool?> DeleteArticleAsync(Guid id)
+    {
+        return await Task.FromResult(true);
+    }
+
+    public async Task<bool?> DeleteSectionAsync(int id)
+    {
+        return await Task.FromResult(true);
     }
 }
