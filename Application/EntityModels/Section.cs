@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace EntityModels;
 
@@ -24,4 +25,27 @@ public partial class Section
 
     [InverseProperty("Section")]
     public virtual ICollection<Article> Articles { get; set; } = new List<Article>();
+
+    public override bool Equals(object? obj)
+    {
+        Section? other = obj as Section;
+        if (other is null)
+            return false;
+
+        return other.SectionId == SectionId &&
+            other.Name == Name &&
+            other.Description == Description;
+    }
+
+    public override int GetHashCode()
+    {
+        unchecked
+        {
+            int hash = 17;
+            hash *= 23 + SectionId.GetHashCode();
+            hash *= 23 + Name.GetHashCode();
+            hash *= 23 + Description.GetHashCode();
+            return hash;
+        }
+    }
 }

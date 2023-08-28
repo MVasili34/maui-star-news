@@ -54,8 +54,8 @@ public partial class NewsAppDbContext : DbContext
             entity.Property(e => e.ArticleId).HasDefaultValueSql("uuid_generate_v4()");
             entity.Property(e => e.PublishTime).HasDefaultValueSql("now()");
 
-            entity.HasOne(d => d.Section).WithMany(p => p.Articles);
-            entity.HasOne(d => d.Publisher).WithMany(p => p.Articles);
+            entity.HasOne(d => d.Section).WithMany(p => p.Articles).OnDelete(DeleteBehavior.Cascade);
+            entity.HasOne(d => d.Publisher).WithMany(p => p.Articles).OnDelete(DeleteBehavior.SetNull);
         });
 
         modelBuilder.Entity<User>(entity =>

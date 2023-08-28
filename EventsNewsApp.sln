@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntityModels", "Application
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServicesTests.Tests", "Application\ServicesTests.Tests\ServicesTests.Tests.csproj", "{794C7053-4C6A-43EB-8FC7-A8B4A335729D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptographyTool", "Tools\CryptographyTool\CryptographyTool.csproj", "{B7C725A3-0D66-4174-9C7A-1B6A4F13EDAD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptographyTool", "Tools\CryptographyTool\CryptographyTool.csproj", "{B7C725A3-0D66-4174-9C7A-1B6A4F13EDAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArticleODataAPI", "API\ArticleODataAPI\ArticleODataAPI.csproj", "{C80B7E5F-BF71-4FC8-BBC6-D4AB2E307FD9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +45,10 @@ Global
 		{B7C725A3-0D66-4174-9C7A-1B6A4F13EDAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7C725A3-0D66-4174-9C7A-1B6A4F13EDAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7C725A3-0D66-4174-9C7A-1B6A4F13EDAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C80B7E5F-BF71-4FC8-BBC6-D4AB2E307FD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C80B7E5F-BF71-4FC8-BBC6-D4AB2E307FD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C80B7E5F-BF71-4FC8-BBC6-D4AB2E307FD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C80B7E5F-BF71-4FC8-BBC6-D4AB2E307FD9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -52,6 +58,7 @@ Global
 		{45C6A4C2-E3BB-45B5-A271-09770D0D217B} = {F5B117B0-43BF-4A7D-8BC6-572491EAED06}
 		{794C7053-4C6A-43EB-8FC7-A8B4A335729D} = {F5B117B0-43BF-4A7D-8BC6-572491EAED06}
 		{B7C725A3-0D66-4174-9C7A-1B6A4F13EDAD} = {DAFF931B-BD21-4040-AD4A-44AF68FD24A8}
+		{C80B7E5F-BF71-4FC8-BBC6-D4AB2E307FD9} = {90B4124F-AF4C-47A3-BD3F-754101A5FAF9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D0C1AC4C-B478-4F60-BEBE-A821F9DC1DDA}
