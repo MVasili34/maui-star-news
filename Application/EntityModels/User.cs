@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using static System.Collections.Specialized.BitVector32;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace EntityModels;
 
@@ -42,5 +44,40 @@ public partial class User
     [ForeignKey("RoleId")]
     [InverseProperty("Users")]
     public virtual Role Role { get; set; } = null!;
+
+    public override bool Equals(object? obj)
+    {
+        User? other = obj as User;
+        if (other is null)
+            return false;
+
+        return other.UserId == UserId &&
+            other.UserName == UserName &&
+            other.EmailAddress == EmailAddress &&
+            other.DateOfBirth == DateOfBirth &&
+            other.Phone == Phone &&
+            other.PasswordSalt == PasswordSalt &&
+            other.PasswordHash == PasswordHash &&
+            other.RoleId == RoleId &&
+            other.Registered == Registered;
+    }
+
+    public override int GetHashCode()
+    {
+        unchecked
+        {
+            int hash = 17;
+            hash *= 23 + UserId.GetHashCode();
+            hash *= 23 + UserName.GetHashCode();
+            hash *= 23 + EmailAddress.GetHashCode();
+            hash *= 23 + DateOfBirth.GetHashCode();
+            hash *= 23 + (Phone ?? "0").GetHashCode();
+            hash *= 23 + PasswordSalt.GetHashCode();
+            hash *= 23 + PasswordHash.GetHashCode();
+            hash *= 23 + RoleId.GetHashCode();
+            hash *= 23 + Registered.GetHashCode();
+            return hash;
+        }
+    }
 
 }

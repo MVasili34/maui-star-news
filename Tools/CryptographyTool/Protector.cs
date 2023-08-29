@@ -29,9 +29,10 @@ public class Protector
     /// <param name="password">Входной нехешированный пароль</param>
     /// <param name="salt">Соль</param>
     /// <param name="hashedPassword">Подсоленный и хешированный пароль</param>
-    /// <returns>true, если хеши паролей равны, иначе false</returns>
+    /// <returns><see langword="true" />, если хеши паролей равны, иначе <see langword="false" /></returns>
     public static bool CheckPassword(string password, string salt, string hashedPassword)
     {
+
         string saltedhashedPassword = SaltAndHashPassword(password, salt);
 
         return (saltedhashedPassword == hashedPassword);

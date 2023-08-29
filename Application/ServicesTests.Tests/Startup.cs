@@ -8,7 +8,7 @@ internal class Startup
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddTransient<IArticleService, ArticleService>();
-        //services.AddTransient<IAutorizeService, AutorizeService>();
+        services.AddTransient<IAutorizeService, AutorizeService>();
         services.AddNewsAppDbContext();
     }
 }

@@ -11,13 +11,12 @@ public class DataGenerator
     public static User GenerateUser() => new Faker<User>("ru")
         .RuleFor(user => user.UserName, user => user.Name.FirstName())
         .RuleFor(user => user.EmailAddress, user => user.Internet.Email())
-        .RuleFor(user => user.Phone, user => user.Phone.PhoneNumberFormat())
         .RuleFor(user => user.DateOfBirth, user => user.Date.BetweenDateOnly(
         DateOnly.FromDateTime(DateTime.Now.AddYears(-80).Date),
         DateOnly.FromDateTime(DateTime.Now.AddYears(-18).Date)))
         .RuleFor(user => user.PasswordSalt, user => user.Hashids.Encode(Random.Shared.Next(100, 1000)))
         .RuleFor(user => user.PasswordHash, user => user.Hashids.Encode(Random.Shared.Next(100, 1000)))
-        .RuleFor(user => user.RoleId, user => user.Random.Int(1, 3))
+        .RuleFor(user => user.RoleId, user => user.Random.Int(1, 2))
         .Generate();
 
     /// <summary>

@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Tools\CryptographyTool\CryptographyTool.csproj" />
     <ProjectReference Include="..\EntityModels\EntityModels.csproj" />
   </ItemGroup>
 

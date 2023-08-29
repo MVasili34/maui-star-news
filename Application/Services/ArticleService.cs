@@ -15,7 +15,7 @@ public class ArticleService : IArticleService
     /// Метод получения статьи по идентификатору
     /// </summary>
     /// <param name="id">Идентификатор</param>
-    /// <returns>Статья из базы данных</returns>
+    /// <returns>Объект <see cref="Article" />, иначе <see langword="null" /></returns>
     public async Task<Article?> RetrieveArticleAsync(Guid id) => await _newsAppContext
         .Articles.FindAsync(id);
 
@@ -36,7 +36,7 @@ public class ArticleService : IArticleService
     /// Метод добавления статьи в базу данных
     /// </summary>
     /// <param name="article">Объект Article</param>
-    /// <returns>Статья, добавленная в базу данных, иначе null</returns>
+    /// <returns>Объект <see cref="Article" />, иначе <see langword="null" /></returns>
     public async Task<Article?> AddArticleAsync(Article article)
     {
         await _newsAppContext.Articles.AddAsync(article);
@@ -52,7 +52,7 @@ public class ArticleService : IArticleService
     /// Метод добавления категорий новостей в базу данных
     /// </summary>
     /// <param name="section">Объект Section</param>
-    /// <returns>Секция, добавленная в базу данных, иначе null</returns>
+    /// <returns>Объект <see cref="Section" />, иначе <see langword="null" /></returns>
     public async Task<Section?> AddSectionAsync(Section section)
     {
         await _newsAppContext.Sections.AddAsync(section);
@@ -69,7 +69,7 @@ public class ArticleService : IArticleService
     /// </summary>
     /// <param name="id">Идентификатор статьи</param>
     /// <param name="article">Объект Article</param>
-    /// <returns>Article, иначе null</returns>
+    /// <returns>Объект <see cref="Article" />, иначе <see langword="null" /></returns>
     public async Task<Article?> UpdateArticleAsync(Guid id, Article article)
     {
         Article? existingArticle = await _newsAppContext.Articles.FindAsync(id);
@@ -90,7 +90,7 @@ public class ArticleService : IArticleService
     /// </summary>
     /// <param name="id">Идентификатор секции</param>
     /// <param name="section">Объект Section</param>
-    /// <returns>Section, иначе null</returns>
+    /// <returns>Объект <see cref="Section" />, иначе <see langword="null" /></returns>
     public async Task<Section?> UpdateSectionAsync(int id, Section section)
     {
         Section? existingSection = await _newsAppContext.Sections.FindAsync(id);
@@ -110,7 +110,7 @@ public class ArticleService : IArticleService
     /// Метод удаления статьи по идентификатору из базы данных
     /// </summary>
     /// <param name="id">Идентификатор статьи</param>
-    /// <returns>Состояние операции, иначе null</returns>
+    /// <returns>Состояние операции, иначе <see langword="null" /></returns>
     public async Task<bool?> DeleteArticleAsync(Guid id)
     {
         Article? article = await _newsAppContext.Articles.FindAsync(id);
@@ -131,7 +131,7 @@ public class ArticleService : IArticleService
     /// Метод удаления секции по идентификатору, а также всех связанных с ней статей
     /// </summary>
     /// <param name="id">Идентификатор секции</param>
-    /// <returns>Состояние операции, иначе null</returns>
+    /// <returns>Состояние операции, иначе <see langword="null" /></returns>
     public async Task<bool?> DeleteSectionAsync(int id)
     {
         Section? section = await _newsAppContext.Sections.FindAsync(id);
