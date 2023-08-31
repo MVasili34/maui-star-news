@@ -7,7 +7,7 @@ public class DataGenerator
     /// <summary>
     /// Метод генерации случайного пользователя
     /// </summary>
-    /// <returns>Случайный объект User</returns>
+    /// <returns>Случайный объект <see cref="User"/></returns>
     public static User GenerateUser() => new Faker<User>("ru")
         .RuleFor(user => user.UserName, user => user.Name.FirstName())
         .RuleFor(user => user.EmailAddress, user => user.Internet.Email())
@@ -22,7 +22,7 @@ public class DataGenerator
     /// <summary>
     /// Метод генерации случайной статьи
     /// </summary>
-    /// <returns>Случайный объект Article</returns>
+    /// <returns>Случайный объект <see cref="Article"/></returns>
     public static Article GenerateArticle() => new Faker<Article>("ru")
         .RuleFor(art => art.Title, art => art.Name.FullName())
         .RuleFor(art => art.Subtitle, art => art.Lorem.Word())
@@ -34,7 +34,7 @@ public class DataGenerator
     /// <summary>
     /// Метод генерации случайной категории
     /// </summary>
-    /// <returns>Случайный объект Section</returns>
+    /// <returns>Случайный объект <see cref="Section"/></returns>
     public static Section GenerateSection() => new Faker<Section>("ru")
         .RuleFor(sect => sect.Name, sect => sect.Lorem.Word())
         .RuleFor(sect => sect.Description, sect => sect.Lorem.Word())

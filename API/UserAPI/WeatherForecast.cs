@@ -1,4 +1,4 @@
-namespace ArticleODataAPI
+namespace UserAPI
 {
     public class WeatherForecast
     {

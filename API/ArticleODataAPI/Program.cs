@@ -12,7 +12,7 @@ builder.Services.AddControllers();
 
 builder.Services.AddControllers()
     .AddOData(options => options
-    .AddRouteComponents(routePrefix: "publisher",
+    .AddRouteComponents(routePrefix: "api",
         GetEdmModelForArticles())
         .Select()
         .Expand()
@@ -29,8 +29,6 @@ builder.Services.AddScoped<IArticleService, ArticleService>();
 //Configuring HTTP logging
 builder.Services.AddHttpLogging(options =>
 {
-    options.RequestHeaders.Add("Origin");
-
     options.LoggingFields = HttpLoggingFields.All;
 });
 
