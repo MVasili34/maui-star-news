@@ -33,7 +33,7 @@ public partial class User
     public string PasswordHash { get; set; } = null!;
 
     [Column("role_id")]
-    public int RoleId { get; set; }
+    public int? RoleId { get; set; }
 
     [Column("registered", TypeName = "timestamp without time zone")]
     public DateTime Registered { get; set; }
@@ -43,7 +43,7 @@ public partial class User
 
     [ForeignKey("RoleId")]
     [InverseProperty("Users")]
-    public virtual Role Role { get; set; } = null!;
+    public virtual Role? Role { get; set; }
 
     public override bool Equals(object? obj)
     {

@@ -29,6 +29,8 @@ builder.Services.AddScoped<IArticleService, ArticleService>();
 //Configuring HTTP logging
 builder.Services.AddHttpLogging(options =>
 {
+    options.RequestHeaders.Add("Origin");
+
     options.LoggingFields = HttpLoggingFields.All;
 });
 

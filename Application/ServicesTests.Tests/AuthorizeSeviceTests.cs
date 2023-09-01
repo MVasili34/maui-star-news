@@ -54,8 +54,16 @@ public class AuthorizeSeviceTests
         generated.PasswordHash = "pa$$w0rd";
         await _authorizeService.RegisterUserAsync(generated);
 
-        generated.Phone = "+1 (245) 678 92";
-        User? updated = await _authorizeService.UpdateUserAsync(generated.UserId, generated);
+        User changedCopy = new()
+        {
+            UserId = generated.UserId,
+            UserName = generated.UserName,
+            EmailAddress = generated.EmailAddress,
+            DateOfBirth = generated.DateOfBirth,
+            Phone = "+1 (245) 678 92",
+            PasswordHash = "pa$$w0rd"
+        };
+        User? updated = await _authorizeService.UpdateUserAsync(generated.UserId, changedCopy);
 
         Assert.Equal(generated, updated);
     }

@@ -59,7 +59,7 @@ public class AutorizeService : IAutorizeService
         User? existed = await _newsAppContext.Users.FindAsync(id);
         if (existed is not null) 
         {
-            if (!Protector.CheckPassword(user.PasswordHash, existed.PasswordSalt, existed.PasswordHash))
+            if (Protector.CheckPassword(user.PasswordHash, existed.PasswordSalt, existed.PasswordHash))
             {
                 existed.UserName = user.UserName;
                 existed.EmailAddress = user.EmailAddress;

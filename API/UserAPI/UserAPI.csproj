@@ -11,4 +11,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Application\EntityModels\EntityModels.csproj" />
+    <ProjectReference Include="..\..\Application\Services\Services.csproj" />
+  </ItemGroup>
+
 </Project>
