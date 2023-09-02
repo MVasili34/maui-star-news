@@ -20,13 +20,13 @@ public class ArticlesController : ODataController
 
     [EnableQuery]
     [ProducesResponseType(200,Type = typeof(Article))]
-    [ProducesResponseType(400)]
+    [ProducesResponseType(404)]
     public async Task<IActionResult> GetArticle(Guid key)
     {
         Article? article = await _articleService.RetrieveArticleAsync(key);
         if(article is null)
         {
-            return BadRequest();
+            return NotFound();
         }
         return Ok(article);
     }

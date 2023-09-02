@@ -20,6 +20,15 @@ public class DataGenerator
         .Generate();
 
     /// <summary>
+    /// Метод генерации случайных данных для регистрации
+    /// </summary>
+    /// <returns>Случайная запись <see cref="RegisterModel"/></returns>
+    public static RegisterModel GenerateRegisterMode() => new Faker<RegisterModel>("ru")
+        .RuleFor(user => user.UserName, user => user.Name.FirstName())
+        .RuleFor(user => user.EmailAddress, user => user.Internet.Email())
+        .Generate();
+
+    /// <summary>
     /// Метод генерации случайной статьи
     /// </summary>
     /// <returns>Случайный объект <see cref="Article"/></returns>

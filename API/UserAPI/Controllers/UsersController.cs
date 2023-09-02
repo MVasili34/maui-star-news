@@ -6,11 +6,11 @@ namespace UserAPI.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class UserController : ControllerBase
+public class UsersController : ControllerBase
 {
     private readonly IAutorizeService _autorizeService;
 
-    public UserController(IAutorizeService autorizeService)
+    public UsersController(IAutorizeService autorizeService)
     {
         _autorizeService = autorizeService;
     }
@@ -25,23 +25,23 @@ public class UserController : ControllerBase
     //GET: api/User/[id]
     [HttpGet("{id:guid}", Name = nameof(GetUser))]
     [ProducesResponseType(200, Type = typeof(User))]
-    [ProducesResponseType(400)]
+    [ProducesResponseType(404)]
     public async Task<IActionResult> GetUser(Guid id)
     {
         User? user = await _autorizeService.RetrieveUserAsync(id);
         if(user is null)
         {
-            return BadRequest();
+            return NotFound();
         }
         return Ok(user);
     }
 
     //POST: api/User/register
-    //BODY: User (JSON)
+    //BODY: RegisterModel (JSON)
     [HttpPost("register")]
-    [ProducesResponseType(201, Type = typeof(User))]
+    [ProducesResponseType(201, Type = typeof(RegisterModel))]
     [ProducesResponseType(400)]
-    public async Task<IActionResult> RegisterUser([FromBody] User user)
+    public async Task<IActionResult> RegisterUser([FromBody] RegisterModel user)
     {
         if (user is null)
         {
@@ -51,7 +51,7 @@ public class UserController : ControllerBase
         User? registered = await _autorizeService.RegisterUserAsync(user);
         if (registered is null)
         {
-            return BadRequest();
+            return BadRequest("Пользователь с таким электронным адресом уже существует!");
         }
         return CreatedAtRoute(routeName: nameof(GetUser),
                               routeValues: new { id = registered.UserId },

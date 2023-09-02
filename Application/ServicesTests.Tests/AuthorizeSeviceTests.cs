@@ -10,72 +10,71 @@ public class AuthorizeSeviceTests
     {
         _authorizeService = authorizeService;
     }
-
+    
     [Fact]
     public async Task RegisterAndLoginSuccessTest()
     {
-        User generated = DataGenerator.GenerateUser();
-        generated.PasswordHash = "pa$$w0rd";
-        await _authorizeService.RegisterUserAsync(generated);
+        RegisterModel generated = DataGenerator.GenerateRegisterMode();
+        generated.Password = "pa$$w0rd";
+        User? registered = await _authorizeService.RegisterUserAsync(generated);
 
         AuthorizeModel authorizeModel = new()
         {
-            UserId = generated.UserId,
-            EmailAddress = generated.EmailAddress,
+            UserId = registered!.UserId,
+            EmailAddress = registered.EmailAddress,
             Password = "pa$$w0rd"
         };
-        bool? authorized = await _authorizeService.AutorizeUserAsync(generated.UserId, authorizeModel);
+        bool? authorized = await _authorizeService.AutorizeUserAsync(registered.UserId, authorizeModel);
 
         Assert.True(authorized);
     }
-
+    
     [Fact]
     public async Task RegisterAndLoginFailureTest()
     {
-        User generated = DataGenerator.GenerateUser();
-        generated.PasswordHash = "pa$$w0rd";
-        await _authorizeService.RegisterUserAsync(generated);
+        RegisterModel generated = DataGenerator.GenerateRegisterMode();
+        generated.Password = "pa$$w0rd";
+        User? registered = await _authorizeService.RegisterUserAsync(generated);
 
         AuthorizeModel authorizeModel = new()
         {
-            UserId = generated.UserId,
-            EmailAddress = generated.EmailAddress,
+            UserId = registered!.UserId,
+            EmailAddress = registered.EmailAddress,
             Password = "passwird"
         };
-        bool? authorized = await _authorizeService.AutorizeUserAsync(generated.UserId, authorizeModel);
+        bool? authorized = await _authorizeService.AutorizeUserAsync(registered!.UserId, authorizeModel);
 
         Assert.False(authorized);
     }
-
+    
     [Fact]
     public async Task ChangeAccountInfoTest()
     {
-        User generated = DataGenerator.GenerateUser();
-        generated.PasswordHash = "pa$$w0rd";
-        await _authorizeService.RegisterUserAsync(generated);
+        RegisterModel generated = DataGenerator.GenerateRegisterMode();
+        generated.Password = "pa$$w0rd";
+        User? registered = await _authorizeService.RegisterUserAsync(generated);
 
         User changedCopy = new()
         {
-            UserId = generated.UserId,
-            UserName = generated.UserName,
-            EmailAddress = generated.EmailAddress,
-            DateOfBirth = generated.DateOfBirth,
+            UserId = registered!.UserId,
+            UserName = registered.UserName,
+            EmailAddress = registered.EmailAddress,
+            DateOfBirth = registered!.DateOfBirth,
             Phone = "+1 (245) 678 92",
             PasswordHash = "pa$$w0rd"
         };
-        User? updated = await _authorizeService.UpdateUserAsync(generated.UserId, changedCopy);
+        User? updated = await _authorizeService.UpdateUserAsync(registered!.UserId, changedCopy);
 
-        Assert.Equal(generated, updated);
+        Assert.Equal(registered.Phone, updated!.Phone);
     }
-
     [Fact]
     public async Task DeleteUserTest()
     {
-        User generated = DataGenerator.GenerateUser();
-        generated.PasswordHash = "pa$$w0rd";
-        await _authorizeService.RegisterUserAsync(generated);
+        RegisterModel generated = DataGenerator.GenerateRegisterMode();
+        generated.Password = "pa$$w0rd";
+        User? registered = await _authorizeService.RegisterUserAsync(generated);
 
-        bool? condition = await _authorizeService.DeleteUserAsync(generated.UserId);
+        bool? condition = await _authorizeService.DeleteUserAsync(registered!.UserId);
 
         Assert.True(condition);
     }

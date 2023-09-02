@@ -29,9 +29,9 @@ public interface IAutorizeService
     /// <summary>
     /// Метод регистрации пользователя по предоставленным данным
     /// </summary>
-    /// <param name="user">Объект <see cref="User"/> с вложенным паролем</param>
+    /// <param name="user">Запись <see cref="RegisterModel"/> с вложенным паролем</param>
     /// <returns>Объект <see cref="User"/>, если регистрация успешно, иначе <see langword="null"/></returns>
-    Task<User?> RegisterUserAsync(User user);
+    Task<User?> RegisterUserAsync(RegisterModel user);
 
     /// <summary>
     /// Метод обновления данных пользователя

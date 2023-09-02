@@ -20,16 +20,20 @@ public class AutorizeService : IAutorizeService
 
     public async Task<User?> RetrieveUserAsync(Guid id) => await _newsAppContext.Users.FindAsync(id);
 
-    public async Task<User?> RegisterUserAsync(User user)
+    public async Task<User?> RegisterUserAsync(RegisterModel registerUser)
     {
+        User user = (User)registerUser;
         User? dublicate = await _newsAppContext.Users.FirstOrDefaultAsync(dbuser => dbuser.EmailAddress == user.EmailAddress);
+
         if (dublicate is not null)
         {
             return null;
         }
-        var registerData = Protector.Encrypt(user.PasswordHash);
-        user.PasswordSalt = registerData.salt;
-        user.PasswordHash = registerData.hashed;
+
+        (string salt,string hashed) = Protector.Encrypt(user.PasswordHash);
+        user.PasswordSalt = salt;
+        user.PasswordHash = hashed;
+
         await _newsAppContext.AddAsync(user);
         int affected = await _newsAppContext.SaveChangesAsync();
         if (affected == 1)
@@ -42,6 +46,7 @@ public class AutorizeService : IAutorizeService
     public async Task<bool?> AutorizeUserAsync(Guid id, AuthorizeModel authorize)
     {
         User? existed = await _newsAppContext.Users.FindAsync(id);
+
         if (existed is not null) 
         {
             if(existed.EmailAddress == authorize.EmailAddress &&
@@ -57,6 +62,7 @@ public class AutorizeService : IAutorizeService
     public async Task<User?> UpdateUserAsync(Guid id, User user)
     {
         User? existed = await _newsAppContext.Users.FindAsync(id);
+
         if (existed is not null) 
         {
             if (Protector.CheckPassword(user.PasswordHash, existed.PasswordSalt, existed.PasswordHash))
@@ -79,6 +85,7 @@ public class AutorizeService : IAutorizeService
     public async Task<bool?> DeleteUserAsync(Guid id)
     {
         User? existed = await _newsAppContext.Users.FindAsync(id);
+
         if (existed is not null) 
         {
             _newsAppContext.Users.Remove(existed);
