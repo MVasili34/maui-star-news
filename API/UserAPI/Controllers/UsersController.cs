@@ -62,7 +62,7 @@ public class UsersController : ControllerBase
     //BODY: AuthorizeModel (JSON)
     [HttpPost("login")]
     [ProducesResponseType(200)]
-    [ProducesResponseType(400)]
+    [ProducesResponseType(401)]
     public async Task<IActionResult> LoginUser([FromBody] AuthorizeModel model)
     {
         bool? authorized = await _autorizeService.AutorizeUserAsync(model);
@@ -70,7 +70,7 @@ public class UsersController : ControllerBase
         {
             return Ok();
         }
-        return BadRequest();
+        return Unauthorized();
     }
 
     //PUT: api/User/[id]

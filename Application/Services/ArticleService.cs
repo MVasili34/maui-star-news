@@ -16,7 +16,9 @@ public class ArticleService : IArticleService
 
     public async Task<IEnumerable<Section>> RetrieveSectionsAsync() => await _newsAppContext.Sections.ToListAsync();
 
-    public async Task<IEnumerable<Article>> RetrieveArticlesAsync() => await _newsAppContext.Articles.ToListAsync();
+    public async Task<IEnumerable<Article>> RetrieveArticlesAsync() => await _newsAppContext.Articles
+        .Include(x => x.Section)
+        .ToListAsync();
 
     public async Task<Article?> AddArticleAsync(Article article)
     {

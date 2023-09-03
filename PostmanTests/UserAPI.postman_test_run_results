@@ -1,0 +1,307 @@
+{
+	"id": "e671bd70-6003-4db6-8ffa-85ace798d5f5",
+	"name": "UserAPI",
+	"timestamp": "2023-09-03T13:17:46.453Z",
+	"collection_id": "28096328-11d32b6b-c925-4818-be8e-93401b3c3988",
+	"folder_id": 0,
+	"environment_id": "28096328-83dc3029-bc82-4c6c-a384-14f552c3e172",
+	"totalPass": 10,
+	"delay": 0,
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2023-09-03T13:17:45.531Z",
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "58d1da32-cc09-4ac7-bc5e-c17022317b59",
+			"name": "Register Success",
+			"url": "https://localhost:5020/api/Users/register",
+			"time": 5,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Status code is 201": true
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5
+			],
+			"allTests": [
+				{
+					"Status code is 201": true
+				}
+			]
+		},
+		{
+			"id": "216fe68d-39e1-4c74-9247-40e00e18c709",
+			"name": "Ger Rigistered User",
+			"url": "https://localhost:5020/api/Users/622aafb9-0ee9-4da6-897a-51c5bee989e5",
+			"time": 4,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				4
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "27ec2c4c-3e6b-4694-8ea1-7b5a107a52d7",
+			"name": "Register Failure",
+			"url": "https://localhost:5020/api/Users/register",
+			"time": 4,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status code is 400": true,
+				"Body matches string": true
+			},
+			"testPassFailCounts": {
+				"Status code is 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body matches string": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				4
+			],
+			"allTests": [
+				{
+					"Status code is 400": true,
+					"Body matches string": true
+				}
+			]
+		},
+		{
+			"id": "6864c4d0-ecb8-496e-8bc4-8e4dda0705c8",
+			"name": "Login Success",
+			"url": "https://localhost:5020/api/Users/login",
+			"time": 4,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				4
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "335926bd-9f6a-4ad2-a931-ef2032a8784b",
+			"name": "Get User",
+			"url": "https://localhost:5020/api/Users/622aafb9-0ee9-4da6-897a-51c5bee989e5",
+			"time": 4,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				4
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "e66247f5-d67b-4e34-ab8f-0bc45a20d1ab",
+			"name": "Login Failure",
+			"url": "https://localhost:5020/api/Users/login",
+			"time": 6,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status code is 400": true
+			},
+			"testPassFailCounts": {
+				"Status code is 400": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				6
+			],
+			"allTests": [
+				{
+					"Status code is 400": true
+				}
+			]
+		},
+		{
+			"id": "5da5fdfa-d4dd-4a56-9846-c532239e1a84",
+			"name": "/api/Users/:id",
+			"url": "https://localhost:5020/api/Users/622aafb9-0ee9-4da6-897a-51c5bee989e5",
+			"time": 11,
+			"responseCode": {
+				"code": 204,
+				"name": "No Content"
+			},
+			"tests": {
+				"Status code is 204": true
+			},
+			"testPassFailCounts": {
+				"Status code is 204": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				11
+			],
+			"allTests": [
+				{
+					"Status code is 204": true
+				}
+			]
+		},
+		{
+			"id": "0a8eff4f-5af4-4361-bec6-6f7bc18ed626",
+			"name": "/api/Users/:id",
+			"url": "https://localhost:5020/api/Users/622aafb9-0ee9-4da6-897a-51c5bee989e5",
+			"time": 4,
+			"responseCode": {
+				"code": 204,
+				"name": "No Content"
+			},
+			"tests": {
+				"Status code is 204": true
+			},
+			"testPassFailCounts": {
+				"Status code is 204": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				4
+			],
+			"allTests": [
+				{
+					"Status code is 204": true
+				}
+			]
+		},
+		{
+			"id": "e5759817-b5c5-4ff3-94ea-b255c2846a5e",
+			"name": "Ger Deleted User",
+			"url": "https://localhost:5020/api/Users/622aafb9-0ee9-4da6-897a-51c5bee989e5",
+			"time": 3,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Status code is 404": true
+			},
+			"testPassFailCounts": {
+				"Status code is 404": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				3
+			],
+			"allTests": [
+				{
+					"Status code is 404": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 45,
+	"collection": {
+		"requests": [
+			{
+				"id": "58d1da32-cc09-4ac7-bc5e-c17022317b59",
+				"method": "POST"
+			},
+			{
+				"id": "216fe68d-39e1-4c74-9247-40e00e18c709",
+				"method": "GET"
+			},
+			{
+				"id": "27ec2c4c-3e6b-4694-8ea1-7b5a107a52d7",
+				"method": "POST"
+			},
+			{
+				"id": "6864c4d0-ecb8-496e-8bc4-8e4dda0705c8",
+				"method": "POST"
+			},
+			{
+				"id": "335926bd-9f6a-4ad2-a931-ef2032a8784b",
+				"method": "GET"
+			},
+			{
+				"id": "e66247f5-d67b-4e34-ab8f-0bc45a20d1ab",
+				"method": "POST"
+			},
+			{
+				"id": "5da5fdfa-d4dd-4a56-9846-c532239e1a84",
+				"method": "PUT"
+			},
+			{
+				"id": "0a8eff4f-5af4-4361-bec6-6f7bc18ed626",
+				"method": "DELETE"
+			},
+			{
+				"id": "e5759817-b5c5-4ff3-94ea-b255c2846a5e",
+				"method": "GET"
+			}
+		]
+	}
+}

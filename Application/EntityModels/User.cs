@@ -34,9 +34,12 @@ public partial class User
 
     [Column("role_id")]
     public int? RoleId { get; set; }
-
+    
     [Column("registered", TypeName = "timestamp without time zone")]
     public DateTime Registered { get; set; }
+
+    [Column("last_login", TypeName = "timestamp without time zone")]
+    public DateTime? LastLogin { get; set; }
 
     [InverseProperty("Publisher")]
     public virtual ICollection<Article> Articles { get; set; } = new List<Article>();

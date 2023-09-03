@@ -64,6 +64,7 @@ public partial class NewsAppDbContext : DbContext
 
             entity.Property(e => e.UserId).HasDefaultValueSql("uuid_generate_v4()");
             entity.Property(e => e.Registered).HasDefaultValueSql("now()");
+            entity.Property(e => e.LastLogin).HasDefaultValueSql("now()");
 
             entity.HasOne(d => d.Role).WithMany(p => p.Users).OnDelete(DeleteBehavior.SetNull);
         });

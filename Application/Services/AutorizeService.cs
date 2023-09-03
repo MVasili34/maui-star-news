@@ -52,7 +52,11 @@ public class AutorizeService : IAutorizeService
             if(existed.EmailAddress == authorize.EmailAddress &&
                 Protector.CheckPassword(authorize.Password, existed.PasswordSalt, existed.PasswordHash))
             {
-                return true;
+                existed.LastLogin = DateTime.Now;
+                if (await _newsAppContext.SaveChangesAsync() == 1)
+                {
+                    return true;
+                }
             }
             return false;
         }

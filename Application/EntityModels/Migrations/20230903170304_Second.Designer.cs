@@ -3,6 +3,7 @@ using System;
 using EntityModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace EntityModels.Migrations
 {
     [DbContext(typeof(NewsAppDbContext))]
-    partial class NewsAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230903170304_Second")]
+    partial class Second
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -153,11 +156,9 @@ namespace EntityModels.Migrations
                         .HasColumnType("character varying")
                         .HasColumnName("email_address");
 
-                    b.Property<DateTime?>("LastLogin")
-                        .ValueGeneratedOnAdd()
+                    b.Property<DateTime>("LastLogin")
                         .HasColumnType("timestamp without time zone")
-                        .HasColumnName("last_login")
-                        .HasDefaultValueSql("now()");
+                        .HasColumnName("last_login");
 
                     b.Property<string>("PasswordHash")
                         .IsRequired()
