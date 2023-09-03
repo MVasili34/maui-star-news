@@ -43,9 +43,9 @@ public class AutorizeService : IAutorizeService
         return null;
     }
 
-    public async Task<bool?> AutorizeUserAsync(Guid id, AuthorizeModel authorize)
+    public async Task<bool?> AutorizeUserAsync(AuthorizeModel authorize)
     {
-        User? existed = await _newsAppContext.Users.FindAsync(id);
+        User? existed = await _newsAppContext.Users.FindAsync(authorize.UserId);
 
         if (existed is not null) 
         {

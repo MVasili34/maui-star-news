@@ -20,11 +20,10 @@ public interface IAutorizeService
     /// <summary>
     /// Метод авторизации пользователя
     /// </summary>
-    /// <param name="id">Действительный идентификатор пользователя</param>
     /// <param name="user">Объект <see cref="User"/> с вложенным паролем</param>
     /// <returns>Если данные верны <see langword="true"/>, иначе <see langword="false"/>.
     /// Если же пользователя не существуюет вовсе, то <see langword="null"/></returns>
-    Task<bool?> AutorizeUserAsync(Guid id, AuthorizeModel user);
+    Task<bool?> AutorizeUserAsync(AuthorizeModel user);
 
     /// <summary>
     /// Метод регистрации пользователя по предоставленным данным

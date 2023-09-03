@@ -24,7 +24,7 @@ public class AuthorizeSeviceTests
             EmailAddress = registered.EmailAddress,
             Password = "pa$$w0rd"
         };
-        bool? authorized = await _authorizeService.AutorizeUserAsync(registered.UserId, authorizeModel);
+        bool? authorized = await _authorizeService.AutorizeUserAsync(authorizeModel);
 
         Assert.True(authorized);
     }
@@ -42,7 +42,7 @@ public class AuthorizeSeviceTests
             EmailAddress = registered.EmailAddress,
             Password = "passwird"
         };
-        bool? authorized = await _authorizeService.AutorizeUserAsync(registered!.UserId, authorizeModel);
+        bool? authorized = await _authorizeService.AutorizeUserAsync(authorizeModel);
 
         Assert.False(authorized);
     }
