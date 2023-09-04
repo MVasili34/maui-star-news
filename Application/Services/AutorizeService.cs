@@ -14,6 +14,7 @@ public class AutorizeService : IAutorizeService
     }
 
     public async Task<IEnumerable<User>> RetrieveUsersAsync(int? offset, int? limit) => await _newsAppContext.Users
+        .OrderByDescending(user => user.Registered)
         .Skip((offset ?? 0) * (limit ?? _pageSize))
         .Take(limit ?? _pageSize)
         .ToListAsync();

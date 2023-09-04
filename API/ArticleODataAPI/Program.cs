@@ -25,6 +25,7 @@ builder.Services.AddControllers()
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IArticleService, ArticleService>();
+builder.Services.AddScoped<IAutorizeService, AutorizeService>();
 
 //Configuring HTTP logging
 builder.Services.AddHttpLogging(options =>

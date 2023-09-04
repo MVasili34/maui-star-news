@@ -2,7 +2,7 @@
 using Services;
 using EntityModels;
 
-namespace UserAPI.Controllers;
+namespace ArticleODataAPI.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
