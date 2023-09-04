@@ -4,5 +4,7 @@
 
 
 ## Архитектура приложения (Бета контекст)
-![image](https://github.com/MVasili34/maui-news-app/assets/117523384/c8a7432f-8779-42a5-b63c-4b15a3c441e3)
+![image](https://github.com/MVasili34/maui-news-app/assets/117523384/843e65a5-6bc9-47ef-9341-c8fa6f793091)
+
+
 
