@@ -3,12 +3,66 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:NewsMobileApp"
              x:Class="NewsMobileApp.MainPage"
-             BackgroundColor="{DynamicResource PageBackgroundColor}">
+             BackgroundColor="{StaticResource MainNavigationColor}">
+    <ScrollView>
+        <VerticalStackLayout
+        Spacing="25"
+        Padding="30,0"
+        HorizontalOptions="Center">
 
-    <BlazorWebView x:Name="blazorWebView" HostPage="wwwroot/index.html">
-        <BlazorWebView.RootComponents>
-            <RootComponent Selector="#app" ComponentType="{x:Type local:Main}" />
-        </BlazorWebView.RootComponents>
-    </BlazorWebView>
+            <Frame Padding="0" 
+               IsClippedToBounds="True" 
+               BorderColor="Transparent"
+               BackgroundColor="#262626"
+               CornerRadius="10"
+               HeightRequest="440"
+               WidthRequest="500">
+                <Image Source="main.png" HeightRequest="450" WidthRequest="380" Aspect="AspectFill" />
+            </Frame>
+
+            <Label
+            Text="Читайте свежие и актуальные новости"
+            HorizontalTextAlignment="Center"
+            LineBreakMode="WordWrap"
+            SemanticProperties.HeadingLevel="Level1"
+            FontSize="30"
+            FontFamily="NotoSerif"
+            FontAttributes="Bold"
+            HorizontalOptions="Center"
+            />
+
+            <Label
+            Text="Новости о политике, искусстве, спорте и многом другом ждут вас в нашем приложении"
+            SemanticProperties.HeadingLevel="Level2"
+            HorizontalTextAlignment="Center"
+            LineBreakMode="WordWrap"
+            FontSize="18"
+            HorizontalOptions="Center" />
+
+            <Button
+            x:Name="CounterBtn"
+            Text="Войти"
+            TextColor="White"
+            FontSize="20"
+            BackgroundColor="{StaticResource Primary}"
+            CornerRadius="10"
+            WidthRequest="330"
+            Clicked="OnSigninClicked"
+            HorizontalOptions="Center" />
+
+            <StackLayout Orientation="Horizontal" Spacing="4" HorizontalOptions="Center">
+                <Label Text="У вас ещё нет аккаунта?" TextColor="White" FontSize="16"/>
+                <Label Text="Зарегистрируйтесь" 
+               TextColor="{StaticResource Primary}" 
+               BackgroundColor="Transparent" 
+               FontSize="16">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnRegisterClicked" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
 
 </ContentPage>

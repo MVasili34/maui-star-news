@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       x:Class="NewsMobileApp.AppShell"
+       xmlns:local="clr-namespace:NewsMobileApp"
+       xmlns:views="clr-namespace:NewsMobileApp.ViewsNative"
+       Shell.FlyoutBehavior="Disabled">
+    <TabBar>
+        <Tab x:Name="HomeTab" Icon="home.png" Title="Главная">
+            <ShellContent ContentTemplate="{DataTemplate views:MainEventsPage}" Route="home" />
+        </Tab>
+        <Tab x:Name="BookmarksTab" Icon="fire.png" Title="Тренд">
+            <ShellContent ContentTemplate="{DataTemplate local:FirsrWebView}" Route="Thrend" />
+        </Tab>
+        <Tab x:Name="SectionsTab" Icon="categories.png" Title="Секции">
+            <ShellContent ContentTemplate="{DataTemplate views:MainEventsPage}" Route="sections" />
+        </Tab>
+        <Tab x:Name="ProfileTab" Icon="profile.png" Title="Профиль">
+            <ShellContent ContentTemplate="{DataTemplate views:MainEventsPage}" Route="profile" />
+        </Tab>
+    </TabBar>
+</Shell>

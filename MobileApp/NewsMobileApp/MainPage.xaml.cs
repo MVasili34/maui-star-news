@@ -1,10 +1,21 @@
-﻿namespace NewsMobileApp
+﻿namespace NewsMobileApp;
+
+public partial class MainPage : ContentPage
 {
-    public partial class MainPage : ContentPage
+    public MainPage()
     {
-        public MainPage()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+    }
+
+    private async void OnSigninClicked(object sender, EventArgs e)
+    {
+#if WINDOWS
+        Application.Current.MainPage = new AppShell();
+#endif
+    }
+
+    private async void OnRegisterClicked(object sender, EventArgs e)
+    {
+
     }
 }
