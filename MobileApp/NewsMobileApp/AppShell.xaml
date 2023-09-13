@@ -16,7 +16,7 @@
             <ShellContent ContentTemplate="{DataTemplate views:MainEventsPage}" Route="sections" />
         </Tab>
         <Tab x:Name="ProfileTab" Icon="profile.png" Title="Профиль">
-            <ShellContent ContentTemplate="{DataTemplate views:MainEventsPage}" Route="profile" />
+            <ShellContent ContentTemplate="{DataTemplate views:ProfilePrivacyPage}" Route="profile" />
         </Tab>
     </TabBar>
 </Shell>
