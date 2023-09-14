@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using NewsMobileApp.Data;
+using The49.Maui.BottomSheet;
 
 namespace NewsMobileApp
 {
@@ -10,6 +11,7 @@ namespace NewsMobileApp
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseBottomSheet()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

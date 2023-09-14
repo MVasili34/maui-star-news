@@ -51,6 +51,7 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+        <PackageReference Include="The49.Maui.BottomSheet" Version="1.0.2" />
     </ItemGroup>
 
     <ItemGroup>
@@ -63,6 +64,12 @@
       <MauiXaml Update="Resources\Styles\Colors.xaml">
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
+      <MauiXaml Update="Resources\Styles\Styles.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </MauiXaml>
+      <MauiXaml Update="ViewsNative\LoginBottomPage.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </MauiXaml>
       <MauiXaml Update="ViewsNative\MainEventsPage.xaml">
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
@@ -73,7 +80,7 @@
 
     <ItemGroup>
       <Folder Include="ViewModels\" />
-      <Folder Include="Views\" />
+      <Folder Include="TempServices\" />
     </ItemGroup>
 
 </Project>
