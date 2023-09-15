@@ -9,7 +9,7 @@ public partial class MainPage : ContentPage
         InitializeComponent();
     }
 
-    private async void OnSigninClicked(object sender, EventArgs e)
+    private void OnSigninClicked(object sender, EventArgs e)
     {
 #if WINDOWS
         Application.Current.MainPage = new AppShell();
@@ -17,11 +17,10 @@ public partial class MainPage : ContentPage
 #if ANDROID
         LoginBottomPage pageSheet = new();
         pageSheet.HasHandle = true;
-        await pageSheet.ShowAsync();
+        pageSheet.ShowAsync();
 #endif
     }
 
-    private async void OnRegisterClicked(object sender, EventArgs e)
-    {
-    }
+    private async void Register_Tapped(object sender, TappedEventArgs e) =>
+        await Navigation.PushModalAsync(new RegisterPage());
 }

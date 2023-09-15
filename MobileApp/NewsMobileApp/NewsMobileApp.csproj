@@ -51,7 +51,7 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
-        <PackageReference Include="The49.Maui.BottomSheet" Version="1.0.2" />
+        <PackageReference Include="The49.Maui.BottomSheet" Version="1.0.1" />
     </ItemGroup>
 
     <ItemGroup>
@@ -74,6 +74,9 @@
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
       <MauiXaml Update="ViewsNative\ProfilePrivacyPage.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </MauiXaml>
+      <MauiXaml Update="ViewsNative\RegisterPage.xaml">
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
     </ItemGroup>

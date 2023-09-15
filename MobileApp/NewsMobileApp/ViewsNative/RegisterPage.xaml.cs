@@ -2,19 +2,17 @@ using System.Net.Mail;
 
 namespace NewsMobileApp.ViewsNative;
 
-public partial class LoginBottomPage
+public partial class RegisterPage : ContentPage
 {
-	public LoginBottomPage()
+	public RegisterPage()
 	{
 		InitializeComponent();
 	}
-
-    private async void Login_Clicked(object sender, EventArgs e)
+    private void Register_Clicked(object sender, EventArgs e)
     {
         try
         {
             MailAddress mailAddress = new(EmailSend.Text);
-            await DismissAsync();
             Application.Current.MainPage = new AppShell();
         }
         catch (FormatException)
@@ -27,24 +25,26 @@ public partial class LoginBottomPage
         }
     }
 
-    private async void RegisterClicked_Tapped(object sender, TappedEventArgs e)
+    private void UsersAgreement_Tapped(object sender, TappedEventArgs e)
     {
-        await DismissAsync();
-        await Navigation.PushModalAsync(new RegisterPage());
+
     }
 
     private void ShowPassword_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
         if (showPassword.IsChecked)
         {
-            PasswordShow.IsPassword = false;
+            PasswordShow1.IsPassword = false;
+            PasswordShow2.IsPassword = false;
             return;
         }
-        PasswordShow.IsPassword = true;
+        PasswordShow1.IsPassword = true;
+        PasswordShow2.IsPassword = true;
     }
 
-    private void PasswordShow_TextChanged(object sender, TextChangedEventArgs e)
+    private void EmailSend_TextChanged(object sender, TextChangedEventArgs e)
     {
         EmailSend.TextColor = Color.Parse("#ffffff");
     }
+
 }

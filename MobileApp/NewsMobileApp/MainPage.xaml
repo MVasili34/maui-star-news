@@ -57,7 +57,7 @@
                BackgroundColor="Transparent" 
                FontSize="16">
                     <Label.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnRegisterClicked" />
+                        <TapGestureRecognizer Tapped="Register_Tapped" />
                     </Label.GestureRecognizers>
                 </Label>
             </StackLayout>

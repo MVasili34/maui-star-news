@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NewsMobileApp.ViewsNative.RegisterPage"
+             Title="RegisterPage"
+             BackgroundColor="{StaticResource MainBackGroundColor}">
+    <VerticalStackLayout>
+        <Image
+            Source="loginimg.svg"
+            HorizontalOptions="Center"
+            BackgroundColor="{StaticResource MainBackGroundColor}"
+            WidthRequest="130"
+            HeightRequest="130"/>
+
+        <Label 
+            Text="Регистрация"
+            FontSize="30"
+            Margin="0,0,0,3"
+            FontFamily="NotoSerif"
+            VerticalOptions="Center" 
+            HorizontalTextAlignment="Center"
+            HorizontalOptions="Center" />
+
+        <Label  
+                Text="Зарегистрируйтесь, используя действительные данные"
+                SemanticProperties.HeadingLevel="Level2"
+                HorizontalTextAlignment="Center"
+                LineBreakMode="WordWrap"
+                FontSize="18"
+                HorizontalOptions="Center" />
+
+        <Entry x:Name="UserName"
+               Placeholder="👤 Имя профиля"
+               FontSize="20"
+               MaxLength="20"
+               Margin="0,5,0,2"/>
+
+        <Entry x:Name="EmailSend"
+               Placeholder="📧 Адрес электронной почты"
+               FontSize="20"
+               Margin="0,0,0,2"
+               TextChanged="EmailSend_TextChanged"/>
+
+        <Entry x:Name="PasswordShow1"
+               Placeholder="🔒 Пароль"
+               IsPassword="True" 
+               MaxLength="20"
+               FontSize="20"
+               Margin="0,0,0,2"/>
+
+        <Entry x:Name="PasswordShow2"
+               Placeholder="🔒 Подвердите пароль"
+               IsPassword="True" 
+               MaxLength="20"
+               FontSize="20"
+               Margin="0,0,0,2"/>
+        <StackLayout Orientation="Horizontal" 
+                     Spacing="4" 
+                     HorizontalOptions="Start" 
+                     Margin="0,-10,0,0">
+            <CheckBox x:Name="showPassword"
+                  CheckedChanged="ShowPassword_CheckedChanged" />
+            <Label Text="Показать пароль"
+                   TextColor="White"
+                   FontSize="17"
+                   VerticalOptions="Center"/>
+        </StackLayout>
+
+        <Button x:Name="Login"
+                Text="Зарегистрироваться"
+                TextColor="White"
+                BackgroundColor="{StaticResource Primary}"
+                Clicked="Register_Clicked"
+                FontSize="20"
+                Margin="0, 3, 0, 10"/>
+        <Label
+                Text="Регистрируясь, вы соглашаетесь с условиями"
+                FontSize="16" 
+                HorizontalOptions="Center"/>
+        <Label  Text="Пользовательского соглашения" 
+                TextColor="{StaticResource Primary}" 
+                BackgroundColor="Transparent" 
+                FontSize="16"
+                HorizontalOptions="Center">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Tapped="UsersAgreement_Tapped" />
+            </Label.GestureRecognizers>
+        </Label>
+    </VerticalStackLayout>
+</ContentPage>

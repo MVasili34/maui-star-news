@@ -4,7 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:the49="https://schemas.the49.com/dotnet/2023/maui"
              x:Class="NewsMobileApp.ViewsNative.LoginBottomPage"
-             Padding="5, 20" 
+             Padding="5, 0" 
              BackgroundColor="{StaticResource MainBackGroundColor}">
     <VerticalStackLayout>
 
@@ -18,7 +18,7 @@
         <Label 
             Text="Авторизация"
             FontSize="30"
-            Margin="0,20,0,20"
+            Margin="0,10,0,10"
             FontFamily="NotoSerif"
             VerticalOptions="Center" 
             HorizontalTextAlignment="Center"
