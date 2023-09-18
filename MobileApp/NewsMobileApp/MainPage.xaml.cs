@@ -22,5 +22,5 @@ public partial class MainPage : ContentPage
     }
 
     private async void Register_Tapped(object sender, TappedEventArgs e) =>
-        await Navigation.PushModalAsync(new RegisterPage());
+         await Navigation.PushModalAsync(new RegisterPage());
 }

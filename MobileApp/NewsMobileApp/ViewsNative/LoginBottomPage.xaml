@@ -18,7 +18,7 @@
         <Label 
             Text="Авторизация"
             FontSize="30"
-            Margin="0,10,0,10"
+            Margin="0,8,0,5"
             FontFamily="NotoSerif"
             VerticalOptions="Center" 
             HorizontalTextAlignment="Center"
@@ -32,23 +32,82 @@
                 FontSize="18"
                 HorizontalOptions="Center" />
 
-        <Entry x:Name="EmailSend"
-               Placeholder="📧 Адрес электронной почты"
-               FontSize="20"
-               Margin="0,10,0,10"/>
+        <Border 
+            Padding="12, 4"
+            BackgroundColor="#33CCCCCC"
+            Stroke="Transparent"
+            HorizontalOptions="Fill"
+            Margin="15,10,15,0"
+            HeightRequest="55">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="6"/>
+            </Border.StrokeShape>
 
-        <Entry x:Name="PasswordShow"
-               Placeholder="🔒 Пароль"
-               MaxLength="20"
-               IsPassword="True" 
-               FontSize="20"
-               Margin="0,0,0,0"
-               TextChanged="PasswordShow_TextChanged"/>
+            <Grid
+                 HorizontalOptions="Fill"
+                 VerticalOptions="Center"
+                 ColumnDefinitions="Auto,*"
+                 ColumnSpacing="16">
+
+                <Image
+                    WidthRequest="24"
+                    HeightRequest="24"
+                    Source="mail.png"
+                    Grid.Column="0"
+                    VerticalOptions="Center" />
+
+                <Entry
+                    x:Name="EmailSend"
+                    Placeholder="Адрес электронной почты..."
+                    Grid.Column="1"
+                    FontSize="20"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center"/>
+            </Grid>
+        </Border>
+
+
+        <Border 
+            Padding="12, 4"
+            BackgroundColor="#33CCCCCC"
+            Stroke="Transparent"
+            HorizontalOptions="Fill"
+            Margin="15,5,15,2"
+            HeightRequest="55">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="6"/>
+            </Border.StrokeShape>
+
+            <Grid
+                 HorizontalOptions="Fill"
+                 VerticalOptions="Center"
+                 ColumnDefinitions="Auto,*"
+                 ColumnSpacing="16">
+
+                <Image
+                    WidthRequest="24"
+                    HeightRequest="24"
+                    Source="padlock.png"
+                    Grid.Column="0"
+                    VerticalOptions="Center" />
+
+                <Entry
+                    x:Name="PasswordShow"
+                    Placeholder="Пароль..."
+                    Grid.Column="1"
+                    FontSize="20"
+                    MaxLength="20"
+                    IsPassword="True"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center"
+                    TextChanged="PasswordShow_TextChanged"/>
+            </Grid>
+        </Border>
 
         <StackLayout Orientation="Horizontal" 
                      Spacing="4" 
                      HorizontalOptions="Start" 
-                     Margin="0,-5,0,0">
+                     Margin="20,-5,0,0">
             <CheckBox x:Name="showPassword"
                       CheckedChanged="ShowPassword_CheckedChanged" />
             <Label Text="Показать пароль"
@@ -64,7 +123,7 @@
                 BackgroundColor="{StaticResource Primary}"
                 Clicked="Login_Clicked"
                 FontSize="20"
-                Margin="0, 10, 0, 10"
+                Margin="15, 10, 15, 10"
                 />
         <StackLayout Orientation="Horizontal" Spacing="4" HorizontalOptions="Center">
             <Label Text="У вас ещё нет аккаунта?" TextColor="White" FontSize="16"/>

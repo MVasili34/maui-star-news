@@ -25,10 +25,8 @@ public partial class RegisterPage : ContentPage
         }
     }
 
-    private void UsersAgreement_Tapped(object sender, TappedEventArgs e)
-    {
-
-    }
+    private async void UsersAgreement_Tapped(object sender, TappedEventArgs e) => await
+        DisplayAlert("Privacy", "TBA", "OK");
 
     private void ShowPassword_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
@@ -46,5 +44,7 @@ public partial class RegisterPage : ContentPage
     {
         EmailSend.TextColor = Color.Parse("#ffffff");
     }
+
+    private async void BackButton_Clicked(object sender, EventArgs e) => await Navigation.PopModalAsync();
 
 }
