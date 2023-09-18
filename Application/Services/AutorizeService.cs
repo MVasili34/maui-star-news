@@ -24,7 +24,8 @@ public class AutorizeService : IAutorizeService
     public async Task<User?> RegisterUserAsync(RegisterModel registerUser)
     {
         User user = (User)registerUser;
-        User? dublicate = await _newsAppContext.Users.FirstOrDefaultAsync(dbuser => dbuser.EmailAddress == user.EmailAddress);
+        User? dublicate = await _newsAppContext.Users.FirstOrDefaultAsync(dbuser => 
+            dbuser.EmailAddress == user.EmailAddress);
 
         if (dublicate is not null)
         {
@@ -44,22 +45,21 @@ public class AutorizeService : IAutorizeService
         return null;
     }
 
-    public async Task<bool?> AutorizeUserAsync(AuthorizeModel authorize)
+    public async Task<User?> AutorizeUserAsync(AuthorizeModel authorize)
     {
-        User? existed = await _newsAppContext.Users.FindAsync(authorize.UserId);
+        User? existed = await _newsAppContext.Users.FirstOrDefaultAsync(user => 
+            user.EmailAddress == authorize.EmailAddress);
 
         if (existed is not null) 
         {
-            if(existed.EmailAddress == authorize.EmailAddress &&
-                Protector.CheckPassword(authorize.Password, existed.PasswordSalt, existed.PasswordHash))
+            if(Protector.CheckPassword(authorize.Password, existed.PasswordSalt, existed.PasswordHash))
             {
                 existed.LastLogin = DateTime.Now;
                 if (await _newsAppContext.SaveChangesAsync() == 1)
                 {
-                    return true;
+                    return existed;
                 }
             }
-            return false;
         }
         return null;
     }

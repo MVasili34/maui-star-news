@@ -62,13 +62,18 @@ public class UsersController : ControllerBase
     //BODY: AuthorizeModel (JSON)
     [HttpPost("login")]
     [ProducesResponseType(200)]
+    [ProducesResponseType(400)]
     [ProducesResponseType(401)]
     public async Task<IActionResult> LoginUser([FromBody] AuthorizeModel model)
     {
-        bool? authorized = await _autorizeService.AutorizeUserAsync(model);
-        if (authorized.HasValue && authorized.Value) 
+        if (model is null)
         {
-            return Ok();
+            return BadRequest();
+        }
+        User? authorized = await _autorizeService.AutorizeUserAsync(model);
+        if (authorized is not null) 
+        {
+            return Ok(authorized);
         }
         return Unauthorized();
     }

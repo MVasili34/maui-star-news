@@ -20,13 +20,12 @@ public class AuthorizeSeviceTests
 
         AuthorizeModel authorizeModel = new()
         {
-            UserId = registered!.UserId,
-            EmailAddress = registered.EmailAddress,
+            EmailAddress = registered!.EmailAddress,
             Password = "pa$$w0rd"
         };
-        bool? authorized = await _authorizeService.AutorizeUserAsync(authorizeModel);
+        User? authorized = await _authorizeService.AutorizeUserAsync(authorizeModel);
 
-        Assert.True(authorized);
+        Assert.Equal(registered, authorized);
     }
     
     [Fact]
@@ -38,13 +37,12 @@ public class AuthorizeSeviceTests
 
         AuthorizeModel authorizeModel = new()
         {
-            UserId = registered!.UserId,
-            EmailAddress = registered.EmailAddress,
+            EmailAddress = registered!.EmailAddress,
             Password = "passwird"
         };
-        bool? authorized = await _authorizeService.AutorizeUserAsync(authorizeModel);
+        User? authorized = await _authorizeService.AutorizeUserAsync(authorizeModel);
 
-        Assert.False(authorized);
+        Assert.Null(authorized);
     }
     
     [Fact]

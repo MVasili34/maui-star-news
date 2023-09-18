@@ -21,9 +21,9 @@ public interface IAutorizeService
     /// Метод авторизации пользователя
     /// </summary>
     /// <param name="user">Объект <see cref="User"/> с вложенным паролем</param>
-    /// <returns>Если данные верны <see langword="true"/>, иначе <see langword="false"/>.
+    /// <returns>Объект <see cref="User"/>, иначе <see langword="null"/>.
     /// Если же пользователя не существуюет вовсе, то <see langword="null"/></returns>
-    Task<bool?> AutorizeUserAsync(AuthorizeModel user);
+    Task<User?> AutorizeUserAsync(AuthorizeModel user);
 
     /// <summary>
     /// Метод регистрации пользователя по предоставленным данным
