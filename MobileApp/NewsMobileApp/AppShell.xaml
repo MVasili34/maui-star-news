@@ -10,10 +10,10 @@
             <ShellContent ContentTemplate="{DataTemplate views:MainEventsPage}" Route="home" />
         </Tab>
         <Tab x:Name="BookmarksTab" Icon="fire.png" Title="Тренд">
-            <ShellContent ContentTemplate="{DataTemplate local:FirsrWebView}" Route="Thrend" />
+            <ShellContent ContentTemplate="{DataTemplate views:ThrendsPage}" Route="thrend" />
         </Tab>
         <Tab x:Name="SectionsTab" Icon="categories.png" Title="Секции">
-            <ShellContent ContentTemplate="{DataTemplate views:MainEventsPage}" Route="sections" />
+            <ShellContent ContentTemplate="{DataTemplate views:SectionsPage}" Route="sections" />
         </Tab>
         <Tab x:Name="ProfileTab" Icon="profile.png" Title="Профиль">
             <ShellContent ContentTemplate="{DataTemplate views:ProfilePrivacyPage}" Route="profile" />

@@ -1,7 +1,28 @@
-﻿@page "/articlepage"
+﻿@page "/articlepage/{articleid}"
+@inject INewsService newsInject
 
-<h3>Статья</h3>
+@if(_article is null)
+{
+    <p><em>Загрузка...</em></p>
+}
+else
+{
+    <img src="@_article.ImageURL" height="300"/>
+    <p style="margin: 10px 20px 0 10px; font-size: 26px"> @_article.Title </p>
+    <div>
+
+    </div>
+    <p style="text-align: justify; text-justify: auto; margin: 0 20px 0 10px; font-size:16px"> @_article.Text </p>
+}
 
 @code {
 
+    [Parameter]
+    public int ArticleId { get; set; }
+    private Article? _article;
+
+    protected async override Task OnParametersSetAsync()
+    {
+        _article = newsInject.GetThrendArticles().FirstOrDefault(article => article.Id == ArticleId);
+    }
 }

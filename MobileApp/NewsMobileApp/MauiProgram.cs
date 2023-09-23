@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
 using NewsMobileApp.Data;
+using NewsMobileApp.TempServices;
 using The49.Maui.BottomSheet;
+using NewsMobileApp.ViewsNative;
 
 namespace NewsMobileApp
 {
@@ -24,6 +26,9 @@ namespace NewsMobileApp
                 });
 
             builder.Services.AddMauiBlazorWebView();
+            builder.Services.AddScoped<INewsService, NewsService>();
+            builder.Services.AddTransient<SectionsPage>();
+            builder.Services.AddTransient<ThrendsPage>();
 
 #if DEBUG
 		builder.Services.AddBlazorWebViewDeveloperTools();

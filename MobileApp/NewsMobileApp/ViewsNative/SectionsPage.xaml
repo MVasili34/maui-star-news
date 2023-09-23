@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NewsMobileApp.ViewsNative.SectionsPage"
+             xmlns:viewmodels="clr-namespace:NewsMobileApp.ViewModels"
+             xmlns:models="clr-namespace:NewsMobileApp.Models"
+             Title="Категории"
+             Shell.BackgroundColor="{StaticResource MainNavigationColor}"
+             BackgroundColor="{StaticResource MainBackGroundColor}">
+    <ScrollView>
+        <VerticalStackLayout Padding="16">
+        <Label 
+        Text="Выбор секции"
+        TextColor="White"
+        Margin="0,10,20,10"
+        FontFamily="NotoSerif"
+        FontSize="28"/>
+            <FlexLayout BindableLayout.ItemsSource="{Binding Sections}"
+                Direction="Row"
+                Wrap="Wrap"
+                JustifyContent="SpaceEvenly"
+                AlignItems="Stretch"
+                Margin="-10,0">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate x:DataType="models:Section">
+                        <Frame BackgroundColor="{StaticResource MainBlocksColor}"
+                       FlexLayout.Basis="160"
+                       FlexLayout.Grow="0.75"
+                       FlexLayout.Shrink="0.5"
+                       BorderColor="Transparent"
+                       Margin="5,10">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Section_Tapped" CommandParameter="{Binding SectionId}" />
+                            </Frame.GestureRecognizers>
+                            <VerticalStackLayout Padding="20,6" VerticalOptions="Center" Spacing="10">
+                                <Label Text="{Binding MaterialIcon}"
+                               FontFamily="Material"
+                               TextColor="{StaticResource White}"
+                               FontSize="34"
+                               HorizontalOptions="Center" />
+                                <Label Text="{Binding Name}"
+                               TextColor="{StaticResource White}"
+                               HorizontalOptions="Center"
+                               FontSize="16"
+                               FontFamily="PoppinsSemiBold" />
+
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </FlexLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

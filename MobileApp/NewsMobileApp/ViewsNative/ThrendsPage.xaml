@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NewsMobileApp.ViewsNative.ThrendsPage"
+             xmlns:models="clr-namespace:NewsMobileApp.Models"
+             xmlns:viewmodels="clr-namespace:NewsMobileApp.ViewModels"
+             Title="В тренде"
+             Shell.BackgroundColor="{StaticResource MainNavigationColor}"
+             BackgroundColor="{StaticResource MainBackGroundColor}">
+    <CollectionView x:Name="HotArticle"
+                 ItemsSource="{Binding Articles}"
+                 SelectionMode="Single"
+                 SelectionChanged="HotArticle_SelectionChanged">
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="models:Article">
+                <StackLayout BackgroundColor="{StaticResource MainBackGroundColor}">
+                    <Border StrokeThickness="0.5">
+                        <ContentView Padding="16" >
+                            <Grid ColumnSpacing="16">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="120" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="60" />
+                                    <RowDefinition Height="40" />
+                                    <RowDefinition Height="20" />
+                                </Grid.RowDefinitions>
+                                <Frame Padding="0"
+                                Grid.Column="0"
+                                Grid.RowSpan="3"
+                                BorderColor="Transparent"
+                                IsClippedToBounds="True">
+                                    <Image Source="{Binding ImageURL}"
+                                       Aspect="AspectFill" />
+                                </Frame>
+                                <Label Text="{Binding Title}"
+                                Grid.Column="1"
+                                Grid.Row="0"
+                                MaxLines="2"
+                                FontFamily="PoppinsSemiBold"
+                                FontSize="20" />
+                                <Label Text="{Binding SubTitle}"
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                MaxLines="2"
+                                TextColor="{StaticResource Gray400}" />
+                                <StackLayout Orientation="Horizontal"
+                                      Spacing="4"
+                                      Grid.Column="1"
+                                      Grid.Row="2">
+                                    <Label Text="{Binding Category}"
+                                    TextColor="{StaticResource Primary}" />
+                                    <Label Text="·"
+                                    FontAttributes="Bold"
+                                    TextColor="{StaticResource Gray200}"/>
+                                    <Label Text="{Binding PublishDate}"
+                                TextColor="{StaticResource Gray200}"/>
+                                </StackLayout>
+                            </Grid>
+                        </ContentView>
+                    </Border>
+                </StackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</ContentPage>

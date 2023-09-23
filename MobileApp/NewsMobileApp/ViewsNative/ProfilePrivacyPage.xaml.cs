@@ -6,4 +6,9 @@ public partial class ProfilePrivacyPage : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    private void Logout_Clicked(object sender, EventArgs e)
+    {
+        Application.Current.MainPage = new MainPage();
+    }
 }

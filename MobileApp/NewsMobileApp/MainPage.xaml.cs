@@ -4,6 +4,8 @@ namespace NewsMobileApp;
 
 public partial class MainPage : ContentPage
 {
+    private bool _status = false;
+
     public MainPage()
     {
         InitializeComponent();
