@@ -11,7 +11,7 @@
             <StackLayout Orientation="Horizontal" Margin="20,0" Spacing="10">
                 <Frame WidthRequest="75" HeightRequest="75" Padding="0" CornerRadius="38"
                    BackgroundColor="{StaticResource Gray200}" BorderColor="Transparent">
-                    <Label Text="{x:Static icons:Icons.IconName}"
+                    <Label Text="{x:Static icons:Icons.IconProfile}"
                        FontFamily="Material"
                        FontSize="40"
                        VerticalOptions="Center"

@@ -5,5 +5,5 @@ public static class Icons
     /// <summary>
     /// Profile Symbol
     /// </summary>
-    public const string IconName = "\ue853";
+    public const string IconProfile = "\ue853";
 }

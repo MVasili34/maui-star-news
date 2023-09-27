@@ -1,0 +1,10 @@
+﻿@font-face {
+    font-family: 'NotoSerif-Bold';
+    font-weight:bold;
+    src: url('../fonts/NotoSerif-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Icons';
+    src: url('../fonts/MaterialIconsOutlined-Regular.otf');
+}
