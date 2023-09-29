@@ -25,6 +25,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArticleODataAPI", "API\Arti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewsMobileApp", "MobileApp\NewsMobileApp\NewsMobileApp.csproj", "{E12696BB-50DB-4BDB-84E3-7F2AC0E51E98}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImagesCloudTool", "Tools\ImagesCloudTool\ImagesCloudTool.csproj", "{1A42D132-6DCB-4442-BB5E-7A213F2BACFF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{E12696BB-50DB-4BDB-84E3-7F2AC0E51E98}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E12696BB-50DB-4BDB-84E3-7F2AC0E51E98}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E12696BB-50DB-4BDB-84E3-7F2AC0E51E98}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{1A42D132-6DCB-4442-BB5E-7A213F2BACFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A42D132-6DCB-4442-BB5E-7A213F2BACFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A42D132-6DCB-4442-BB5E-7A213F2BACFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A42D132-6DCB-4442-BB5E-7A213F2BACFF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,6 +74,7 @@ Global
 		{B7C725A3-0D66-4174-9C7A-1B6A4F13EDAD} = {DAFF931B-BD21-4040-AD4A-44AF68FD24A8}
 		{C80B7E5F-BF71-4FC8-BBC6-D4AB2E307FD9} = {90B4124F-AF4C-47A3-BD3F-754101A5FAF9}
 		{E12696BB-50DB-4BDB-84E3-7F2AC0E51E98} = {1761B937-2EA2-4F41-8C6B-204A7AFE3B1C}
+		{1A42D132-6DCB-4442-BB5E-7A213F2BACFF} = {DAFF931B-BD21-4040-AD4A-44AF68FD24A8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D0C1AC4C-B478-4F60-BEBE-A821F9DC1DDA}
