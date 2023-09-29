@@ -3,7 +3,7 @@ using System.Net.Http.Headers;
 
 namespace ImagesCloudTool;
 
-public class ImageCloudTool
+public class ImageCloudTool : IImageCloudTool
 {
     private const string _url = "https://api.imgur.com/3/image";
     private readonly string _clientId = null!;
@@ -27,15 +27,11 @@ public class ImageCloudTool
 
                 if (!string.IsNullOrEmpty(imageUrl))
                 {
-                    Console.WriteLine("Ответ: " + imageUrl);
                     dynamic? response = JsonConvert.DeserializeObject<dynamic>(imageUrl);
                     string url = response!.data.link;
                     return url;
                 }
-                else
-                {
-                    return null;
-                }
+                return null;
             }
         }
         catch (FileNotFoundException)
@@ -48,34 +44,21 @@ public class ImageCloudTool
         }
     }
 
-    static async Task<string?> UploadImgurAsync(HttpClient httpClient, string imagePath)
+    private async Task<string?> UploadImgurAsync(HttpClient httpClient, string imagePath)
     {
-        try
+        byte[] imageData = File.ReadAllBytes(imagePath);
+
+        using (MultipartFormDataContent content = new())
         {
-            byte[] imageData = File.ReadAllBytes(imagePath);
+            content.Add(new ByteArrayContent(imageData), "image", "image.jpg");
 
-            using (var content = new MultipartFormDataContent())
-            {
-                content.Add(new ByteArrayContent(imageData), "image", "image.jpg");
+            var response = await httpClient.PostAsync(_url, content);
 
-                var response = await httpClient.PostAsync(_url, content);
-
-                if (response.IsSuccessStatusCode)
-                {
-                    string responseContent = await response.Content.ReadAsStringAsync();
-                    return responseContent;
-                }
-                else
-                {
-                    Console.WriteLine("Ошибка при загрузке изображения. Код ответа: " + response.StatusCode);
-                }
+            if (response.IsSuccessStatusCode)
+            {   
+                return await response.Content.ReadAsStringAsync();
             }
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Ошибка: " + ex.Message);
-        }
-
         return null;
     }
 }

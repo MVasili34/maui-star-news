@@ -11,4 +11,6 @@ public class ThrendsViewModel
     {
         Articles = newsService.GetThrendArticles();
     }
+
+    
 }

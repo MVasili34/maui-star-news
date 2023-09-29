@@ -7,61 +7,105 @@
              Title="В тренде"
              Shell.BackgroundColor="{StaticResource MainNavigationColor}"
              BackgroundColor="{StaticResource MainBackGroundColor}">
-    <CollectionView x:Name="HotArticle"
+    <ScrollView>
+        <VerticalStackLayout>
+    <Border 
+            Padding="12, 4"
+            BackgroundColor="#33CCCCCC"
+            Stroke="Transparent"
+            HorizontalOptions="Fill"
+            Margin="15,15,15,12"
+            HeightRequest="55">
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="6"/>
+        </Border.StrokeShape>
+
+        <Grid
+                 HorizontalOptions="Fill"
+                 VerticalOptions="Center"
+                 ColumnDefinitions="Auto,*"
+                 ColumnSpacing="16">
+
+            <Image
+                    WidthRequest="24"
+                    HeightRequest="24"
+                    Source="imgsearch.png"
+                    Grid.Column="0"
+                    VerticalOptions="Center" />
+
+            <Entry
+                    x:Name="SearchText"
+                    Placeholder="Поиск статьи..."
+                    Grid.Column="1"
+                    FontSize="20"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center"
+                    Completed="SearchText_Completed"/>
+        </Grid>
+    </Border>
+        <CollectionView x:Name="HotArticle"
                  ItemsSource="{Binding Articles}"
                  SelectionMode="Single"
                  SelectionChanged="HotArticle_SelectionChanged">
-        <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="models:Article">
-                <StackLayout BackgroundColor="{StaticResource MainBackGroundColor}">
-                    <Border StrokeThickness="0.5">
-                        <ContentView Padding="16" >
-                            <Grid ColumnSpacing="16">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="120" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="60" />
-                                    <RowDefinition Height="40" />
-                                    <RowDefinition Height="20" />
-                                </Grid.RowDefinitions>
-                                <Frame Padding="0"
+            
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Article">
+                    <StackLayout BackgroundColor="{StaticResource MainBackGroundColor}">
+                        <Border StrokeThickness="0.5">
+                            <ContentView Padding="16" >
+                                <Grid ColumnSpacing="16">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="120" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="60" />
+                                        <RowDefinition Height="40" />
+                                        <RowDefinition Height="20" />
+                                    </Grid.RowDefinitions>
+                                    <Frame Padding="0"
                                 Grid.Column="0"
                                 Grid.RowSpan="3"
                                 BorderColor="Transparent"
                                 IsClippedToBounds="True">
-                                    <Image Source="{Binding ImageURL}"
+                                        <Image Source="{Binding ImageURL}"
                                        Aspect="AspectFill" />
-                                </Frame>
-                                <Label Text="{Binding Title}"
+                                    </Frame>
+                                    <Label Text="{Binding Title}"
                                 Grid.Column="1"
                                 Grid.Row="0"
                                 MaxLines="2"
                                 FontFamily="PoppinsSemiBold"
                                 FontSize="20" />
-                                <Label Text="{Binding SubTitle}"
+                                    <Label Text="{Binding SubTitle}"
                                 Grid.Row="1"
                                 Grid.Column="1"
                                 MaxLines="2"
                                 TextColor="{StaticResource Gray400}" />
-                                <StackLayout Orientation="Horizontal"
+                                    <StackLayout Orientation="Horizontal"
                                       Spacing="4"
                                       Grid.Column="1"
                                       Grid.Row="2">
-                                    <Label Text="{Binding Category}"
+                                        <Label Text="{Binding Category}"
                                     TextColor="{StaticResource Primary}" />
-                                    <Label Text="·"
+                                        <Label Text="·"
                                     FontAttributes="Bold"
                                     TextColor="{StaticResource Gray200}"/>
-                                    <Label Text="{Binding PublishDate}"
+                                        <Label Text="{Binding PublishDate}"
                                 TextColor="{StaticResource Gray200}"/>
-                                </StackLayout>
-                            </Grid>
-                        </ContentView>
-                    </Border>
+                                    </StackLayout>
+                                </Grid>
+                            </ContentView>
+                        </Border>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            <CollectionView.EmptyView>
+                <StackLayout VerticalOptions="CenterAndExpand">
+                    <Label Text="No Articles"/>
                 </StackLayout>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+            </CollectionView.EmptyView>
+        </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

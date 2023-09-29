@@ -25,7 +25,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArticleODataAPI", "API\Arti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewsMobileApp", "MobileApp\NewsMobileApp\NewsMobileApp.csproj", "{E12696BB-50DB-4BDB-84E3-7F2AC0E51E98}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImagesCloudTool", "Tools\ImagesCloudTool\ImagesCloudTool.csproj", "{1A42D132-6DCB-4442-BB5E-7A213F2BACFF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImagesCloudTool", "Tools\ImagesCloudTool\ImagesCloudTool.csproj", "{1A42D132-6DCB-4442-BB5E-7A213F2BACFF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

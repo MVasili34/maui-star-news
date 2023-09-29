@@ -6,10 +6,13 @@ namespace NewsMobileApp.ViewsNative;
 
 public partial class ThrendsPage : ContentPage
 {
+    private readonly INewsService _newsService;
+
 	public ThrendsPage(INewsService newsService)
 	{
 		InitializeComponent();
-        BindingContext = new ThrendsViewModel(newsService);
+        _newsService = newsService;
+        BindingContext = new ThrendsViewModel(_newsService);
     }
 
     private async void HotArticle_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -17,5 +20,11 @@ public partial class ThrendsPage : ContentPage
         if (e.CurrentSelection.First() is not Article article) return;
 
         await Navigation.PushAsync(new ArticlePage(article.Id));
+    }
+
+    private async void SearchText_Completed(object sender, EventArgs e)
+    {
+        await DisplayAlert("Search", $"{SearchText.Text}", "OK");
+        
     }
 }

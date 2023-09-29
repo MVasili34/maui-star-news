@@ -3,6 +3,7 @@ using NewsMobileApp.Data;
 using NewsMobileApp.TempServices;
 using The49.Maui.BottomSheet;
 using NewsMobileApp.ViewsNative;
+using ImagesCloudTool;
 
 namespace NewsMobileApp
 {
@@ -27,6 +28,8 @@ namespace NewsMobileApp
 
             builder.Services.AddMauiBlazorWebView();
             builder.Services.AddScoped<INewsService, NewsService>();
+            builder.Services.AddScoped<IImageCloudTool, ImageCloudTool>(_ =>
+                new ImageCloudTool("fc0f801a94e39de"));
             builder.Services.AddTransient<SectionsPage>();
             builder.Services.AddTransient<ThrendsPage>();
 

@@ -65,6 +65,10 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\Tools\ImagesCloudTool\ImagesCloudTool.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
       <MauiXaml Update="AppShell.xaml">
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
@@ -84,6 +88,9 @@
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
       <MauiXaml Update="ViewsNative\MainEventsPage.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </MauiXaml>
+      <MauiXaml Update="ViewsNative\PrivacyPolicyAgreePage.xaml">
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
       <MauiXaml Update="ViewsNative\ProfilePrivacyPage.xaml">

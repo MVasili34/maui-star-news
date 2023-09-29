@@ -9,13 +9,22 @@ else
 {
     <div>
     <img src="@_article.ImageURL" height="300" style="width: 100%">
-    <p  style="margin: 10px 20px 0 10px; font-size: 26px; font-family:'NotoSerif-Bold';"> @_article.Title </p>
-    <div style="display:inline; margin: 10px 20px 0 10px;"> 
-        <span class="material-symbols-outlined" style="color:gray">account_circle</span>
-        <p style="color:gray">@_article.PublishDate.ToString("f")</p>
+        <p style="margin: 10px 20px 0 10px; font-size: 26px; font-family: 'Noto Serif', serif;">
+        @_article.Title
+    </p>
+    <div style="display: flex; margin: 10px 20px 0 10px;"> 
+        <span class="material-symbols-outlined" style="color:#C8C8C8; font-size:35px">account_circle</span>
+        <div>
+            <p style="color:#C8C8C8; margin-left: 10px; margin-top: -5px">Редактор</p>
+            <p style="color:#C8C8C8; margin-left: 10px; margin-top: -20px;">@_article.PublishDate.ToString("f")</p>
+        </div>
     </div>
-    <p style="text-align: justify; text-justify: auto; margin: 0 20px 0 10px; font-size:16px"> @_article.Text </p>
+        <p style="text-align: justify; text-justify: auto; margin: 0 20px 0 10px; font-size:16px; white-space: pre-wrap;"> 
+            @_article.Text 
+        </p>
     </div>
+    <hr/>
+    <p style="color: #C8C8C8; margin-left: 10px;">	&copy; 2023 Copyright. All Rights Reserved.</p>
 }
 
 @code {

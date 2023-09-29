@@ -13,7 +13,9 @@ public partial class RegisterPage : ContentPage
         try
         {
             MailAddress mailAddress = new(EmailSend.Text);
+            Navigation.PopModalAsync();
             Application.Current.MainPage = new AppShell();
+            
         }
         catch (FormatException)
         {
@@ -40,10 +42,8 @@ public partial class RegisterPage : ContentPage
         PasswordShow2.IsPassword = true;
     }
 
-    private void EmailSend_TextChanged(object sender, TextChangedEventArgs e)
-    {
+    private void EmailSend_TextChanged(object sender, TextChangedEventArgs e) =>
         EmailSend.TextColor = Color.Parse("#ffffff");
-    }
 
     private async void BackButton_Clicked(object sender, EventArgs e) => await Navigation.PopModalAsync();
 

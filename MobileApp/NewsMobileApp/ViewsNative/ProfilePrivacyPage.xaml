@@ -93,7 +93,8 @@
             <Grid>
                 <Button CornerRadius="5"
                     HeightRequest="50"
-                    BackgroundColor="{StaticResource  MainBlocksColor}"/>
+                    BackgroundColor="{StaticResource  MainBlocksColor}"
+                    Clicked="Privacy_Clicked"/>
                 <Label Text="Private policy"
                    FontSize="18"
                    VerticalOptions="Center"
