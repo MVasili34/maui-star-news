@@ -13,7 +13,7 @@ public partial class LoginBottomPage
     {
         try
         {
-            MailAddress mailAddress = new(EmailSend.Text);
+            //MailAddress mailAddress = new(EmailSend.Text);
             await DismissAsync();
             Application.Current.MainPage = new AppShell();
         }

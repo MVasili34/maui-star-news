@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NewsMobileApp.ViewsNative.AccountSettingsPage"
+             Title="Настройки аккаунта"
+             Shell.BackgroundColor="{StaticResource MainNavigationColor}"
+             BackgroundColor="{StaticResource MainBackGroundColor}">
+    <VerticalStackLayout>
+        <Label 
+            Margin="10,20,0,20"
+            Text="Изменить данные профиля"
+            HorizontalOptions="Center"
+            FontSize="20"/>
+
+        <Label Text="Имя профиля" 
+               FontFamily="PoppinsSemibold"
+               FontSize="18"
+               TextColor="{StaticResource Gray300}"
+               Margin="20,0,0,0"/>
+        <ContentView HeightRequest="2"/>
+        <Border 
+            Padding="12, 4"
+            BackgroundColor="#33CCCCCC"
+            Stroke="Transparent"
+            HorizontalOptions="Fill"
+            Margin="15,5,15,0"
+            HeightRequest="55">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="6"/>
+            </Border.StrokeShape>
+            <Entry
+                    Text="{Binding UserName}"
+                    Placeholder="Имя профиля..."
+                    FontSize="20"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center"/>
+        </Border>
+
+        <ContentView HeightRequest="10" />
+        <Label Text="Адрес электронной почты" 
+               FontFamily="PoppinsSemibold"
+               FontSize="18"
+               TextColor="{StaticResource Gray300}"
+               Margin="20,0,0,0"/>
+        <ContentView HeightRequest="2"/>
+        <Border 
+            Padding="12, 4"
+            BackgroundColor="#33CCCCCC"
+            Stroke="Transparent"
+            HorizontalOptions="Fill"
+            Margin="15,5,15,0"
+            HeightRequest="55">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="6"/>
+            </Border.StrokeShape>
+            <Entry
+                    Text="{Binding EmailAddress}"
+                    Placeholder="Адрес электронной почты..."
+                    FontSize="20"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center"/>
+        </Border>
+        
+        <ContentView HeightRequest="10" />
+        <Label Text="Номер телефона" 
+               FontFamily="PoppinsSemibold"
+               FontSize="18"
+               TextColor="{StaticResource Gray300}"
+               Margin="20,0,0,0"/>
+        <ContentView HeightRequest="2"/>
+        <Border 
+            Padding="12, 4"
+            BackgroundColor="#33CCCCCC"
+            Stroke="Transparent"
+            HorizontalOptions="Fill"
+            Margin="15,5,15,0"
+            HeightRequest="55">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="6"/>
+            </Border.StrokeShape>
+            <Entry
+                    Text="{Binding Phone}"
+                    Placeholder="Номер телефона..."
+                    FontSize="20"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center"/>
+        </Border>
+
+        <ContentView HeightRequest="10" />
+        <Label Text="Дата рождения" 
+               FontFamily="PoppinsSemibold"
+               FontSize="18"
+               TextColor="{StaticResource Gray300}"
+               Margin="20,0,0,0"/>
+        <ContentView HeightRequest="2"/>
+        <Border 
+            Padding="12, 4"
+            BackgroundColor="#33CCCCCC"
+            Stroke="Transparent"
+            HorizontalOptions="Fill"
+            Margin="15,5,15,0"
+            HeightRequest="55">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="6"/>
+            </Border.StrokeShape>
+            <DatePicker
+                 x:Name="DatePicker"
+                 Date="{Binding DateOfBirth}"
+                 FontSize="18"
+                 VerticalOptions="Center"
+                 Format="dd MMMM yyyy"
+                />
+       
+        </Border>
+
+        <ContentView HeightRequest="10" />
+        <Label Text="Пароль" 
+               FontFamily="PoppinsSemibold"
+               FontSize="18"
+               TextColor="{StaticResource Gray300}"
+               Margin="20,0,0,0"/>
+        <ContentView HeightRequest="2"/>
+        <Border 
+            Padding="12, 4"
+            BackgroundColor="#33CCCCCC"
+            Stroke="Transparent"
+            HorizontalOptions="Fill"
+            Margin="15,5,15,0"
+            HeightRequest="55">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="6"/>
+            </Border.StrokeShape>
+            <Entry
+                    x:Name="PasswordField"
+                    Text="{Binding PasswordHash}"
+                    IsPassword="True"
+                    Placeholder="Пароль..."
+                    MaxLength="20"
+                    FontSize="20"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center"/>
+        </Border>
+        <Label 
+            Text="Для подтверждения изменений введите"
+            HorizontalOptions="Center"
+            FontSize="16"/>
+        <Label 
+            Text="верный пароль"
+            HorizontalOptions="Center"
+            FontSize="16"/>
+        <ContentView HeightRequest="10" />
+
+        <Button x:Name="Submit"
+                Text="Изменить данные"
+                TextColor="White"
+                BackgroundColor="{StaticResource Primary}"
+                Clicked="Submit_Clicked"
+                FontSize="20"
+                Margin="15, 10, 15, 10"/>
+
+    </VerticalStackLayout>
+
+</ContentPage>

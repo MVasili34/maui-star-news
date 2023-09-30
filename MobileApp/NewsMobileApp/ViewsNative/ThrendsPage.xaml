@@ -9,7 +9,7 @@
              BackgroundColor="{StaticResource MainBackGroundColor}">
     <ScrollView>
         <VerticalStackLayout>
-    <Border 
+            <Border 
             Padding="12, 4"
             BackgroundColor="#33CCCCCC"
             Stroke="Transparent"

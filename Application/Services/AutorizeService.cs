@@ -73,7 +73,6 @@ public class AutorizeService : IAutorizeService
             if (Protector.CheckPassword(user.PasswordHash, existed.PasswordSalt, existed.PasswordHash))
             {
                 existed.UserName = user.UserName;
-                existed.EmailAddress = user.EmailAddress;
                 existed.DateOfBirth = user.DateOfBirth;
                 existed.Phone = user.Phone;
 

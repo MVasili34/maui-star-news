@@ -44,7 +44,8 @@
             <Grid>
                 <Button CornerRadius="5"
                     HeightRequest="50"
-                    BackgroundColor="{StaticResource MainBlocksColor}"/>
+                    BackgroundColor="{StaticResource MainBlocksColor}"
+                    Clicked="AccountSettings_Clicked"/>
                 <Label Text="Настройки аккаунта"
                    FontSize="18"
                    VerticalOptions="Center"
@@ -112,7 +113,8 @@
             <Grid>
                 <Button CornerRadius="5"
                     HeightRequest="50"
-                    BackgroundColor="{StaticResource  MainBlocksColor}"/>
+                    BackgroundColor="{StaticResource  MainBlocksColor}"
+                    Clicked="TermsOfUse_Clicked"/>
                 <Label Text="Terms of use"
                    FontSize="18"
                    VerticalOptions="Center"
@@ -130,7 +132,8 @@
             <Grid>
                 <Button CornerRadius="5"
                     HeightRequest="50"
-                    BackgroundColor="{StaticResource  MainBlocksColor}"/>
+                    BackgroundColor="{StaticResource  MainBlocksColor}"
+                    Clicked="ProcessingData_Clicked"/>
                 <Label Text="Processing of personal data"
                    FontSize="18"
                    VerticalOptions="Center"

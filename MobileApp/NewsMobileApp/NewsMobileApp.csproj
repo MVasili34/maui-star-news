@@ -81,6 +81,9 @@
       <MauiXaml Update="Resources\Styles\Styles.xaml">
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
+      <MauiXaml Update="ViewsNative\AccountSettingsPage.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </MauiXaml>
       <MauiXaml Update="ViewsNative\ArticlePage.xaml">
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
@@ -93,6 +96,9 @@
       <MauiXaml Update="ViewsNative\PrivacyPolicyAgreePage.xaml">
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
+      <MauiXaml Update="ViewsNative\ProcessingDataAgreePage.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </MauiXaml>
       <MauiXaml Update="ViewsNative\ProfilePrivacyPage.xaml">
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
@@ -100,6 +106,9 @@
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
       <MauiXaml Update="ViewsNative\SectionsPage.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </MauiXaml>
+      <MauiXaml Update="ViewsNative\TermsOfUseAgreePage.xaml">
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
       <MauiXaml Update="ViewsNative\ThrendsPage.xaml">

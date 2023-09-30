@@ -28,7 +28,7 @@ public partial class RegisterPage : ContentPage
     }
 
     private async void UsersAgreement_Tapped(object sender, TappedEventArgs e) => await
-        DisplayAlert("Privacy", "TBA", "OK");
+       Navigation.PushModalAsync(new PrivacyPolicyAgreePage()); //DisplayAlert("Privacy", "TBA", "OK"); 
 
     private void ShowPassword_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
