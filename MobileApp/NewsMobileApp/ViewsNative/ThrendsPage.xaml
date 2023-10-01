@@ -3,11 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NewsMobileApp.ViewsNative.ThrendsPage"
              xmlns:models="clr-namespace:NewsMobileApp.Models"
-             xmlns:viewmodels="clr-namespace:NewsMobileApp.ViewModels"
              Title="В тренде"
              Shell.BackgroundColor="{StaticResource MainNavigationColor}"
              BackgroundColor="{StaticResource MainBackGroundColor}">
-    <ScrollView>
+    <RefreshView BackgroundColor="{StaticResource MainNavigationColor}"
+                 RefreshColor="{StaticResource Primary}" 
+                 Refreshing="RefreshView_Refreshing"
+                 x:Name="Refresher">
+    <ScrollView Scrolled="OnScrollViewScrolled">
         <VerticalStackLayout>
             <Border 
             Padding="12, 4"
@@ -44,7 +47,7 @@
         </Grid>
     </Border>
         <CollectionView x:Name="HotArticle"
-                 ItemsSource="{Binding Articles}"
+                 ItemsSource="{Binding .}"
                  SelectionMode="Single"
                  SelectionChanged="HotArticle_SelectionChanged">
             
@@ -101,11 +104,13 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
             <CollectionView.EmptyView>
-                <StackLayout VerticalOptions="CenterAndExpand">
-                    <Label Text="No Articles"/>
+                <StackLayout>
+                    <Label Text="Загрузка..." FontSize="18" HorizontalOptions="Center"/>
                 </StackLayout>
             </CollectionView.EmptyView>
         </CollectionView>
         </VerticalStackLayout>
+        
     </ScrollView>
+    </RefreshView>
 </ContentPage>
