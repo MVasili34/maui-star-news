@@ -108,6 +108,9 @@
       <MauiXaml Update="ViewsNative\SectionsPage.xaml">
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
+      <MauiXaml Update="ViewsNative\SupportPage.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </MauiXaml>
       <MauiXaml Update="ViewsNative\TermsOfUseAgreePage.xaml">
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>

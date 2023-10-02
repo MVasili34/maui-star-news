@@ -25,4 +25,7 @@ public partial class ProfilePrivacyPage : ContentPage
 
     private async void AccountSettings_Clicked(object sender, EventArgs e) =>
         await Navigation.PushAsync(new AccountSettingsPage());
+
+    private async void Support_Clicked(object sender, EventArgs e) => 
+        await Navigation.PushAsync(new SupportPage());
 }

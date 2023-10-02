@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NewsMobileApp.ViewsNative.SupportPage"
+             Title="Поддержка"
+             Shell.BackgroundColor="{StaticResource MainNavigationColor}"
+             BackgroundColor="{StaticResource MainBackGroundColor}">
+    <ScrollView>
+    <VerticalStackLayout>
+        <Label 
+            Margin="10,20,0,10"
+            Text="Связаться с нами"
+            HorizontalOptions="Center"
+            FontSize="20"/>
+
+
+        <ContentView HeightRequest="10" />
+        <Label Text="Адрес электронной почты" 
+               FontFamily="PoppinsSemibold"
+               FontSize="18"
+               TextColor="{StaticResource Gray300}"
+               Margin="20,0,0,0"/>
+        <ContentView HeightRequest="2"/>
+        <Border 
+            Padding="12, 4"
+            BackgroundColor="#33CCCCCC"
+            Stroke="Transparent"
+            HorizontalOptions="Fill"
+            Margin="15,5,15,0"
+            HeightRequest="55">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="6"/>
+            </Border.StrokeShape>
+            <Entry
+                    IsReadOnly="True"
+                    Text="{Binding EmailAddress}"
+                    Placeholder="Адрес электронной почты..."
+                    FontSize="20"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center"/>
+        </Border>
+        <ContentView HeightRequest="20"/>
+        
+        
+        <Label Text="Категория проблемы" 
+               FontFamily="PoppinsSemibold"
+               FontSize="18"
+               TextColor="{StaticResource Gray300}"
+               Margin="20,0,0,0"/>
+        <ContentView HeightRequest="2"/>
+        <Border 
+            Padding="12, 4"
+            BackgroundColor="#33CCCCCC"
+            Stroke="Transparent"
+            HorizontalOptions="Fill"
+            Margin="15,5,15,0"
+            HeightRequest="55">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="6"/>
+            </Border.StrokeShape>
+            <Picker x:Name="ComboBox1" 
+                    WidthRequest="345" 
+                    FontSize="18" 
+                    Title="Выберите проблему" 
+                    TitleColor="{StaticResource Gray300}"
+                    />
+        </Border>
+
+        <ContentView HeightRequest="20"/>
+        <Label Text="Описание проблемы" 
+               FontFamily="PoppinsSemibold"
+               FontSize="18"
+               TextColor="{StaticResource Gray300}"
+               Margin="20,0,0,0"/>
+        <ContentView HeightRequest="2"/>
+        <Border 
+            Padding="12, 4"
+            BackgroundColor="#33CCCCCC"
+            Stroke="Transparent"
+            HorizontalOptions="Fill"
+            Margin="15,5,15,0"
+            HeightRequest="260">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="6"/>
+            </Border.StrokeShape>
+            <Editor x:Name="MessageText" 
+                    Placeholder="Пожалуйста, опишите наиболее полно свою проблему..." 
+                    MaxLength="250"
+                    FontSize="18"/>
+        </Border>
+
+        <Button x:Name="Submit"
+                Text="Отправить"
+                TextColor="White"
+                BackgroundColor="{StaticResource Primary}"
+                Clicked="Submit_Clicked"
+                FontSize="20"
+                Margin="15, 20, 15, 10"/>
+
+        <ContentView HeightRequest="10" />
+    </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

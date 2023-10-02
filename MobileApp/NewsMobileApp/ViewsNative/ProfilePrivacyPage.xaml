@@ -69,7 +69,8 @@
             <Grid>
                 <Button CornerRadius="5"
                     HeightRequest="50"
-                    BackgroundColor="{StaticResource  MainBlocksColor}"/>
+                    BackgroundColor="{StaticResource  MainBlocksColor}"
+                    Clicked="Support_Clicked"/>
                 <Label Text="Связаться"
                    FontSize="18"
                    VerticalOptions="Center"
