@@ -84,6 +84,9 @@
       <MauiXaml Update="ViewsNative\AccountSettingsPage.xaml">
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
+      <MauiXaml Update="ViewsNative\AddingArticlePage.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </MauiXaml>
       <MauiXaml Update="ViewsNative\ArticlePage.xaml">
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>

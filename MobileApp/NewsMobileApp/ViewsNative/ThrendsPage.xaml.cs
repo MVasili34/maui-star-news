@@ -1,6 +1,5 @@
 using NewsMobileApp.ViewModels;
 using NewsMobileApp.Models;
-using System.Threading.Tasks;
 
 namespace NewsMobileApp.ViewsNative;
 
@@ -11,6 +10,7 @@ public partial class ThrendsPage : ContentPage
     public ThrendsPage(ThrendsViewModel viewmodels)
 	{
 		InitializeComponent();
+        //AdmindButton.IsVisible = false;
         _viewmodels = viewmodels;
         _viewmodels.AddArticles();
         BindingContext = _viewmodels;
@@ -49,4 +49,7 @@ public partial class ThrendsPage : ContentPage
             _viewmodels.AddArticles();
         }
     }
+
+    private async void AdmindButton_Clicked(object sender, EventArgs e) =>
+        await Navigation.PushAsync(new AddingArticlePage());
 }

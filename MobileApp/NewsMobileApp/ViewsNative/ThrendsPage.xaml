@@ -6,6 +6,26 @@
              Title="В тренде"
              Shell.BackgroundColor="{StaticResource MainNavigationColor}"
              BackgroundColor="{StaticResource MainBackGroundColor}">
+    <Shell.TitleView>
+        <HorizontalStackLayout>
+            <Label Text="В тренде" 
+                   FontSize="19" 
+                   FontAttributes="Bold" 
+                   Margin="0,14,0,0"   />
+            <Button Text="Добавить"
+                    Clicked="AdmindButton_Clicked"
+                    Margin="180,0,0,0"
+                    TextColor="White"
+                    BorderColor="Transparent"
+                    BackgroundColor="Transparent"
+                    x:Name="AdmindButton" 
+                    FontSize="19" 
+                    HeightRequest="50" 
+                    WidthRequest="120" 
+                    HorizontalOptions="End"/>
+        </HorizontalStackLayout>
+    </Shell.TitleView>
+
     <RefreshView BackgroundColor="{StaticResource MainNavigationColor}"
                  RefreshColor="{StaticResource Primary}" 
                  Refreshing="RefreshView_Refreshing"

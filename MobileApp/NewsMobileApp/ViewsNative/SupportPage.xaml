@@ -32,7 +32,6 @@
                 <RoundRectangle CornerRadius="6"/>
             </Border.StrokeShape>
             <Entry
-                    IsReadOnly="True"
                     Text="{Binding EmailAddress}"
                     Placeholder="Адрес электронной почты..."
                     FontSize="20"
