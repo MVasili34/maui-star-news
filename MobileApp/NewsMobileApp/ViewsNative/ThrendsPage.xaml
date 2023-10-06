@@ -19,7 +19,7 @@
                     BorderColor="Transparent"
                     BackgroundColor="Transparent"
                     x:Name="AdmindButton" 
-                    FontSize="19" 
+                    FontSize="15" 
                     HeightRequest="50" 
                     WidthRequest="120" 
                     HorizontalOptions="End"/>

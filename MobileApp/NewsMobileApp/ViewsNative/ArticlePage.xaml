@@ -2,9 +2,38 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NewsMobileApp.ViewsNative.ArticlePage"
-             Title="ArticlePage"
+             Title="Статья"
              BackgroundColor="{StaticResource MainBackGroundColor}"
              xmlns:pages="clr-namespace:NewsMobileApp.Views">
+    <Shell.TitleView>
+        <HorizontalStackLayout>
+            <Label Text="Статья" 
+                   FontSize="19" 
+                   FontAttributes="Bold" 
+                   Margin="0,14,0,0"   />
+            <Button Text="Изменить"
+                    Margin="75,0,0,0"
+                    TextColor="White"
+                    BorderColor="Transparent"
+                    BackgroundColor="Transparent"
+                    x:Name="EditButton" 
+                    FontSize="15" 
+                    HeightRequest="50" 
+                    WidthRequest="105" 
+                    HorizontalOptions="End"/>
+            <Button Clicked="DeleteButton_Clicked"
+                    Text="Удалить"
+                    Margin="-15,0,0,0"
+                    TextColor="White"
+                    BorderColor="Transparent"
+                    BackgroundColor="Transparent"
+                    x:Name="DeleteButton" 
+                    FontSize="15" 
+                    HeightRequest="50" 
+                    WidthRequest="105" 
+                    HorizontalOptions="End"/>
+        </HorizontalStackLayout>
+    </Shell.TitleView>
     <BlazorWebView x:Name="blazorWebView" HostPage="wwwroot/index.html">
         <BlazorWebView.RootComponents>
             <RootComponent x:Name="RootComponentControl" Selector="#app" ComponentType="{x:Type pages:ArticlePage}"  />
