@@ -2,13 +2,170 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NewsMobileApp.ViewsNative.AddingArticlePage"
-             Title="Форма добавления"
+             Title="Администрирование"
              Shell.BackgroundColor="{StaticResource MainNavigationColor}"
              BackgroundColor="{StaticResource MainBackGroundColor}">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+    <ScrollView>
+        <VerticalStackLayout>
+            <Label 
+                  Margin="10,20,0,20"
+                  Text="Добавление/изменение статьи"
+                  HorizontalOptions="Center"
+                  FontSize="20"/>
+            <Label 
+                  Text="Заголовок статьи" 
+                  FontFamily="PoppinsSemibold"
+                  FontSize="18"
+                  TextColor="{StaticResource Gray300}"
+                  Margin="20,0,0,0"/>
+            <ContentView HeightRequest="2"/>
+            <Border 
+                   Padding="12, 4"
+                   BackgroundColor="#33CCCCCC"
+                   Stroke="Transparent"
+                   HorizontalOptions="Fill"
+                   Margin="15,5,15,0"
+                   HeightRequest="55">
+                   <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="6"/>
+                   </Border.StrokeShape>
+                    <Entry
+                          Placeholder="Заголовок статьи..."
+                          FontSize="20"
+                          MaxLength="50"
+                          VerticalOptions="Center"
+                          VerticalTextAlignment="Center"/>
+            </Border>
+        
+            <ContentView HeightRequest="10" />
+
+            <Label Text="Подзаголовок статьи" 
+                   FontFamily="PoppinsSemibold"
+                   FontSize="18"
+                   TextColor="{StaticResource Gray300}"
+                   Margin="20,0,0,0"/>
+            <ContentView HeightRequest="2"/>
+            <Border 
+                   Padding="12, 4"
+                   BackgroundColor="#33CCCCCC"
+                   Stroke="Transparent"
+                   HorizontalOptions="Fill"
+                   Margin="15,5,15,0"
+                   HeightRequest="55">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="6"/>
+                </Border.StrokeShape>
+                <Entry
+                      Placeholder="Подзаголовок статьи..."
+                      FontSize="20"
+                      MaxLength="75"
+                      VerticalOptions="Center"
+                      VerticalTextAlignment="Center"/>
+            </Border>
+
+            <ContentView HeightRequest="10" />
+
+            <Label Text="Секция" 
+                   FontFamily="PoppinsSemibold"
+                   FontSize="18"
+                   TextColor="{StaticResource Gray300}"
+                   Margin="20,0,0,0"/>
+            <ContentView HeightRequest="2"/>
+            <Border 
+                   Padding="12, 4"
+                   BackgroundColor="#33CCCCCC"
+                   Stroke="Transparent"
+                   HorizontalOptions="Fill"
+                   Margin="15,5,15,0"
+                   HeightRequest="55">
+                 <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="6"/>
+                 </Border.StrokeShape>
+                 <Picker x:Name="ComboBox1" 
+                         WidthRequest="345" 
+                         FontSize="18" 
+                         Title="Выберите секцию" 
+                         TitleColor="{StaticResource Gray300}"
+                         />
+            </Border>
+
+            <ContentView HeightRequest="10" />
+
+            <Label Text="Выберите изображение" 
+                   FontFamily="PoppinsSemibold"
+                   FontSize="18"
+                   TextColor="{StaticResource Gray300}"
+                   Margin="20,0,0,0"/>
+            <Frame BorderColor="{StaticResource Primary}" 
+                   Margin="10" 
+                   Padding="5"
+                   BackgroundColor="#33CCCCCC">
+                <VerticalStackLayout Spacing="10" >
+                    <HorizontalStackLayout Spacing="10" 
+                                           HorizontalOptions="Center">
+                        <Grid Margin="0,5,0,0">
+                            <Button x:Name="PickImageButton"
+                                    CornerRadius="5"
+                                    HeightRequest="50"
+                                    BackgroundColor="{StaticResource  MainBlocksColor}"
+                                    Clicked="PickImageButton_Clicked"/>
+                            <Label Text="Загрузить"
+                                   FontSize="18"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Start"
+                                   TextColor="White"
+                                   Margin="45,0,15,0"/>
+                            <Image Source="upload.png"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Start"
+                                   WidthRequest="17"
+                                   HeightRequest="17"
+                                   Margin="15,0,15,0" />
+                        </Grid>
+                    </HorizontalStackLayout>
+                    <Label
+                          FontSize="17"
+                          Text="Файл не выбран"
+                          x:Name="FilePathLabel"
+                          HorizontalOptions="Center"
+                          TextColor="White"/>
+                    <Image x:Name="FileImage"
+                           Margin="0,0,0,5"/>
+                </VerticalStackLayout>
+            </Frame>
+        
+            <ContentView HeightRequest="20"/>
+
+            <Label Text="Текст статьи" 
+                   FontFamily="PoppinsSemibold"
+                   FontSize="18"
+                   TextColor="{StaticResource Gray300}"
+                   Margin="20,0,0,0"/>
+            
+            <ContentView HeightRequest="2"/>
+            
+            <Border 
+                   Padding="12, 4"
+                   BackgroundColor="#33CCCCCC"
+                   Stroke="Transparent"
+                   HorizontalOptions="Fill"
+                   Margin="15,5,15,0"
+                   HeightRequest="260">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="6"/>
+            </Border.StrokeShape>
+            <Editor x:Name="ArticleText" 
+                    Placeholder="Текст статьи..." 
+                    MaxLength="2500"
+                    FontSize="18"/>
+        </Border>
+
+        <Button x:Name="Submit"
+                Text="Опубликовать"
+                TextColor="White"
+                BackgroundColor="{StaticResource Primary}"
+                FontSize="20"
+                Margin="15, 20, 15, 20"/>
     </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
