@@ -20,7 +20,8 @@
                     FontSize="15" 
                     HeightRequest="50" 
                     WidthRequest="105" 
-                    HorizontalOptions="End"/>
+                    HorizontalOptions="End"
+                    Clicked="EditButton_Clicked"/>
             <Button Clicked="DeleteButton_Clicked"
                     Text="Удалить"
                     Margin="-15,0,0,0"

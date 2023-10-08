@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="NewsMobileApp.ViewsNative.AddingArticlePage"
+             x:Class="NewsMobileApp.ViewsNative.ArticleDetailPage"
              Title="Администрирование"
              Shell.BackgroundColor="{StaticResource MainNavigationColor}"
              BackgroundColor="{StaticResource MainBackGroundColor}">
@@ -30,6 +30,7 @@
                         <RoundRectangle CornerRadius="6"/>
                    </Border.StrokeShape>
                     <Entry
+                          Text="{Binding Title}"
                           Placeholder="Заголовок статьи..."
                           FontSize="20"
                           MaxLength="50"
@@ -39,7 +40,8 @@
         
             <ContentView HeightRequest="10" />
 
-            <Label Text="Подзаголовок статьи" 
+            <Label 
+                   Text="Подзаголовок статьи" 
                    FontFamily="PoppinsSemibold"
                    FontSize="18"
                    TextColor="{StaticResource Gray300}"
@@ -56,6 +58,7 @@
                     <RoundRectangle CornerRadius="6"/>
                 </Border.StrokeShape>
                 <Entry
+                      Text="{Binding Subtitle}"
                       Placeholder="Подзаголовок статьи..."
                       FontSize="20"
                       MaxLength="75"
@@ -81,7 +84,9 @@
                  <Border.StrokeShape>
                     <RoundRectangle CornerRadius="6"/>
                  </Border.StrokeShape>
-                 <Picker x:Name="ComboBox1" 
+                 <Picker 
+                         SelectedIndex="{Binding SectionId}"
+                         x:Name="ComboBox1" 
                          WidthRequest="345" 
                          FontSize="18" 
                          Title="Выберите секцию" 
@@ -125,7 +130,7 @@
                     </HorizontalStackLayout>
                     <Label
                           FontSize="17"
-                          Text="Файл не выбран"
+                          Text="{Binding Image}"
                           x:Name="FilePathLabel"
                           HorizontalOptions="Center"
                           TextColor="White"/>
@@ -155,17 +160,26 @@
                 <RoundRectangle CornerRadius="6"/>
             </Border.StrokeShape>
             <Editor x:Name="ArticleText" 
+                    Text="{Binding Text}"
                     Placeholder="Текст статьи..." 
                     MaxLength="2500"
                     FontSize="18"/>
         </Border>
 
         <Button x:Name="Submit"
+                Clicked="Submit_Clicked"
                 Text="Опубликовать"
                 TextColor="White"
                 BackgroundColor="{StaticResource Primary}"
                 FontSize="20"
                 Margin="15, 20, 15, 20"/>
-    </VerticalStackLayout>
+        <Button x:Name="Edit"
+                Clicked="Edit_Clicked"
+                Text="Изменить"
+                TextColor="White"
+                BackgroundColor="{StaticResource Primary}"
+                FontSize="20"
+                Margin="15, 20, 15, 20"/>
+        </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

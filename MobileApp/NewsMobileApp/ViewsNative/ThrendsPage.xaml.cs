@@ -1,5 +1,6 @@
 using NewsMobileApp.ViewModels;
 using NewsMobileApp.Models;
+using NewsMobileApp.TempServices;
 
 namespace NewsMobileApp.ViewsNative;
 
@@ -51,5 +52,5 @@ public partial class ThrendsPage : ContentPage
     }
 
     private async void AdmindButton_Clicked(object sender, EventArgs e) =>
-        await Navigation.PushAsync(new AddingArticlePage());
+        await Navigation.PushAsync(new ArticleDetailPage(new NewsService()));
 }

@@ -69,6 +69,12 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Compile Update="ViewsNative\ArticleDetailPage.xaml.cs">
+        <DependentUpon>ArticleDetailPage.xaml</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
       <MauiXaml Update="AppShell.xaml">
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
@@ -84,7 +90,7 @@
       <MauiXaml Update="ViewsNative\AccountSettingsPage.xaml">
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
-      <MauiXaml Update="ViewsNative\AddingArticlePage.xaml">
+      <MauiXaml Update="ViewsNative\ArticleDetailPage.xaml">
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
       <MauiXaml Update="ViewsNative\ArticlePage.xaml">
