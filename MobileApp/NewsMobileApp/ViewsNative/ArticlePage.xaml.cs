@@ -4,9 +4,9 @@ namespace NewsMobileApp.ViewsNative;
 
 public partial class ArticlePage : ContentPage
 {
-    private readonly int _articleId;
+    private readonly Guid _articleId;
 
-	public ArticlePage(int articleId)
+	public ArticlePage(Guid articleId)
 	{
 		InitializeComponent();
         _articleId = articleId;

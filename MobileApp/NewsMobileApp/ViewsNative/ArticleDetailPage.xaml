@@ -85,6 +85,7 @@
                     <RoundRectangle CornerRadius="6"/>
                  </Border.StrokeShape>
                  <Picker 
+                         ItemDisplayBinding="{Binding Name}"
                          SelectedIndex="{Binding SectionId}"
                          x:Name="ComboBox1" 
                          WidthRequest="345" 

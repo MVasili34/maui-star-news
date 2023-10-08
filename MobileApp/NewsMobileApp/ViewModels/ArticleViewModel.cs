@@ -78,7 +78,12 @@ public class ArticleViewModel : INotifyPropertyChanged
     public DateTime? PublishTime
     {
         get => _publishTime;
-        init => _publishTime = value;
+        set
+        {
+            _publishTime = value;
+            NotifyPropertyChanged();
+        }
+
     }
 
     public Guid? PublisherId

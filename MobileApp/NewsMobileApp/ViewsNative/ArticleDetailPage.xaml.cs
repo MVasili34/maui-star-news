@@ -1,3 +1,4 @@
+using NewsMobileApp.Models;
 using NewsMobileApp.TempServices;
 using NewsMobileApp.ViewModels;
 using Newtonsoft.Json;
@@ -12,6 +13,8 @@ public partial class ArticleDetailPage : ContentPage
 	{
 		InitializeComponent();
 		_newsService = newsService;
+		ComboBox1.ItemsSource = _newsService.GetCategories().ToList();
+		ComboBox1.SelectedIndex = 0;
         ArticleViewModel viewModel = new()
         {
             ArticleId = Guid.NewGuid(),
@@ -22,11 +25,14 @@ public partial class ArticleDetailPage : ContentPage
         Edit.IsVisible = false;
 	}
 
-	public ArticleDetailPage(INewsService newsService, int _articleId)
+	public ArticleDetailPage(INewsService newsService, Guid _articleId)
 	{
 		InitializeComponent();
         _newsService = newsService;
-
+        ComboBox1.ItemsSource = _newsService.GetCategories().ToList();
+        ArticleViewModel article = _newsService.GetThrendArticlesFull().FirstOrDefault(a => a.ArticleId == _articleId);
+        BindingContext = article;
+		ComboBox1.SelectedIndex = article.SectionId - 1;
         Submit.IsVisible = false;
 	}
 
@@ -49,6 +55,7 @@ public partial class ArticleDetailPage : ContentPage
     private async void Submit_Clicked(object sender, EventArgs e)
     {
         ArticleViewModel result = (ArticleViewModel)BindingContext;
+		result.SectionId = ((Section)ComboBox1.SelectedItem).SectionId;
         string serialized = JsonConvert.SerializeObject(result);
         await DisplayAlert("Success", $"{serialized}", "OK");
     }

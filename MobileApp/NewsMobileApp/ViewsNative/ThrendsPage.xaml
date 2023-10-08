@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NewsMobileApp.ViewsNative.ThrendsPage"
-             xmlns:models="clr-namespace:NewsMobileApp.Models"
+             xmlns:viewmodels="clr-namespace:NewsMobileApp.ViewModels"
              Title="В тренде"
              Shell.BackgroundColor="{StaticResource MainNavigationColor}"
              BackgroundColor="{StaticResource MainBackGroundColor}">
@@ -72,7 +72,7 @@
                  SelectionChanged="HotArticle_SelectionChanged">
             
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="models:Article">
+                <DataTemplate x:DataType="viewmodels:ArticlePreviewViewModel">
                     <StackLayout BackgroundColor="{StaticResource MainBackGroundColor}">
                         <Border StrokeThickness="0.5">
                             <ContentView Padding="16" >
@@ -91,7 +91,7 @@
                                 Grid.RowSpan="3"
                                 BorderColor="Transparent"
                                 IsClippedToBounds="True">
-                                        <Image Source="{Binding ImageURL}"
+                                        <Image Source="{Binding Image}"
                                        Aspect="AspectFill" />
                                     </Frame>
                                     <Label Text="{Binding Title}"
@@ -100,7 +100,7 @@
                                 MaxLines="2"
                                 FontFamily="PoppinsSemiBold"
                                 FontSize="20" />
-                                    <Label Text="{Binding SubTitle}"
+                                    <Label Text="{Binding Subtitle}"
                                 Grid.Row="1"
                                 Grid.Column="1"
                                 MaxLines="2"
@@ -109,12 +109,12 @@
                                       Spacing="4"
                                       Grid.Column="1"
                                       Grid.Row="2">
-                                        <Label Text="{Binding Category}"
+                                        <Label Text="{Binding Section.Name}"
                                     TextColor="{StaticResource Primary}" />
                                         <Label Text="·"
                                     FontAttributes="Bold"
                                     TextColor="{StaticResource Gray200}"/>
-                                        <Label Text="{Binding PublishDate}"
+                                        <Label Text="{Binding PublishTime}"
                                 TextColor="{StaticResource Gray200}"/>
                                     </StackLayout>
                                 </Grid>

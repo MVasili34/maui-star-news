@@ -1,5 +1,22 @@
 ﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
+.loading-card-skeleton {
+    animation: shimmer 1s linear infinite;
+    background-size: 400%;
+    background-image: linear-gradient(to right, #282E33 0%, #282E33 30%, #d9d9d9 45%, #d9d9d9 50%, #282E33 60%, #282E33 100%);
+    border-radius: inherit;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 100%;
+    }
+
+    100% {
+        background-position: 0;
+    }
+}
+
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }

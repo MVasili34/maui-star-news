@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 
 namespace NewsMobileApp.ViewModels;
 
-public class ThrendsViewModel : ObservableCollection<Article>
+public class ThrendsViewModel : ObservableCollection<ArticlePreviewViewModel>
 {
     private readonly INewsService _newsService;
 
@@ -14,7 +14,7 @@ public class ThrendsViewModel : ObservableCollection<Article>
     {
         if (clear) Clear();
 
-        foreach (var article in _newsService.GetThrendArticles())
+        foreach (var article in _newsService.GetThrendArticlesPreview())
         {
             Add(article);
         }
@@ -29,9 +29,9 @@ public class ThrendsViewModel : ObservableCollection<Article>
         }
 
         Clear();
-        IEnumerable<Article> found = _newsService.GetThrendArticles()
-                                                 .Where(x => x.Title.Contains(text))
-                                                 .Take(10);
+        IEnumerable<ArticlePreviewViewModel> found = _newsService.GetThrendArticlesPreview()
+                                                                 .Where(x => x.Title.Contains(text))
+                                                                 .Take(10);
 
         if(found.Any())
         {

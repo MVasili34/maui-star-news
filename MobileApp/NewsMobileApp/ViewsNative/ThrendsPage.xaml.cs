@@ -19,9 +19,9 @@ public partial class ThrendsPage : ContentPage
 
     private async void HotArticle_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        if (e.CurrentSelection.First() is not Article article) return;
+        if (e.CurrentSelection.First() is not ArticlePreviewViewModel article) return;
 
-        await Navigation.PushAsync(new ArticlePage(article.Id));
+        await Navigation.PushAsync(new ArticlePage(article.ArticleId));
     }
 
     private async void SearchText_Completed(object sender, EventArgs e)

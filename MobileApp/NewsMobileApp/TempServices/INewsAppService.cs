@@ -1,4 +1,5 @@
 ﻿using NewsMobileApp.Models;
+using NewsMobileApp.ViewModels;
 
 namespace NewsMobileApp.TempServices;
 
@@ -6,8 +7,10 @@ public interface INewsService
 {
     public IEnumerable<string> GetTags();
     public IEnumerable<Section> GetCategories();
-    public IEnumerable<Article> GetLatestArticles();
-    public IEnumerable<Article> GetRecommendedArticles();
-    public IEnumerable<Article> GetPopularArticles();
-    public IEnumerable<Article> GetThrendArticles();
+    public IEnumerable<ArticlePreviewViewModel> GetLatestArticlesPreview();
+    public IEnumerable<ArticleViewModel> GetLatestArticlesFull();
+    public IEnumerable<ArticlePreviewViewModel> GetRecommendedArticlesPreview();
+    public IEnumerable<ArticleViewModel> GetRecommendedArticlesFull();
+    public IEnumerable<ArticlePreviewViewModel> GetThrendArticlesPreview();
+    public IEnumerable<ArticleViewModel> GetThrendArticlesFull();
 }
