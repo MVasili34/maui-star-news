@@ -1,4 +1,5 @@
 ﻿using static CryptographyTool.Protector;
+using static CryptographyTool.StrongPasswordChecker;
 
 namespace ServicesTests.Tests;
 
@@ -26,5 +27,36 @@ public class CryptographyToolTests
         bool check = CheckPassword(password, registration2.salt, registration1.hashed);
 
         Assert.False(check);
+    }
+
+    [Fact]
+    public void CheckStrongPasswordSuccessTest()
+    {
+        string password = "Pa$$w0rd";
+
+        bool status = PasswordCheck(password);
+
+        Assert.True(status);
+    }
+
+    [Fact]
+    public void CheckFailStrongPasswordTest()
+    {
+        string password = "Pa$$word";
+
+        //так как нет номера в паспорте, то false
+        bool status = PasswordCheck(password);
+
+        Assert.False(status);
+    }
+
+    [Fact]
+    public void CheckNotStrongLengthPasswordTest()
+    {
+        string password = "Pa2$$";
+
+        bool status = PasswordCheck(password);
+
+        Assert.False(status);
     }
 }
