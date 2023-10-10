@@ -8,6 +8,7 @@ namespace NewsMobileApp.ViewsNative;
 public partial class ArticleDetailPage : ContentPage
 {
 	private readonly INewsService _newsService;
+	private bool _pictureChanged = false;
 
 	public ArticleDetailPage(INewsService newsService)
 	{
@@ -45,6 +46,7 @@ public partial class ArticleDetailPage : ContentPage
 			FileImage.WidthRequest = 100;
 			FileImage.HeightRequest = 70;
 			FilePathLabel.Text = photo.FullPath;
+			_pictureChanged = true;
 		}
 		else
 		{
@@ -62,6 +64,13 @@ public partial class ArticleDetailPage : ContentPage
 
     private async void Edit_Clicked(object sender, EventArgs e)
     {
-
+        ArticleViewModel result = (ArticleViewModel)BindingContext;
+        result.SectionId = ((Section)ComboBox1.SelectedItem).SectionId;
+        if (_pictureChanged)
+		{
+			result.Image = "https://imgur.link/";
+		}
+        string serialized = JsonConvert.SerializeObject(result);
+        await DisplayAlert("Success", $"{serialized}", "OK");
     }
 }

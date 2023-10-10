@@ -31,12 +31,14 @@ namespace NewsMobileApp
             builder.Services.AddScoped<INewsService, NewsService>();
             builder.Services.AddScoped<IImageCloudTool, ImageCloudTool>(_ =>
                 new ImageCloudTool("fc0f801a94e39de"));
-            builder.Services.AddTransient<SectionsPage>();
-            builder.Services.AddTransient<ThrendsPage>();
-            builder.Services.AddTransient<ThrendsViewModel>();
+            builder.Services.AddScoped<SectionsPage>();
+            builder.Services.AddScoped<ThrendsPage>();
+            builder.Services.AddScoped<ThrendsViewModel>();
+            builder.Services.AddScoped<ArticlesBySectionPage>();
+            builder.Services.AddScoped<ArticlesBySectionViewModel>();
 
 #if DEBUG
-		builder.Services.AddBlazorWebViewDeveloperTools();
+            builder.Services.AddBlazorWebViewDeveloperTools();
 		builder.Logging.AddDebug();
 #endif
 

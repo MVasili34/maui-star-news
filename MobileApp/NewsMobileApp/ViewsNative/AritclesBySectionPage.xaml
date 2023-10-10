@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NewsMobileApp.ViewsNative.ArticlesBySectionPage"
+             xmlns:viewmodels="clr-namespace:NewsMobileApp.ViewModels"
+             Title="Section"
+             Shell.BackgroundColor="{StaticResource MainNavigationColor}"
+             BackgroundColor="{StaticResource MainBackGroundColor}">
+    <Shell.TitleView>
+        <HorizontalStackLayout>
+            <Label Text="Section" 
+                  FontSize="19" 
+                  FontAttributes="Bold" 
+                  Margin="0,14,0,0"   />
+            <Button Text="Добавить"
+                   Clicked="AdmindButton_Clicked"
+                   Margin="140,0,0,0"
+                   TextColor="White"
+                   BorderColor="Transparent"
+                   BackgroundColor="Transparent"
+                   x:Name="AdmindButton" 
+                   FontSize="15" 
+                   HeightRequest="50" 
+                   WidthRequest="120" 
+                   HorizontalOptions="End"/>
+        </HorizontalStackLayout>
+    </Shell.TitleView>
+
+    <RefreshView BackgroundColor="{StaticResource MainNavigationColor}"
+                RefreshColor="{StaticResource Primary}" 
+                Refreshing="RefreshView_Refreshing"
+                x:Name="Refresher">
+        <ScrollView Scrolled="OnScrollViewScrolled">
+            <VerticalStackLayout>
+                <Border 
+           Padding="12, 4"
+           BackgroundColor="#33CCCCCC"
+           Stroke="Transparent"
+           HorizontalOptions="Fill"
+           Margin="15,15,15,12"
+           HeightRequest="55">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="6"/>
+                    </Border.StrokeShape>
+
+                    <Grid
+                HorizontalOptions="Fill"
+                VerticalOptions="Center"
+                ColumnDefinitions="Auto,*"
+                ColumnSpacing="16">
+
+                        <Image
+                   WidthRequest="24"
+                   HeightRequest="24"
+                   Source="imgsearch.png"
+                   Grid.Column="0"
+                   VerticalOptions="Center" />
+
+                        <Entry
+                   x:Name="SearchText"
+                   Placeholder="Поиск статьи..."
+                   Grid.Column="1"
+                   FontSize="20"
+                   VerticalOptions="Center"
+                   VerticalTextAlignment="Center"
+                   Completed="SearchText_Completed"/>
+                    </Grid>
+                </Border>
+                <CollectionView x:Name="HotArticle"
+                ItemsSource="{Binding .}"
+                SelectionMode="Single"
+                SelectionChanged="SectionArticle_SelectionChanged">
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="viewmodels:ArticlePreviewViewModel">
+                            <StackLayout BackgroundColor="{StaticResource MainBackGroundColor}">
+                                <Border StrokeThickness="0.5">
+                                    <ContentView Padding="16" >
+                                        <Grid ColumnSpacing="16">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="120" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="60" />
+                                                <RowDefinition Height="40" />
+                                                <RowDefinition Height="20" />
+                                            </Grid.RowDefinitions>
+                                            <Frame Padding="0"
+                               Grid.Column="0"
+                               Grid.RowSpan="3"
+                               BorderColor="Transparent"
+                               IsClippedToBounds="True">
+                                                <Image Source="{Binding Image}"
+                                      Aspect="AspectFill" />
+                                            </Frame>
+                                            <Label Text="{Binding Title}"
+                               Grid.Column="1"
+                               Grid.Row="0"
+                               MaxLines="2"
+                               FontFamily="PoppinsSemiBold"
+                               FontSize="20" />
+                                            <Label Text="{Binding Subtitle}"
+                               Grid.Row="1"
+                               Grid.Column="1"
+                               MaxLines="2"
+                               TextColor="{StaticResource Gray400}" />
+                                            <StackLayout Orientation="Horizontal"
+                                     Spacing="4"
+                                     Grid.Column="1"
+                                     Grid.Row="2">
+                                                <Label Text="{Binding Section.Name}"
+                                   TextColor="{StaticResource Primary}" />
+                                                <Label Text="·"
+                                   FontAttributes="Bold"
+                                   TextColor="{StaticResource Gray200}"/>
+                                                <Label Text="{Binding PublishTime}"
+                               TextColor="{StaticResource Gray200}"/>
+                                            </StackLayout>
+                                        </Grid>
+                                    </ContentView>
+                                </Border>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    <CollectionView.EmptyView>
+                        <StackLayout>
+                            <Label Text="Загрузка..." FontSize="18" HorizontalOptions="Center"/>
+                        </StackLayout>
+                    </CollectionView.EmptyView>
+                </CollectionView>
+            </VerticalStackLayout>
+
+        </ScrollView>
+    </RefreshView>
+</ContentPage>
