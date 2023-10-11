@@ -22,7 +22,6 @@ public partial class ArticleDetailPage : ContentPage
             PublisherId = null
         };
         BindingContext = viewModel;
-		FilePathLabel.Text = "Файл не выбран";
         Edit.IsVisible = false;
 	}
 
@@ -58,7 +57,14 @@ public partial class ArticleDetailPage : ContentPage
     {
         ArticleViewModel result = (ArticleViewModel)BindingContext;
 		result.SectionId = ((Section)ComboBox1.SelectedItem).SectionId;
-        string serialized = JsonConvert.SerializeObject(result);
+		if (FilePathLabel.Text is null)
+		{
+			await DisplayAlert("Bad", $"Не прикреплено изображение", "OK");
+			return;
+        }
+		result.Image = "https://future";
+		result.PublishTime = DateTime.Now;
+		string serialized = JsonConvert.SerializeObject(result);
         await DisplayAlert("Success", $"{serialized}", "OK");
     }
 
