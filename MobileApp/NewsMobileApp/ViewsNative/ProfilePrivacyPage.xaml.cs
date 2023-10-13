@@ -1,4 +1,5 @@
 using NewsMobileApp.Views;
+using NewsMobileApp.ViewModels;
 
 namespace NewsMobileApp.ViewsNative;
 
@@ -27,5 +28,5 @@ public partial class ProfilePrivacyPage : ContentPage
         await Navigation.PushAsync(new AccountSettingsPage());
 
     private async void Support_Clicked(object sender, EventArgs e) => 
-        await Navigation.PushAsync(new SupportPage());
+        await Navigation.PushAsync(new SupportPage(new EmailViewModel()));
 }

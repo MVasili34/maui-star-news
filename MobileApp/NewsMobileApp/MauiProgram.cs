@@ -36,6 +36,8 @@ namespace NewsMobileApp
             builder.Services.AddScoped<ThrendsViewModel>();
             builder.Services.AddScoped<ArticlesBySectionPage>();
             builder.Services.AddScoped<ArticlesBySectionViewModel>();
+            builder.Services.AddTransient<SupportPage>();
+            builder.Services.AddTransient<EmailViewModel>();
 
 #if DEBUG
             builder.Services.AddBlazorWebViewDeveloperTools();

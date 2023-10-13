@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NewsMobileApp.ViewsNative.SupportPage"
+             xmlns:viewmodel="clr-namespace:NewsMobileApp.ViewModels"
              Title="Поддержка"
              Shell.BackgroundColor="{StaticResource MainNavigationColor}"
              BackgroundColor="{StaticResource MainBackGroundColor}">
@@ -14,31 +15,8 @@
             FontSize="20"/>
 
 
-        <ContentView HeightRequest="10" />
-        <Label Text="Адрес электронной почты" 
-               FontFamily="PoppinsSemibold"
-               FontSize="18"
-               TextColor="{StaticResource Gray300}"
-               Margin="20,0,0,0"/>
-        <ContentView HeightRequest="2"/>
-        <Border 
-            Padding="12, 4"
-            BackgroundColor="#33CCCCCC"
-            Stroke="Transparent"
-            HorizontalOptions="Fill"
-            Margin="15,5,15,0"
-            HeightRequest="55">
-            <Border.StrokeShape>
-                <RoundRectangle CornerRadius="6"/>
-            </Border.StrokeShape>
-            <Entry
-                    Text="{Binding EmailAddress}"
-                    Placeholder="Адрес электронной почты..."
-                    FontSize="20"
-                    VerticalOptions="Center"
-                    VerticalTextAlignment="Center"/>
-        </Border>
-        <ContentView HeightRequest="20"/>
+        <ContentView HeightRequest="9" />
+        
         
         
         <Label Text="Категория проблемы" 
@@ -78,11 +56,12 @@
             Stroke="Transparent"
             HorizontalOptions="Fill"
             Margin="15,5,15,0"
-            HeightRequest="260">
+            HeightRequest="360">
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="6"/>
             </Border.StrokeShape>
             <Editor x:Name="MessageText" 
+                    Text="{Binding Body}"
                     Placeholder="Пожалуйста, опишите наиболее полно свою проблему..." 
                     MaxLength="250"
                     FontSize="18"/>
