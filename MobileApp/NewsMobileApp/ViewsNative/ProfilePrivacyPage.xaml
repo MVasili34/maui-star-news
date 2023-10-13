@@ -59,6 +59,27 @@
                    Margin="0,0,15,0"
                    TextColor="White"/>
             </Grid>
+            <BoxView Margin="0,0" x:Name="AdminSeparator" IsVisible="False"/>
+            <Grid x:Name="AdminPanel" IsVisible="False">
+                <Button
+                    x:Name="AdmindButton"
+                    CornerRadius="5"
+                    HeightRequest="50"
+                    BackgroundColor="{StaticResource MainBlocksColor}"
+                    Clicked="AdmindButton_Clicked"/>
+                <Label Text="Панель администратора"
+                   FontSize="18"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Start"
+                   TextColor="White"
+                   Margin="15,0,0,0"/>
+                <Label Text="❯" 
+                   VerticalOptions="Center" 
+                   HorizontalOptions="End"
+                   FontSize="18"
+                   Margin="0,0,15,0"
+                   TextColor="White"/>
+            </Grid>
             <ContentView HeightRequest="20"/>
 
             <Label Text="Поддержка" 

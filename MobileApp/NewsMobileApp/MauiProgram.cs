@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using SkiaSharp.Views.Maui.Controls.Hosting;
+using Microsoft.Extensions.Logging;
 using NewsMobileApp.Data;
 using NewsMobileApp.TempServices;
 using The49.Maui.BottomSheet;
@@ -15,6 +16,7 @@ namespace NewsMobileApp
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseSkiaSharp(true)
                 .UseBottomSheet()
                 .ConfigureFonts(fonts =>
                 {

@@ -7,8 +7,9 @@
              BackgroundColor="{StaticResource MainBackGroundColor}">
     <VerticalStackLayout>
         <Label 
-            Margin="10,20,0,20"
+            Margin="0,20,0,20"
             Text="Изменить данные профиля"
+            FontAttributes="Bold"
             HorizontalOptions="Center"
             FontSize="20"/>
 

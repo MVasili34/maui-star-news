@@ -8,8 +8,9 @@
     <ScrollView>
         <VerticalStackLayout>
             <Label 
-                  Margin="10,20,0,20"
+                  Margin="0,20,0,20"
                   Text="Добавление/изменение статьи"
+                  FontAttributes="Bold"
                   HorizontalOptions="Center"
                   FontSize="20"/>
             <Label 

@@ -8,6 +8,8 @@ public partial class ProfilePrivacyPage : ContentPage
 	public ProfilePrivacyPage()
 	{
 		InitializeComponent();
+        AdminSeparator.IsVisible = true;
+        AdminPanel.IsVisible = true;
 	}
 
     private void Logout_Clicked(object sender, EventArgs e)
@@ -29,4 +31,7 @@ public partial class ProfilePrivacyPage : ContentPage
 
     private async void Support_Clicked(object sender, EventArgs e) => 
         await Navigation.PushAsync(new SupportPage(new EmailViewModel()));
+
+    private async void AdmindButton_Clicked(object sender, EventArgs e) =>
+        await Navigation.PushAsync(new AdminPage());
 }
