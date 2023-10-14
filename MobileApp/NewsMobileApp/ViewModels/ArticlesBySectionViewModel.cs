@@ -7,7 +7,7 @@ public class ArticlesBySectionViewModel: ObservableCollection<ArticlePreviewView
 {
     private readonly INewsService _newsService;
 
-    public ArticlesBySectionViewModel(INewsService newsService) => _newsService = newsService;
+    public ArticlesBySectionViewModel() => _newsService = Application.Current.Handler.MauiContext.Services.GetService<INewsService>();
 
     public void AddArticles(int _sectionId, bool clear = false, int limit = 0, int offset = 0)
     {

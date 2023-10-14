@@ -8,12 +8,12 @@ public partial class ArticlesBySectionPage : ContentPage
     private readonly ArticlesBySectionViewModel _viewmodels;
     private readonly int _sectionId;
 
-    public ArticlesBySectionPage(ArticlesBySectionViewModel viewmodels, int sectionId)
+    public ArticlesBySectionPage(int sectionId)
     {
         InitializeComponent();
         _sectionId = sectionId;
         //AdmindButton.IsVisible = false;
-        _viewmodels = viewmodels;
+        _viewmodels = new ArticlesBySectionViewModel();
         _viewmodels.AddArticles(_sectionId);
         BindingContext = _viewmodels;
     }

@@ -36,8 +36,11 @@ public partial class SupportPage : ContentPage
             {
                 To = new List<string>(_emailViewModel.To.Split(";")),
                 Subject = _emailViewModel.Subject,
-                Body = _emailViewModel.Body,
+                Body = _emailViewModel.Body ,
             };
+
+            message.Body += $"\n\n--\nОбращение пользователя: {Guid.NewGuid()}" +
+                $"\n Идентификатор обращения: {Guid.NewGuid()}";
 
 
             //await DisplayAlert("Отправлено", $"Ваш запрос отправлен нашей службе поддержки. {_emailViewModel.Body}", "OK");

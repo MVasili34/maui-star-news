@@ -2,9 +2,13 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NewsMobileApp.ViewsNative.AccountSettingsPage"
+             xmlns:viewmodels="clr-namespace:NewsMobileApp.ViewModels"
              Title="Настройки аккаунта"
              Shell.BackgroundColor="{StaticResource MainNavigationColor}"
              BackgroundColor="{StaticResource MainBackGroundColor}">
+    <ContentPage.BindingContext>
+        <viewmodels:UserViewModel/>
+    </ContentPage.BindingContext>
     <VerticalStackLayout>
         <Label 
             Margin="0,20,0,20"

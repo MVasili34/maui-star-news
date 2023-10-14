@@ -8,7 +8,7 @@
              Shell.BackgroundColor="{StaticResource MainNavigationColor}"
              xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui">
     <ContentPage.BindingContext>
-        <viewmodel:AdminViewModel />
+        <viewmodel:AdminViewModel/>
     </ContentPage.BindingContext>
     <ScrollView>
         <VerticalStackLayout>

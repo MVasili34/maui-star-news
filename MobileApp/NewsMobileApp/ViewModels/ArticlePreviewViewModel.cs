@@ -30,7 +30,7 @@ public class ArticlePreviewViewModel : INotifyPropertyChanged
         set
         {
             _title = value;
-            NotifyPropertyChanged(nameof(Title));
+            NotifyPropertyChanged();
         }
     }
 

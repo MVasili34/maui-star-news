@@ -4,11 +4,17 @@ using LiveChartsCore.SkiaSharpView;
 using Sk = LiveChartsCore.SkiaSharpView.Painting;
 using SkiaSharp;
 using System.Collections.ObjectModel;
+using NewsMobileApp.TempServices;
 
 namespace NewsMobileApp.ViewModels;
 
 public class AdminViewModel
 {
+    private readonly INewsService _newsService;
+
+    public AdminViewModel() => _newsService = Application.Current.Handler
+           .MauiContext.Services.GetService<INewsService>();
+
     private static ObservableCollection<DateTimePoint> GetDiagtamData()
     {
         DateTime startDate = DateTime.Now.AddDays(-6);

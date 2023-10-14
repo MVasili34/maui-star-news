@@ -22,7 +22,7 @@ public partial class SectionsPage : ContentPage
             await DisplayAlert("Ошибка!", "Произошла неизвестная ошибка.", "OK");
             return;
         }
-        await Navigation.PushAsync(new ArticlesBySectionPage(new ArticlesBySectionViewModel(_newsService),
+        await Navigation.PushAsync(new ArticlesBySectionPage(
             (int)e.Parameter));
     }
 }

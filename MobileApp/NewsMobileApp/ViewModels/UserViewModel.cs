@@ -14,6 +14,9 @@ public class UserViewModel : INotifyPropertyChanged
     private DateOnly? _dateOfBirth;
     private string _passwordSalt;
     private string _passwordHash;
+    private int _roleId;
+    private DateTime _registered;
+    private DateTime? _lastLogin;
 
 
     private void NotifyPropertyChanged([CallerMemberName] string propertyName = "") =>
@@ -75,5 +78,27 @@ public class UserViewModel : INotifyPropertyChanged
             _passwordHash = value;
             NotifyPropertyChanged();
         }
+    }
+
+    public int RoleId
+    {
+        get => _roleId;
+        set
+        {
+            _roleId = value;
+            NotifyPropertyChanged();
+        }
+    }
+
+    public DateTime Registered
+    {
+        get => _registered;
+        init => _registered = value;
+    }
+
+    public DateTime? LastLogin
+    {
+        get => _lastLogin;
+        init => _lastLogin = value;
     }
 }
