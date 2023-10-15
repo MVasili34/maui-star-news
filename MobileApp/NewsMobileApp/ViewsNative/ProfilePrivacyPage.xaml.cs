@@ -33,5 +33,5 @@ public partial class ProfilePrivacyPage : ContentPage
         await Navigation.PushAsync(new SupportPage(new EmailViewModel()));
 
     private async void AdmindButton_Clicked(object sender, EventArgs e) =>
-        await Navigation.PushAsync(new AdminPage());
+        await Navigation.PushAsync(new AdminPage(new AdminViewModel()));
 }

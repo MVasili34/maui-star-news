@@ -17,16 +17,38 @@
             Text="Динамика публикаций"
             FontAttributes="Bold"
             HorizontalOptions="Center"
+            FontFamily="NotoSerif"
             FontSize="20"/>
             <lvc:CartesianChart
-                 x:Name="Finance" HeightRequest="350" Series="{Binding Series}" XAxes="{Binding Axis}"
+                 x:Name="Finance" HeightRequest="350" Series="{Binding Series}" SyncContext="{Binding Sync}"
                 WidthRequest="430" Margin="20,0,0,0">
             </lvc:CartesianChart>
             <Label 
             Text="Управление пользователями"
+            FontFamily="NotoSerif"
             FontAttributes="Bold"
             HorizontalOptions="Center"
             FontSize="20"/>
+            <CollectionView ItemsSource="{Binding Users}"
+                      x:Name="listView"
+                      VerticalOptions="Start"
+                      HorizontalOptions="Center"
+                      BackgroundColor="Transparent"
+                      SelectionMode="Single"
+                      SelectionChanged="listView_SelectionChanged"
+                      WidthRequest="370"
+                      Margin="0, 20,0,0"
+                      >
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="viewmodel:UserViewModel">
+                        <StackLayout Orientation="Vertical" BackgroundColor="{StaticResource MainBackGroundColor}">
+                            <Label Text="{Binding UserName}" FontSize="18" />
+                            <Label Text="{Binding EmailAddress}" FontSize="16"/>
+                            <BoxView Margin="0,0"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

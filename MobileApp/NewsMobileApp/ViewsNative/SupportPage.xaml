@@ -13,6 +13,7 @@
             Text="Связаться с нами"
             FontAttributes="Bold"
             HorizontalOptions="Center"
+            FontFamily="NotoSerif"
             FontSize="20"/>
 
 

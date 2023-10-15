@@ -225,6 +225,76 @@ public class NewsService:INewsService
             },
     };
 
+    public IEnumerable<UserViewModel> GetUsers() =>
+        new List<UserViewModel>()
+        {
+            new()
+            {
+                UserId = Guid.NewGuid(),
+                UserName = "Vasika",
+                EmailAddress = "vasika@mail.ru",
+                Phone = "121323131",
+                DateOfBirth = new(2001, 11, 5),
+                PasswordSalt = "salt",
+                PasswordHash = "sdsdadasdasXsa2112",
+                RoleId = 1,
+                Registered = DateTime.Now.AddDays(-10),
+                LastLogin = DateTime.Now,
+            },
+            new()
+            {
+                UserId = Guid.NewGuid(),
+                UserName = "Petka",
+                EmailAddress = "petka@mail.ru",
+                Phone = "45435211",
+                DateOfBirth = new(2010, 2, 6),
+                PasswordSalt = "salt2",
+                PasswordHash = "sdsdadasdasXsa2112",
+                RoleId = 2,
+                Registered = DateTime.Now.AddDays(-12),
+                LastLogin = DateTime.Now,
+            },
+            new()
+            {
+                UserId = Guid.NewGuid(),
+                UserName = "Витёк Cергеев",
+                EmailAddress = "vitok@mail.ru",
+                Phone = "542144111",
+                DateOfBirth = new(2005, 7, 2),
+                PasswordSalt = "salt2",
+                PasswordHash = "sdsdadasdasXsa2112",
+                RoleId = 1,
+                Registered = DateTime.Now.AddDays(-5),
+                LastLogin = DateTime.Now,
+            },
+            new()
+            {
+                UserId = Guid.NewGuid(),
+                UserName = "Ангелина Петрова",
+                EmailAddress = "ignatiev2133@mail.ru",
+                Phone = "43241941",
+                DateOfBirth = new(2003, 8, 10),
+                PasswordSalt = "salt3",
+                PasswordHash = "sdsdadasdasXsa2112",
+                RoleId = 1,
+                Registered = DateTime.Now.AddDays(-3),
+                LastLogin = DateTime.Now,
+            },
+            new()
+            {
+                UserId = Guid.NewGuid(),
+                UserName = "Олегов Владислав",
+                EmailAddress = "olegov.vlad12@mail.ru",
+                Phone = "414324232",
+                DateOfBirth = new(2002, 7, 2),
+                PasswordSalt = "salt3",
+                PasswordHash = "sdsdadasdasXsa2112",
+                RoleId = 1,
+                Registered = DateTime.Now.AddDays(-1),
+                LastLogin = DateTime.Now,
+            },
+        };
+
     public IEnumerable<ArticlePreviewViewModel> GetThrendArticlesPreview() => GetRecommendedArticlesPreview().Concat(GetLatestArticlesPreview());
     public IEnumerable<ArticleViewModel> GetThrendArticlesFull() => GetRecommendedArticlesFull().Concat(GetLatestArticlesFull());
 }

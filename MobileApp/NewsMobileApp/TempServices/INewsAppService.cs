@@ -13,4 +13,5 @@ public interface INewsService
     public IEnumerable<ArticleViewModel> GetRecommendedArticlesFull();
     public IEnumerable<ArticlePreviewViewModel> GetThrendArticlesPreview();
     public IEnumerable<ArticleViewModel> GetThrendArticlesFull();
+    public IEnumerable<UserViewModel> GetUsers();
 }

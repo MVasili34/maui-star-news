@@ -45,7 +45,7 @@ public partial class ThrendsPage : ContentPage
         double contentHeight = scrollView.ContentSize.Height;
         double currentScrollPosition = scrollView.ScrollY;
 
-        if (currentScrollPosition + scrollViewHeight >= contentHeight)
+        if (currentScrollPosition + scrollViewHeight >= contentHeight - 100)
         {
             _viewmodels.AddArticles();
         }

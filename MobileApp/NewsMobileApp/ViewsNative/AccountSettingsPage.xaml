@@ -15,6 +15,7 @@
             Text="Изменить данные профиля"
             FontAttributes="Bold"
             HorizontalOptions="Center"
+            FontFamily="NotoSerif"
             FontSize="20"/>
 
         <Label Text="Имя профиля" 
