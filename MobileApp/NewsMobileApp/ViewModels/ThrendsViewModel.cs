@@ -22,7 +22,7 @@ public class ThrendsViewModel : ObservableCollection<ArticlePreviewViewModel>
 
     public void SearchArticle(string text)
     {
-        if (string.IsNullOrEmpty(text))
+        if (string.IsNullOrEmpty(text) || string.IsNullOrWhiteSpace(text))
         {
             AddArticles(true);
             return;

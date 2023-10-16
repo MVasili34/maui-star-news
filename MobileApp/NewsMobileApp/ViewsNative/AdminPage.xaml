@@ -10,7 +10,7 @@
     <ContentPage.BindingContext>
         <viewmodel:AdminViewModel/>
     </ContentPage.BindingContext>
-    <ScrollView>
+    <ScrollView Scrolled="OnScrollViewScrolled">
         <VerticalStackLayout Padding="16">
             <Label 
             Margin="0,10,0,0"
@@ -29,7 +29,43 @@
             FontAttributes="Bold"
             HorizontalOptions="Center"
             FontSize="20"/>
-            <CollectionView ItemsSource="{Binding Users}"
+
+            <Border 
+            Padding="12, 4"
+            BackgroundColor="#33CCCCCC"
+            Stroke="Transparent"
+            HorizontalOptions="Fill"
+            Margin="0,15,0,0"
+            HeightRequest="55">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="6"/>
+                </Border.StrokeShape>
+
+                <Grid
+                 HorizontalOptions="Fill"
+                 VerticalOptions="Center"
+                 ColumnDefinitions="Auto,*"
+                 ColumnSpacing="16">
+
+                    <Image
+                    WidthRequest="24"
+                    HeightRequest="24"
+                    Source="imgsearch.png"
+                    Grid.Column="0"
+                    VerticalOptions="Center" />
+
+                    <Entry
+                    x:Name="SearchText"
+                    Placeholder="Поиск пользователя..."
+                    Grid.Column="1"
+                    FontSize="20"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center"
+                    Completed="SearchText_Completed"/>
+                </Grid>
+            </Border>
+
+            <CollectionView ItemsSource="{Binding .}"
                       x:Name="listView"
                       VerticalOptions="Start"
                       HorizontalOptions="Center"

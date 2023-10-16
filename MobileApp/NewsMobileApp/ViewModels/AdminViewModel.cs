@@ -15,6 +15,8 @@ public class AdminViewModel
     private static DateTime endDate = DateTime.Now;
     private ObservableCollection<DateTimePoint> _data = new ObservableCollection<DateTimePoint>(Enumerable.Range(0, (int)(endDate - startDate).TotalDays + 1)
                          .Select(x => new DateTimePoint(startDate.AddDays(x), 0)));
+    public ObservableCollection<UserViewModel> Users { get; set; } = new();
+
     public object Sync => new();
 
     public AdminViewModel()
@@ -34,9 +36,8 @@ public class AdminViewModel
                 new SKPoint(1, 0.9f))
             }
          );
-
         GetDiagtamData();
-        AddUsers(false, 20, 0);
+        
     }
 
     public async void GetDiagtamData()
@@ -53,11 +54,9 @@ public class AdminViewModel
 
     public List<ISeries> Series { get; set; } = new();
 
-    public ObservableCollection<UserViewModel> Users { get; set; } = new();
-
     public async void AddUsers(bool clear = false, int limit = 20, int offset = 0)
     {
-        if(clear) Users.Clear();
+        if (clear) Users.Clear();
 
         foreach (var user in _newsService.GetUsers())
         {
@@ -68,4 +67,22 @@ public class AdminViewModel
             Users.Add(user);
         }
     }
+    public async void SearchUser(string text)
+    {
+        if (string.IsNullOrEmpty(text) || string.IsNullOrWhiteSpace(text))
+        {
+            AddUsers(true);
+            return;
+        }
+
+        Users.Clear();
+        UserViewModel found = _newsService.GetUsers()
+                                          .First(x => x.UserName == text);
+
+        if (found is not null)
+        {
+            Users.Add(found);
+        }
+    }
+
 }
