@@ -2,13 +2,152 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NewsMobileApp.ViewsNative.MainEventsPage"
+             xmlns:viewmodels="clr-namespace:NewsMobileApp.ViewModels"
              Title="Главная"
              BackgroundColor="{StaticResource MainBackGroundColor}"
              Shell.BackgroundColor="{StaticResource MainNavigationColor}">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <ContentPage.BindingContext>
+        <viewmodels:MainPageViewModel/>
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <VerticalStackLayout>
+            <StackLayout Style="{StaticResource HeaderStack}">
+                <Label Text="Популярные #секции" Style="{StaticResource SectionHeading}" TextColor="White"/>
+            </StackLayout>
+
+            <FlexLayout x:Name="TagsToDisplay"
+                        BindableLayout.ItemsSource="{Binding Tags}"
+                        Wrap="Wrap"
+                        Margin="20,0">
+                <BindableLayout.ItemTemplate >
+                    <DataTemplate >
+                        <!--   <Frame
+                            BackgroundColor="#ACACAC"
+                            BorderColor="Transparent"
+                            CornerRadius="4"
+                            Padding="8, 2"
+                            Margin="0,0,3,10">
+                            <Label Text="{Binding .}" FontFamily="PoppinsRegular" VerticalOptions="Center" />
+                        </Frame> -->
+                        <Button
+                            BackgroundColor="#2b2a3a"
+                            BorderColor="Transparent"
+                            TextColor="White"
+                            CornerRadius="5"
+                            FontSize="14"
+                            Padding="8, 2"
+                            Margin="0,0,3,5"
+                            HeightRequest="34" 
+                            Text="{Binding .}" 
+                            FontFamily="PoppinsRegular"
+                            VerticalOptions="Center"
+                            Clicked="Tag_Clicked"
+                            CommandParameter="{Binding .}">
+                        </Button>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </FlexLayout>
+
+            <BoxView />
+
+            <StackLayout Style="{StaticResource HeaderStack}">
+                <Label Text="Последние новости" Style="{StaticResource SectionHeading}" TextColor="White"/>
+                <Label Text="Все" Style="{StaticResource ShowAll}" />
+            </StackLayout>
+            <CollectionView
+                        ItemsSource="{Binding NewestArticles}"
+                        x:Name="LatestNews"
+                        HeightRequest="260"
+                        SelectionMode="Single"
+                        Margin="20,0,0,0"
+                        SelectionChanged="LatestNews_SelectionChanged">
+
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout
+                                Orientation="Horizontal"
+                                ItemSpacing="20"/>
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate >
+                    <DataTemplate x:DataType="viewmodels:ArticlePreviewViewModel">
+                        <StackLayout Orientation="Vertical" 
+                                     Margin="0,0,0,0" 
+                                     WidthRequest="300" 
+                                     HeightRequest="260" 
+                                     BackgroundColor="{StaticResource MainBackGroundColor}">
+
+                            <Frame Padding="0" IsClippedToBounds="True" BorderColor="Transparent">
+                                <Image Source="{Binding Image}" HeightRequest="180" WidthRequest="300" Aspect="AspectFill" />
+                            </Frame>
+                            <Label Text="{Binding Title}" 
+                                   Margin="0,4,0,0" 
+                                   FontSize="18" 
+                                   TextColor="White"
+                                   FontFamily="PoppinsSemiBold" 
+                                   MaxLines="2"/>
+                            <StackLayout Orientation="Horizontal" Spacing="4">
+                                <Label Text="{Binding Section.Name}" TextColor="{StaticResource Primary}"/>
+                                <Label Text="·" FontAttributes="Bold" TextColor="{StaticResource Gray200}"/>
+                                <Label Text="{Binding PublishTime}" TextColor="{StaticResource Gray200}"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+
+            <BoxView />
+
+            <StackLayout Style="{StaticResource HeaderStack}">
+                <Label Text="История и культура" Style="{StaticResource SectionHeading}" TextColor="White"/>
+                <Label Text="Все" Style="{StaticResource ShowAll}" />
+            </StackLayout>
+            <CollectionView
+                 ItemsSource="{Binding HystoricalArticles}"
+             x:Name="RecommendedNews"
+             HeightRequest="260"
+             SelectionMode="Single"
+             Margin="20,0,0,0"
+             SelectionChanged="LatestNews_SelectionChanged">
+
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout
+                     Orientation="Horizontal"
+                     ItemSpacing="20"/>
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate >
+                    <DataTemplate x:DataType="viewmodels:ArticlePreviewViewModel">
+                        <StackLayout Orientation="Vertical" 
+                                     Margin="0,0,0,0" 
+                                     WidthRequest="300" 
+                                     HeightRequest="260" 
+                                     BackgroundColor="{StaticResource MainBackGroundColor}">
+
+                            <Frame Padding="0" IsClippedToBounds="True" BorderColor="Transparent">
+                                <Image Source="{Binding Image}" HeightRequest="180" WidthRequest="300" Aspect="AspectFill" />
+                            </Frame>
+                            <Label Text="{Binding Title}" 
+                                   Margin="0,4,0,0" 
+                                   FontSize="18" 
+                                   TextColor="White"
+                                   FontFamily="PoppinsSemiBold" 
+                                   MaxLines="2"/>
+                            <StackLayout Orientation="Horizontal" Spacing="4">
+                                <Label Text="{Binding Section.Name}" TextColor="{StaticResource Primary}"/>
+                                <Label Text="·" FontAttributes="Bold" TextColor="{StaticResource Gray200}"/>
+                                <Label Text="{Binding PublishTime}" TextColor="{StaticResource Gray200}"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+
+            <BoxView/>
+
+        </VerticalStackLayout>
+
+
+    </ScrollView>
 </ContentPage>

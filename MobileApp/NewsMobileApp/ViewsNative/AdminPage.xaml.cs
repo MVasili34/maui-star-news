@@ -14,11 +14,11 @@ public partial class AdminPage : ContentPage
         Finance.XAxes = new Axis[] {
             new DateTimeAxis(TimeSpan.FromDays(1), date => date.ToString("MMMM dd"))
         };
-        listView.BindingContext = _viewModel.Users;
+        ListView.BindingContext = _viewModel.Users;
         _viewModel.AddUsers(false, 20, 0);
     }
 
-    private async void listView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private async void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         if (e.CurrentSelection.First() is not UserViewModel user) return;
 

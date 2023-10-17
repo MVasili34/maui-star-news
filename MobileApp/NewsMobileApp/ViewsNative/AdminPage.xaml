@@ -66,12 +66,12 @@
             </Border>
 
             <CollectionView ItemsSource="{Binding .}"
-                      x:Name="listView"
+                      x:Name="ListView"
                       VerticalOptions="Start"
                       HorizontalOptions="Center"
                       BackgroundColor="Transparent"
                       SelectionMode="Single"
-                      SelectionChanged="listView_SelectionChanged"
+                      SelectionChanged="ListView_SelectionChanged"
                       Margin="0, 20,0,0"
                       >
                 <CollectionView.ItemTemplate>
