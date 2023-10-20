@@ -27,7 +27,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewsMobileApp", "MobileApp\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImagesCloudTool", "Tools\ImagesCloudTool\ImagesCloudTool.csproj", "{1A42D132-6DCB-4442-BB5E-7A213F2BACFF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BriefRetellAITool", "Tools\BriefRetellAITool\BriefRetellAITool.csproj", "{8A1CAABD-CF1F-4C64-9B10-6D46BEC2F2D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BriefRetellAITool", "Tools\BriefRetellAITool\BriefRetellAITool.csproj", "{8A1CAABD-CF1F-4C64-9B10-6D46BEC2F2D1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -103,6 +103,9 @@
       <MauiXaml Update="ViewsNative\ArticlePage.xaml">
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
+      <MauiXaml Update="ViewsNative\BriefRetellPage.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </MauiXaml>
       <MauiXaml Update="ViewsNative\LoginBottomPage.xaml">
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
@@ -133,6 +136,10 @@
       <MauiXaml Update="ViewsNative\ThrendsPage.xaml">
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="wwwroot\images\" />
     </ItemGroup>
 
 </Project>
