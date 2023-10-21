@@ -34,4 +34,7 @@ public partial class ProfilePrivacyPage : ContentPage
 
     private async void AdmindButton_Clicked(object sender, EventArgs e) =>
         await Navigation.PushAsync(new AdminPage(new AdminViewModel()));
+
+    private async void AppSettings_Clicked(object sender, EventArgs e) =>
+        await Navigation.PushAsync(new AppSettingsPage());
 }

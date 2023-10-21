@@ -35,7 +35,7 @@
 
 
 
-            <ContentView HeightRequest="20"/>
+            <ContentView HeightRequest="15"/>
             <Label Text="Настройки" 
                FontFamily="PoppinsSemibold"
                FontSize="18"
@@ -46,12 +46,41 @@
                     HeightRequest="50"
                     BackgroundColor="{StaticResource MainBlocksColor}"
                     Clicked="AccountSettings_Clicked"/>
+                <Image Source="profsetting.png" 
+                       VerticalOptions="Center"
+                       HorizontalOptions="Start"
+                       HeightRequest="25" WidthRequest="25"
+                       Margin="10,0,0,0"/>
                 <Label Text="Настройки аккаунта"
                    FontSize="18"
                    VerticalOptions="Center"
                    HorizontalOptions="Start"
                    TextColor="White"
-                   Margin="15,0,0,0"/>
+                   Margin="45,0,0,0"/>
+                <Label Text="❯" 
+                   VerticalOptions="Center" 
+                   HorizontalOptions="End"
+                   FontSize="18"
+                   Margin="0,0,15,0"
+                   TextColor="White"/>
+            </Grid>
+            <BoxView Margin="0,0"/>
+            <Grid>
+                <Button CornerRadius="5"
+                    HeightRequest="50"
+                    BackgroundColor="{StaticResource  MainBlocksColor}"
+                    Clicked="AppSettings_Clicked"/>
+                <Image Source="appsetting.png" 
+                       VerticalOptions="Center"
+                       HorizontalOptions="Start"
+                       HeightRequest="25" WidthRequest="25"
+                       Margin="10,0,0,0"/>
+                <Label Text="Настройки приложения"
+                   FontSize="18"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Start"
+                   TextColor="White"
+                   Margin="45,0,0,0"/>
                 <Label Text="❯" 
                    VerticalOptions="Center" 
                    HorizontalOptions="End"
@@ -67,12 +96,17 @@
                     HeightRequest="50"
                     BackgroundColor="{StaticResource MainBlocksColor}"
                     Clicked="AdmindButton_Clicked"/>
+                <Image Source="adminpanel.png" 
+                       VerticalOptions="Center"
+                       HorizontalOptions="Start"
+                       HeightRequest="25" WidthRequest="25"
+                       Margin="10,0,0,0"/>
                 <Label Text="Панель администратора"
                    FontSize="18"
                    VerticalOptions="Center"
                    HorizontalOptions="Start"
                    TextColor="White"
-                   Margin="15,0,0,0"/>
+                   Margin="45,0,0,0"/>
                 <Label Text="❯" 
                    VerticalOptions="Center" 
                    HorizontalOptions="End"
@@ -80,7 +114,7 @@
                    Margin="0,0,15,0"
                    TextColor="White"/>
             </Grid>
-            <ContentView HeightRequest="20"/>
+            <ContentView HeightRequest="15"/>
 
             <Label Text="Поддержка" 
                FontFamily="PoppinsSemibold"
@@ -92,12 +126,17 @@
                     HeightRequest="50"
                     BackgroundColor="{StaticResource  MainBlocksColor}"
                     Clicked="Support_Clicked"/>
+                <Image Source="contact.png" 
+                       VerticalOptions="Center"
+                       HorizontalOptions="Start"
+                       HeightRequest="25" WidthRequest="25"
+                       Margin="10,0,0,0"/>
                 <Label Text="Связаться"
                    FontSize="18"
                    VerticalOptions="Center"
                    HorizontalOptions="Start"
                    TextColor="White"
-                   Margin="15,0,0,0"/>
+                   Margin="45,0,0,0"/>
                 <Label Text="❯" 
                    VerticalOptions="Center" 
                    HorizontalOptions="End"
@@ -105,7 +144,7 @@
                    Margin="0,0,15,0"
                    TextColor="White"/>
             </Grid>
-            <ContentView HeightRequest="20"/>
+            <ContentView HeightRequest="15"/>
 
             <Label Text="Условия пользовательского соглашения" 
                FontFamily="PoppinsSemibold"
@@ -169,8 +208,13 @@
                    Margin="0,0,15,0"
                    TextColor="White"/>
             </Grid>
-            <ContentView HeightRequest="40"/>
+            <ContentView HeightRequest="15"/>
 
+            <Label Text="Выйти из аккаунта" 
+               FontFamily="PoppinsSemibold"
+               FontSize="18"
+               TextColor="{StaticResource Gray300}"
+               Margin="8,0,0,8"/>
             <Grid>
                 <Button x:Name="Logout"
                     CornerRadius="5"

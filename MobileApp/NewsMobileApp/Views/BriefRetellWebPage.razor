@@ -1,6 +1,7 @@
 ﻿@page "/briefretell/{title}/{text}"
+@using BriefRetellAITool;
 
-@if (Title is null || Text is null)
+@if (RetellText is null && Error is null)
 {
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 203 148.27" style="width:35%; height:35%; margin-top:-20px">
         <g id="wand">
@@ -33,12 +34,27 @@
             </g>
         </g>
     </svg>
-    <p style="text-align: center; margin-top: 65vh; transform: translateY(-50%); font-size:20px;">ИИ генерирует пересказ...</p>
+    <p style="text-align: center; margin-top: 65vh; transform: translateY(-50%); font-size:20px; font-family: 'Noto Serif', serif;">ИИ генерирует пересказ...</p>
+}
+else if (Error is not null)
+{
+    <div style="text-align: center; margin-top: 50vh; transform: translateY(-50%); font-size:20px; font-family: 'Noto Serif', serif;">
+        <img height="100" width="100" src="/images/magicbook.png" />
+        <p style="margin-top:20px;">@Error</p>
+    </div>
 }
 else
 {
-    <p>@Title</p>
-    <p>@Text</p>
+    <p style="margin: 20px 15px 15px 15px; font-size: 26px; font-family: 'Noto Serif', serif; text-align:center;">
+        @Title
+    </p>
+    <p style="text-align: justify; text-justify: auto; margin: 20px 15px 15px 15px; font-size:17px; white-space: pre-wrap;">
+        @RetellText
+    </p>
+    <div style="position: fixed; bottom: 0; width:100%;">
+        <hr />
+        <p style="color: #C8C8C8; margin-left: 10px;">Copyright &copy; 2023 StarNews. All Rights Reserved.</p>
+    </div>
 }
 @code {
     [Parameter]
@@ -47,10 +63,51 @@ else
     [Parameter]
     public string Text { get; set; }
 
+    private string RetellText { get; set; }
+
+    private string Error { get; set; }
+
     protected async override Task OnParametersSetAsync()
     {
-        Title = null;
-        Text = null;
+        try
+        {
+            if(Title is null || Text is null)
+            {
+                throw new ArgumentNullException();
+            }
+            string apiKey = Preferences.Get("apiKey", string.Empty);
+            ArticleRetell retell = new(apiKey);
+            string result = await retell.ConvertArticle(Text);
+            
+            if (result is null)
+                {
+                throw new ArgumentNullException();
+            }
+            RetellText = result;
+            /*
+            RetellText = "- Российский музыкальный продюсер Андрей Разин выразил свои опасения за жизни своих коллег, которых он проклял из-за их участия в концерте.\n"+
+                         "- Разин рассказал о своем страхе в программе на канале \"Россия\" и признался, что опасается за участников концерта.\n"+
+                         "- Он утверждает, что все те, кто был против него, погибли в нервных судорогах.\n"+
+                         "- Андрей Шишкин, бывший участник группы \"Ласковый май\", заявил, что не боится проклятий Разина.\n" +
+                         "- Музыкальный критик Павел Рудченко объяснил поведение Разина, утверждая, что его действия вызваны страхом остаться без денег.";
+                         */
+        }
+        catch(KeyNotFoundException ex)
+        {
+            Error = ex.Message;
+        }
+        catch(OverflowException ex)
+        {
+            Error = ex.Message;
+        }
+        catch(ArgumentNullException)
+        {
+            await Shell.Current.DisplayAlert("Ошибка!", "Произошла внутренняя ошибка приложения", "OK");
+            await Shell.Current.Navigation.PopAsync(true);
+        }
+        catch(Exception ex)
+        {
+            Error = ex.Message;
+        }
     }
-
 }

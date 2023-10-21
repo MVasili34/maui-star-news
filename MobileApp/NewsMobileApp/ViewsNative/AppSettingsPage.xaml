@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NewsMobileApp.ViewsNative.AppSettingsPage"
+             Title="Настройки"
+             BackgroundColor="{StaticResource MainBackGroundColor}"
+             Shell.BackgroundColor="{StaticResource MainNavigationColor}">
+    <ScrollView >
+        <VerticalStackLayout Padding="20">
+            <Label 
+                Margin="0,20,0,20"
+                Text="Настройки приложения"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                FontFamily="NotoSerif"
+                FontSize="20"/>
+
+            <Label Text="Функция пересказа" 
+               FontFamily="PoppinsSemibold"
+               FontSize="18"
+               TextColor="{StaticResource Gray300}"
+               Margin="20,0,0,0"/>
+            <ContentView HeightRequest="2"/>
+            <Border 
+                Padding="12, 4"
+                BackgroundColor="#33CCCCCC"
+                Stroke="Transparent"
+                HorizontalOptions="Fill"
+                Margin="0,5,0,0"
+                HeightRequest="55">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="6"/>
+                </Border.StrokeShape>
+                <Entry
+                    x:Name="TextBox"
+                    Placeholder="Ключ OpenAI..."
+                    FontSize="20"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center"/>
+            </Border>
+
+            <ContentView HeightRequest="10" />
+
+            <Button x:Name="Submit"
+                Text="Изменить"
+                TextColor="White"
+                BackgroundColor="{StaticResource Primary}"
+                Clicked="Submit_Clicked"
+                FontSize="20"
+                Margin="0, 20, 0, 10"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -66,6 +66,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\Tools\BriefRetellAITool\BriefRetellAITool.csproj" />
       <ProjectReference Include="..\..\Tools\ImagesCloudTool\ImagesCloudTool.csproj" />
     </ItemGroup>
 
@@ -92,6 +93,9 @@
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
       <MauiXaml Update="ViewsNative\AdminPage.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </MauiXaml>
+      <MauiXaml Update="ViewsNative\AppSettingsPage.xaml">
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
       <MauiXaml Update="ViewsNative\AritclesBySectionPage.xaml">
