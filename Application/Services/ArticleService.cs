@@ -11,8 +11,16 @@ public class ArticleService : IArticleService
         _newsAppContext = newsAppContext;
     }
 
-    public async Task<Article?> RetrieveArticleAsync(Guid id) => await _newsAppContext
-        .Articles.FindAsync(id);
+    public async Task<Article?> RetrieveArticleAsync(Guid id)
+    {
+        Article? article = await _newsAppContext.Articles.FindAsync(id);
+        if(article is not null) 
+        {
+            article.Views++;
+            await _newsAppContext.SaveChangesAsync();
+        }
+        return article;
+    }
 
     public async Task<IEnumerable<Section>> RetrieveSectionsAsync() => await _newsAppContext.Sections.ToListAsync();
 

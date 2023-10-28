@@ -24,6 +24,9 @@ public partial class Article
     [Column("image", TypeName = "character varying")]
     public string Image { get; set; } = null!;
 
+    [Column("views_count")]
+    public int Views { get; set; }
+
     [Column("text")]
     public string Text { get; set; } = null!;
 
