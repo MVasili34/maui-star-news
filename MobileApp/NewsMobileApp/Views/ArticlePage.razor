@@ -25,9 +25,14 @@ else
         @_article.Title
     </p>
     <div style="display: flex; margin: 10px 20px 0 10px;"> 
-        <span class="material-symbols-outlined" style="color:#C8C8C8; font-size:35px">account_circle</span>
+        <!--<span class="material-symbols-outlined" style="color:#C8C8C8; font-size:35px">account_circle</span> -->
         <div>
-            <p style="color:#C8C8C8; margin-left: 10px; margin-top: -5px">Редактор</p>
+                <p style="color:#C8C8C8; margin-left: 10px; margin-top: -5px">
+                    <span class="material-symbols-outlined" style="font-size: 14px;">
+                        visibility
+                    </span> 
+                    @_article.Views
+                </p>
             <p style="color:#C8C8C8; margin-left: 10px; margin-top: -20px;">@_article.PublishTime?.ToString("dd MMMM yyyy г. HH:MM")</p>
         </div>
             <button style="background-color: #4c43f0; margin-top:-10px; font-size: 30px; margin-left:auto; width: 50px; height: 50px;

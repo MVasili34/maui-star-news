@@ -12,7 +12,7 @@
                 <Frame WidthRequest="75" HeightRequest="75" Padding="0" CornerRadius="38"
                    BackgroundColor="{StaticResource Gray200}" BorderColor="Transparent">
                     <Label Text="{x:Static icons:Icons.IconProfile}"
-                       FontFamily="Material"
+                       FontFamily="MaterialIcons"
                        FontSize="40"
                        VerticalOptions="Center"
                        HorizontalOptions="Center"
@@ -22,7 +22,7 @@
                     <Label x:Name="UserName"
                        Text="John Smith"
                        FontSize="28"
-                       FontFamily="PoppinsBold"
+                       FontFamily="PopsBold"
                        VerticalOptions="Center"
                        TextColor="White"/>
                     <Label x:Name="UserEmail"
@@ -37,7 +37,7 @@
 
             <ContentView HeightRequest="15"/>
             <Label Text="Настройки" 
-               FontFamily="PoppinsSemibold"
+               FontFamily="PopsSBold"
                FontSize="18"
                TextColor="{StaticResource Gray300}"
                Margin="8,0,0,8"/>
@@ -117,7 +117,7 @@
             <ContentView HeightRequest="15"/>
 
             <Label Text="Поддержка" 
-               FontFamily="PoppinsSemibold"
+               FontFamily="PopsSBold"
                FontSize="18"
                TextColor="{StaticResource Gray300}"
                Margin="8,0,0,8"/>
@@ -147,7 +147,7 @@
             <ContentView HeightRequest="15"/>
 
             <Label Text="Условия пользовательского соглашения" 
-               FontFamily="PoppinsSemibold"
+               FontFamily="PopsSBold"
                FontSize="18"
                TextColor="{StaticResource Gray300}"
                Margin="8,0,0,8"/>
@@ -211,7 +211,7 @@
             <ContentView HeightRequest="15"/>
 
             <Label Text="Выйти из аккаунта" 
-               FontFamily="PoppinsSemibold"
+               FontFamily="PopsSBold"
                FontSize="18"
                TextColor="{StaticResource Gray300}"
                Margin="8,0,0,8"/>

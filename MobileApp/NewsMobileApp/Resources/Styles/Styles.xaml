@@ -5,7 +5,7 @@
     
     <Style TargetType="Label" x:Key="TabBarText">
         <Setter Property="TextColor" Value="#4c43f0" />
-        <Setter Property="FontFamily" Value="Material" />
+        <Setter Property="FontFamily" Value="MaterialIcons" />
         <Setter Property="VerticalTextAlignment" Value="Center" />
         <Setter Property="HorizontalTextAlignment" Value="Center" />
         <Setter Property="VerticalOptions" Value="Center" />

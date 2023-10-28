@@ -12,6 +12,7 @@ public class ArticleViewModel : INotifyPropertyChanged
     private string _subtitle;
     private int _sectionId;
     private string _image;
+    private int _views;
     private string _text;
     private DateTime? _publishTime = null;
     private Guid? _publisherId;
@@ -61,6 +62,16 @@ public class ArticleViewModel : INotifyPropertyChanged
         set
         {
             _image = value;
+            NotifyPropertyChanged();
+        }
+    }
+
+    public int Views
+    {
+        get => _views;
+        set
+        {
+            _views = value;
             NotifyPropertyChanged();
         }
     }

@@ -53,5 +53,5 @@ public partial class ArticlesBySectionPage : ContentPage
     }
 
     private async void AdmindButton_Clicked(object sender, EventArgs e) =>
-        await Navigation.PushAsync(new ArticleDetailPage(new NewsService()));
+        await Navigation.PushAsync(new ArticleDetailPage(new NewsAppService()));
 }

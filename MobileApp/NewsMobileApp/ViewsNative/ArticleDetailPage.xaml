@@ -15,7 +15,7 @@
                   FontSize="20"/>
             <Label 
                   Text="Заголовок статьи" 
-                  FontFamily="PoppinsSemibold"
+                  FontFamily="PopsSBold"
                   FontSize="18"
                   TextColor="{StaticResource Gray300}"
                   Margin="20,0,0,0"/>
@@ -43,7 +43,7 @@
 
             <Label 
                    Text="Подзаголовок статьи" 
-                   FontFamily="PoppinsSemibold"
+                   FontFamily="PopsSBold"
                    FontSize="18"
                    TextColor="{StaticResource Gray300}"
                    Margin="20,0,0,0"/>
@@ -70,7 +70,7 @@
             <ContentView HeightRequest="10" />
 
             <Label Text="Секция" 
-                   FontFamily="PoppinsSemibold"
+                   FontFamily="PopsSBold"
                    FontSize="18"
                    TextColor="{StaticResource Gray300}"
                    Margin="20,0,0,0"/>
@@ -99,7 +99,7 @@
             <ContentView HeightRequest="10" />
 
             <Label Text="Выберите изображение" 
-                   FontFamily="PoppinsSemibold"
+                   FontFamily="PopsSBold"
                    FontSize="18"
                    TextColor="{StaticResource Gray300}"
                    Margin="20,0,0,0"/>
@@ -144,7 +144,7 @@
             <ContentView HeightRequest="20"/>
 
             <Label Text="Текст статьи" 
-                   FontFamily="PoppinsSemibold"
+                   FontFamily="PopsSBold"
                    FontSize="18"
                    TextColor="{StaticResource Gray300}"
                    Margin="20,0,0,0"/>

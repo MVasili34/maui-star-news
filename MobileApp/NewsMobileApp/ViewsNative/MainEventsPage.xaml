@@ -21,14 +21,6 @@
                         Margin="20,0">
                 <BindableLayout.ItemTemplate >
                     <DataTemplate >
-                        <!--   <Frame
-                            BackgroundColor="#ACACAC"
-                            BorderColor="Transparent"
-                            CornerRadius="4"
-                            Padding="8, 2"
-                            Margin="0,0,3,10">
-                            <Label Text="{Binding .}" FontFamily="PoppinsRegular" VerticalOptions="Center" />
-                        </Frame> -->
                         <Button
                             BackgroundColor="#2b2a3a"
                             BorderColor="Transparent"
@@ -39,7 +31,7 @@
                             Margin="0,0,3,5"
                             HeightRequest="34" 
                             Text="{Binding .}" 
-                            FontFamily="PoppinsRegular"
+                            FontFamily="PopsRegular"
                             VerticalOptions="Center"
                             Clicked="Tag_Clicked"
                             CommandParameter="{Binding .}">
@@ -83,7 +75,8 @@
                                    Margin="0,4,0,0" 
                                    FontSize="18" 
                                    TextColor="White"
-                                   FontFamily="PoppinsSemiBold" 
+                                   FontFamily="
+                                   " 
                                    MaxLines="2"/>
                             <StackLayout Orientation="Horizontal" Spacing="4">
                                 <Label Text="{Binding Section.Name}" TextColor="{StaticResource Primary}"/>
@@ -131,7 +124,7 @@
                                    Margin="0,4,0,0" 
                                    FontSize="18" 
                                    TextColor="White"
-                                   FontFamily="PoppinsSemiBold" 
+                                   FontFamily="PopsSBold" 
                                    MaxLines="2"/>
                             <StackLayout Orientation="Horizontal" Spacing="4">
                                 <Label Text="{Binding Section.Name}" TextColor="{StaticResource Primary}"/>

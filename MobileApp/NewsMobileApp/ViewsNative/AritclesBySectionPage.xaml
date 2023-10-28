@@ -98,7 +98,7 @@
                                Grid.Column="1"
                                Grid.Row="0"
                                MaxLines="2"
-                               FontFamily="PoppinsSemiBold"
+                               FontFamily="PopsSBold"
                                FontSize="20" />
                                             <Label Text="{Binding Subtitle}"
                                Grid.Row="1"

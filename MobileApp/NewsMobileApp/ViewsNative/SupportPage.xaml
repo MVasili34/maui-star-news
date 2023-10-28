@@ -22,7 +22,7 @@
         
         
         <Label Text="Категория проблемы" 
-               FontFamily="PoppinsSemibold"
+               FontFamily="PopsSBold"
                FontSize="18"
                TextColor="{StaticResource Gray300}"
                Margin="20,0,0,0"/>
@@ -47,7 +47,7 @@
 
         <ContentView HeightRequest="20"/>
         <Label Text="Описание проблемы" 
-               FontFamily="PoppinsSemibold"
+               FontFamily="PopsSBold"
                FontSize="18"
                TextColor="{StaticResource Gray300}"
                Margin="20,0,0,0"/>

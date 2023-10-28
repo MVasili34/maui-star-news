@@ -34,7 +34,7 @@
                             </Frame.GestureRecognizers>
                             <VerticalStackLayout Padding="20,6" VerticalOptions="Center" Spacing="10">
                                 <Label Text="{Binding MaterialIcon}"
-                               FontFamily="Material"
+                               FontFamily="MaterialIcons"
                                TextColor="{StaticResource White}"
                                FontSize="34"
                                HorizontalOptions="Center" />
@@ -42,7 +42,7 @@
                                TextColor="{StaticResource White}"
                                HorizontalOptions="Center"
                                FontSize="16"
-                               FontFamily="PoppinsSemiBold" />
+                               FontFamily="PopsSBold" />
 
                             </VerticalStackLayout>
                         </Frame>

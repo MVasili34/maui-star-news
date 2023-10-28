@@ -22,5 +22,5 @@ public partial class ArticlePage : ContentPage
     }
 
     private async void EditButton_Clicked(object sender, EventArgs e) =>
-        await Navigation.PushAsync(new ArticleDetailPage(new NewsService(), _articleId));
+        await Navigation.PushAsync(new ArticleDetailPage(new NewsAppService(), _articleId));
 }
