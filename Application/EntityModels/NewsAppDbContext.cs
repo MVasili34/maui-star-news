@@ -25,7 +25,7 @@ public partial class NewsAppDbContext : DbContext
     {
         if (!optionsBuilder.IsConfigured)
         {
-            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=NewsAppDB;Username=postgres;Password=sqlserver");
+            optionsBuilder.UseNpgsql("User ID=postgres;Password=sqlserver;Server=localhost;Port=5433;Database=NewsAppDB;IntegratedSecurity=true;Pooling=true");
         }
     }
 

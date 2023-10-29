@@ -1,0 +1,40 @@
+version: '3.4'
+
+networks:
+  dev:
+    driver: bridge
+
+services:
+  odata-api:
+    image: docker.io/library/odataapi
+    depends_on:
+      - "app_db"
+    container_name: odataapi-services
+    ports:
+      - "8080:80"
+    build:
+       context: .
+       dockerfile: DockerFile
+    environment:
+       - ConnectionStrings__DbConnection=User ID=postgres;Password=sqlserver;Server=app_db;Port=5432;Database=NewsAppDB;IntegratedSecurity=true;Pooling=true
+       - ASPNETCORE_URLS=http://+:80
+    networks:
+       - dev
+
+  app_db:
+    image: postgres:latest
+    container_name: app_db
+    environment:
+       - POSTGRES_USER=postgres
+       - POSTGRES_PASSWORD=sqlserver
+       - POSTGRES_DB=NewsAppDB
+    ports:
+       - "5433:5432"
+    restart: always
+    volumes:
+       - app_data:/var/lib/postgresql/data
+    networks:
+       - dev
+
+volumes:
+  app_data: 
