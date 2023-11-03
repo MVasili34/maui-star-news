@@ -9,6 +9,7 @@
     <ContentPage.BindingContext>
         <viewmodels:UserViewModel/>
     </ContentPage.BindingContext>
+    <ScrollView>
     <VerticalStackLayout>
         <Label 
             Margin="0,20,0,20"
@@ -163,8 +164,8 @@
                 BackgroundColor="{StaticResource Primary}"
                 Clicked="Submit_Clicked"
                 FontSize="20"
-                Margin="15, 10, 15, 10"/>
+                Margin="15, 10, 15, 30"/>
 
     </VerticalStackLayout>
-
+    </ScrollView>
 </ContentPage>

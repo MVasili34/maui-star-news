@@ -77,7 +77,7 @@ public class AdminViewModel
 
         Users.Clear();
         UserViewModel found = _newsService.GetUsers()
-                                          .First(x => x.UserName == text);
+                                          .FirstOrDefault(x => x.UserName == text);
 
         if (found is not null)
         {

@@ -70,6 +70,85 @@ public partial class NewsAppDbContext : DbContext
             entity.HasOne(d => d.Role).WithMany(p => p.Users).OnDelete(DeleteBehavior.SetNull);
         });
 
+        modelBuilder.Entity<Role>()
+            .HasData(new Role {
+                RoleId = 1,
+                Name = "Читатель",
+                Description = "Обычный читатель с базовыми правами доступа",
+            },
+                    new Role {
+                RoleId = 2,
+                Name = "Редактор",
+                Description = "Редактор с правами публикации статей"
+            }, 
+                    new Role {
+                RoleId = 3,
+                Name = "Администратор",
+                Description = "Полный доступ ко всем возможностям и статистике приложения"
+            });
+
+        modelBuilder.Entity<Section>()
+            .HasData(new Section {
+                SectionId = 1,
+                Name = "Политика",
+                MaterialIcon = "\ue84f",
+                Description = "Новости о политике"
+            }, new Section
+            {
+                SectionId = 2,
+                Name = "История",
+                MaterialIcon = "\ue153",
+                Description = "Сводки о прошлом, настоящем и будущем"
+            }, new Section
+            {
+                SectionId = 3,
+                Name = "Образование",
+                MaterialIcon = "\ue80c",
+                Description = "Новости о нововведениях в системе образования"
+            },  new Section
+            {
+                SectionId = 4,
+                Name = "Бизнес",
+                MaterialIcon = "\ue8f9",
+                Description = "Новости о предпринимательстве"
+            }, new Section
+            {
+                SectionId = 5,
+                Name = "Маркетинг",
+                MaterialIcon = "\ue8d1",
+                Description = "Новости об управлении"
+            }, new Section
+            {
+                SectionId = 6,
+                Name = "Природа",
+                MaterialIcon = "\ue545",
+                Description = "Новости о природе"
+            }, new Section
+            {
+                SectionId = 7,
+                Name = "Здоровье",
+                MaterialIcon = "\ueb4c",
+                Description = "Нововведения в медицине"
+            }, new Section
+            {
+                SectionId = 8,
+                Name = "Спорт",
+                MaterialIcon = "\ue921",
+                Description = "Новости о соревнованиях"
+            }, new Section
+            {
+                SectionId = 9,
+                Name = "Кино",
+                MaterialIcon = "\ue02c",
+                Description = "Новые премьеры"
+            }, new Section
+            {
+                SectionId = 10,
+                Name = "Наука",
+                MaterialIcon = "\uea4b",
+                Description = "Новые прорыва"
+            });
+
         OnModelCreatingPartial(modelBuilder);
     }
 

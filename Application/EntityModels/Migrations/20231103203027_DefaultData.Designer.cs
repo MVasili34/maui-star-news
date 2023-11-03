@@ -3,6 +3,7 @@ using System;
 using EntityModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace EntityModels.Migrations
 {
     [DbContext(typeof(NewsAppDbContext))]
-    partial class NewsAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231103203027_DefaultData")]
+    partial class DefaultData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -160,78 +163,6 @@ namespace EntityModels.Migrations
                         .HasName("section_pkey");
 
                     b.ToTable("section");
-
-                    b.HasData(
-                        new
-                        {
-                            SectionId = 1,
-                            Description = "Новости о политике",
-                            MaterialIcon = "",
-                            Name = "Политика"
-                        },
-                        new
-                        {
-                            SectionId = 2,
-                            Description = "Сводки о прошлом, настоящем и будущем",
-                            MaterialIcon = "",
-                            Name = "История"
-                        },
-                        new
-                        {
-                            SectionId = 3,
-                            Description = "Новости о нововведениях в системе образования",
-                            MaterialIcon = "",
-                            Name = "Образование"
-                        },
-                        new
-                        {
-                            SectionId = 4,
-                            Description = "Новости о предпринимательстве",
-                            MaterialIcon = "",
-                            Name = "Бизнес"
-                        },
-                        new
-                        {
-                            SectionId = 5,
-                            Description = "Новости об управлении",
-                            MaterialIcon = "",
-                            Name = "Маркетинг"
-                        },
-                        new
-                        {
-                            SectionId = 6,
-                            Description = "Новости о природе",
-                            MaterialIcon = "",
-                            Name = "Природа"
-                        },
-                        new
-                        {
-                            SectionId = 7,
-                            Description = "Нововведения в медицине",
-                            MaterialIcon = "",
-                            Name = "Здоровье"
-                        },
-                        new
-                        {
-                            SectionId = 8,
-                            Description = "Новости о соревнованиях",
-                            MaterialIcon = "",
-                            Name = "Спорт"
-                        },
-                        new
-                        {
-                            SectionId = 9,
-                            Description = "Новые премьеры",
-                            MaterialIcon = "",
-                            Name = "Кино"
-                        },
-                        new
-                        {
-                            SectionId = 10,
-                            Description = "Новые прорыва",
-                            MaterialIcon = "",
-                            Name = "Наука"
-                        });
                 });
 
             modelBuilder.Entity("EntityModels.User", b =>
