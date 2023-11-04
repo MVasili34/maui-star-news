@@ -7,6 +7,9 @@
              Title="Категории"
              Shell.BackgroundColor="{StaticResource MainNavigationColor}"
              BackgroundColor="{StaticResource MainBackGroundColor}">
+    <ContentPage.BindingContext>
+        <viewmodels:SectionsViewModel/>
+    </ContentPage.BindingContext>
     <ScrollView>
         <VerticalStackLayout Padding="16">
         <Label 
@@ -15,7 +18,9 @@
         Margin="0,10,20,10"
         FontFamily="NotoSerif"
         FontSize="28"/>
-            <FlexLayout BindableLayout.ItemsSource="{Binding Sections}"
+            <FlexLayout
+                x:Name="FlexBlocks"
+                BindableLayout.ItemsSource="{Binding Sections}"
                 Direction="Row"
                 Wrap="Wrap"
                 JustifyContent="SpaceEvenly"
@@ -48,6 +53,50 @@
                         </Frame>
                     </DataTemplate>
                 </BindableLayout.ItemTemplate>
+                <BindableLayout.EmptyView>
+                    <VerticalStackLayout>
+                        <Frame BackgroundColor="{StaticResource MainBlocksColor}"
+                            HeightRequest="160"
+                            WidthRequest="340"
+                            FlexLayout.Grow="0.75"
+                            FlexLayout.Shrink="0.5"
+                            BorderColor="Transparent"
+                            Margin="5,10">
+                        </Frame>
+                        <Frame BackgroundColor="{StaticResource MainBlocksColor}"
+                            HeightRequest="160"
+                            WidthRequest="340"
+                            FlexLayout.Grow="0.75"
+                            FlexLayout.Shrink="0.5"
+                            BorderColor="Transparent"
+                            Margin="5,10">
+                        </Frame>
+                        <Frame BackgroundColor="{StaticResource MainBlocksColor}"
+                            HeightRequest="160"
+                            WidthRequest="340"
+                            FlexLayout.Grow="0.75"
+                            FlexLayout.Shrink="0.5"
+                            BorderColor="Transparent"
+                            Margin="5,10">
+                        </Frame>
+                        <Frame BackgroundColor="{StaticResource MainBlocksColor}"
+                            HeightRequest="160"
+                            WidthRequest="340"
+                            FlexLayout.Grow="0.75"
+                            FlexLayout.Shrink="0.5"
+                            BorderColor="Transparent"
+                            Margin="5,10">
+                        </Frame>
+                        <Frame BackgroundColor="{StaticResource MainBlocksColor}"
+                            HeightRequest="160"
+                            WidthRequest="340"
+                            FlexLayout.Grow="0.75"
+                            FlexLayout.Shrink="0.5"
+                            BorderColor="Transparent"
+                            Margin="5,10">
+                        </Frame>
+                    </VerticalStackLayout>
+                </BindableLayout.EmptyView>
             </FlexLayout>
         </VerticalStackLayout>
     </ScrollView>

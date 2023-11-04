@@ -20,7 +20,7 @@
             FontFamily="NotoSerif"
             FontSize="20"/>
             <lvc:CartesianChart
-                 x:Name="Finance" HeightRequest="350" Series="{Binding Series}" SyncContext="{Binding Sync}"
+                 x:Name="Finance" HeightRequest="350" Series="{Binding Series}"
                  Margin="-20,0,-40,0">
             </lvc:CartesianChart>
             <Label 

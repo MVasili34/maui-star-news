@@ -6,13 +6,10 @@ namespace NewsMobileApp.ViewsNative;
 
 public partial class SectionsPage : ContentPage
 {
-    private readonly INewsService _newsService;
 
-	public SectionsPage(INewsService newsService)
+	public SectionsPage()
 	{
-		InitializeComponent();
-        _newsService = newsService;
-        BindingContext = new SectionsViewModel(newsService);
+        InitializeComponent();
     }
 
     private async void Section_Tapped(object sender, TappedEventArgs e)

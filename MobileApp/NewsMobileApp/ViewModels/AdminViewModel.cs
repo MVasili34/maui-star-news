@@ -17,8 +17,6 @@ public class AdminViewModel
                          .Select(x => new DateTimePoint(startDate.AddDays(x), 0)));
     public ObservableCollection<UserViewModel> Users { get; set; } = new();
 
-    public object Sync => new();
-
     public AdminViewModel()
     {
         _newsService = Application.Current.Handler
