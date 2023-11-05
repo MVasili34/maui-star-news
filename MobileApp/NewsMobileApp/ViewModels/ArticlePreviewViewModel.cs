@@ -11,7 +11,7 @@ public class ArticlePreviewViewModel : INotifyPropertyChanged
     private Guid _articleId;
     private string _title;
     private string _subtitle;
-    private Section _section;
+    private Models.Section _section;
     private string _image;
     private DateTime _publishTime;
 
@@ -44,7 +44,7 @@ public class ArticlePreviewViewModel : INotifyPropertyChanged
         }
     }
 
-    public Section Section
+    public Models.Section Section
     {
         get => _section;
         set

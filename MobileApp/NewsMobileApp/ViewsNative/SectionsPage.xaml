@@ -8,7 +8,7 @@
              Shell.BackgroundColor="{StaticResource MainNavigationColor}"
              BackgroundColor="{StaticResource MainBackGroundColor}">
     <ContentPage.BindingContext>
-        <viewmodels:SectionsViewModel/>
+        <viewmodels:SectionViewModel/>
     </ContentPage.BindingContext>
     <ScrollView>
         <VerticalStackLayout Padding="16">
@@ -35,7 +35,7 @@
                        BorderColor="Transparent"
                        Margin="5,10">
                             <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="Section_Tapped" CommandParameter="{Binding SectionId}" />
+                                <TapGestureRecognizer Tapped="Section_Tapped" CommandParameter="{Binding .}" />
                             </Frame.GestureRecognizers>
                             <VerticalStackLayout Padding="20,6" VerticalOptions="Center" Spacing="10">
                                 <Label Text="{Binding MaterialIcon}"
@@ -55,7 +55,8 @@
                 </BindableLayout.ItemTemplate>
                 <BindableLayout.EmptyView>
                     <VerticalStackLayout>
-                        <Frame BackgroundColor="{StaticResource MainBlocksColor}"
+                        <Frame x:Name="LoadBlock1" 
+                            BackgroundColor="{StaticResource MainBlocksColor}"
                             HeightRequest="160"
                             WidthRequest="340"
                             FlexLayout.Grow="0.75"
@@ -63,7 +64,8 @@
                             BorderColor="Transparent"
                             Margin="5,10">
                         </Frame>
-                        <Frame BackgroundColor="{StaticResource MainBlocksColor}"
+                        <Frame x:Name="LoadBlock2"  
+                            BackgroundColor="{StaticResource MainBlocksColor}"
                             HeightRequest="160"
                             WidthRequest="340"
                             FlexLayout.Grow="0.75"
@@ -71,7 +73,8 @@
                             BorderColor="Transparent"
                             Margin="5,10">
                         </Frame>
-                        <Frame BackgroundColor="{StaticResource MainBlocksColor}"
+                        <Frame x:Name="LoadBlock3"  
+                            BackgroundColor="{StaticResource MainBlocksColor}"
                             HeightRequest="160"
                             WidthRequest="340"
                             FlexLayout.Grow="0.75"
@@ -79,7 +82,8 @@
                             BorderColor="Transparent"
                             Margin="5,10">
                         </Frame>
-                        <Frame BackgroundColor="{StaticResource MainBlocksColor}"
+                        <Frame x:Name="LoadBlock4"   
+                            BackgroundColor="{StaticResource MainBlocksColor}"
                             HeightRequest="160"
                             WidthRequest="340"
                             FlexLayout.Grow="0.75"
@@ -87,7 +91,8 @@
                             BorderColor="Transparent"
                             Margin="5,10">
                         </Frame>
-                        <Frame BackgroundColor="{StaticResource MainBlocksColor}"
+                        <Frame x:Name="LoadBlock5"  
+                            BackgroundColor="{StaticResource MainBlocksColor}"
                             HeightRequest="160"
                             WidthRequest="340"
                             FlexLayout.Grow="0.75"

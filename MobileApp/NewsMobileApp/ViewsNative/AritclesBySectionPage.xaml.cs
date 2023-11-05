@@ -1,5 +1,6 @@
 using NewsMobileApp.ViewModels;
 using NewsMobileApp.TempServices;
+using NewsMobileApp.Models;
 
 namespace NewsMobileApp.ViewsNative;
 
@@ -8,10 +9,11 @@ public partial class ArticlesBySectionPage : ContentPage
     private readonly ArticlesBySectionViewModel _viewmodels;
     private readonly int _sectionId;
 
-    public ArticlesBySectionPage(int sectionId)
+    public ArticlesBySectionPage(Section section)
     {
         InitializeComponent();
-        _sectionId = sectionId;
+        _sectionId = section.SectionId;
+        PageTitle.Text = section.Name;
         //AdmindButton.IsVisible = false;
         _viewmodels = new ArticlesBySectionViewModel();
         _viewmodels.AddArticles(_sectionId);

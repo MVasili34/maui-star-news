@@ -6,13 +6,11 @@
              Title="Главная"
              BackgroundColor="{StaticResource MainBackGroundColor}"
              Shell.BackgroundColor="{StaticResource MainNavigationColor}">
-    <ContentPage.BindingContext>
-        <viewmodels:MainPageViewModel/>
-    </ContentPage.BindingContext>
+
     <ScrollView>
         <VerticalStackLayout>
             <StackLayout Style="{StaticResource HeaderStack}">
-                <Label Text="Популярные #секции" Style="{StaticResource SectionHeading}" TextColor="White"/>
+                <Label Text="Популярные #темы" Style="{StaticResource SectionHeading}" TextColor="White"/>
             </StackLayout>
 
             <FlexLayout x:Name="TagsToDisplay"
@@ -30,7 +28,7 @@
                             Padding="8, 2"
                             Margin="0,0,3,5"
                             HeightRequest="34" 
-                            Text="{Binding .}" 
+                            Text="{Binding Name, StringFormat='#{0}'}" 
                             FontFamily="PopsRegular"
                             VerticalOptions="Center"
                             Clicked="Tag_Clicked"
@@ -38,14 +36,73 @@
                         </Button>
                     </DataTemplate>
                 </BindableLayout.ItemTemplate>
+                <BindableLayout.EmptyView>
+                    <StackLayout>
+                        <VerticalStackLayout VerticalOptions="Start">
+                            <HorizontalStackLayout>
+                        <Frame x:Name="LoadBlock1" 
+                            BackgroundColor="{StaticResource MainBlocksColor}"
+                            HeightRequest="35"
+                            WidthRequest="150"
+                            BorderColor="Transparent"
+                            Margin="0,0,3,5">
+                        </Frame>
+                        <Frame x:Name="LoadBlock2" 
+                            BackgroundColor="{StaticResource MainBlocksColor}"
+                            HeightRequest="35"
+                            WidthRequest="150"
+                            BorderColor="Transparent"
+                            Margin="0,0,3,5">
+                        </Frame>
+                            </HorizontalStackLayout>
+                            <HorizontalStackLayout>
+                        <Frame x:Name="LoadBlock3" 
+                            BackgroundColor="{StaticResource MainBlocksColor}"
+                            HeightRequest="35"
+                            WidthRequest="150"
+                            BorderColor="Transparent"
+                            Margin="0,0,3,5">
+                        </Frame>
+                        <Frame x:Name="LoadBlock4" 
+                            BackgroundColor="{StaticResource MainBlocksColor}"
+                            HeightRequest="35"
+                            WidthRequest="150"
+                            BorderColor="Transparent"
+                            Margin="0,0,3,5">
+                        </Frame>
+                            </HorizontalStackLayout>
+                        <Frame x:Name="LoadBlock5" 
+                            BackgroundColor="{StaticResource MainBlocksColor}"
+                            HeightRequest="35"
+                            WidthRequest="150"
+                            HorizontalOptions="Start"
+                            BorderColor="Transparent"
+                            Margin="0,0,3,5">
+                        </Frame>
+                        </VerticalStackLayout>
+                    </StackLayout>
+                </BindableLayout.EmptyView>
             </FlexLayout>
 
             <BoxView />
 
             <StackLayout Style="{StaticResource HeaderStack}">
                 <Label Text="Последние новости" Style="{StaticResource SectionHeading}" TextColor="White"/>
-                <Label Text="Все" Style="{StaticResource ShowAll}" />
+                <Label x:Name="ShowAll1" Text="Все" Style="{StaticResource ShowAll}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ShowAllThrebds_Tapped" />
+                    </Label.GestureRecognizers>
+                </Label>
             </StackLayout>
+            <Frame x:Name="Display1" 
+                BackgroundColor="{StaticResource MainBlocksColor}"
+                HeightRequest="260"
+                WidthRequest="350"
+                FlexLayout.Grow="0.75"
+                FlexLayout.Shrink="0.5"
+                BorderColor="Transparent"
+                Margin="5,10">
+            </Frame>
             <CollectionView
                         ItemsSource="{Binding NewestArticles}"
                         x:Name="LatestNews"
@@ -86,22 +143,48 @@
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
-
+                <!--Fix must come on .NET 8
+                <CollectionView.EmptyView>
+                    <VerticalStackLayout>
+                    <Frame x:Name="LoadBlock1" 
+                        BackgroundColor="{StaticResource MainBlocksColor}"
+                        HeightRequest="260"
+                        WidthRequest="350"
+                        FlexLayout.Grow="0.75"
+                        FlexLayout.Shrink="0.5"
+                        BorderColor="Transparent"
+                        Margin="5,10">
+                    </Frame>
+                    </VerticalStackLayout>
+                </CollectionView.EmptyView> -->
             </CollectionView>
 
             <BoxView />
 
             <StackLayout Style="{StaticResource HeaderStack}">
                 <Label Text="История и культура" Style="{StaticResource SectionHeading}" TextColor="White"/>
-                <Label Text="Все" Style="{StaticResource ShowAll}" />
+                <Label x:Name="ShowAll2" Text="Все" Style="{StaticResource ShowAll}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ToSection_Tapped" />
+                    </Label.GestureRecognizers>
+                </Label>
             </StackLayout>
+            <Frame x:Name="Display2" 
+                BackgroundColor="{StaticResource MainBlocksColor}"
+                HeightRequest="260"
+                WidthRequest="350"
+                FlexLayout.Grow="0.75"
+                FlexLayout.Shrink="0.5"
+                BorderColor="Transparent"
+                Margin="5,10">
+            </Frame>
             <CollectionView
                  ItemsSource="{Binding HystoricalArticles}"
-             x:Name="RecommendedNews"
-             HeightRequest="260"
-             SelectionMode="Single"
-             Margin="20,0,0,0"
-             SelectionChanged="LatestNews_SelectionChanged">
+                 x:Name="RecommendedNews"
+                 HeightRequest="260"
+                 SelectionMode="Single"
+                 Margin="20,0,0,0"
+                 SelectionChanged="LatestNews_SelectionChanged">
 
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout
@@ -134,11 +217,22 @@
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
-
+                <!--Fix must come on .NET 8
+                <CollectionView.EmptyView>
+                    <VerticalStackLayout>
+                    <Frame x:Name="LoadBlock2" 
+                        BackgroundColor="{StaticResource MainBlocksColor}"
+                        HeightRequest="260"
+                        WidthRequest="350"
+                        FlexLayout.Grow="0.75"
+                        FlexLayout.Shrink="0.5"
+                        BorderColor="Transparent"
+                        Margin="5,10">
+                    </Frame>
+                    </VerticalStackLayout>
+                </CollectionView.EmptyView> -->
             </CollectionView>
-
             <BoxView/>
-
         </VerticalStackLayout>
 
 

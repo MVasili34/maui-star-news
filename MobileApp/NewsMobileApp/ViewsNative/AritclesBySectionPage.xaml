@@ -8,13 +8,14 @@
              BackgroundColor="{StaticResource MainBackGroundColor}">
     <Shell.TitleView>
         <HorizontalStackLayout>
-            <Label Text="Section" 
+            <Label x:Name="PageTitle" 
+                  Text="Section" 
                   FontSize="19" 
                   FontAttributes="Bold" 
                   Margin="0,14,0,0"   />
             <Button Text="Добавить"
                    Clicked="AdmindButton_Clicked"
-                   Margin="140,0,0,0"
+                   Margin="100,0,0,0"
                    TextColor="White"
                    BorderColor="Transparent"
                    BackgroundColor="Transparent"

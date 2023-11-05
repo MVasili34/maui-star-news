@@ -1,18 +1,16 @@
 ﻿using NewsMobileApp.Models;
 using NewsMobileApp.TempServices;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 namespace NewsMobileApp.ViewModels;
 
-public class SectionsViewModel
+public class SectionViewModel
 {
 
     private readonly INewsService _newsService;
     public ObservableCollection<Section> Sections { get; set; } = new();
 
-    public SectionsViewModel()
+    public SectionViewModel()
     {
         _newsService = Application.Current.Handler
             .MauiContext.Services.GetService<INewsService>();
@@ -23,7 +21,7 @@ public class SectionsViewModel
     {
         try
         {
-            await Task.Delay(2000);
+            await Task.Delay(3000);
             foreach (var section in _newsService.GetCategories())
             {
                 Sections.Add(section);

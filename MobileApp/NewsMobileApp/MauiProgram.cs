@@ -36,7 +36,7 @@ namespace NewsMobileApp
             builder.Services.AddScoped<SectionsPage>();
             builder.Services.AddScoped<ThrendsPage>();
             builder.Services.AddScoped<ThrendsViewModel>();
-            builder.Services.AddScoped<SectionsViewModel>();
+            builder.Services.AddScoped<SectionViewModel>();
             builder.Services.AddScoped<ArticlesBySectionPage>();
             builder.Services.AddScoped<ArticlesBySectionViewModel>();
             builder.Services.AddScoped<SupportPage>();

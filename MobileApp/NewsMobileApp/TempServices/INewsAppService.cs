@@ -6,7 +6,7 @@ namespace NewsMobileApp.TempServices;
 public interface INewsService
 {
     public IEnumerable<string> GetTags();
-    public IEnumerable<Section> GetCategories();
+    public IEnumerable<Models.Section> GetCategories();
     public IEnumerable<ArticlePreviewViewModel> GetLatestArticlesPreview();
     public IEnumerable<ArticleViewModel> GetLatestArticlesFull();
     public IEnumerable<ArticlePreviewViewModel> GetRecommendedArticlesPreview();

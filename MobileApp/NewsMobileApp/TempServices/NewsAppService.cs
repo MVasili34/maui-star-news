@@ -20,8 +20,8 @@ public class NewsAppService : INewsService
             "#наука", //*
       };
 
-    public IEnumerable<Section> GetCategories() =>
-        new List<Section>()
+    public IEnumerable<Models.Section> GetCategories() =>
+        new List<Models.Section>()
         {
             new(1, "Политика", "\ue84f"),
             new(2, "История", "\ue153"),
@@ -61,7 +61,7 @@ public class NewsAppService : INewsService
                 ArticleId = new("d2a7a003-c69d-4d80-b475-954fd17d6c77"),
                 Title = "Лекарство от смерти и тому подобный бред",
                 Subtitle = "Найден новый способ отложить старость и снова помолодеть",
-                Image = "https://a-tv.md/wp-content/uploads/2022/12/scale_12000333.png",
+                Image = "https://gagauzvedomosti.md/wp-content/uploads/2022/12/scale_12000333.png",
                 Section = new(10, "Наука", ""),
                 PublishTime = new(2023, 5, 23, 3, 23, 11),
             },
@@ -110,7 +110,7 @@ public class NewsAppService : INewsService
                 ArticleId = new("d2a7a003-c69d-4d80-b475-954fd17d6c77"),
                 Title = "Лекарство от смерти и тому подобный бред",
                 Subtitle = "Найден новый способ отложить старость и снова помолодеть",
-                Image = "https://a-tv.md/wp-content/uploads/2022/12/scale_12000333.png",
+                Image = "https://gagauzvedomosti.md/wp-content/uploads/2022/12/scale_12000333.png",
                 Views = 31,
                 Text = "Еженедельный авторитетный рецензируемый британский журнал The Lancet традиционно стоит на уровень выше большинства журналов, " +
                        "выпускаемых научными обществами и профессиональными ассоциациями. Это обусловлено тем, что он всегда делал и делает ставку на высокую" +
