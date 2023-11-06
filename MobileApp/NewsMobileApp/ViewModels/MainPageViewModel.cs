@@ -12,8 +12,7 @@ public class MainPageViewModel
     public ObservableCollection<ArticlePreviewViewModel> HystoricalArticles { get; set; } = new();
     public ObservableCollection<Section> Tags { get; set; } = new();
 
-    public MainPageViewModel() => _newsService = Application.Current.Handler
-           .MauiContext.Services.GetService<INewsService>();
+    public MainPageViewModel(INewsService newsService) => _newsService = newsService; 
 
     public async Task GetNewestArticles()
     {

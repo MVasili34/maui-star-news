@@ -43,16 +43,16 @@ public partial class MainEventsPage : ContentPage
         };
 
         parentAnimation.Commit(this, "TransitionAnimation", length: 2000, repeat: () => true);
+
+        if (_loaded) return;
+
         try
         {
-            if (!_loaded)
-            {
-                await Task.WhenAll(viewModel.GetNewestArticles(),
+            await Task.WhenAll(viewModel.GetNewestArticles(),
                                    viewModel.GetHystoricalArticles(),
                                    viewModel.GetPopularTags());
-                _loaded = true;
-                LoadProcessSimulation();
-            }
+            _loaded = true;
+            LoadProcessSimulation();
         }
         catch (Exception ex) 
         {

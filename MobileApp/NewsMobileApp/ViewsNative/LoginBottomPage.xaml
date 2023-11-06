@@ -125,7 +125,7 @@
                 FontSize="20"
                 Margin="15, 10, 15, 10"
                 />
-        <StackLayout Orientation="Horizontal" Spacing="4" HorizontalOptions="Center">
+        <StackLayout Orientation="Horizontal" Spacing="4" HorizontalOptions="Center" Margin="0,0,0,15">
             <Label Text="У вас ещё нет аккаунта?" TextColor="White" FontSize="16"/>
             <Label Text="Зарегистрируйтесь" 
                    TextColor="{StaticResource Primary}" 

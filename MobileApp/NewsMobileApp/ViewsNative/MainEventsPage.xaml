@@ -233,6 +233,10 @@
                 </CollectionView.EmptyView> -->
             </CollectionView>
             <BoxView/>
+            <Label Text="Copyright © 2023 StarNews. All Rights Reserved."
+                   TextColor="#ACACAC" 
+                   Margin="10,20,0,15"
+                   FontSize="15"/>
         </VerticalStackLayout>
 
 

@@ -1,16 +1,19 @@
 using NewsMobileApp.Models;
+using NewsMobileApp.ViewModels;
 
 namespace NewsMobileApp.ViewsNative;
 
 public partial class SectionsPage : ContentPage
 {
+    private SectionViewModel viewModel => BindingContext as SectionViewModel;
 
-	public SectionsPage()
+	public SectionsPage(SectionViewModel viewModel)
 	{
         InitializeComponent();
+        BindingContext = viewModel;
     }
 
-    protected override void OnAppearing()
+    protected async override void OnAppearing()
     {
         base.OnAppearing();
 
@@ -32,6 +35,7 @@ public partial class SectionsPage : ContentPage
         };
 
         parentAnimation.Commit(this, "TransitionAnimation", length: 2000, repeat: () => true);
+        await viewModel.SetSections();
     }
 
 

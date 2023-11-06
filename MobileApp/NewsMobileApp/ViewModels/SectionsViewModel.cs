@@ -6,18 +6,12 @@ namespace NewsMobileApp.ViewModels;
 
 public class SectionViewModel
 {
-
     private readonly INewsService _newsService;
     public ObservableCollection<Section> Sections { get; set; } = new();
 
-    public SectionViewModel()
-    {
-        _newsService = Application.Current.Handler
-            .MauiContext.Services.GetService<INewsService>();
-        SetSections();
-    }
+    public SectionViewModel(INewsService newsService) => _newsService = newsService;
 
-    public async void SetSections()
+    public async Task SetSections()
     {
         try
         {

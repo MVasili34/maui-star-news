@@ -1,44 +1,42 @@
-﻿using NewsMobileApp.Models;
-using NewsMobileApp.TempServices;
+﻿using NewsMobileApp.TempServices;
 using System.Collections.ObjectModel;
 
 namespace NewsMobileApp.ViewModels;
 
-public class ThrendsViewModel : ObservableCollection<ArticlePreviewViewModel>
+public class ThrendsViewModel
 {
     private readonly INewsService _newsService;
 
+    public ObservableCollection<ArticlePreviewViewModel> Articles { get; set; } = new();
+
     public ThrendsViewModel(INewsService newsService) => _newsService = newsService;
 
-    public void AddArticles(bool clear = false, int limit = 0, int offset = 0)
+    public async Task AddArticles(bool clear = false, int limit = 20, int offset = 0)
     {
-        if (clear) Clear();
+        if (clear) Articles.Clear();
+
+        await Task.Delay(3000);
 
         foreach (var article in _newsService.GetThrendArticlesPreview())
         {
-            Add(article);
+            Articles.Add(article);
         }
     }
 
-    public void SearchArticle(string text)
+    public async Task SearchArticle(string text, int limit = 20, int offset = 0)
     {
-        if (string.IsNullOrEmpty(text) || string.IsNullOrWhiteSpace(text))
-        {
-            AddArticles(true);
-            return;
-        }
-
-        Clear();
+        await Task.Delay(3000);
         IEnumerable<ArticlePreviewViewModel> found = _newsService.GetThrendArticlesPreview()
-                                                                 .Where(x => x.Title.Contains(text))
-                                                                 .Take(10);
+                    .Where(x => x.Title.Contains(text))
+                    .Skip(offset*limit)
+                    .Take(limit);
 
-        if(found.Any())
+        if (found.Any())
         {
             foreach (var article in found)
             {
-                Add(article);
+                Articles.Add(article);
             }
         }
-    }
+    }   
 }

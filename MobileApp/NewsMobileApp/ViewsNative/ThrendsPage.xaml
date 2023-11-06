@@ -67,7 +67,7 @@
         </Grid>
     </Border>
         <CollectionView x:Name="HotArticle"
-                 ItemsSource="{Binding .}"
+                 ItemsSource="{Binding Articles}"
                  SelectionMode="Single"
                  SelectionChanged="HotArticle_SelectionChanged">
             
@@ -125,11 +125,44 @@
             </CollectionView.ItemTemplate>
             <CollectionView.EmptyView>
                 <StackLayout>
-                    <Label Text="Загрузка..." FontSize="18" HorizontalOptions="Center"/>
+                    <Label Text="" FontSize="18" HorizontalOptions="Center"/>
                 </StackLayout>
             </CollectionView.EmptyView>
         </CollectionView>
-        </VerticalStackLayout>
+                <Label x:Name="LoadingText1"
+                       Text="Загрузка..." 
+                       FontSize="18" 
+                       HorizontalOptions="Center" 
+                       Margin="0,20,0,20"/>
+                <Frame x:Name="LoadBlock1" 
+                       BackgroundColor="{StaticResource MainBlocksColor}"
+                       HeightRequest="140"
+                       WidthRequest="350"
+                       BorderColor="Transparent"
+                       Margin="0,0,3,5">
+                </Frame>
+                <Frame x:Name="LoadBlock2" 
+                       BackgroundColor="{StaticResource MainBlocksColor}"
+                       HeightRequest="140"
+                       WidthRequest="350"
+                       BorderColor="Transparent"
+                       Margin="0,0,3,5">
+                </Frame>
+                <Frame x:Name="LoadBlock3" 
+                       BackgroundColor="{StaticResource MainBlocksColor}"
+                       HeightRequest="140"
+                       WidthRequest="350"
+                       BorderColor="Transparent"
+                       Margin="0,0,3,5">
+                </Frame>
+                <Frame x:Name="LoadBlock4" 
+                       BackgroundColor="{StaticResource MainBlocksColor}"
+                       HeightRequest="140"
+                       WidthRequest="350"
+                       BorderColor="Transparent"
+                       Margin="0,0,3,5">
+                </Frame>
+            </VerticalStackLayout>
         
     </ScrollView>
     </RefreshView>

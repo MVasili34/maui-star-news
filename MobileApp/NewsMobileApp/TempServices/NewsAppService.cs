@@ -331,6 +331,7 @@ public class NewsAppService : INewsService
             },
         };
 
-    public IEnumerable<ArticlePreviewViewModel> GetThrendArticlesPreview() => GetRecommendedArticlesPreview().Concat(GetLatestArticlesPreview());
+    public IEnumerable<ArticlePreviewViewModel> GetThrendArticlesPreview() => GetRecommendedArticlesPreview().Concat(GetLatestArticlesPreview()).
+        OrderByDescending(x => x.PublishTime);
     public IEnumerable<ArticleViewModel> GetThrendArticlesFull() => GetRecommendedArticlesFull().Concat(GetLatestArticlesFull());
 }
