@@ -58,6 +58,7 @@
 
             <Entry
                     x:Name="SearchText"
+                    TextColor="White"
                     Placeholder="Поиск статьи..."
                     Grid.Column="1"
                     FontSize="20"

@@ -34,43 +34,44 @@
         <ScrollView Scrolled="OnScrollViewScrolled">
             <VerticalStackLayout>
                 <Border 
-           Padding="12, 4"
-           BackgroundColor="#33CCCCCC"
-           Stroke="Transparent"
-           HorizontalOptions="Fill"
-           Margin="15,15,15,12"
-           HeightRequest="55">
+                    Padding="12, 4"
+                    BackgroundColor="#33CCCCCC"
+                    Stroke="Transparent"
+                    HorizontalOptions="Fill"
+                    Margin="15,15,15,12"
+                    HeightRequest="55">
                     <Border.StrokeShape>
                         <RoundRectangle CornerRadius="6"/>
                     </Border.StrokeShape>
 
                     <Grid
-                HorizontalOptions="Fill"
-                VerticalOptions="Center"
-                ColumnDefinitions="Auto,*"
-                ColumnSpacing="16">
+                        HorizontalOptions="Fill"
+                        VerticalOptions="Center"
+                        ColumnDefinitions="Auto,*"
+                        ColumnSpacing="16">
 
                         <Image
-                   WidthRequest="24"
-                   HeightRequest="24"
-                   Source="imgsearch.png"
-                   Grid.Column="0"
-                   VerticalOptions="Center" />
+                            WidthRequest="24"
+                            HeightRequest="24"
+                            Source="imgsearch.png"
+                            Grid.Column="0"
+                            VerticalOptions="Center" />
 
                         <Entry
-                   x:Name="SearchText"
-                   Placeholder="Поиск статьи..."
-                   Grid.Column="1"
-                   FontSize="20"
-                   VerticalOptions="Center"
-                   VerticalTextAlignment="Center"
-                   Completed="SearchText_Completed"/>
+                            TextColor="White"
+                            x:Name="SearchText"
+                            Placeholder="Поиск статьи..."
+                            Grid.Column="1"
+                            FontSize="20"
+                            VerticalOptions="Center"
+                            VerticalTextAlignment="Center"
+                            Completed="SearchText_Completed"/>
                     </Grid>
                 </Border>
                 <CollectionView x:Name="HotArticle"
-                ItemsSource="{Binding .}"
-                SelectionMode="Single"
-                SelectionChanged="SectionArticle_SelectionChanged">
+                                ItemsSource="{Binding Articles}"
+                                SelectionMode="Single"
+                                SelectionChanged="SectionArticle_SelectionChanged">
 
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="viewmodels:ArticlePreviewViewModel">
@@ -88,35 +89,35 @@
                                                 <RowDefinition Height="20" />
                                             </Grid.RowDefinitions>
                                             <Frame Padding="0"
-                               Grid.Column="0"
-                               Grid.RowSpan="3"
-                               BorderColor="Transparent"
-                               IsClippedToBounds="True">
+                                                   Grid.Column="0"
+                                                   Grid.RowSpan="3"
+                                                   BorderColor="Transparent"
+                                                   IsClippedToBounds="True">
                                                 <Image Source="{Binding Image}"
-                                      Aspect="AspectFill" />
+                                                       Aspect="AspectFill" />
                                             </Frame>
                                             <Label Text="{Binding Title}"
-                               Grid.Column="1"
-                               Grid.Row="0"
-                               MaxLines="2"
-                               FontFamily="PopsSBold"
-                               FontSize="20" />
+                                                   Grid.Column="1"
+                                                   Grid.Row="0"
+                                                   MaxLines="2"
+                                                   FontFamily="PopsSBold"
+                                                   FontSize="20" />
                                             <Label Text="{Binding Subtitle}"
-                               Grid.Row="1"
-                               Grid.Column="1"
-                               MaxLines="2"
-                               TextColor="{StaticResource Gray400}" />
+                                                   Grid.Row="1"
+                                                   Grid.Column="1"
+                                                   MaxLines="2"
+                                                   TextColor="{StaticResource Gray400}" />
                                             <StackLayout Orientation="Horizontal"
-                                     Spacing="4"
-                                     Grid.Column="1"
-                                     Grid.Row="2">
+                                                         Spacing="4"
+                                                         Grid.Column="1"
+                                                         Grid.Row="2">
                                                 <Label Text="{Binding Section.Name}"
-                                   TextColor="{StaticResource Primary}" />
+                                                       TextColor="{StaticResource Primary}" />
                                                 <Label Text="·"
-                                   FontAttributes="Bold"
-                                   TextColor="{StaticResource Gray200}"/>
+                                                       FontAttributes="Bold"
+                                                       TextColor="{StaticResource Gray200}"/>
                                                 <Label Text="{Binding PublishTime}"
-                               TextColor="{StaticResource Gray200}"/>
+                                                       TextColor="{StaticResource Gray200}"/>
                                             </StackLayout>
                                         </Grid>
                                     </ContentView>
@@ -126,10 +127,36 @@
                     </CollectionView.ItemTemplate>
                     <CollectionView.EmptyView>
                         <StackLayout>
-                            <Label Text="Загрузка..." FontSize="18" HorizontalOptions="Center"/>
+                            <Label Text="" FontSize="18" HorizontalOptions="Center"/>
                         </StackLayout>
                     </CollectionView.EmptyView>
                 </CollectionView>
+                <Label x:Name="LoadingText1"
+                       Text="Загрузка..." 
+                       FontSize="18" 
+                       HorizontalOptions="Center" 
+                       Margin="0,20,0,20"/>
+                <Frame x:Name="LoadBlock1" 
+                       BackgroundColor="{StaticResource MainBlocksColor}"
+                       HeightRequest="140"
+                       WidthRequest="350"
+                       BorderColor="Transparent"
+                       Margin="0,0,3,5">
+                </Frame>
+                <Frame x:Name="LoadBlock2" 
+                       BackgroundColor="{StaticResource MainBlocksColor}"
+                       HeightRequest="140"
+                       WidthRequest="350"
+                       BorderColor="Transparent"
+                       Margin="0,0,3,5">
+                </Frame>
+                <Frame x:Name="LoadBlock3" 
+                       BackgroundColor="{StaticResource MainBlocksColor}"
+                       HeightRequest="140"
+                       WidthRequest="350"
+                       BorderColor="Transparent"
+                       Margin="0,0,3,5">
+                </Frame>
             </VerticalStackLayout>
 
         </ScrollView>

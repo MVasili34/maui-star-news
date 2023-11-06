@@ -1,7 +1,5 @@
 using NewsMobileApp.ViewModels;
-using NewsMobileApp.Models;
 using NewsMobileApp.TempServices;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace NewsMobileApp.ViewsNative;
 
