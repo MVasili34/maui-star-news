@@ -135,34 +135,32 @@
                        FontSize="18" 
                        HorizontalOptions="Center" 
                        Margin="0,20,0,20"/>
+                <VerticalStackLayout x:Name="LoadingFrames">
                 <Frame x:Name="LoadBlock1" 
-                       BackgroundColor="{StaticResource MainBlocksColor}"
+                       Style="{StaticResource LoadFrame}"
                        HeightRequest="140"
                        WidthRequest="350"
-                       BorderColor="Transparent"
                        Margin="0,0,3,5">
                 </Frame>
                 <Frame x:Name="LoadBlock2" 
-                       BackgroundColor="{StaticResource MainBlocksColor}"
+                       Style="{StaticResource LoadFrame}"
                        HeightRequest="140"
                        WidthRequest="350"
-                       BorderColor="Transparent"
                        Margin="0,0,3,5">
                 </Frame>
                 <Frame x:Name="LoadBlock3" 
-                       BackgroundColor="{StaticResource MainBlocksColor}"
+                       Style="{StaticResource LoadFrame}"
                        HeightRequest="140"
                        WidthRequest="350"
-                       BorderColor="Transparent"
                        Margin="0,0,3,5">
                 </Frame>
                 <Frame x:Name="LoadBlock4" 
-                       BackgroundColor="{StaticResource MainBlocksColor}"
+                       Style="{StaticResource LoadFrame}"
                        HeightRequest="140"
                        WidthRequest="350"
-                       BorderColor="Transparent"
                        Margin="0,0,3,5">
                 </Frame>
+                </VerticalStackLayout>
             </VerticalStackLayout>
         
     </ScrollView>

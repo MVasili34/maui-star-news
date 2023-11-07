@@ -2,8 +2,12 @@ namespace NewsMobileApp.ViewsNative;
 
 public partial class TermsOfUseAgreePage : ContentPage
 {
-	public TermsOfUseAgreePage()
+	public TermsOfUseAgreePage(bool addBack = false)
 	{
-		InitializeComponent();
-	}
+        InitializeComponent();
+        Exit.IsVisible = addBack;
+    }
+
+    private async void Exit_Tapped(object sender, TappedEventArgs e) => 
+		await Navigation.PopModalAsync();
 }

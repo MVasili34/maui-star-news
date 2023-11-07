@@ -1,4 +1,5 @@
 using NewsMobileApp.Models;
+using NewsMobileApp.TempServices;
 using NewsMobileApp.ViewModels;
 
 namespace NewsMobileApp.ViewsNative;
@@ -20,22 +21,18 @@ public partial class SectionsPage : ContentPage
         if (this.AnimationIsRunning("TransitionAnimation"))
             return;
 
-        var parentAnimation = new Animation
-        {
-            { 0, 0.5, new Animation(v => LoadBlock1.Opacity = v, 1, 0.3, Easing.CubicIn) },
-            { 0.5, 1, new Animation(v => LoadBlock1.Opacity = v, 0.3, 1, Easing.CubicIn) },
-            { 0, 0.5, new Animation(v => LoadBlock2.Opacity = v, 1, 0.3, Easing.CubicIn) },
-            { 0.5, 1, new Animation(v => LoadBlock2.Opacity = v, 0.3, 1, Easing.CubicIn) },
-            { 0, 0.5, new Animation(v => LoadBlock3.Opacity = v, 1, 0.3, Easing.CubicIn) },
-            { 0.5, 1, new Animation(v => LoadBlock3.Opacity = v, 0.3, 1, Easing.CubicIn) },
-            { 0, 0.5, new Animation(v => LoadBlock4.Opacity = v, 1, 0.3, Easing.CubicIn) },
-            { 0.5, 1, new Animation(v => LoadBlock4.Opacity = v, 0.3, 1, Easing.CubicIn) },
-            { 0, 0.5, new Animation(v => LoadBlock5.Opacity = v, 1, 0.3, Easing.CubicIn) },
-            { 0.5, 1, new Animation(v => LoadBlock5.Opacity = v, 0.3, 1, Easing.CubicIn) },
-        };
+        var parentAnimation = AnimationCreator.SetAnimations(LoadBlock1, LoadBlock2, 
+            LoadBlock3, LoadBlock4, LoadBlock5);
 
         parentAnimation.Commit(this, "TransitionAnimation", length: 2000, repeat: () => true);
-        await viewModel.SetSections();
+        try
+        {
+            await viewModel.SetSections();
+        }
+        catch (Exception ex) 
+        {
+            await DisplayAlert("Ошибка!", ex.Message, "OK");
+        }
     }
 
 

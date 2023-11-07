@@ -2,6 +2,14 @@
 <ResourceDictionary 
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Style TargetType="Frame" x:Key="LoadFrame">
+        <Setter Property="BackgroundColor" Value="{StaticResource MainBlocksColor}" />
+        <Setter Property="FlexLayout.Grow" Value="0.75" />
+        <Setter Property="FlexLayout.Shrink" Value="0.5" />
+        <Setter Property="BorderColor" Value="Transparent" />
+        <Setter Property="Margin" Value="5,10" />
+    </Style>
     
     <Style TargetType="Label" x:Key="TabBarText">
         <Setter Property="TextColor" Value="#4c43f0" />

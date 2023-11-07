@@ -27,17 +27,7 @@ public partial class ThrendsPage : ContentPage
         if (this.AnimationIsRunning("TransitionAnimation"))
             return;
 
-        var parentAnimation = new Animation
-        {
-            { 0, 0.5, new Animation(v => LoadBlock1.Opacity = v, 1, 0.3, Easing.CubicIn) },
-            { 0.5, 1, new Animation(v => LoadBlock1.Opacity = v, 0.3, 1, Easing.CubicIn) },
-            { 0, 0.5, new Animation(v => LoadBlock2.Opacity = v, 1, 0.3, Easing.CubicIn) },
-            { 0.5, 1, new Animation(v => LoadBlock2.Opacity = v, 0.3, 1, Easing.CubicIn) },
-            { 0, 0.5, new Animation(v => LoadBlock3.Opacity = v, 1, 0.3, Easing.CubicIn) },
-            { 0.5, 1, new Animation(v => LoadBlock3.Opacity = v, 0.3, 1, Easing.CubicIn) },
-            { 0, 0.5, new Animation(v => LoadBlock4.Opacity = v, 1, 0.3, Easing.CubicIn) },
-            { 0.5, 1, new Animation(v => LoadBlock4.Opacity = v, 0.3, 1, Easing.CubicIn) },
-        };
+        var parentAnimation = AnimationCreator.SetAnimations(LoadBlock1, LoadBlock2, LoadBlock3, LoadBlock4);
 
         parentAnimation.Commit(this, "TransitionAnimation", length: 2000, repeat: () => true);
         try
@@ -143,16 +133,13 @@ public partial class ThrendsPage : ContentPage
     }
 
     private async void AdmindButton_Clicked(object sender, EventArgs e) =>
-        await Navigation.PushAsync(new ArticleDetailPage(new NewsAppService()));
+        await Navigation.PushAsync(new ArticleDetailPage());
 
     private void LoadProcessSimulation()
     {
         LoadingText1.IsVisible = _loaded;
         SearchText.IsEnabled = _loaded;
         HotArticle.IsVisible = _loaded;
-        LoadBlock1.IsVisible = !_loaded;
-        LoadBlock2.IsVisible = !_loaded;
-        LoadBlock3.IsVisible = !_loaded;
-        LoadBlock4.IsVisible = !_loaded;
+        LoadingFrames.IsVisible = !_loaded;
     }
 }

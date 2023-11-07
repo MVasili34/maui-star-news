@@ -53,49 +53,29 @@
                 <BindableLayout.EmptyView>
                     <VerticalStackLayout>
                         <Frame x:Name="LoadBlock1" 
-                            BackgroundColor="{StaticResource MainBlocksColor}"
+                            Style="{StaticResource LoadFrame}"
                             HeightRequest="160"
-                            WidthRequest="340"
-                            FlexLayout.Grow="0.75"
-                            FlexLayout.Shrink="0.5"
-                            BorderColor="Transparent"
-                            Margin="5,10">
+                            WidthRequest="340">
                         </Frame>
                         <Frame x:Name="LoadBlock2"  
-                            BackgroundColor="{StaticResource MainBlocksColor}"
+                            Style="{StaticResource LoadFrame}"
                             HeightRequest="160"
-                            WidthRequest="340"
-                            FlexLayout.Grow="0.75"
-                            FlexLayout.Shrink="0.5"
-                            BorderColor="Transparent"
-                            Margin="5,10">
+                            WidthRequest="340">
                         </Frame>
                         <Frame x:Name="LoadBlock3"  
-                            BackgroundColor="{StaticResource MainBlocksColor}"
+                            Style="{StaticResource LoadFrame}"
                             HeightRequest="160"
-                            WidthRequest="340"
-                            FlexLayout.Grow="0.75"
-                            FlexLayout.Shrink="0.5"
-                            BorderColor="Transparent"
-                            Margin="5,10">
+                            WidthRequest="340">
                         </Frame>
                         <Frame x:Name="LoadBlock4"   
-                            BackgroundColor="{StaticResource MainBlocksColor}"
+                            Style="{StaticResource LoadFrame}"
                             HeightRequest="160"
-                            WidthRequest="340"
-                            FlexLayout.Grow="0.75"
-                            FlexLayout.Shrink="0.5"
-                            BorderColor="Transparent"
-                            Margin="5,10">
+                            WidthRequest="340">
                         </Frame>
                         <Frame x:Name="LoadBlock5"  
-                            BackgroundColor="{StaticResource MainBlocksColor}"
+                            Style="{StaticResource LoadFrame}"
                             HeightRequest="160"
-                            WidthRequest="340"
-                            FlexLayout.Grow="0.75"
-                            FlexLayout.Shrink="0.5"
-                            BorderColor="Transparent"
-                            Margin="5,10">
+                            WidthRequest="340">
                         </Frame>
                     </VerticalStackLayout>
                 </BindableLayout.EmptyView>

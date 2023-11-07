@@ -10,7 +10,16 @@
     <ScrollView>
         <VerticalStackLayout>
             <StackLayout Style="{StaticResource HeaderStack}">
-                <Label Text="Популярные #темы" Style="{StaticResource SectionHeading}" TextColor="White"/>
+                <Label x:Name="Header1"
+                       Text="Популярные #темы" 
+                       Style="{StaticResource SectionHeading}" 
+                       TextColor="White"/>
+                <Frame x:Name="LoadSimHeader1" 
+                       Style="{StaticResource LoadFrame}"
+                       HeightRequest="35"
+                       WidthRequest="170"
+                       HorizontalOptions="Start"
+                       Margin="0,0,3,5"/>
             </StackLayout>
 
             <FlexLayout x:Name="TagsToDisplay"
@@ -40,45 +49,39 @@
                     <StackLayout>
                         <VerticalStackLayout VerticalOptions="Start">
                             <HorizontalStackLayout>
-                        <Frame x:Name="LoadBlock1" 
-                            BackgroundColor="{StaticResource MainBlocksColor}"
-                            HeightRequest="35"
-                            WidthRequest="150"
-                            BorderColor="Transparent"
-                            Margin="0,0,3,5">
-                        </Frame>
-                        <Frame x:Name="LoadBlock2" 
-                            BackgroundColor="{StaticResource MainBlocksColor}"
-                            HeightRequest="35"
-                            WidthRequest="150"
-                            BorderColor="Transparent"
-                            Margin="0,0,3,5">
-                        </Frame>
+                                <Frame x:Name="LoadBlock1" 
+                                       Style="{StaticResource LoadFrame}"
+                                       HeightRequest="35"
+                                       WidthRequest="150"
+                                       Margin="0,0,3,5"/>
+
+                                <Frame x:Name="LoadBlock2" 
+                                       Style="{StaticResource LoadFrame}"
+                                       HeightRequest="35"
+                                       WidthRequest="150"
+                                       Margin="0,0,3,5"/>
+
                             </HorizontalStackLayout>
                             <HorizontalStackLayout>
-                        <Frame x:Name="LoadBlock3" 
-                            BackgroundColor="{StaticResource MainBlocksColor}"
-                            HeightRequest="35"
-                            WidthRequest="150"
-                            BorderColor="Transparent"
-                            Margin="0,0,3,5">
-                        </Frame>
-                        <Frame x:Name="LoadBlock4" 
-                            BackgroundColor="{StaticResource MainBlocksColor}"
-                            HeightRequest="35"
-                            WidthRequest="150"
-                            BorderColor="Transparent"
-                            Margin="0,0,3,5">
-                        </Frame>
+                                <Frame x:Name="LoadBlock3" 
+                                       Style="{StaticResource LoadFrame}"
+                                       HeightRequest="35"
+                                       WidthRequest="150"
+                                       Margin="0,0,3,5"/>
+
+                                <Frame x:Name="LoadBlock4" 
+                                       Style="{StaticResource LoadFrame}"
+                                       HeightRequest="35"
+                                       WidthRequest="150"
+                                       Margin="0,0,3,5"/>
+
                             </HorizontalStackLayout>
-                        <Frame x:Name="LoadBlock5" 
-                            BackgroundColor="{StaticResource MainBlocksColor}"
-                            HeightRequest="35"
-                            WidthRequest="150"
-                            HorizontalOptions="Start"
-                            BorderColor="Transparent"
-                            Margin="0,0,3,5">
-                        </Frame>
+                            <Frame x:Name="LoadBlock5" 
+                                   Style="{StaticResource LoadFrame}"
+                                   HeightRequest="35"
+                                   WidthRequest="150"
+                                   HorizontalOptions="Start"
+                                   Margin="0,0,3,5"/>
                         </VerticalStackLayout>
                     </StackLayout>
                 </BindableLayout.EmptyView>
@@ -87,22 +90,26 @@
             <BoxView />
 
             <StackLayout Style="{StaticResource HeaderStack}">
-                <Label Text="Последние новости" Style="{StaticResource SectionHeading}" TextColor="White"/>
+                <Label x:Name="Header2"
+                       Text="Последние новости"
+                       Style="{StaticResource SectionHeading}"
+                       TextColor="White"/>
                 <Label x:Name="ShowAll1" Text="Все" Style="{StaticResource ShowAll}">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Tapped="ShowAllThrebds_Tapped" />
                     </Label.GestureRecognizers>
                 </Label>
+                <Frame x:Name="LoadSimHeader2" 
+                       Style="{StaticResource LoadFrame}"
+                       HeightRequest="35"
+                       WidthRequest="170"
+                       HorizontalOptions="Start"
+                       Margin="0,0,3,5"/>
             </StackLayout>
             <Frame x:Name="Display1" 
-                BackgroundColor="{StaticResource MainBlocksColor}"
+                Style="{StaticResource LoadFrame}"
                 HeightRequest="260"
-                WidthRequest="350"
-                FlexLayout.Grow="0.75"
-                FlexLayout.Shrink="0.5"
-                BorderColor="Transparent"
-                Margin="5,10">
-            </Frame>
+                WidthRequest="350" />
             <CollectionView
                         ItemsSource="{Binding NewestArticles}"
                         x:Name="LatestNews"
@@ -162,22 +169,26 @@
             <BoxView />
 
             <StackLayout Style="{StaticResource HeaderStack}">
-                <Label Text="История и культура" Style="{StaticResource SectionHeading}" TextColor="White"/>
+                <Label x:Name="Header3"
+                       Text="История и культура"
+                       Style="{StaticResource SectionHeading}" 
+                       TextColor="White"/>
                 <Label x:Name="ShowAll2" Text="Все" Style="{StaticResource ShowAll}">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Tapped="ToSection_Tapped" />
                     </Label.GestureRecognizers>
                 </Label>
+                <Frame x:Name="LoadSimHeader3" 
+                       Style="{StaticResource LoadFrame}"
+                       HeightRequest="35"
+                       WidthRequest="170"
+                       HorizontalOptions="Start"
+                       Margin="0,0,3,5"/>
             </StackLayout>
-            <Frame x:Name="Display2" 
-                BackgroundColor="{StaticResource MainBlocksColor}"
+            <Frame x:Name="Display2"
+                Style="{StaticResource LoadFrame}"
                 HeightRequest="260"
-                WidthRequest="350"
-                FlexLayout.Grow="0.75"
-                FlexLayout.Shrink="0.5"
-                BorderColor="Transparent"
-                Margin="5,10">
-            </Frame>
+                WidthRequest="350"/>
             <CollectionView
                  ItemsSource="{Binding HystoricalArticles}"
                  x:Name="RecommendedNews"
