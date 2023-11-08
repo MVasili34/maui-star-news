@@ -1,4 +1,5 @@
 ﻿using NewsMobileApp.TempServices;
+using NewsMobileApp.Models;
 using System.Collections.ObjectModel;
 
 namespace NewsMobileApp.ViewModels;
@@ -7,7 +8,7 @@ public class ThrendsViewModel
 {
     private readonly INewsService _newsService;
 
-    public ObservableCollection<ArticlePreviewViewModel> Articles { get; set; } = new();
+    public ObservableCollection<Article> Articles { get; set; } = new();
 
     public ThrendsViewModel(INewsService newsService) => _newsService = newsService;
 
@@ -26,7 +27,7 @@ public class ThrendsViewModel
     public async Task SearchArticle(string text, int limit = 20, int offset = 0)
     {
         await Task.Delay(3000);
-        IEnumerable<ArticlePreviewViewModel> found = _newsService.GetThrendArticlesPreview()
+        IEnumerable<Article> found = _newsService.GetThrendArticlesPreview()
                     .Where(x => x.Title.Contains(text))
                     .Skip(offset*limit)
                     .Take(limit);

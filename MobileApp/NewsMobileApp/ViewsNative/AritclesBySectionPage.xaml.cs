@@ -46,7 +46,7 @@ public partial class ArticlesBySectionPage : ContentPage
 
     private async void SectionArticle_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        if (e.CurrentSelection[0] is not ArticlePreviewViewModel article) return;
+        if (e.CurrentSelection[0] is not Article article) return;
 
         await Navigation.PushAsync(new ArticlePage(article.ArticleId));
     }

@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NewsMobileApp.ViewsNative.ThrendsPage"
-             xmlns:viewmodels="clr-namespace:NewsMobileApp.ViewModels"
+             xmlns:models="clr-namespace:NewsMobileApp.Models"
              Title="В тренде"
              Shell.BackgroundColor="{StaticResource MainNavigationColor}"
              BackgroundColor="{StaticResource MainBackGroundColor}">
@@ -73,7 +73,7 @@
                  SelectionChanged="HotArticle_SelectionChanged">
             
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="viewmodels:ArticlePreviewViewModel">
+                <DataTemplate x:DataType="models:Article">
                     <StackLayout BackgroundColor="{StaticResource MainBackGroundColor}">
                         <Border StrokeThickness="0.5">
                             <ContentView Padding="16" >

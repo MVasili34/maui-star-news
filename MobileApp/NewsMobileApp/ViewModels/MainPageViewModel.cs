@@ -8,8 +8,8 @@ public class MainPageViewModel
 {
     private readonly INewsService _newsService;
 
-    public ObservableCollection<ArticlePreviewViewModel> NewestArticles { get; set; } = new();
-    public ObservableCollection<ArticlePreviewViewModel> HystoricalArticles { get; set; } = new();
+    public ObservableCollection<Article> NewestArticles { get; set; } = new();
+    public ObservableCollection<Article> HystoricalArticles { get; set; } = new();
     public ObservableCollection<Section> Tags { get; set; } = new();
 
     public MainPageViewModel(INewsService newsService) => _newsService = newsService; 

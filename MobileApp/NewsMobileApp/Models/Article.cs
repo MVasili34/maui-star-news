@@ -1,17 +1,16 @@
-﻿using NewsMobileApp.Models;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace NewsMobileApp.ViewModels;
+namespace NewsMobileApp.Models;
 
-public class ArticlePreviewViewModel : INotifyPropertyChanged
+public class Article : INotifyPropertyChanged
 {
     public event PropertyChangedEventHandler PropertyChanged;
 
     private Guid _articleId;
     private string _title;
     private string _subtitle;
-    private Models.Section _section;
+    private Section _section;
     private string _image;
     private DateTime _publishTime;
 
@@ -44,7 +43,7 @@ public class ArticlePreviewViewModel : INotifyPropertyChanged
         }
     }
 
-    public Models.Section Section
+    public Section Section
     {
         get => _section;
         set

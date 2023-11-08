@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NewsMobileApp.ViewsNative.MainEventsPage"
-             xmlns:viewmodels="clr-namespace:NewsMobileApp.ViewModels"
+             xmlns:models="clr-namespace:NewsMobileApp.Models"
              Title="Главная"
              BackgroundColor="{StaticResource MainBackGroundColor}"
              Shell.BackgroundColor="{StaticResource MainNavigationColor}">
@@ -125,7 +125,7 @@
                 </CollectionView.ItemsLayout>
 
                 <CollectionView.ItemTemplate >
-                    <DataTemplate x:DataType="viewmodels:ArticlePreviewViewModel">
+                    <DataTemplate x:DataType="models:Article">
                         <StackLayout Orientation="Vertical" 
                                      Margin="0,0,0,0" 
                                      WidthRequest="300" 
@@ -204,7 +204,7 @@
                 </CollectionView.ItemsLayout>
 
                 <CollectionView.ItemTemplate >
-                    <DataTemplate x:DataType="viewmodels:ArticlePreviewViewModel">
+                    <DataTemplate x:DataType="models:Article">
                         <StackLayout Orientation="Vertical" 
                                      Margin="0,0,0,0" 
                                      WidthRequest="300" 

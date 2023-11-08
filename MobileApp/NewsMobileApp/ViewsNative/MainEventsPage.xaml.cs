@@ -57,7 +57,7 @@ public partial class MainEventsPage : ContentPage
 
     private async void LatestNews_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        if (e.CurrentSelection[0] is not ArticlePreviewViewModel article) return;
+        if (e.CurrentSelection[0] is not Article article) return;
 
         await Navigation.PushAsync(new ArticlePage(article.ArticleId));
     }

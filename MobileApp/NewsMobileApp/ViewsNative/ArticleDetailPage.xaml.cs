@@ -15,7 +15,7 @@ public partial class ArticleDetailPage : ContentPage
 	public ArticleDetailPage()
 	{
 		InitializeComponent();
-		_newsService = _newsService = Application.Current.Handler
+	    _newsService = Application.Current.Handler
            .MauiContext.Services.GetService<INewsService>();
         ComboBox1.ItemsSource = _newsService.GetCategories().ToList();
 		ComboBox1.SelectedIndex = 0;
@@ -32,7 +32,7 @@ public partial class ArticleDetailPage : ContentPage
 	public ArticleDetailPage(Guid _articleId)
 	{
 		InitializeComponent();
-        _newsService = _newsService = Application.Current.Handler
+        _newsService = Application.Current.Handler
            .MauiContext.Services.GetService<INewsService>();
         ComboBox1.ItemsSource = _newsService.GetCategories().ToList();
         _articleViewModel = _newsService.GetThrendArticlesFull().FirstOrDefault(a => a.ArticleId == _articleId);

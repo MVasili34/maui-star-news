@@ -20,8 +20,8 @@ public class NewsAppService : INewsService
             "#наука", //*
       };
 
-    public IEnumerable<Models.Section> GetCategories() =>
-        new List<Models.Section>()
+    public IEnumerable<Section> GetCategories() =>
+        new List<Section>()
         {
             new(1, "Политика", "\ue84f"),
             new(2, "История", "\ue153"),
@@ -35,8 +35,8 @@ public class NewsAppService : INewsService
             new(10, "Наука", "\uea4b"),
         };
 
-    public IEnumerable<ArticlePreviewViewModel> GetLatestArticlesPreview() =>
-    new List<ArticlePreviewViewModel>()
+    public IEnumerable<Article> GetLatestArticlesPreview() =>
+    new List<Article>()
     {
             new()
             {
@@ -134,8 +134,8 @@ public class NewsAppService : INewsService
             },
         };
 
-    public IEnumerable<ArticlePreviewViewModel> GetRecommendedArticlesPreview() =>
-        new List<ArticlePreviewViewModel>()
+    public IEnumerable<Article> GetRecommendedArticlesPreview() =>
+        new List<Article>()
         {
             new()
             {
@@ -331,7 +331,7 @@ public class NewsAppService : INewsService
             },
         };
 
-    public IEnumerable<ArticlePreviewViewModel> GetThrendArticlesPreview() => GetRecommendedArticlesPreview().Concat(GetLatestArticlesPreview()).
+    public IEnumerable<Article> GetThrendArticlesPreview() => GetRecommendedArticlesPreview().Concat(GetLatestArticlesPreview()).
         OrderByDescending(x => x.PublishTime);
     public IEnumerable<ArticleViewModel> GetThrendArticlesFull() => GetRecommendedArticlesFull().Concat(GetLatestArticlesFull());
 }
