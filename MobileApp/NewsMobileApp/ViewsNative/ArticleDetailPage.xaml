@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NewsMobileApp.ViewsNative.ArticleDetailPage"
-             xmlns:models="clr-namespace:NewsMobileApp.ViewModels"
+             xmlns:viewmodels="clr-namespace:NewsMobileApp.ViewModels"
+             xmlns:models="clr-namespace:NewsMobileApp.Models"
              Title="Администрирование"
              Shell.BackgroundColor="{StaticResource MainNavigationColor}"
              BackgroundColor="{StaticResource MainBackGroundColor}">
@@ -36,7 +37,7 @@
                 Margin="0, 50, 0, 30"/>
             </VerticalStackLayout>
             <!--:DataType="models:ArticleViewModel"-->
-            <VerticalStackLayout x:Name="FullyContent" >
+            <VerticalStackLayout x:Name="FullyContent" x:DataType="viewmodels:ArticleDetailViewModel">
                 <Label 
                   Margin="0,20,0,20"
                   Text="Добавление/изменение статьи"
@@ -61,7 +62,7 @@
                         <RoundRectangle CornerRadius="6"/>
                    </Border.StrokeShape>
                     <Entry
-                          Text="{Binding Title}"
+                          Text="{Binding Article.Title}"
                           Placeholder="Заголовок статьи..."
                           FontSize="20"
                           MaxLength="50"
@@ -89,7 +90,7 @@
                     <RoundRectangle CornerRadius="6"/>
                 </Border.StrokeShape>
                 <Entry
-                      Text="{Binding Subtitle}"
+                      Text="{Binding Article.Subtitle}"
                       Placeholder="Подзаголовок статьи..."
                       FontSize="20"
                       MaxLength="75"
@@ -106,6 +107,7 @@
                    Margin="20,0,0,0"/>
             <ContentView HeightRequest="2"/>
             <Border 
+                   x:Name="PickerHeight"
                    Padding="12, 4"
                    BackgroundColor="#33CCCCCC"
                    Stroke="Transparent"
@@ -116,8 +118,9 @@
                     <RoundRectangle CornerRadius="6"/>
                  </Border.StrokeShape>
                  <Picker 
+                         ItemsSource="{Binding Sections}"
                          ItemDisplayBinding="{Binding Name}"
-                         SelectedIndex="{Binding SectionId}"
+                         SelectedIndex="{Binding Article.SectionId}"
                          x:Name="ComboBox1" 
                          WidthRequest="345" 
                          FontSize="18" 
@@ -162,7 +165,7 @@
                     </HorizontalStackLayout>
                     <Label
                           FontSize="17"
-                          Text="{Binding Image}"
+                          Text="{Binding Article.Image}"
                           x:Name="FilePathLabel"
                           HorizontalOptions="Center"
                           TextColor="White"/>
@@ -192,7 +195,7 @@
                 <RoundRectangle CornerRadius="6"/>
             </Border.StrokeShape>
             <Editor x:Name="ArticleText" 
-                    Text="{Binding Text}"
+                    Text="{Binding Article.Text}"
                     Placeholder="Текст статьи..." 
                     MaxLength="2500"
                     FontSize="18"/>

@@ -23,7 +23,11 @@ public class ArticleViewModel : INotifyPropertyChanged
     public Guid ArticleId
     {
         get => _articleId;
-        init => _articleId = value;
+        set
+        {
+            _articleId = value;
+            NotifyPropertyChanged(nameof(ArticleId));
+        }
     }
 
     public string Title
