@@ -7,9 +7,6 @@
              BackgroundColor="{StaticResource MainBackGroundColor}"
              Shell.BackgroundColor="{StaticResource MainNavigationColor}"
              xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui">
-    <ContentPage.BindingContext>
-        <viewmodel:AdminViewModel/>
-    </ContentPage.BindingContext>
     <ScrollView Scrolled="OnScrollViewScrolled">
         <VerticalStackLayout Padding="16">
             <Label 
@@ -65,7 +62,7 @@
                 </Grid>
             </Border>
 
-            <CollectionView ItemsSource="{Binding .}"
+            <CollectionView ItemsSource="{Binding Users}"
                       x:Name="ListView"
                       VerticalOptions="Start"
                       HorizontalOptions="Center"
@@ -83,7 +80,31 @@
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
+
             </CollectionView>
+            <Label x:Name="LoadingText1"
+                       Text="Загрузка..." 
+                       IsVisible="false"
+                       FontSize="18" 
+                       HorizontalOptions="Center" 
+                       Margin="0,10,0,5"/>
+            <VerticalStackLayout x:Name="LoadBlocks">
+                <Frame x:Name="LoadBlock1"
+                       Style="{StaticResource LoadFrame}"
+                       HeightRequest="50"
+                       WidthRequest="350"
+                       Margin="0, 10, 0, 5"/>
+                <Frame x:Name="LoadBlock2"
+                       Style="{StaticResource LoadFrame}"
+                       HeightRequest="50"
+                       WidthRequest="350"
+                       Margin="0, 5, 0, 5"/>
+                <Frame x:Name="LoadBlock3"
+                       Style="{StaticResource LoadFrame}"
+                       HeightRequest="50"
+                       WidthRequest="350"
+                       Margin="0, 5, 0, 5"/>
+            </VerticalStackLayout>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

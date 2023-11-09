@@ -1,9 +1,6 @@
 using NewsMobileApp.Models;
 using NewsMobileApp.TempServices;
 using NewsMobileApp.ViewModels;
-using Newtonsoft.Json;
-using System.Collections.ObjectModel;
-using static SkiaSharp.HarfBuzz.SKShaper;
 
 namespace NewsMobileApp.ViewsNative;
 
@@ -51,9 +48,9 @@ public partial class ArticleDetailPage : ContentPage
 		}
 		else
 		{
-            await viewModel.InitializeArticle(_articleId);
+			await viewModel.InitializeArticle(_articleId);
 			ComboBox1.SelectedIndex = viewModel.Article.SectionId - 1;
-        }
+		}
         _loaded = true;
 		LoadingState();
     }
@@ -98,6 +95,7 @@ public partial class ArticleDetailPage : ContentPage
 			}
 			viewModel.Article.Image = FilePathLabel.Text;
 			viewModel.Article.SectionId = ((Section)ComboBox1.SelectedItem).SectionId;
+			BlockUI(true);
 			await viewModel.PublishArticle();
 			await Navigation.PopAsync(true);
 		}
@@ -110,6 +108,7 @@ public partial class ArticleDetailPage : ContentPage
 			await DisplayAlert("Œ¯Ë·Í‡!", ex.Message, "Œ ");
 			ComboBox1.SelectedIndex--;
 		}
+        BlockUI(false);
     }
 
     private async void Edit_Clicked(object sender, EventArgs e)
@@ -128,6 +127,7 @@ public partial class ArticleDetailPage : ContentPage
             }
             viewModel.Article.Image = FilePathLabel.Text;
             viewModel.Article.SectionId = ((Section)ComboBox1.SelectedItem).SectionId;
+            BlockUI(true);
             await viewModel.ChangeArticle(_pictureChanged);
             await Navigation.PopAsync(true);
         }
@@ -140,11 +140,23 @@ public partial class ArticleDetailPage : ContentPage
             await DisplayAlert("Œ¯Ë·Í‡!", ex.Message, "Œ ");
             ComboBox1.SelectedIndex--;
         }
+        BlockUI(false);
     }
 
 	private void LoadingState()
 	{
 		LoadBlocks.IsVisible = !_loaded;
 		FullyContent.IsVisible = _loaded;
+	}
+	
+	private void BlockUI(bool block)
+	{
+		TitleField.IsReadOnly = block;
+		SubTitleField.IsReadOnly = block;
+		ComboBox1.IsEnabled = !block;
+		PickImageButton.IsEnabled = !block;
+		ArticleText.IsReadOnly = block;
+		Edit.IsEnabled = !block;
+		Submit.IsEnabled = !block;
 	}
 }

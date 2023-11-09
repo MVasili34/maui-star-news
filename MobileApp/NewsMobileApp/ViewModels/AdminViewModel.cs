@@ -11,11 +11,12 @@ namespace NewsMobileApp.ViewModels;
 public class AdminViewModel
 {
     private readonly INewsService _newsService;
-    private static DateTime startDate = DateTime.Now.AddDays(-6);
-    private static DateTime endDate = DateTime.Now;
-    private ObservableCollection<DateTimePoint> _data = new ObservableCollection<DateTimePoint>(Enumerable.Range(0, (int)(endDate - startDate).TotalDays + 1)
-                         .Select(x => new DateTimePoint(startDate.AddDays(x), 0)));
+    private static readonly DateTime _startDate = DateTime.Now.AddDays(-6);
+    private static readonly DateTime _endDate = DateTime.Now;
+    private readonly ObservableCollection<DateTimePoint> _data = new ObservableCollection<DateTimePoint>(Enumerable.Range(0, 
+        (int)(_endDate - _startDate).TotalDays + 1).Select(x => new DateTimePoint(_startDate.AddDays(x), 0)));
     public ObservableCollection<UserViewModel> Users { get; set; } = new();
+    public ObservableCollection<ISeries> Series { get; set; } = new();
 
     public AdminViewModel()
     {
@@ -23,25 +24,23 @@ public class AdminViewModel
            .MauiContext.Services.GetService<INewsService>();
 
         Series.Add(
-         
             new LineSeries<DateTimePoint>
             {
                 Values = _data,
-                Stroke = new Sk.LinearGradientPaint(new[]{ new SKColor(46, 34, 172), new SKColor(203, 71, 157)}) { StrokeThickness = 10 },
-                GeometryStroke = new Sk.LinearGradientPaint(new[]{ new SKColor(46, 34, 172), new SKColor(203, 71, 157) }) { StrokeThickness = 10 },
+                Stroke = new Sk.LinearGradientPaint(new[]{ new SKColor(46, 34, 172), new SKColor(203, 71, 157)}) { 
+                    StrokeThickness = 10 },
+                GeometryStroke = new Sk.LinearGradientPaint(new[]{ new SKColor(46, 34, 172), new SKColor(203, 71, 157) }) { 
+                    StrokeThickness = 10 },
                 Fill = new Sk.LinearGradientPaint( new[] { new SKColor(46, 34, 172), new SKColor(203, 71, 157) },
-                new SKPoint(0.1f, 0),
-                new SKPoint(1, 0.9f))
+                new SKPoint(0.1f, 0), new SKPoint(1, 0.9f))
             }
          );
-        GetDiagtamData();
-        
     }
 
-    public async void GetDiagtamData()
+    public async Task GetDiagtamData()
     {   
-        var data = new List<DateTimePoint>(Enumerable.Range(0, (int)(endDate - startDate).TotalDays + 1)
-                         .Select(x => new DateTimePoint(startDate.AddDays(x), Random.Shared.Next(2, 10))));
+        var data = new List<DateTimePoint>(Enumerable.Range(0, (int)(_endDate - _startDate).TotalDays + 1)
+                         .Select(x => new DateTimePoint(_startDate.AddDays(x), Random.Shared.Next(2, 10))));
         await Task.Delay(1500);
         
         for(int i = 0; i < data.Count; i++) 
@@ -50,30 +49,21 @@ public class AdminViewModel
         }
     }
 
-    public List<ISeries> Series { get; set; } = new();
 
-    public async void AddUsers(bool clear = false, int limit = 20, int offset = 0)
+
+    public async Task AddUsers(bool clear = false, int limit = 20, int offset = 0)
     {
         if (clear) Users.Clear();
 
-        foreach (var user in _newsService.GetUsers())
-        {
-            Users.Add(user);
-        }
-        foreach (var user in _newsService.GetUsers())
+        await Task.Delay(1000);
+        foreach (var user in _newsService.GetUsers().Concat(_newsService.GetUsers()))
         {
             Users.Add(user);
         }
     }
-    public async void SearchUser(string text)
+    public async Task SearchUser(string text)
     {
-        if (string.IsNullOrEmpty(text) || string.IsNullOrWhiteSpace(text))
-        {
-            AddUsers(true);
-            return;
-        }
-
-        Users.Clear();
+        await Task.Delay(1000);
         UserViewModel found = _newsService.GetUsers()
                                           .FirstOrDefault(x => x.UserName == text);
 

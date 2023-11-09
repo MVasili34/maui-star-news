@@ -5,7 +5,6 @@ using System.ComponentModel;
 using ImagesCloudTool;
 using System.Runtime.CompilerServices;
 using Newtonsoft.Json;
-using static SkiaSharp.HarfBuzz.SKShaper;
 
 namespace NewsMobileApp.ViewModels;
 
@@ -68,7 +67,7 @@ public class ArticleDetailViewModel : INotifyPropertyChanged
             throw new HttpRequestException("Ошибка запроса Imgur!");
 
         Article.PublishTime = DateTime.Now;
-
+        await Task.Delay(5000);
         string serialized = JsonConvert.SerializeObject(Article);
         await Shell.Current.DisplayAlert("Success", $"{serialized}", "OK");
     }
@@ -82,7 +81,7 @@ public class ArticleDetailViewModel : INotifyPropertyChanged
             if (urlImage is null)
                 throw new HttpRequestException("Ошибка запроса Imgur!");
         }
-
+        await Task.Delay(5000);
         string serialized = JsonConvert.SerializeObject(Article);
         await Shell.Current.DisplayAlert("Success", $"{serialized}", "OK");
     }

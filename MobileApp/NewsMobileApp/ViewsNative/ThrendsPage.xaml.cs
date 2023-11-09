@@ -8,11 +8,11 @@ public partial class ThrendsPage : ContentPage
 {
     private ThrendsViewModel viewModel => BindingContext as ThrendsViewModel;
     private bool _loaded = false;
-    private bool scrolled = true;
-    private bool searching = false;
-    private string currentSearch = string.Empty;
-    private const int limit = 20;
-    private int offset = 0;
+    private bool _scrolled = true;
+    private bool _searching = false;
+    private string _currentSearch = string.Empty;
+    private const int _limit = 20;
+    private int _offset = 0;
 
     public ThrendsPage(ThrendsViewModel viewmodel)
 	{
@@ -33,8 +33,8 @@ public partial class ThrendsPage : ContentPage
         parentAnimation.Commit(this, "TransitionAnimation", length: 2000, repeat: () => true);
         try
         {
-            await viewModel.AddArticles(limit: limit, offset: offset);
-            offset++;
+            await viewModel.AddArticles(limit: _limit, offset: _offset);
+            _offset++;
             _loaded = true;
             LoadProcessSimulation();
         }
@@ -60,17 +60,17 @@ public partial class ThrendsPage : ContentPage
             if (string.IsNullOrEmpty(SearchText.Text) || string.IsNullOrWhiteSpace(SearchText.Text))
             {
                 await viewModel.AddArticles(true);
-                offset = 1;
-                searching = false;
+                _offset = 1;
+                _searching = false;
                 _loaded = true;
                 LoadProcessSimulation();
                 return;
             }
-            currentSearch = SearchText.Text;
+            _currentSearch = SearchText.Text;
             viewModel.Articles.Clear();
-            searching = true;
-            offset = 0;
-            await viewModel.SearchArticle(currentSearch, limit: limit, offset: offset++);
+            _searching = true;
+            _offset = 0;
+            await viewModel.SearchArticle(_currentSearch, limit: _limit, offset: _offset++);
 
         }
         catch(Exception ex) 
@@ -89,9 +89,9 @@ public partial class ThrendsPage : ContentPage
             _loaded = false;
             LoadProcessSimulation();
             await viewModel.AddArticles(true);
-            offset = 1;
+            _offset = 1;
             SearchText.Text = string.Empty;
-            searching = false;
+            _searching = false;
             _loaded = true;
             LoadProcessSimulation();
         }
@@ -110,26 +110,26 @@ public partial class ThrendsPage : ContentPage
         double contentHeight = scrollView.ContentSize.Height;
         double currentScrollPosition = scrollView.ScrollY;
 
-        if (currentScrollPosition + scrollViewHeight >= contentHeight - 100 && scrolled)
+        if (currentScrollPosition + scrollViewHeight >= contentHeight - 100 && _scrolled)
         {
-            scrolled = false;
+            _scrolled = false;
             try
             {
-                if (!searching)
+                if (!_searching)
                 {
-                    await viewModel.AddArticles(limit: limit, offset: offset);
+                    await viewModel.AddArticles(limit: _limit, offset: _offset);
                 }
                 else
                 {
-                    await viewModel.SearchArticle(currentSearch, limit: limit, offset: offset);
+                    await viewModel.SearchArticle(_currentSearch, limit: _limit, offset: _offset);
                 }
-                offset++;
+                _offset++;
             }
             catch(Exception ex) 
             {
                 await DisplayAlert("Ошибка!", ex.Message, "OK");
             }
-            scrolled = true;
+            _scrolled = true;
         }
     }
 

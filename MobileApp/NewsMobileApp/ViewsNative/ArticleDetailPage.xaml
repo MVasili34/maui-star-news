@@ -62,6 +62,7 @@
                         <RoundRectangle CornerRadius="6"/>
                    </Border.StrokeShape>
                     <Entry
+                          x:Name="TitleField"
                           Text="{Binding Article.Title}"
                           Placeholder="Заголовок статьи..."
                           FontSize="20"
@@ -90,6 +91,7 @@
                     <RoundRectangle CornerRadius="6"/>
                 </Border.StrokeShape>
                 <Entry
+                      x:Name="SubTitleField"
                       Text="{Binding Article.Subtitle}"
                       Placeholder="Подзаголовок статьи..."
                       FontSize="20"
