@@ -1,4 +1,3 @@
-using NewsMobileApp.Views;
 using NewsMobileApp.ViewModels;
 
 namespace NewsMobileApp.ViewsNative;
@@ -8,12 +7,29 @@ public partial class ProfilePrivacyPage : ContentPage
 	public ProfilePrivacyPage()
 	{
 		InitializeComponent();
-        AdminSeparator.IsVisible = true;
-        AdminPanel.IsVisible = true;
+
+        UserName.Text = Preferences.Get("userName", "Error!");
+        UserEmail.Text = Preferences.Get("emailAddress", "Пожалуйста, войдите заново!");
+
+      //if (Preferences.Get("roleId", 1) == 3)
+        if (Preferences.Get("roleId", 3) == 3)
+        {
+            AdminSeparator.IsVisible = true;
+            AdminPanel.IsVisible = true;
+            AdmindButton.IsEnabled = true;
+        }
 	}
 
     private void Logout_Clicked(object sender, EventArgs e)
     {
+        Preferences.Set("userId", null);
+        Preferences.Set("userName", null);
+        Preferences.Set("emailAddress", null);
+        Preferences.Set("phone", null);
+        Preferences.Set("dateOfBirth", null);
+        Preferences.Set("password", null);
+        Preferences.Set("roleId", 3);
+        Preferences.Set("registered", null);
         Application.Current.MainPage = new MainPage();
     }
 

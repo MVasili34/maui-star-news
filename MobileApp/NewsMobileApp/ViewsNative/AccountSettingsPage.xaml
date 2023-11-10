@@ -112,6 +112,7 @@
                 <RoundRectangle CornerRadius="6"/>
             </Border.StrokeShape>
             <DatePicker
+                 MinimumDate="1/1/1900"
                  x:Name="DatePicker"
                  Date="{Binding DateOfBirth}"
                  FontSize="18"

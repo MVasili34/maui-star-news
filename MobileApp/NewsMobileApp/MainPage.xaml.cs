@@ -23,6 +23,34 @@ public partial class MainPage : ContentPage
 #endif
     }
 
+    protected async override void OnAppearing()
+    {
+        base.OnAppearing();
+        string userId = Preferences.Get("userId", null);
+        if (userId is null)
+        {
+            return;
+        }
+        try
+        {
+            BlockUIButtons();
+            await Task.Delay(3000);
+            Application.Current.MainPage = new AppShell();
+        }
+        catch (Exception ex) 
+        {
+            await DisplayAlert("Ошибка!", ex.Message, "OK");
+        }
+        _status = true;
+        BlockUIButtons();
+    }
+
     private async void Register_Tapped(object sender, TappedEventArgs e) =>
          await Navigation.PushModalAsync(new RegisterPage());
+
+    private void BlockUIButtons()
+    {
+        LoginBtn.IsEnabled = _status;
+        RegisterButton.IsEnabled = _status;
+    }
 }

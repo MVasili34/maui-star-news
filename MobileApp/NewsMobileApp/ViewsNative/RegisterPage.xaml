@@ -65,6 +65,7 @@
 
                 <Entry
                     x:Name="UserName"
+                    MaxLength="15"
                     Placeholder="Имя профиля..."
                     Grid.Column="1"
                     FontSize="20"

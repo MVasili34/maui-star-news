@@ -40,7 +40,7 @@
             HorizontalOptions="Center" />
 
             <Button
-            x:Name="CounterBtn"
+            x:Name="LoginBtn"
             Text="Войти"
             TextColor="White"
             FontSize="20"
@@ -53,6 +53,7 @@
             <StackLayout Orientation="Horizontal" Spacing="4" HorizontalOptions="Center">
                 <Label Text="У вас ещё нет аккаунта?" TextColor="White" FontSize="16"/>
                 <Label Text="Зарегистрируйтесь" 
+               x:Name="RegisterButton"
                TextColor="{StaticResource Primary}" 
                BackgroundColor="Transparent" 
                FontSize="16">

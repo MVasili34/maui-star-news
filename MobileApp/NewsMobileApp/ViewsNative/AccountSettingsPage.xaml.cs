@@ -26,7 +26,7 @@ public partial class AccountSettingsPage : ContentPage
     {
         base.OnAppearing();
         DatePicker.MaximumDate = DateTime.Now.AddYears(-5);
-		DatePicker.MinimumDate = new(1900, 1, 1);
+		//DatePicker.MinimumDate = new(1900, 1, 1);
     }
 
     private async void Submit_Clicked(object sender, EventArgs e)

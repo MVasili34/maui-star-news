@@ -89,6 +89,7 @@
             <Grid x:Name="AdminPanel" IsVisible="False">
                 <Button
                     x:Name="AdmindButton"
+                    IsEnabled="False"
                     CornerRadius="5"
                     HeightRequest="50"
                     BackgroundColor="{StaticResource MainBlocksColor}"

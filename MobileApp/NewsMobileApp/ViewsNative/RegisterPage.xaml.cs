@@ -8,12 +8,18 @@ public partial class RegisterPage : ContentPage
 	{
 		InitializeComponent();
 	}
-    private void Register_Clicked(object sender, EventArgs e)
+    private async void Register_Clicked(object sender, EventArgs e)
     {
         try
         {
             MailAddress mailAddress = new(EmailSend.Text);
-            Navigation.PopModalAsync();
+
+            Preferences.Set("userId", Guid.NewGuid().ToString());
+            Preferences.Set("userName", UserName.Text);
+            Preferences.Set("emailAddress", EmailSend.Text);
+            Preferences.Set("password", PasswordShow1.Text);
+
+            await Navigation.PopModalAsync();
             Application.Current.MainPage = new AppShell();
             
         }

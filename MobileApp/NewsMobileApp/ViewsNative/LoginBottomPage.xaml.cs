@@ -7,7 +7,9 @@ public partial class LoginBottomPage
 	public LoginBottomPage()
 	{
 		InitializeComponent();
-	}
+        EmailSend.Text = Preferences.Get("emailAddress", string.Empty);
+        PasswordShow.Text = Preferences.Get("password", string.Empty);
+    }
 
     private async void Login_Clicked(object sender, EventArgs e)
     {
