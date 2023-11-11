@@ -25,7 +25,11 @@ public class UserViewModel : INotifyPropertyChanged
     public Guid UserId
     {
         get => _userId;
-        init => _userId = value;
+        set
+        {
+            _userId = value;
+            NotifyPropertyChanged(nameof(UserId));
+        }
     }
 
     public string UserName
@@ -41,7 +45,11 @@ public class UserViewModel : INotifyPropertyChanged
     public string EmailAddress
     {
         get => _emailAddress;
-        init => _emailAddress = value;
+        set
+        {
+            _emailAddress = value;
+            NotifyPropertyChanged(nameof(EmailAddress));
+        }
     }
 
     public string Phone
@@ -93,7 +101,11 @@ public class UserViewModel : INotifyPropertyChanged
     public DateTime Registered
     {
         get => _registered;
-        init => _registered = value;
+        set
+        {
+            _registered = value;
+            NotifyPropertyChanged();
+        }
     }
 
     public DateTime? LastLogin

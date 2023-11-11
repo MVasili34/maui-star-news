@@ -43,7 +43,7 @@ public partial class ProfilePrivacyPage : ContentPage
         await Navigation.PushAsync(new ProcessingDataAgreePage());
 
     private async void AccountSettings_Clicked(object sender, EventArgs e) =>
-        await Navigation.PushAsync(new AccountSettingsPage());
+        await Navigation.PushAsync(new AccountSettingsPage(new UserViewModel()));
 
     private async void Support_Clicked(object sender, EventArgs e) => 
         await Navigation.PushAsync(new SupportPage(new EmailViewModel()));

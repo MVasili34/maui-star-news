@@ -6,11 +6,8 @@
              Title="Настройки аккаунта"
              Shell.BackgroundColor="{StaticResource MainNavigationColor}"
              BackgroundColor="{StaticResource MainBackGroundColor}">
-    <ContentPage.BindingContext>
-        <viewmodels:UserViewModel/>
-    </ContentPage.BindingContext>
     <ScrollView>
-    <VerticalStackLayout>
+    <VerticalStackLayout IsEnabled="True" x:Name="AllBlocks">
         <Label 
             Margin="0,20,0,20"
             Text="Изменить данные профиля"
@@ -114,7 +111,6 @@
             <DatePicker
                  MinimumDate="1/1/1900"
                  x:Name="DatePicker"
-                 Date="{Binding DateOfBirth}"
                  FontSize="18"
                  VerticalOptions="Center"
                  Format="dd MMMM yyyy"
@@ -154,7 +150,7 @@
             HorizontalOptions="Center"
             FontSize="16"/>
         <Label 
-            Text="верный пароль"
+            Text="действительный пароль"
             HorizontalOptions="Center"
             FontSize="16"/>
         <ContentView HeightRequest="10" />

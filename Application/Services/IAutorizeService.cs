@@ -33,6 +33,13 @@ public interface IAutorizeService
     Task<User?> RegisterUserAsync(RegisterModel user);
 
     /// <summary>
+    /// Метод обновления пароля
+    /// </summary>
+    /// <param name="model">Объект <see cref="User"/> с новым паролем</param>
+    /// <returns>Объект <see cref="User"/>, иначе <see langword="null"/></returns>
+    Task<User?> ChangePasswordAsync(AuthorizeModel model);
+
+    /// <summary>
     /// Метод обновления данных пользователя
     /// </summary>
     /// <param name="id">Идентификатор пользователя</param>

@@ -65,6 +65,25 @@ public class AuthorizeSeviceTests
 
         Assert.Equal(registered.Phone, updated!.Phone);
     }
+
+    [Fact]
+    public async Task ChangePasswordTest()
+    {
+        RegisterModel generated = DataGenerator.GenerateRegisterMode();
+        generated.Password = "pa$$w0rd";
+        User? registered = await _authorizeService.RegisterUserAsync(generated);
+
+        AuthorizeModel changePsw = new()
+        {
+            EmailAddress = registered!.EmailAddress,
+            Password = "someNewPass"
+        };
+        await _authorizeService.ChangePasswordAsync(changePsw);
+
+        User? logged = await _authorizeService.AutorizeUserAsync(changePsw);
+        Assert.NotNull(logged);
+    }
+
     [Fact]
     public async Task DeleteUserTest()
     {

@@ -51,7 +51,8 @@ public partial class AdminPage : ContentPage
     {
         if (e.CurrentSelection[0] is not UserViewModel user) return;
 
-        await DisplayAlert("OK", $"{user.UserName}, {user.UserId}", "OK");
+        await Navigation.PushAsync(new AdminUserSettingPage(user));
+        //await DisplayAlert("OK", $"{user.UserName}, {user.UserId}", "OK");
     }
 
     private async void OnScrollViewScrolled(object sender, ScrolledEventArgs e)

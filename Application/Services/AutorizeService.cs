@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using CryptographyTool;
+using EntityModels;
 
 namespace Services;
 
@@ -24,10 +25,10 @@ public class AutorizeService : IAutorizeService
     public async Task<User?> RegisterUserAsync(RegisterModel registerUser)
     {
         User user = (User)registerUser;
-        User? dublicate = await _newsAppContext.Users.FirstOrDefaultAsync(dbuser => 
+        User? duplicate = await _newsAppContext.Users.FirstOrDefaultAsync(dbuser => 
             dbuser.EmailAddress == user.EmailAddress);
 
-        if (dublicate is not null)
+        if (duplicate is not null)
         {
             return null;
         }
@@ -59,6 +60,26 @@ public class AutorizeService : IAutorizeService
                 {
                     return existed;
                 }
+            }
+        }
+        return null;
+    }
+
+    public async Task<User?> ChangePasswordAsync(AuthorizeModel model)
+    {
+        User? existed = await _newsAppContext.Users.FirstOrDefaultAsync(user =>
+            user.EmailAddress == model.EmailAddress);
+
+        if (existed is not null) 
+        {
+            (string salt, string hashed) = Protector.Encrypt(model.Password);
+            existed.PasswordSalt = salt;
+            existed.PasswordHash = hashed;
+
+            int affected = await _newsAppContext.SaveChangesAsync();
+            if (affected == 1) 
+            {
+                return existed;
             }
         }
         return null;

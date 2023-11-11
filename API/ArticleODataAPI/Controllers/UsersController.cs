@@ -58,7 +58,7 @@ public class UsersController : ControllerBase
                               value: registered);
     }
 
-    //PUT: api/User/login/[id]
+    //POST: api/User/login/
     //BODY: AuthorizeModel (JSON)
     [HttpPost("login")]
     [ProducesResponseType(200)]
@@ -76,6 +76,25 @@ public class UsersController : ControllerBase
             return Ok(authorized);
         }
         return Unauthorized();
+    }
+
+    //PUT: api/User/changepswd/
+    //BODY: AuthorizeModel (JSON)
+    [HttpPut("changepswd")]
+    [ProducesResponseType(204)]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(404)]
+    public async Task<IActionResult> UpdatePassword([FromBody] AuthorizeModel model)
+    {
+        if(model is null)
+        {
+            return BadRequest();
+        }
+        if(await _autorizeService.ChangePasswordAsync(model) is null)
+        {
+            return NotFound();
+        }
+        return NoContent();
     }
 
     //PUT: api/User/[id]

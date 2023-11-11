@@ -55,12 +55,17 @@
     </ItemGroup>
 
     <ItemGroup>
+      <None Remove="Platforms\Android\Resources\xml\network_security_config.xml" />
+    </ItemGroup>
+
+    <ItemGroup>
       <MauiFont Include="wwwroot\css\open-iconic\font\fonts\MaterialIconsOutlined-Regular.otf" />
       <MauiFont Include="wwwroot\css\open-iconic\font\fonts\NotoSerif-Bold.ttf" />
     </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="LiveChartsCore.SkiaSharpView.Maui" Version="2.0.0-rc1.2" />
+        <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
         <PackageReference Include="The49.Maui.BottomSheet" Version="1.0.1" />
     </ItemGroup>
@@ -90,6 +95,9 @@
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
       <MauiXaml Update="ViewsNative\AdminPage.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </MauiXaml>
+      <MauiXaml Update="ViewsNative\AdminUserSettingPage.xaml">
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
       <MauiXaml Update="ViewsNative\AppSettingsPage.xaml">

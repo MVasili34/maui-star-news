@@ -1,8 +1,7 @@
 ﻿namespace EntityModels;
 
 /// <summary>
-/// Специальная запись для авторизации пользователей, 
-/// независимая от сущностных моделей
+/// Special record for authorize and changing password
 /// </summary>
 public record AuthorizeModel
 {

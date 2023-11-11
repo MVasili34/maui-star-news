@@ -6,6 +6,7 @@ using The49.Maui.BottomSheet;
 using NewsMobileApp.ViewsNative;
 using ImagesCloudTool;
 using NewsMobileApp.ViewModels;
+using System.Net.Http.Headers;
 
 namespace NewsMobileApp
 {
@@ -28,9 +29,16 @@ namespace NewsMobileApp
                     fonts.AddFont("Poppins-SemiBold.ttf", "PopsSBold");
                     fonts.AddFont("NotoSerif-Bold.ttf", "NotoSerif");
                 });
-
+            builder.Services.AddHttpClient("NewsAPI", configureClient: options =>
+            {
+                options.BaseAddress = new(DeviceInfo.Platform == DevicePlatform.Android ? "http://192.168.0.106:8080/" :
+                    "http://localhost:8080/");
+                options.DefaultRequestHeaders.Accept.Add(
+                    new MediaTypeWithQualityHeaderValue("application/json", 1.0));
+            });
             builder.Services.AddMauiBlazorWebView();
             builder.Services.AddScoped<INewsService, NewsAppService>();
+            builder.Services.AddScoped<IRequestsService, RequestsService>();
             builder.Services.AddScoped<IImageCloudTool, ImageCloudTool>(_ =>
                 new ImageCloudTool("fc0f801a94e39de"));
             builder.Services.AddScoped<SectionsPage>();
