@@ -6,7 +6,7 @@
              BackgroundColor="{StaticResource MainBackGroundColor}"
              Shell.BackgroundColor="{StaticResource MainNavigationColor}">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Удалить" Clicked="Delete_Clicked" />
+        <ToolbarItem Text="Удалить" Clicked="Delete_Clicked"/>
     </ContentPage.ToolbarItems>
     <ScrollView>
         <VerticalStackLayout IsEnabled="True" x:Name="AllBlocks">
@@ -195,7 +195,6 @@
                 </Border.StrokeShape>
                 <Entry
                         x:Name="PasswordField"
-                        IsPassword="True"
                         Placeholder="Пароль..."
                         MaxLength="20"
                         FontSize="20"

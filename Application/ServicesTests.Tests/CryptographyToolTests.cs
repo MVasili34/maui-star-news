@@ -44,7 +44,7 @@ public class CryptographyToolTests
     {
         string password = "Pa$$word";
 
-        //так как нет номера в паспорте, то false
+        //так как нет номера в пароле, то false
         bool status = PasswordCheck(password);
 
         Assert.False(status);

@@ -10,6 +10,9 @@ public static class StrongPasswordChecker
     /// <returns><see href="true"/>, если пароль сильный, иначе <see href="false"/></returns>
     public static bool PasswordCheck(string password)
     {
+        if (string.IsNullOrEmpty(password))
+            return false;
+
         if (password.Length < 8)
             return false;
 

@@ -52,4 +52,7 @@ public partial class AccountSettingsPage : ContentPage
         }
         Submit.IsEnabled = true;
     }
+
+    private async void ChangePswd_Clicked(object sender, EventArgs e) =>
+        await Navigation.PushAsync(new ChangePasswordPage());
 }
