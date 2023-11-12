@@ -85,6 +85,27 @@ public class AutorizeService : IAutorizeService
         return null;
     }
 
+    public async Task<User?> UpdateUserAdminAsync(Guid id, User user)
+    {
+        User? existed = await _newsAppContext.Users.FindAsync(id);
+
+        if (existed is not null)
+        {
+            existed.UserName = user.UserName;
+            existed.EmailAddress = user.EmailAddress;
+            existed.DateOfBirth = user.DateOfBirth;
+            existed.Phone = user.Phone;
+            existed.RoleId = user.RoleId;
+
+            int affected = await _newsAppContext.SaveChangesAsync();
+            if (affected == 1)
+            {
+                return existed;
+            }
+        }
+        return null;
+    }
+
     public async Task<User?> UpdateUserAsync(Guid id, User user)
     {
         User? existed = await _newsAppContext.Users.FindAsync(id);

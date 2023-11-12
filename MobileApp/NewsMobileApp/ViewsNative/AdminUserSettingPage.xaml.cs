@@ -16,12 +16,26 @@ public partial class AdminUserSettingPage : ContentPage
         BindingContext = _viewModel;
     }
 
+    protected override async void OnAppearing()
+    {
+#if WINDOWS
+		PickerHeight.HeightRequest = 110;
+#endif
+        base.OnAppearing();
+
+    }
+
     private async void Delete_Clicked(object sender, EventArgs e)
     {
 
     }
 
     private async void Submit_Clicked(object sender, EventArgs e)
+    {
+
+    }
+
+    private void Update_Clicked(object sender, EventArgs e)
     {
 
     }

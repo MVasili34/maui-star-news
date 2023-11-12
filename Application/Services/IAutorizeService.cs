@@ -40,6 +40,14 @@ public interface IAutorizeService
     Task<User?> ChangePasswordAsync(AuthorizeModel model);
 
     /// <summary>
+    /// Метод обновления данных пользователя (права админа)
+    /// </summary>
+    /// <param name="id">Идентификатор пользователя</param>
+    /// <param name="user">Объект <see cref="User"/></param>
+    /// <returns><see cref="User"/>, если данные обновлены, иначе <see langword="null"/></returns>
+    Task<User?> UpdateUserAdminAsync(Guid id, User user);
+
+    /// <summary>
     /// Метод обновления данных пользователя
     /// </summary>
     /// <param name="id">Идентификатор пользователя</param>

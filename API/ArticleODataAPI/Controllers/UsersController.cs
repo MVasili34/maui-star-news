@@ -99,6 +99,32 @@ public class UsersController : ControllerBase
 
     //PUT: api/User/[id]
     //BODY: User (JSON)
+    [HttpPut("updadm/{id:guid}")]
+    [ProducesResponseType(204)]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(404)]
+    public async Task<IActionResult> UpdateUserByAdmin(Guid id, [FromBody] User user)
+    {
+        if (user is null || user.UserId != id)
+        {
+            return BadRequest();
+        }
+
+        User? existed = await _autorizeService.RetrieveUserAsync(id);
+        if (existed is null)
+        {
+            return NotFound();
+        }
+
+        if (await _autorizeService.UpdateUserAdminAsync(id, user) is null)
+        {
+            return BadRequest();
+        }
+        return NoContent();
+    }
+
+    //PUT: api/User/[id]
+    //BODY: User (JSON)
     [HttpPut("{id:guid}")]
     [ProducesResponseType(204)]
     [ProducesResponseType(400)]

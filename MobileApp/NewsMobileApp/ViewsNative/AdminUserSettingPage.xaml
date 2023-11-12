@@ -18,6 +18,33 @@
                 FontFamily="NotoSerif"
                 FontSize="20"/>
 
+            <Label Text="Идентификатор" 
+                   FontFamily="PopsSBold"
+                   FontSize="18"
+                   TextColor="{StaticResource Gray300}"
+                   Margin="20,0,0,0"/>
+            <ContentView HeightRequest="2"/>
+            <Border 
+                    Padding="12, 4"
+                    BackgroundColor="#33CCCCCC"
+                    Stroke="Transparent"
+                    HorizontalOptions="Fill"
+                    Margin="15,5,15,0"
+                    HeightRequest="55">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="6"/>
+                </Border.StrokeShape>
+                <Entry
+                       IsReadOnly="True"
+                       Text="{Binding UserId}"
+                       Placeholder="Имя профиля..."
+                       FontSize="20"
+                       VerticalOptions="Center"
+                       VerticalTextAlignment="Center"/>
+            </Border>
+
+            <ContentView HeightRequest="10" />
+
             <Label Text="Имя профиля" 
                    FontFamily="PopsSBold"
                    FontSize="18"
@@ -43,6 +70,7 @@
             </Border>
 
             <ContentView HeightRequest="10" />
+            
             <Label Text="Адрес электронной почты" 
                    FontFamily="PopsSBold"
                    FontSize="18"
@@ -112,7 +140,6 @@
                 <DatePicker
                         MinimumDate="1/1/1900"
                         x:Name="DatePicker"
-                        Date="{Binding DateOfBirth}"
                         FontSize="18"
                         VerticalOptions="Center"
                         Format="dd MMMM yyyy"
@@ -121,6 +148,35 @@
             </Border>
 
             <ContentView HeightRequest="10" />
+
+            <Label Text="Права доступа" 
+                   FontFamily="PopsSBold"
+                   FontSize="18"
+                   TextColor="{StaticResource Gray300}"
+                   Margin="20,0,0,0"/>
+            <ContentView HeightRequest="2"/>
+            <Border 
+                   x:Name="PickerHeight"
+                   Padding="12, 4"
+                   BackgroundColor="#33CCCCCC"
+                   Stroke="Transparent"
+                   HorizontalOptions="Fill"
+                   Margin="15,5,15,0"
+                   HeightRequest="55">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="6"/>
+                </Border.StrokeShape>
+                <Picker 
+                         x:Name="ComboBox1" 
+                         WidthRequest="345" 
+                         FontSize="18" 
+                         Title="Роль" 
+                         TitleColor="{StaticResource Gray300}"
+                         />
+            </Border>
+
+            <ContentView HeightRequest="10" />
+
             <Label Text="Пароль" 
                    FontFamily="PopsSBold"
                    FontSize="18"
@@ -139,7 +195,6 @@
                 </Border.StrokeShape>
                 <Entry
                         x:Name="PasswordField"
-                        Text="{Binding PasswordHash}"
                         IsPassword="True"
                         Placeholder="Пароль..."
                         MaxLength="20"
@@ -147,15 +202,32 @@
                         VerticalOptions="Center"
                         VerticalTextAlignment="Center"/>
             </Border>
-            <Label 
-                    Text="Для подтверждения изменений введите"
-                    HorizontalOptions="Center"
-                    FontSize="16"/>
-            <Label 
-                    Text="верный пароль"
-                    HorizontalOptions="Center"
-                    FontSize="16"/>
+            
             <ContentView HeightRequest="10" />
+
+            <Label 
+                    Text="{Binding Registered, StringFormat='Зарегистрирован: {0}'}" 
+                    HorizontalOptions="Start"
+                    TextColor="White"
+                    Margin="20,0,0,0"
+                    FontSize="16"/>
+            <Label 
+                    Text="{Binding LastLogin, StringFormat='Последний логин: {0}'}" 
+                    HorizontalOptions="Start"
+                    TextColor="White"
+                    Margin="20,10,0,0"
+                    FontSize="16"/>
+            
+            <ContentView HeightRequest="10" />
+
+            <Button x:Name="Update"
+                    Text="Обновить пароль"
+                    TextColor="White"
+                    BackgroundColor="#187CC6"
+                    Clicked="Update_Clicked"
+                    FontSize="20"
+                    Margin="15, 20, 15, 20"/>
+
 
             <Button x:Name="Submit"
                     Text="Изменить данные"
@@ -163,7 +235,7 @@
                     BackgroundColor="{StaticResource Primary}"
                     Clicked="Submit_Clicked"
                     FontSize="20"
-                    Margin="15, 10, 15, 30"/>
+                    Margin="15, 10, 15, 40"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
