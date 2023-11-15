@@ -1,6 +1,5 @@
 ﻿using SkiaSharp.Views.Maui.Controls.Hosting;
 using Microsoft.Extensions.Logging;
-using NewsMobileApp.Data;
 using NewsMobileApp.TempServices;
 using The49.Maui.BottomSheet;
 using NewsMobileApp.ViewsNative;
@@ -55,8 +54,6 @@ namespace NewsMobileApp
             builder.Services.AddBlazorWebViewDeveloperTools();
 		builder.Logging.AddDebug();
 #endif
-
-            builder.Services.AddSingleton<WeatherForecastService>();
 
             return builder.Build();
         }

@@ -1,4 +1,5 @@
 ﻿using NewsMobileApp.ViewsNative;
+using NewsMobileApp.Models;
 
 namespace NewsMobileApp;
 

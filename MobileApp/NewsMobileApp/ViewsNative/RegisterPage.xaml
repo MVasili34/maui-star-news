@@ -6,6 +6,7 @@
              BackgroundColor="{StaticResource MainBackGroundColor}">
     <VerticalStackLayout>
         <ImageButton
+            x:Name="BackButton"
             Margin="8, 8, 0, 0"
             WidthRequest="35"
             HeightRequest="35"
@@ -64,6 +65,7 @@
                     VerticalOptions="Center" />
 
                 <Entry
+                    Text="{Binding UserName}"
                     x:Name="UserName"
                     MaxLength="15"
                     Placeholder="Имя профиля..."
@@ -99,6 +101,7 @@
                     VerticalOptions="Center" />
 
                 <Entry
+                    Text="{Binding EmailAddress}"
                     x:Name="EmailSend"
                     Placeholder="Адрес электронной почты..."
                     Grid.Column="1"
@@ -134,6 +137,7 @@
                     VerticalOptions="Center" />
 
                 <Entry
+                    Text="{Binding Password}"
                     x:Name="PasswordShow1"
                     Placeholder="Пароль..."
                     Grid.Column="1"
@@ -192,7 +196,7 @@
                    VerticalOptions="Center"/>
         </StackLayout>
 
-        <Button x:Name="Login"
+        <Button x:Name="Register"
                 Text="Зарегистрироваться"
                 TextColor="White"
                 BackgroundColor="{StaticResource Primary}"
@@ -207,9 +211,10 @@
                 TextColor="{StaticResource Primary}" 
                 BackgroundColor="Transparent" 
                 FontSize="16"
+                x:Name="UserAgrrement"
                 HorizontalOptions="Center">
             <Label.GestureRecognizers>
-                <TapGestureRecognizer Tapped="UsersAgreement_Tapped" />
+                <TapGestureRecognizer Tapped="UsersAgreement_Tapped"/>
             </Label.GestureRecognizers>
         </Label>
     </VerticalStackLayout>

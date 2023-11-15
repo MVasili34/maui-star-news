@@ -1,4 +1,5 @@
 using System.Net.Mail;
+using NewsMobileApp.Models;
 
 namespace NewsMobileApp.ViewsNative;
 
