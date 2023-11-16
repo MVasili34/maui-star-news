@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace NewsMobileApp.Models;
 
-public record RegisterModel : INotifyPropertyChanged
+public class RegisterModel : INotifyPropertyChanged
 {
     public event PropertyChangedEventHandler PropertyChanged;
 

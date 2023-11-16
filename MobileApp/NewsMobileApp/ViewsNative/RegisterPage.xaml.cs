@@ -11,11 +11,10 @@ public partial class RegisterPage : ContentPage
     private RegisterModel viewModel => BindingContext as RegisterModel;
     private readonly IRequestsService _requestsService;
 
-	public RegisterPage()
+	public RegisterPage(IRequestsService requestsService)
 	{
 		InitializeComponent();
-        _requestsService = Application.Current.Handler
-           .MauiContext.Services.GetService<IRequestsService>();
+        _requestsService = requestsService;
         BindingContext = new RegisterModel();
     }
 
@@ -40,9 +39,8 @@ public partial class RegisterPage : ContentPage
             Preferences.Set("userName", UserName.Text);
             Preferences.Set("emailAddress", EmailSend.Text);
             Preferences.Set("password", PasswordShow1.Text);
-
             await Navigation.PopModalAsync();
-            Application.Current.MainPage = new AppShell();
+            //Application.Current.MainPage = new AppShell();
         }
         catch (FormatException)
         {

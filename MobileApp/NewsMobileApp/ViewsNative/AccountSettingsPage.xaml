@@ -6,9 +6,6 @@
              Title="Настройки аккаунта"
              Shell.BackgroundColor="{StaticResource MainNavigationColor}"
              BackgroundColor="{StaticResource MainBackGroundColor}">
-    <ContentPage.ToolbarItems>
-        <ToolbarItem IconImageSource="resetpassword.png" Text="Изменить пароль" Clicked="ChangePswd_Clicked"/>
-    </ContentPage.ToolbarItems>
     <ScrollView>
         <VerticalStackLayout IsEnabled="True" x:Name="AllBlocks">
         <Label 
@@ -24,13 +21,12 @@
                FontSize="18"
                TextColor="{StaticResource Gray300}"
                Margin="20,0,0,0"/>
-        <ContentView HeightRequest="2"/>
         <Border 
             Padding="12, 4"
             BackgroundColor="#33CCCCCC"
             Stroke="Transparent"
             HorizontalOptions="Fill"
-            Margin="15,5,15,0"
+            Margin="15,1,15,0"
             HeightRequest="55">
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="6"/>
@@ -49,13 +45,12 @@
                FontSize="18"
                TextColor="{StaticResource Gray300}"
                Margin="20,0,0,0"/>
-        <ContentView HeightRequest="2"/>
         <Border 
             Padding="12, 4"
             BackgroundColor="#33CCCCCC"
             Stroke="Transparent"
             HorizontalOptions="Fill"
-            Margin="15,5,15,0"
+            Margin="15,1,15,0"
             HeightRequest="55">
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="6"/>
@@ -68,20 +63,45 @@
                     VerticalOptions="Center"
                     VerticalTextAlignment="Center"/>
         </Border>
-        
+
+        <ContentView HeightRequest="10" />
+        <Label Text="Пароль" 
+               FontFamily="PopsSBold"
+               FontSize="18"
+               TextColor="{StaticResource Gray300}"
+               Margin="20,0,0,0"/>
+        <Grid Padding="15,1,15,0">
+        <Button CornerRadius="6"
+                HeightRequest="50"
+                x:Name="ChangePswButton"
+                BackgroundColor="#33CCCCCC"
+                Clicked="ChangePswButton_Clicked"/>
+        <Label Text="Изменить пароль"
+               FontSize="18"
+               VerticalOptions="Center"
+               HorizontalOptions="Start"
+               TextColor="White"
+               Margin="15,0,0,0"/>
+        <Label Text="❯" 
+               VerticalOptions="Center" 
+               HorizontalOptions="End"
+               FontSize="18"
+               Margin="0,0,15,0"
+               TextColor="White"/>
+        </Grid>
+
         <ContentView HeightRequest="10" />
         <Label Text="Номер телефона" 
                FontFamily="PopsSBold"
                FontSize="18"
                TextColor="{StaticResource Gray300}"
                Margin="20,0,0,0"/>
-        <ContentView HeightRequest="2"/>
         <Border 
             Padding="12, 4"
             BackgroundColor="#33CCCCCC"
             Stroke="Transparent"
             HorizontalOptions="Fill"
-            Margin="15,5,15,0"
+            Margin="15,1,15,0"
             HeightRequest="55">
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="6"/>
@@ -100,13 +120,12 @@
                FontSize="18"
                TextColor="{StaticResource Gray300}"
                Margin="20,0,0,0"/>
-        <ContentView HeightRequest="2"/>
         <Border 
             Padding="12, 4"
             BackgroundColor="#33CCCCCC"
             Stroke="Transparent"
             HorizontalOptions="Fill"
-            Margin="15,5,15,0"
+            Margin="15,1,15,0"
             HeightRequest="55">
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="6"/>
@@ -121,33 +140,16 @@
        
         </Border>
 
-        <ContentView HeightRequest="10" />
-        <Label Text="Пароль" 
-               FontFamily="PopsSBold"
-               FontSize="18"
-               TextColor="{StaticResource Gray300}"
-               Margin="20,0,0,0"/>
-        <ContentView HeightRequest="2"/>
-        <Border 
-            Padding="12, 4"
-            BackgroundColor="#33CCCCCC"
-            Stroke="Transparent"
-            HorizontalOptions="Fill"
-            Margin="15,5,15,0"
-            HeightRequest="55">
-            <Border.StrokeShape>
-                <RoundRectangle CornerRadius="6"/>
-            </Border.StrokeShape>
-            <Entry
-                    x:Name="PasswordField"
-                    Text="{Binding PasswordHash}"
-                    IsPassword="True"
-                    Placeholder="Пароль..."
-                    MaxLength="20"
-                    FontSize="20"
-                    VerticalOptions="Center"
-                    VerticalTextAlignment="Center"/>
-        </Border>
+        <ContentView HeightRequest="20" />
+
+
+        <Button x:Name="Submit"
+                Text="Изменить данные"
+                TextColor="White"
+                BackgroundColor="{StaticResource Primary}"
+                Clicked="Submit_Clicked"
+                FontSize="20"
+                Margin="15, 10, 15, 3"/>
         <Label 
             Text="Для подтверждения изменений введите"
             HorizontalOptions="Center"
@@ -156,16 +158,8 @@
             Text="действительный пароль"
             HorizontalOptions="Center"
             FontSize="16"/>
-        <ContentView HeightRequest="10" />
+            <ContentView HeightRequest="20" />
 
-        <Button x:Name="Submit"
-                Text="Изменить данные"
-                TextColor="White"
-                BackgroundColor="{StaticResource Primary}"
-                Clicked="Submit_Clicked"
-                FontSize="20"
-                Margin="15, 10, 15, 30"/>
-
-    </VerticalStackLayout>
+        </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

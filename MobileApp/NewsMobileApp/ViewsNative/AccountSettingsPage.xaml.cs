@@ -1,6 +1,7 @@
 using NewsMobileApp.TempServices;
 using NewsMobileApp.ViewModels;
 using Newtonsoft.Json;
+using System.Text.RegularExpressions;
 
 namespace NewsMobileApp.ViewsNative;
 
@@ -37,8 +38,19 @@ public partial class AccountSettingsPage : ContentPage
     {
         try
         {
+            if (string.IsNullOrWhiteSpace(viewModel.UserName) || viewModel.UserName.Length < 3)
+                throw new InvalidDataException("Недопустимый никнейм.");
             //if (viewModel.EmailAddress is null)
-                //throw new Exception("Произошла ошибка!\nПожалуйста, выполните повторный вход.");
+            //throw new Exception("Произошла ошибка!\nПожалуйста, выполните повторный вход.");
+            if (!string.IsNullOrEmpty(viewModel.Phone) && !Regex.IsMatch(viewModel.Phone, @"^(373)?0?[6-9]{3}[0-9]{5}$"))
+                throw new InvalidDataException("Неверный номер телефона.");
+            string password = await Shell.Current.DisplayPromptAsync("Пароль", "Для изменения данных введите пароль:",
+                accept: "OK", cancel: "Отмена");
+            if (string.IsNullOrWhiteSpace(password))
+            {
+                return;
+            }
+            viewModel.PasswordHash = password;
             viewModel.DateOfBirth = DateOnly.FromDateTime(DatePicker.Date);
             Submit.IsEnabled = false;
             await Task.Delay(5000);
@@ -53,6 +65,6 @@ public partial class AccountSettingsPage : ContentPage
         Submit.IsEnabled = true;
     }
 
-    private async void ChangePswd_Clicked(object sender, EventArgs e) =>
+    private async void ChangePswButton_Clicked(object sender, EventArgs e) =>
         await Navigation.PushAsync(new ChangePasswordPage());
 }

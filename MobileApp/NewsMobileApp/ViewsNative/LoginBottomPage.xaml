@@ -3,10 +3,11 @@
              xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:the49="https://schemas.the49.com/dotnet/2023/maui"
+             xmlns:viewmodels="clr-namespace:NewsMobileApp.Models"
              x:Class="NewsMobileApp.ViewsNative.LoginBottomPage"
              Padding="5, 0" 
              BackgroundColor="{StaticResource MainBackGroundColor}">
-    <VerticalStackLayout>
+    <VerticalStackLayout x:DataType="viewmodels:AuthorizeModel">
 
         <Image
             Source="loginimg.svg"
@@ -57,12 +58,14 @@
                     VerticalOptions="Center" />
 
                 <Entry
+                    Text="{Binding EmailAddress}"
                     x:Name="EmailSend"
                     Placeholder="Адрес электронной почты..."
                     Grid.Column="1"
                     FontSize="20"
                     VerticalOptions="Center"
-                    VerticalTextAlignment="Center"/>
+                    VerticalTextAlignment="Center"
+                    TextChanged="EmailShow_TextChanged"/>
             </Grid>
         </Border>
 
@@ -92,6 +95,7 @@
                     VerticalOptions="Center" />
 
                 <Entry
+                    Text="{Binding Password}"
                     x:Name="PasswordShow"
                     Placeholder="Пароль..."
                     Grid.Column="1"
@@ -99,8 +103,7 @@
                     MaxLength="20"
                     IsPassword="True"
                     VerticalOptions="Center"
-                    VerticalTextAlignment="Center"
-                    TextChanged="PasswordShow_TextChanged"/>
+                    VerticalTextAlignment="Center"/>
             </Grid>
         </Border>
 
@@ -128,6 +131,7 @@
         <StackLayout Orientation="Horizontal" Spacing="4" HorizontalOptions="Center" Margin="0,0,0,15">
             <Label Text="У вас ещё нет аккаунта?" TextColor="White" FontSize="16"/>
             <Label Text="Зарегистрируйтесь" 
+                   x:Name="RegisterButton"
                    TextColor="{StaticResource Primary}" 
                    BackgroundColor="Transparent" 
                    FontSize="16">

@@ -3,16 +3,16 @@ using System.Runtime.CompilerServices;
 
 namespace NewsMobileApp.Models;
 
-public record AuthorizeModel : INotifyPropertyChanged
+public class AuthorizeModel : INotifyPropertyChanged
 {
     public event PropertyChangedEventHandler PropertyChanged;
 
     private void NotifyPropertyChanged([CallerMemberName] string propertyName = "") =>
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
-    private string _emailAddress;
+    private string _emailAddress = null!;
 
-    private string _password;
+    private string _password = null!;
 
     public string EmailAddress
     {

@@ -1,26 +1,35 @@
 ﻿using NewsMobileApp.ViewsNative;
 using NewsMobileApp.Models;
+using NewsMobileApp.TempServices;
 
 namespace NewsMobileApp;
 
 public partial class MainPage : ContentPage
 {
     private bool _status = false;
+    private IRequestsService _newsService;
 
     public MainPage()
     {
         InitializeComponent();
     }
 
-    private void OnSigninClicked(object sender, EventArgs e)
+    protected override void OnHandlerChanged()
+    {
+        base.OnHandlerChanged();
+        _newsService = Handler
+          .MauiContext.Services.GetService<IRequestsService>();
+    }
+
+    private async void OnSigninClicked(object sender, EventArgs e)
     {
 #if WINDOWS
         Application.Current.MainPage = new AppShell();
 #endif
 #if ANDROID
-        LoginBottomPage pageSheet = new();
+        LoginBottomPage pageSheet = new(_newsService);
         pageSheet.HasHandle = true;
-        pageSheet.ShowAsync();
+        await pageSheet.ShowAsync();
 #endif
     }
 
@@ -35,6 +44,7 @@ public partial class MainPage : ContentPage
         try
         {
             BlockUIButtons();
+            
             await Task.Delay(3000);
             Application.Current.MainPage = new AppShell();
         }
@@ -47,7 +57,7 @@ public partial class MainPage : ContentPage
     }
 
     private async void Register_Tapped(object sender, TappedEventArgs e) =>
-         await Navigation.PushModalAsync(new RegisterPage());
+         await Navigation.PushModalAsync(new RegisterPage(_newsService));
 
     private void BlockUIButtons()
     {
