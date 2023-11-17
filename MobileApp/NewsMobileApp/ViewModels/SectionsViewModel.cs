@@ -6,6 +6,7 @@ namespace NewsMobileApp.ViewModels;
 
 public class SectionViewModel
 {
+   
     private readonly INewsService _newsService;
     public ObservableCollection<Section> Sections { get; set; } = new();
 
@@ -26,6 +27,7 @@ public class SectionViewModel
             await Shell.Current.DisplayAlert("Alert", ex.Message, "OK");
         }
     }
+    
     /*
     private readonly IRequestsService _newsService;
     public ObservableCollection<Section> Sections { get; set; } = new();

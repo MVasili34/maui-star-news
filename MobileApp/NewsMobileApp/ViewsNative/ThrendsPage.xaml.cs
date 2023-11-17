@@ -11,7 +11,7 @@ public partial class ThrendsPage : ContentPage
     private bool _scrolled = true;
     private bool _searching = false;
     private string _currentSearch = string.Empty;
-    private const int _limit = 20;
+    private const int _limit = 5;
     private int _offset = 0;
 
     public ThrendsPage(ThrendsViewModel viewmodel)
@@ -57,9 +57,9 @@ public partial class ThrendsPage : ContentPage
         LoadProcessSimulation();
         try
         {
-            if (string.IsNullOrEmpty(SearchText.Text) || string.IsNullOrWhiteSpace(SearchText.Text))
+            if (string.IsNullOrWhiteSpace(SearchText.Text))
             {
-                await viewModel.AddArticles(true);
+                await viewModel.AddArticles(true, _limit, 0);
                 _offset = 1;
                 _searching = false;
                 _loaded = true;
@@ -88,7 +88,7 @@ public partial class ThrendsPage : ContentPage
         {
             _loaded = false;
             LoadProcessSimulation();
-            await viewModel.AddArticles(true);
+            await viewModel.AddArticles(true, _limit, 0);
             _offset = 1;
             SearchText.Text = string.Empty;
             _searching = false;
