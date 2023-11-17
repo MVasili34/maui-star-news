@@ -1,5 +1,5 @@
 ﻿@page "/articlepage/{articleid}"
-@inject INewsService newsInject
+@inject IRequestsService requestService
 
 @if(_article is null)
 {
@@ -57,9 +57,14 @@ else
 
     protected async override Task OnParametersSetAsync()
     {
-        await Task.Delay(1500);
-        _article = newsInject.GetThrendArticlesFull().FirstOrDefault(article => article.ArticleId == ArticleId);
-        //_article = null;
+        try
+        {
+            _article = await requestService.GetArticleById(ArticleId);
+        }
+        catch(Exception ex)
+        {
+            await Shell.Current.DisplayAlert("Ошибка!", $"Во время загрузки новости произошла ошибка: {ex.Message}", "OK");   
+        }
     }
 
     private async Task AI_Clicked()

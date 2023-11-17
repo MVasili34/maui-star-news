@@ -7,7 +7,7 @@ namespace NewsMobileApp.ViewsNative;
 public partial class ArticleDetailPage : ContentPage
 {
 	private ArticleDetailViewModel viewModel => BindingContext as ArticleDetailViewModel;
-    private readonly Guid? _articleId = null;
+    private readonly Guid? _articleId;
 	private bool _loaded = false;
 	private bool _pictureChanged = false;
 
@@ -41,18 +41,25 @@ public partial class ArticleDetailPage : ContentPage
 			LoadBlock3, LoadBlock4, LoadBlock5);
 
         parentAnimation.Commit(this, "TransitionAnimation", length: 2000, repeat: () => true);
-		if (_articleId is null)
+		try
 		{
-			await viewModel.InitializeArticle();
-			ComboBox1.SelectedIndex = 0;
+			if (_articleId is null)
+			{
+				await viewModel.InitializeArticle();
+				ComboBox1.SelectedIndex = 0;
+			}
+			else
+			{
+				await viewModel.InitializeArticle(_articleId);
+				ComboBox1.SelectedIndex = viewModel.Article.SectionId - 1;
+			}
+			_loaded = true;
+			LoadingState();
 		}
-		else
+		catch (Exception ex) 
 		{
-			await viewModel.InitializeArticle(_articleId);
-			ComboBox1.SelectedIndex = viewModel.Article.SectionId - 1;
+			await DisplayAlert("Ошибка!", $"Произошла ошибка при попытке загрузки статьи: {ex.Message}", "OK");
 		}
-        _loaded = true;
-		LoadingState();
     }
 
     private async void PickImageButton_Clicked(object sender, EventArgs e)
@@ -97,7 +104,8 @@ public partial class ArticleDetailPage : ContentPage
 			viewModel.Article.SectionId = ((Section)ComboBox1.SelectedItem).SectionId;
 			BlockUI(true);
 			await viewModel.PublishArticle();
-			await Navigation.PopAsync(true);
+            await DisplayAlert("Успех!", "Статья опубликована.", "OK");
+            await Navigation.PopAsync(true);
 		}
 		catch (FileNotFoundException)
 		{
@@ -129,6 +137,7 @@ public partial class ArticleDetailPage : ContentPage
             viewModel.Article.SectionId = ((Section)ComboBox1.SelectedItem).SectionId;
             BlockUI(true);
             await viewModel.ChangeArticle(_pictureChanged);
+			await DisplayAlert("Успех!", "Статья изменена.", "OK");
             await Navigation.PopAsync(true);
         }
         catch (FileNotFoundException)

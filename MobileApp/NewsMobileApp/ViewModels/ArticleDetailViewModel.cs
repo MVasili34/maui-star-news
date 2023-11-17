@@ -14,7 +14,7 @@ public class ArticleDetailViewModel : INotifyPropertyChanged
     private void NotifyPropertyChanged([CallerMemberName] string propertyName = "") =>
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
-    private readonly INewsService _newsService;
+    private readonly IRequestsService _requestService;
     private readonly IImageCloudTool _imageTool;
 
     private ArticleViewModel _article = new();
@@ -31,28 +31,24 @@ public class ArticleDetailViewModel : INotifyPropertyChanged
 
     public ArticleDetailViewModel()
     {
-        _newsService = Application.Current.Handler
-           .MauiContext.Services.GetService<INewsService>();
+        _requestService = Application.Current.Handler
+           .MauiContext.Services.GetService<IRequestsService>();
         _imageTool = Application.Current.Handler
            .MauiContext.Services.GetService<IImageCloudTool>();
     }
 
     public async Task InitializeArticle(Guid? articleId)
     {
-        
-        await Task.Delay(3000);
-
-        foreach (Section section in _newsService.GetCategories())
+        foreach (Section section in await _requestService.GetAllSectionsAsync())
         {
             Sections.Add(section);
         }
-        Article = _newsService.GetThrendArticlesFull().FirstOrDefault(x => x.ArticleId == articleId);
+        Article = await _requestService.GetArticleById(articleId);
     }
 
     public async Task InitializeArticle()
     {
-        await Task.Delay(3000);
-        foreach (Section section in _newsService.GetCategories())
+        foreach (Section section in await _requestService.GetAllSectionsAsync())
         {
             Sections.Add(section);
         }
@@ -61,28 +57,22 @@ public class ArticleDetailViewModel : INotifyPropertyChanged
 
     public async Task PublishArticle()
     {
-        //string urlImage = await _imageTool.UploadImageAsync(Article.Image);
-        string urlImage = Article.Image;
-        if (urlImage is null)
+        Article.Image = await _imageTool.UploadImageAsync(Article.Image) ?? 
             throw new HttpRequestException("Ошибка запроса Imgur!");
 
         Article.PublishTime = DateTime.Now;
-        await Task.Delay(5000);
-        string serialized = JsonConvert.SerializeObject(Article);
-        await Shell.Current.DisplayAlert("Success", $"{serialized}", "OK");
+        if (!await _requestService.PublishArticleAsync(Article))
+            throw new Exception("Произошла неизвестная ошибка сервера!");
     }
 
     public async Task ChangeArticle(bool changesRequired)
     {
         if (changesRequired)
         {
-            //string urlImage = await _imageTool.UploadImageAsync(Article.Image);
-            string urlImage = Article.Image;
-            if (urlImage is null)
+            Article.Image = await _imageTool.UploadImageAsync(Article.Image) ??
                 throw new HttpRequestException("Ошибка запроса Imgur!");
         }
-        await Task.Delay(5000);
-        string serialized = JsonConvert.SerializeObject(Article);
-        await Shell.Current.DisplayAlert("Success", $"{serialized}", "OK");
+        if (!await _requestService.UpdateArticleAsync(Article))
+            throw new Exception("Произошла неизвестная ошибка сервера!");
     }
 }

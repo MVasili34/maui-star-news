@@ -1,12 +1,18 @@
 ﻿using NewsMobileApp.Models;
 using NewsMobileApp.Models.ODataModels;
+using NewsMobileApp.ViewModels;
+using Newtonsoft.Json;
 using System.Net.Http.Json;
+using System.Text;
+using System.Net;
+using ImagesCloudTool;
 
 namespace NewsMobileApp.TempServices;
 
 public class RequestsService : IRequestsService
 {
     private readonly IHttpClientFactory _clientFactory;
+    private readonly IImageCloudTool _cloudTool;
 
     public RequestsService(IHttpClientFactory clientFactory)
     {
@@ -62,5 +68,61 @@ public class RequestsService : IRequestsService
         var articles = await response.Content.ReadFromJsonAsync<ODataModel<Article>>();
 
         return articles.Value;
+    }
+
+    public async Task<ArticleViewModel> GetArticleById(Guid? guid)
+    {
+        HttpClient client = _clientFactory.CreateClient("NewsAPI");
+
+        using HttpRequestMessage request = new(method: HttpMethod.Get, requestUri: $"api/Articles({guid})");
+
+        using HttpResponseMessage response = await client.SendAsync(request);
+
+        var article = await response.Content.ReadFromJsonAsync<ArticleViewModel>();
+
+        return article;
+    }
+
+    public async Task<bool> PublishArticleAsync(ArticleViewModel article)
+    {
+        HttpClient client = _clientFactory.CreateClient("NewsAPI");
+
+        using HttpResponseMessage response = await client.PostAsJsonAsync($"api/Articles", article);
+
+        if (response.StatusCode == HttpStatusCode.Created)
+            return true;
+        if (response.StatusCode == HttpStatusCode.BadRequest)
+            throw new HttpRequestException("При публикации статьи произошла ошибка! - 400 BadRequest");
+        return false;
+    }
+
+    public async Task<bool> UpdateArticleAsync(ArticleViewModel article)
+    {
+        HttpClient client = _clientFactory.CreateClient("NewsAPI");
+
+        using HttpResponseMessage response = await client.PutAsJsonAsync($"api/Articles({article.ArticleId})", article);
+
+        if (response.StatusCode == HttpStatusCode.NoContent)
+            return true;
+        if (response.StatusCode == HttpStatusCode.BadRequest)
+            throw new HttpRequestException("При обновлении статьи произошла ошибка! - 400 BadRequest");
+        if (response.StatusCode == HttpStatusCode.NotFound)
+            throw new HttpRequestException("При обновлении статьи произошла ошибка! - 404 NotFound");
+        return false;
+    }
+
+    public async Task<bool> DeleteArticleAsync(Guid articleId)
+    {
+        HttpClient client = _clientFactory.CreateClient("NewsAPI");
+
+        using HttpResponseMessage response = await client.DeleteAsync($"api/Articles({articleId})");
+
+        if (response.StatusCode == HttpStatusCode.NoContent)
+            return true;
+        if (response.StatusCode == HttpStatusCode.BadRequest)
+            throw new HttpRequestException("При удалении статьи произошла ошибка! - 400 BadRequest");
+        if (response.StatusCode == HttpStatusCode.NotFound)
+            throw new HttpRequestException("При удалении статьи произошла ошибка! - 404 NotFound");
+        return false;
     }
 }

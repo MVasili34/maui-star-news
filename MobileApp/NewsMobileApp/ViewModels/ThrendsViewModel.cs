@@ -6,6 +6,7 @@ namespace NewsMobileApp.ViewModels;
 
 public class ThrendsViewModel
 {
+    /*
     private readonly INewsService _newsService;
 
     public ObservableCollection<Article> Articles { get; set; } = new();
@@ -39,8 +40,8 @@ public class ThrendsViewModel
                 Articles.Add(article);
             }
         }
-    }   
-    /*
+    }
+    */
     private readonly IRequestsService _requestService;
 
     public ObservableCollection<Article> Articles { get; set; } = new();
@@ -68,5 +69,5 @@ public class ThrendsViewModel
                 Articles.Add(article);
             }
         }
-    */
+    }
 }
