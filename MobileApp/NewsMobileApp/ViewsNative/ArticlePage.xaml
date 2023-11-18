@@ -5,6 +5,9 @@
              Title="Статья"
              BackgroundColor="{StaticResource MainBackGroundColor}"
              xmlns:pages="clr-namespace:NewsMobileApp.Views">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="share.png" Clicked="Share_Clicked"  />
+    </ContentPage.ToolbarItems>
     <Shell.TitleView>
         <HorizontalStackLayout>
             <Label Text="Статья" 
@@ -12,7 +15,7 @@
                    FontAttributes="Bold" 
                    Margin="0,14,0,0"   />
             <Button Text="Изменить"
-                    Margin="75,0,0,0"
+                    Margin="32,0,0,0"
                     TextColor="White"
                     BorderColor="Transparent"
                     BackgroundColor="Transparent"

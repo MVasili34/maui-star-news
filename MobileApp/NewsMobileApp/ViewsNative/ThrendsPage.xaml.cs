@@ -11,7 +11,7 @@ public partial class ThrendsPage : ContentPage
     private bool _scrolled = true;
     private bool _searching = false;
     private string _currentSearch = string.Empty;
-    private const int _limit = 5;
+    private const int _limit = 10;
     private int _offset = 0;
 
     public ThrendsPage(ThrendsViewModel viewmodel)
@@ -48,7 +48,7 @@ public partial class ThrendsPage : ContentPage
     {
         if (e.CurrentSelection[0] is not Article article) return;
 
-        await Navigation.PushAsync(new ArticlePage(article.ArticleId));
+        await Navigation.PushAsync(new ArticlePage(article));
     }
 
     private async void SearchText_Completed(object sender, EventArgs e)

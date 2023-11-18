@@ -2,7 +2,7 @@ using NewsMobileApp.Models;
 using NewsMobileApp.TempServices;
 using System.Net.Mail;
 using CryptographyTool;
-using Newtonsoft.Json;
+using NewsMobileApp.ViewModels;
 
 namespace NewsMobileApp.ViewsNative;
 
@@ -31,16 +31,22 @@ public partial class RegisterPage : ContentPage
                 throw new InvalidDataException("Слишком слабый пароль! Критерии:\n1) Не менее 8 симмволов;\n2) Одна прописная буква;" +
                     "\n3) Одна строчная буква;\n4) Одна цифра;\n5) Один специальный символ;\n6) Без пробелов;");
             BlockControls(false);
-            await Task.Delay(3000);
-            string serial = JsonConvert.SerializeObject(viewModel);
-            await DisplayAlert("Success", serial, "OK");
+            UserViewModel result = await _requestsService.RegisterUserAsync(viewModel);
 
-            Preferences.Set("userId", Guid.NewGuid().ToString());
-            Preferences.Set("userName", UserName.Text);
-            Preferences.Set("emailAddress", EmailSend.Text);
+            if (result is null)
+                throw new Exception("Ошибка сервера!");
+            Preferences.Set("userId", result.UserId.ToString());
+            Preferences.Set("userName", result.UserName);
+            Preferences.Set("emailAddress", result.EmailAddress);
+            Preferences.Set("phone", result.Phone);
+            if (result.DateOfBirth is not null)
+            {
+                DateOnly current = result.DateOfBirth.Value;
+                Preferences.Set("dateOfBirth", new DateTime(current.Year, current.Month, current.Day));
+            }
+            Preferences.Set("roleId", result.RoleId);
             Preferences.Set("password", PasswordShow1.Text);
             await Navigation.PopModalAsync();
-            //Application.Current.MainPage = new AppShell();
         }
         catch (FormatException)
         {

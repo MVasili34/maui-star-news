@@ -10,7 +10,7 @@ public partial class AdminPage : ContentPage
     private bool _loaded = false;
     private bool _scrolled = true;
     private string _currentSearch = string.Empty;
-    private const int _limit = 20;
+    private const int _limit = 10;
     private int _offset = 0;
 
     public AdminPage(AdminViewModel viewmodel)
@@ -112,14 +112,4 @@ public partial class AdminPage : ContentPage
         ListView.IsVisible = _loaded;
         LoadBlocks.IsVisible = !_loaded;
     }
-    /*
-private async void ListView_Refreshing(object sender, EventArgs e)
-{
-   listView.IsRefreshing = true;
-
-   await Task.Delay(1500);
-
-   listView.IsRefreshing = false;
-}
-*/
 }

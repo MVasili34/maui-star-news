@@ -48,16 +48,16 @@ public class ImageCloudTool : IImageCloudTool
     {
         byte[] imageData = File.ReadAllBytes(imagePath);
 
-        using (MultipartFormDataContent content = new())
+        using MultipartFormDataContent content = new()
         {
-            content.Add(new ByteArrayContent(imageData), "image", "image.jpg");
+            { new ByteArrayContent(imageData), "image", "image.jpg" }
+        };
 
-            var response = await httpClient.PostAsync(_url, content);
+        var response = await httpClient.PostAsync(_url, content);
 
-            if (response.IsSuccessStatusCode)
-            {   
-                return await response.Content.ReadAsStringAsync();
-            }
+        if (response.IsSuccessStatusCode)
+        {
+            return await response.Content.ReadAsStringAsync();
         }
         return null;
     }

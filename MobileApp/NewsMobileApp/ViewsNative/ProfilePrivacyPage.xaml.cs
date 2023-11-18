@@ -29,7 +29,6 @@ public partial class ProfilePrivacyPage : ContentPage
         Preferences.Set("dateOfBirth", null);
         Preferences.Set("password", null);
         Preferences.Set("roleId", 3);
-        Preferences.Set("registered", null);
         Application.Current.MainPage = new MainPage();
     }
 

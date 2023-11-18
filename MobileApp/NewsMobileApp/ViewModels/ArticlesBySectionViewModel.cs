@@ -6,26 +6,23 @@ namespace NewsMobileApp.ViewModels;
 
 public class ArticlesBySectionViewModel
 {
-    private readonly INewsService _newsService;
-    
+    private readonly IRequestsService _requestService;
+
     public ObservableCollection<Article> Articles { get; set; } = new();
     private readonly int _sectionId = 0;
 
     public ArticlesBySectionViewModel(int sectionId)
     {
-        _newsService = Application.Current.Handler
-           .MauiContext.Services.GetService<INewsService>();
+        _requestService = Application.Current.Handler
+           .MauiContext.Services.GetService<IRequestsService>();
         _sectionId = sectionId;
     }
 
-    public async Task AddArticles(bool clear = false, int limit = 0, int offset = 0)
+    public async Task AddArticles(bool clear = false, int limit = 20, int offset = 0)
     {
         if (clear) Articles.Clear();
 
-        await Task.Delay(3000);
-
-        foreach (var article in _newsService.GetThrendArticlesPreview()
-                                            .Where(a => a.Section.SectionId == _sectionId))
+        foreach (var article in await _requestService.GetArticlesBySectionAsync(_sectionId, offset, limit))
         {
             Articles.Add(article);
         }
@@ -33,12 +30,7 @@ public class ArticlesBySectionViewModel
 
     public async Task SearchArticle(string text, int limit = 20, int offset = 0)
     {
-        await Task.Delay(3000);
-        IEnumerable<Article> found = _newsService.GetThrendArticlesPreview()
-                    .Where(x => x.Title.Contains(text) 
-                    && x.Section.SectionId == _sectionId)
-                    .Skip(limit*offset)
-                    .Take(limit);
+        IEnumerable<Article> found = await _requestService.GetArticlesSectionSearchAsync(text, _sectionId, offset, limit);
         if (found.Any())
         {
             foreach (var article in found)

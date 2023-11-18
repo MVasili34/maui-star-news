@@ -5,12 +5,13 @@ using Sk = LiveChartsCore.SkiaSharpView.Painting;
 using SkiaSharp;
 using System.Collections.ObjectModel;
 using NewsMobileApp.TempServices;
+using NewsMobileApp.Models.ODataModels;
 
 namespace NewsMobileApp.ViewModels;
 
 public class AdminViewModel
 {
-    private readonly INewsService _newsService;
+    private readonly IRequestsService _requestService;
     private static readonly DateTime _startDate = DateTime.Now.AddDays(-6);
     private static readonly DateTime _endDate = DateTime.Now;
     private readonly ObservableCollection<DateTimePoint> _data = new ObservableCollection<DateTimePoint>(Enumerable.Range(0, 
@@ -20,8 +21,8 @@ public class AdminViewModel
 
     public AdminViewModel()
     {
-        _newsService = Application.Current.Handler
-           .MauiContext.Services.GetService<INewsService>();
+        _requestService = Application.Current.Handler
+            .MauiContext.Services.GetService<IRequestsService>();
 
         Series.Add(
             new LineSeries<DateTimePoint>
@@ -39,13 +40,15 @@ public class AdminViewModel
 
     public async Task GetDiagtamData()
     {   
-        var data = new List<DateTimePoint>(Enumerable.Range(0, (int)(_endDate - _startDate).TotalDays + 1)
-                         .Select(x => new DateTimePoint(_startDate.AddDays(x), Random.Shared.Next(2, 10))));
-        await Task.Delay(1500);
-        
-        for(int i = 0; i < data.Count; i++) 
+        List<DiagramData> data = (await _requestService.GetDiagramAsync(_startDate, _endDate)).OrderBy(x => x.PublishTime).ToList();
+        int index = 0;
+        for(int i = 0; i < _data.Count(); i++) 
         {
-            _data[i].Value = data[i].Value;
+            if (index < data.Count && _data[i].DateTime.Date.Equals(data[index].PublishTime.Date))
+            {
+                _data[i].Value = data[index].Total;
+                index++;
+            }
         }
     }
 
@@ -56,16 +59,14 @@ public class AdminViewModel
         if (clear) Users.Clear();
 
         await Task.Delay(1000);
-        foreach (var user in _newsService.GetUsers().Concat(_newsService.GetUsers()))
+        foreach (var user in await _requestService.GetUsersAsync(offset, limit))
         {
             Users.Add(user);
         }
     }
     public async Task SearchUser(string text)
     {
-        await Task.Delay(1000);
-        UserViewModel found = _newsService.GetUsers()
-                                          .FirstOrDefault(x => x.UserName == text);
+        UserViewModel found = await _requestService.GetUserByIdAsync(text);
 
         if (found is not null)
         {

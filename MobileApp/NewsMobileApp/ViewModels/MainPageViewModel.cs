@@ -6,18 +6,17 @@ namespace NewsMobileApp.ViewModels;
 
 public class MainPageViewModel
 {
-    private readonly INewsService _newsService;
+    private readonly IRequestsService _requestService;
 
     public ObservableCollection<Article> NewestArticles { get; set; } = new();
     public ObservableCollection<Article> HystoricalArticles { get; set; } = new();
     public ObservableCollection<Section> Tags { get; set; } = new();
 
-    public MainPageViewModel(INewsService newsService) => _newsService = newsService; 
+    public MainPageViewModel(IRequestsService requestService) => _requestService = requestService; 
 
     public async Task GetNewestArticles()
     {
-        await Task.Delay(3000);
-        foreach (var article in _newsService.GetLatestArticlesPreview())
+        foreach (var article in await _requestService.GetThrendArticlesAsync(0, 5))
         {
             NewestArticles.Add(article);
         }
@@ -25,8 +24,7 @@ public class MainPageViewModel
 
     public async Task GetHystoricalArticles()
     {
-        await Task.Delay(3000);
-        foreach (var article in _newsService.GetThrendArticlesPreview().Where(x=> x.Section.SectionId == 8))
+        foreach (var article in await _requestService.GetArticlesBySectionAsync(2, 0, 5))
         {
             HystoricalArticles.Add(article);
         }
@@ -34,8 +32,7 @@ public class MainPageViewModel
 
     public async Task GetPopularTags()
     {
-        await Task.Delay(3000);
-        foreach (var tag in _newsService.GetCategories())
+        foreach (var tag in await _requestService.GetAllSectionsAsync())
         {
             Tags.Add(tag);
         }

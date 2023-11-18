@@ -59,14 +59,14 @@ public partial class MainEventsPage : ContentPage
     {
         if (e.CurrentSelection[0] is not Article article) return;
 
-        await Navigation.PushAsync(new ArticlePage(article.ArticleId));
+        await Navigation.PushAsync(new ArticlePage(article));
     }
 
     private async void ShowAllThrebds_Tapped(object sender, TappedEventArgs e) => await Shell.Current
         .GoToAsync("//thrend");
 
     private async void ToSection_Tapped(object sender, TappedEventArgs e) => await Navigation
-        .PushAsync(new ArticlesBySectionPage(viewModel.Tags.First(x => x.SectionId == 8)));
+        .PushAsync(new ArticlesBySectionPage(viewModel.Tags.First(x => x.SectionId == 2)));
 
     private void LoadProcessSimulation()
     {
