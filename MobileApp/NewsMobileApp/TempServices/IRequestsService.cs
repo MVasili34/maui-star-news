@@ -20,4 +20,6 @@ public interface IRequestsService
     public Task<IEnumerable<UserViewModel>> GetUsersAsync(int? page, int? pageSize);
     public Task<IEnumerable<DiagramData>> GetDiagramAsync(DateTime start, DateTime end);
     public Task<UserViewModel> GetUserByIdAsync(string id);
+    public Task<bool> ChangeUserPasswordAsync(AuthorizeModel oldPass, AuthorizeModel newPass);
+    public Task<bool> DeleteUserAsync(Guid id);
 }

@@ -9,7 +9,7 @@ namespace NewsMobileApp.ViewsNative;
 public partial class ChangePasswordPage : ContentPage
 {
     private ChangePasswordUserViewModel viewModel => BindingContext as ChangePasswordUserViewModel;
-    private readonly INewsService _newsService;
+    private readonly IRequestsService _requestService;
 
 	public ChangePasswordPage()
 	{
@@ -17,8 +17,8 @@ public partial class ChangePasswordPage : ContentPage
         BindingContext = new ChangePasswordUserViewModel {
             EmailAddress = Preferences.Get("emailAddress", "Error!")
         };
-        _newsService = Application.Current.Handler
-           .MauiContext.Services.GetService<INewsService>();
+        _requestService = Application.Current.Handler
+           .MauiContext.Services.GetService<IRequestsService>();
     }
 
 
@@ -35,14 +35,18 @@ public partial class ChangePasswordPage : ContentPage
             AuthorizeModel signin = (AuthorizeModel)viewModel;
             AuthorizeModel changing = viewModel.GetNewAuthorizeModel();
             Submit.IsEnabled = false;
-            await Task.Delay(3000);
-            string serial1 = JsonConvert.SerializeObject(signin);
-            string serial2 = JsonConvert.SerializeObject(changing);
-            await DisplayAlert("Success!", serial1 + "\n" + serial2, "OK");
-            //Preferences.Set("password", changing.Password);
+
+            if (!await _requestService.ChangeUserPasswordAsync(signin, changing))
+                throw new Exception("Произошла ошибка сервера!");
+            await DisplayAlert("Успех!", "Пароль изменён.", "OK");
+            Preferences.Set("password", changing.Password);
             await Navigation.PopAsync();
         }
-        catch(Exception ex) 
+        catch (HttpRequestException ex)
+        {
+            await DisplayAlert("Ошибка!", ex.Message, "OK");
+        }
+        catch (Exception ex) 
         {
             await DisplayAlert("Ошибка!", ex.Message, "OK");
         }

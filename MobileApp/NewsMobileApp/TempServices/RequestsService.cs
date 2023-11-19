@@ -1,13 +1,9 @@
 ﻿using NewsMobileApp.Models;
 using NewsMobileApp.Models.ODataModels;
 using NewsMobileApp.ViewModels;
-using Newtonsoft.Json;
 using System.Net.Http.Json;
-using System.Text;
 using System.Net;
 using ImagesCloudTool;
-using static System.Net.WebRequestMethods;
-using System;
 
 namespace NewsMobileApp.TempServices;
 
@@ -234,5 +230,42 @@ public class RequestsService : IRequestsService
         using HttpResponseMessage response = await client.SendAsync(request);
 
         return await response.Content.ReadFromJsonAsync<UserViewModel>();
+    }
+
+    public async Task<bool> ChangeUserPasswordAsync(AuthorizeModel oldPass, AuthorizeModel newPass)
+    {
+        HttpClient client = _clientFactory.CreateClient("NewsAPI");
+
+        if (await LoginUserAsync(oldPass) is null) 
+        {
+            throw new UnauthorizedAccessException("При попытке входа произошла непредвиденная ошибка!");
+        }
+
+        using HttpResponseMessage response = await client.PutAsJsonAsync($"api/Users/changepswd", newPass);
+
+        if (response.StatusCode == HttpStatusCode.NoContent)
+            return true;
+        if (response.StatusCode == HttpStatusCode.NotFound)
+            throw new HttpRequestException("Пользователь при обновлении пароля не найден!");
+        if (response.StatusCode == HttpStatusCode.BadRequest)
+            throw new HttpRequestException("При изменении пароля пользователя произошла ошибка! - 400 BadRequest");
+        return false;
+    }
+
+    public async Task<bool> DeleteUserAsync(Guid id)
+    {
+        HttpClient client = _clientFactory.CreateClient("NewsAPI");
+
+        using HttpRequestMessage request = new(method: HttpMethod.Delete, requestUri: $"api/Users/{id}");
+
+        using HttpResponseMessage response = await client.SendAsync(request);
+
+        if (response.StatusCode == HttpStatusCode.NoContent)
+            return true;
+        if (response.StatusCode == HttpStatusCode.NotFound)
+            throw new HttpRequestException("Пользователь для удаления не найден!");
+        if (response.StatusCode == HttpStatusCode.BadRequest)
+            throw new HttpRequestException("При удалении пользователя произошла ошибка! - 400 BadRequest");
+        return false;
     }
 }

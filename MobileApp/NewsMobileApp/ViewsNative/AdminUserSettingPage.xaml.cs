@@ -7,14 +7,14 @@ namespace NewsMobileApp.ViewsNative;
 
 public partial class AdminUserSettingPage : ContentPage
 {
-	private readonly INewsService _newsService;
+	private readonly IRequestsService _requestsService;
     private UserViewModel viewModel => BindingContext as UserViewModel;
 
 	public AdminUserSettingPage(UserViewModel _viewModel)
 	{
 		InitializeComponent();
-        _newsService = Application.Current.Handler
-            .MauiContext.Services.GetService<INewsService>();
+        _requestsService = Application.Current.Handler
+            .MauiContext.Services.GetService<IRequestsService>();
         BindingContext = _viewModel;
     }
 
@@ -42,11 +42,13 @@ public partial class AdminUserSettingPage : ContentPage
         {
             string action = await DisplayActionSheet("Удалить пользователя", "Отмена",
                     "Удалить", "Вы уверены, что хотите удалить пользователя и связанные с ним данные?");
-            if (action != "Удалить")
-                return;
-            await Task.Delay(2000);
-            await DisplayAlert("Удалено", "Пользователь удалён!", "OK");
-            await Navigation.PopAsync();
+            if (action == "Удалить")
+            {
+                if (!await _requestsService.DeleteUserAsync(viewModel.UserId))
+                    throw new Exception("Пользователь не удалён!");
+                await DisplayAlert("Удалено", "Пользователь удалён!", "OK");
+                await Navigation.PopAsync();
+            }
         }
         catch (Exception ex) 
         {

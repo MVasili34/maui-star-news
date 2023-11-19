@@ -41,15 +41,9 @@ public class AdminViewModel
     public async Task GetDiagtamData()
     {   
         List<DiagramData> data = (await _requestService.GetDiagramAsync(_startDate, _endDate)).OrderBy(x => x.PublishTime).ToList();
-        int index = 0;
-        for(int i = 0; i < _data.Count(); i++) 
-        {
-            if (index < data.Count && _data[i].DateTime.Date.Equals(data[index].PublishTime.Date))
-            {
-                _data[i].Value = data[index].Total;
-                index++;
-            }
-        }
+        Parallel.For(0, _data.Count, i => {
+            _data[i].Value += data.Where(d => d.PublishTime.Date.Equals(_data[i].DateTime.Date)).Sum(d => d.Total);
+        });
     }
 
 
@@ -58,7 +52,6 @@ public class AdminViewModel
     {
         if (clear) Users.Clear();
 
-        await Task.Delay(1000);
         foreach (var user in await _requestService.GetUsersAsync(offset, limit))
         {
             Users.Add(user);
