@@ -4,7 +4,7 @@ using NewsMobileApp.TempServices;
 
 namespace NewsMobileApp.ViewsNative;
 
-public partial class ThrendsPage : ContentPage
+public partial class TrendsPage : ContentPage
 {
     private ThrendsViewModel viewModel => BindingContext as ThrendsViewModel;
     private bool _loaded = false;
@@ -14,7 +14,7 @@ public partial class ThrendsPage : ContentPage
     private const int _limit = 10;
     private int _offset = 0;
 
-    public ThrendsPage(ThrendsViewModel viewmodel)
+    public TrendsPage(ThrendsViewModel viewmodel)
 	{
 		InitializeComponent();
         //AdmindButton.IsVisible = false;
@@ -24,6 +24,11 @@ public partial class ThrendsPage : ContentPage
 
     protected async override void OnAppearing()
     {
+        if(Preferences.Get("roleId", 1) != 1)
+        {
+            AdmindButton.IsEnabled = true;
+            AdmindButton.IsVisible = true;
+        }
         base.OnAppearing();
         if (this.AnimationIsRunning("TransitionAnimation"))
             return;

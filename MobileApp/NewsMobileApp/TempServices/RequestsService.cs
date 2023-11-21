@@ -20,6 +20,7 @@ public class RequestsService : IRequestsService
     public async Task<IEnumerable<Section>> GetAllSectionsAsync()
     {
         HttpClient client = _clientFactory.CreateClient("NewsAPI");
+        client.DefaultRequestHeaders.Authorization = new("Bearer", await SecureStorage.GetAsync("ApiKey"));
 
         using HttpRequestMessage request = new(method: HttpMethod.Get, requestUri: "api/sections");
 
@@ -36,6 +37,7 @@ public class RequestsService : IRequestsService
             throw new ArgumentNullException("Недопутстимые номера страниц");
 
         HttpClient client = _clientFactory.CreateClient("NewsAPI");
+        client.DefaultRequestHeaders.Authorization = new("Bearer", await SecureStorage.GetAsync("ApiKey"));
 
         string requestUri = "api/Articles?$select=ArticleId,Title,Subtitle,Image,PublishTime&$expand=Section($select=SectionId,Name)" +
             $"&$orderby=PublishTime%20desc&$skip={page*pageSize}&$top={pageSize}";
@@ -55,6 +57,7 @@ public class RequestsService : IRequestsService
             throw new ArgumentNullException("Недопутстимые номера страниц");
 
         HttpClient client = _clientFactory.CreateClient("NewsAPI");
+        client.DefaultRequestHeaders.Authorization = new("Bearer", await SecureStorage.GetAsync("ApiKey"));
 
         string requestUri = $"api/Articles?$filter=(SectionId eq {sectionId})&$select=ArticleId,Title,Subtitle,Image,PublishTime&$expand=Section($select=SectionId,Name)" +
             $"&$orderby=PublishTime%20desc&$skip={page * pageSize}&$top={pageSize}";
@@ -74,6 +77,7 @@ public class RequestsService : IRequestsService
             throw new ArgumentNullException("Недопутстимые номера страниц");
 
         HttpClient client = _clientFactory.CreateClient("NewsAPI");
+        client.DefaultRequestHeaders.Authorization = new("Bearer", await SecureStorage.GetAsync("ApiKey"));
 
         string requestUri = $"api/Articles?$filter=contains(Title,%27{searchText}%27)&$select=ArticleId,Title,Subtitle,Image,PublishTime&$expand=Section($select=SectionId,Name)" +
             $"&$orderby=PublishTime%20desc&$skip={page * pageSize}&$top={pageSize}";
@@ -93,6 +97,7 @@ public class RequestsService : IRequestsService
             throw new ArgumentNullException("Недопутстимые номера страниц");
 
         HttpClient client = _clientFactory.CreateClient("NewsAPI");
+        client.DefaultRequestHeaders.Authorization = new("Bearer", await SecureStorage.GetAsync("ApiKey"));
 
         string requestUri = $"api/Articles?$filter=contains(Title,%27{searchText}%27)and(SectionId eq {sectionId})&$select=ArticleId,Title,Subtitle,Image,PublishTime&$expand=Section($select=SectionId,Name)" +
             $"&$orderby=PublishTime%20desc&$skip={page * pageSize}&$top={pageSize}";
@@ -109,6 +114,7 @@ public class RequestsService : IRequestsService
     public async Task<ArticleViewModel> GetArticleById(Guid? guid)
     {
         HttpClient client = _clientFactory.CreateClient("NewsAPI");
+        client.DefaultRequestHeaders.Authorization = new("Bearer", await SecureStorage.GetAsync("ApiKey"));
 
         using HttpRequestMessage request = new(method: HttpMethod.Get, requestUri: $"api/Articles({guid})");
 
@@ -122,6 +128,7 @@ public class RequestsService : IRequestsService
     public async Task<bool> PublishArticleAsync(ArticleViewModel article)
     {
         HttpClient client = _clientFactory.CreateClient("NewsAPI");
+        client.DefaultRequestHeaders.Authorization = new("Bearer", await SecureStorage.GetAsync("ApiKey"));
 
         using HttpResponseMessage response = await client.PostAsJsonAsync($"api/Articles", article);
 
@@ -135,6 +142,7 @@ public class RequestsService : IRequestsService
     public async Task<bool> UpdateArticleAsync(ArticleViewModel article)
     {
         HttpClient client = _clientFactory.CreateClient("NewsAPI");
+        client.DefaultRequestHeaders.Authorization = new("Bearer", await SecureStorage.GetAsync("ApiKey"));
 
         using HttpResponseMessage response = await client.PutAsJsonAsync($"api/Articles({article.ArticleId})", article);
 
@@ -150,6 +158,7 @@ public class RequestsService : IRequestsService
     public async Task<bool> DeleteArticleAsync(Guid articleId)
     {
         HttpClient client = _clientFactory.CreateClient("NewsAPI");
+        client.DefaultRequestHeaders.Authorization = new("Bearer", await SecureStorage.GetAsync("ApiKey"));
 
         using HttpResponseMessage response = await client.DeleteAsync($"api/Articles({articleId})");
 
@@ -166,7 +175,7 @@ public class RequestsService : IRequestsService
     {
         HttpClient client = _clientFactory.CreateClient("NewsAPI");
 
-        using HttpResponseMessage response = await client.PostAsJsonAsync("api/Users/register", model);
+        using HttpResponseMessage response = await client.PostAsJsonAsync("api/Auth/register", model);
 
         if (response.StatusCode == HttpStatusCode.Created)
             return await response.Content.ReadFromJsonAsync<UserViewModel>();
@@ -179,10 +188,14 @@ public class RequestsService : IRequestsService
     {
         HttpClient client = _clientFactory.CreateClient("NewsAPI");
 
-        using HttpResponseMessage response = await client.PostAsJsonAsync("api/Users/login", model);
+        using HttpResponseMessage response = await client.PostAsJsonAsync("api/Auth/login", model);
 
         if (response.IsSuccessStatusCode)
-            return await response.Content.ReadFromJsonAsync<UserViewModel>();
+        {
+            UserViewModel user = await response.Content.ReadFromJsonAsync<UserViewModel>();
+            await SecureStorage.SetAsync("ApiKey", user.PasswordHash);
+            return user;
+        }
         if (response.StatusCode == HttpStatusCode.Unauthorized)
             throw new HttpRequestException("Неверный логин или пароль!");
         if (response.StatusCode == HttpStatusCode.BadRequest)
@@ -196,6 +209,7 @@ public class RequestsService : IRequestsService
             throw new ArgumentNullException("Недопутстимые номера страниц");
 
         HttpClient client = _clientFactory.CreateClient("NewsAPI");
+        client.DefaultRequestHeaders.Authorization = new("Bearer", await SecureStorage.GetAsync("ApiKey"));
 
         string requestUri = $"api/Users?offset={page}&limit={pageSize}";
 
@@ -209,6 +223,7 @@ public class RequestsService : IRequestsService
     public async Task<IEnumerable<DiagramData>> GetDiagramAsync(DateTime start, DateTime end)
     {
         HttpClient client = _clientFactory.CreateClient("NewsAPI");
+        client.DefaultRequestHeaders.Authorization = new("Bearer", await SecureStorage.GetAsync("ApiKey"));
 
         string requestUri = $"api/Articles?$filter=(PublishTime ge {start:yyyy-MM-ddTHH:mm:ssZ}) and (PublishTime le {end:yyyy-MM-ddTHH:mm:ssZ})" +
             $"&$apply=groupby((PublishTime),aggregate(ArticleId with countdistinct as total))";
@@ -224,6 +239,7 @@ public class RequestsService : IRequestsService
     public async Task<UserViewModel> GetUserByIdAsync(string id)
     {
         HttpClient client = _clientFactory.CreateClient("NewsAPI");
+        client.DefaultRequestHeaders.Authorization = new("Bearer", await SecureStorage.GetAsync("ApiKey"));
 
         using HttpRequestMessage request = new(method: HttpMethod.Get, requestUri: $"api/Users/{id}");
 
@@ -235,6 +251,7 @@ public class RequestsService : IRequestsService
     public async Task<bool> ChangeUserPasswordAsync(AuthorizeModel oldPass, AuthorizeModel newPass)
     {
         HttpClient client = _clientFactory.CreateClient("NewsAPI");
+        client.DefaultRequestHeaders.Authorization = new("Bearer", await SecureStorage.GetAsync("ApiKey"));
 
         if (await LoginUserAsync(oldPass) is null) 
         {
@@ -255,6 +272,7 @@ public class RequestsService : IRequestsService
     public async Task<bool> DeleteUserAsync(Guid id)
     {
         HttpClient client = _clientFactory.CreateClient("NewsAPI");
+        client.DefaultRequestHeaders.Authorization = new("Bearer", await SecureStorage.GetAsync("ApiKey"));
 
         using HttpRequestMessage request = new(method: HttpMethod.Delete, requestUri: $"api/Users/{id}");
 

@@ -17,6 +17,18 @@ public partial class ArticlePage : ContentPage
             .Services.GetService<IRequestsService>();
     }
 
+    protected override void OnAppearing()
+    {
+        if (Preferences.Get("roleId", 1) != 1)
+        {
+            EditButton.IsEnabled = true;
+            EditButton.IsVisible = true;
+            DeleteButton.IsEnabled = true;
+            DeleteButton.IsVisible = true;
+        }
+        base.OnAppearing();
+    }
+
     private async void DeleteButton_Clicked(object sender, EventArgs e)
     {
         try

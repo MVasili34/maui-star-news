@@ -2,7 +2,6 @@ using NewsMobileApp.TempServices;
 using NewsMobileApp.ViewModels;
 using CryptographyTool;
 using NewsMobileApp.Models;
-using Newtonsoft.Json;
 
 namespace NewsMobileApp.ViewsNative;
 

@@ -15,6 +15,8 @@
                    FontAttributes="Bold" 
                    Margin="0,14,0,0"   />
             <Button Text="Изменить"
+                    IsEnabled="false"
+                    IsVisible="false"
                     Margin="32,0,0,0"
                     TextColor="White"
                     BorderColor="Transparent"
@@ -27,6 +29,8 @@
                     Clicked="EditButton_Clicked"/>
             <Button Clicked="DeleteButton_Clicked"
                     Text="Удалить"
+                    IsEnabled="false"
+                    IsVisible="false"
                     Margin="-15,0,0,0"
                     TextColor="White"
                     BorderColor="Transparent"

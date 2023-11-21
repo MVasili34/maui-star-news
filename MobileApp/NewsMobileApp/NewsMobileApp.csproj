@@ -81,6 +81,9 @@
       <Compile Update="ViewsNative\ArticleDetailPage.xaml.cs">
         <DependentUpon>ArticleDetailPage.xaml</DependentUpon>
       </Compile>
+      <Compile Update="ViewsNative\TrendsPage.xaml.cs">
+        <DependentUpon>TrendsPage.xaml</DependentUpon>
+      </Compile>
     </ItemGroup>
 
     <ItemGroup>
@@ -147,7 +150,7 @@
       <MauiXaml Update="ViewsNative\TermsOfUseAgreePage.xaml">
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
-      <MauiXaml Update="ViewsNative\ThrendsPage.xaml">
+      <MauiXaml Update="ViewsNative\TrendsPage.xaml">
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
     </ItemGroup>

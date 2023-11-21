@@ -1,5 +1,8 @@
 using NewsMobileApp.Models;
 using NewsMobileApp.TempServices;
+using System.Net.Mail;
+using CryptographyTool;
+using NewsMobileApp.ViewModels;
 
 namespace NewsMobileApp.ViewsNative;
 
@@ -22,9 +25,8 @@ public partial class LoginBottomPage
 
     private async void Login_Clicked(object sender, EventArgs e)
     {
-        await DismissAsync();
-        Application.Current.MainPage = new AppShell();
-        /*
+        //await DismissAsync();
+        //Application.Current.MainPage = new AppShell();
         try
         {
             MailAddress mailAddress = new(viewModel.EmailAddress);
@@ -32,9 +34,19 @@ public partial class LoginBottomPage
                 throw new InvalidDataException("Слишком слабый пароль! Критерии:\n1) Не менее 8 симмволов;\n2) Одна прописная буква;" +
                     "\n3) Одна строчная буква;\n4) Одна цифра;\n5) Один специальный символ;\n6) Без пробелов;");
             BlockControls(false);
-            await Task.Delay(3000);
-            string serial = JsonConvert.SerializeObject(viewModel);
-            await Application.Current.MainPage.DisplayAlert("Success", serial, "OK");
+            UserViewModel model = await _requestService.LoginUserAsync(viewModel);
+            if (model is null)
+                throw new Exception("Произошла ошибка сервера!");
+            Preferences.Set("userId", model.UserId.ToString());
+            Preferences.Set("userName", model.UserName);
+            Preferences.Set("emailAddress", model.EmailAddress);
+            Preferences.Set("phone", model.Phone);
+            if (model.DateOfBirth.HasValue)
+                Preferences.Set("dateOfBirth", model.DateOfBirth.Value.ToDateTime(new(0,0,0)));
+            else
+                Preferences.Set("dateOfBirth", null);
+            Preferences.Set("password", viewModel.Password);
+            Preferences.Set("roleId", model.RoleId);
             Application.Current.MainPage = new AppShell();
             await DismissAsync();
         }
@@ -51,7 +63,6 @@ public partial class LoginBottomPage
             await Application.Current.MainPage.DisplayAlert("Ошибка!", ex.Message, "OK");
         }
         BlockControls(true);
-        */
     }
 
     private async void RegisterClicked_Tapped(object sender, TappedEventArgs e)

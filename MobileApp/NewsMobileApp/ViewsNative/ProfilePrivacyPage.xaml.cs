@@ -11,8 +11,7 @@ public partial class ProfilePrivacyPage : ContentPage
         UserName.Text = Preferences.Get("userName", "Error!");
         UserEmail.Text = Preferences.Get("emailAddress", "Пожалуйста, войдите заново!");
 
-      //if (Preferences.Get("roleId", 1) == 3)
-        if (Preferences.Get("roleId", 3) == 3)
+        if (Preferences.Get("roleId", 1) == 3)
         {
             AdminSeparator.IsVisible = true;
             AdminPanel.IsVisible = true;
@@ -29,7 +28,8 @@ public partial class ProfilePrivacyPage : ContentPage
         Preferences.Set("dateOfBirth", null);
         Preferences.Set("password", null);
         Preferences.Set("roleId", 3);
-        Application.Current.MainPage = new MainPage();
+        Application.Current.MainPage = new MainPage(Handler
+          .MauiContext.Services);
     }
 
     private async void Privacy_Clicked(object sender, EventArgs e) =>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="NewsMobileApp.ViewsNative.ThrendsPage"
+             x:Class="NewsMobileApp.ViewsNative.TrendsPage"
              xmlns:models="clr-namespace:NewsMobileApp.Models"
              Title="В тренде"
              Shell.BackgroundColor="{StaticResource MainNavigationColor}"
@@ -13,6 +13,8 @@
                    FontAttributes="Bold" 
                    Margin="0,14,0,0"   />
             <Button Text="Добавить"
+                    IsVisible="false"
+                    IsEnabled="false"
                     Clicked="AdmindButton_Clicked"
                     Margin="180,0,0,0"
                     TextColor="White"

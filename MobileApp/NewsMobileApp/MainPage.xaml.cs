@@ -1,4 +1,5 @@
 ﻿using NewsMobileApp.ViewsNative;
+using NewsMobileApp.ViewModels;
 using NewsMobileApp.Models;
 using NewsMobileApp.TempServices;
 
@@ -7,19 +8,15 @@ namespace NewsMobileApp;
 public partial class MainPage : ContentPage
 {
     private bool _status = false;
-    private IRequestsService _newsService;
+    private IRequestsService _requestService;
 
-    public MainPage()
+    public MainPage(IServiceProvider service)
     {
         InitializeComponent();
+        _requestService = service.GetService<IRequestsService>();
     }
 
-    protected override void OnHandlerChanged()
-    {
-        base.OnHandlerChanged();
-        _newsService = Handler
-          .MauiContext.Services.GetService<IRequestsService>();
-    }
+
 
     private async void OnSigninClicked(object sender, EventArgs e)
     {
@@ -27,7 +24,7 @@ public partial class MainPage : ContentPage
         Application.Current.MainPage = new AppShell();
 #endif
 #if ANDROID
-        LoginBottomPage pageSheet = new(_newsService);
+        LoginBottomPage pageSheet = new(_requestService);
         pageSheet.HasHandle = true;
         await pageSheet.ShowAsync();
 #endif
@@ -43,9 +40,26 @@ public partial class MainPage : ContentPage
         }
         try
         {
-            BlockUIButtons();
+            AuthorizeModel authmodel = new()
+            {
+                EmailAddress = Preferences.Get("emailAddress", string.Empty),
+                Password = Preferences.Get("password", string.Empty)
+            };
             
-            await Task.Delay(3000);
+            UserViewModel model = await _requestService.LoginUserAsync(authmodel);
+            
+            if (model is null)
+                throw new Exception("Произошла ошибка сервера!");
+            Preferences.Set("userId", model.UserId.ToString());
+            Preferences.Set("userName", model.UserName);
+            Preferences.Set("emailAddress", model.EmailAddress);
+            Preferences.Set("phone", model.Phone);
+            if (model.DateOfBirth.HasValue)
+                Preferences.Set("dateOfBirth", model.DateOfBirth.Value.ToDateTime(new(0, 0, 0)));
+            else
+                Preferences.Set("dateOfBirth", null);
+            Preferences.Set("password", authmodel.Password);
+            Preferences.Set("roleId", model.RoleId);
             Application.Current.MainPage = new AppShell();
         }
         catch (Exception ex) 
@@ -53,15 +67,8 @@ public partial class MainPage : ContentPage
             await DisplayAlert("Ошибка!", ex.Message, "OK");
         }
         _status = true;
-        BlockUIButtons();
     }
 
     private async void Register_Tapped(object sender, TappedEventArgs e) =>
-         await Navigation.PushModalAsync(new RegisterPage(_newsService));
-
-    private void BlockUIButtons()
-    {
-        LoginBtn.IsEnabled = _status;
-        RegisterButton.IsEnabled = _status;
-    }
+         await Navigation.PushModalAsync(new RegisterPage(_requestService));
 }

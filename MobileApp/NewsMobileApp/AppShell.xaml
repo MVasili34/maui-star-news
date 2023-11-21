@@ -10,7 +10,7 @@
             <ShellContent ContentTemplate="{DataTemplate views:MainEventsPage}" Route="home" />
         </Tab>
         <Tab x:Name="ThrendsTab" Icon="fire.png" Title="Тренд">
-            <ShellContent ContentTemplate="{DataTemplate views:ThrendsPage}" Route="thrend" />
+            <ShellContent ContentTemplate="{DataTemplate views:TrendsPage}" Route="thrend" />
         </Tab>
         <Tab x:Name="SectionsTab" Icon="categories.png" Title="Секции">
             <ShellContent ContentTemplate="{DataTemplate views:SectionsPage}" Route="sections" />

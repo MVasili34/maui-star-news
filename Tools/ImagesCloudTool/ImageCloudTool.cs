@@ -18,21 +18,18 @@ public class ImageCloudTool : IImageCloudTool
             {
                 throw new FileNotFoundException();
             }
-            using (HttpClient httpClient = new())
+            using HttpClient httpClient = new();
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Client-ID", _clientId);
+
+            string? imageUrl = await UploadImgurAsync(httpClient, filePath);
+
+            if (!string.IsNullOrEmpty(imageUrl))
             {
-                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Client-ID", _clientId);
-                //httpClient.DefaultRequestHeaders.Add("Authorization", $"Client-ID {_clientId}");
-
-                string? imageUrl = await UploadImgurAsync(httpClient, filePath);
-
-                if (!string.IsNullOrEmpty(imageUrl))
-                {
-                    dynamic? response = JsonConvert.DeserializeObject<dynamic>(imageUrl);
-                    string url = response!.data.link;
-                    return url;
-                }
-                return null;
+                dynamic? response = JsonConvert.DeserializeObject<dynamic>(imageUrl);
+                string url = response!.data.link;
+                return url;
             }
+            return null;
         }
         catch (FileNotFoundException)
         {

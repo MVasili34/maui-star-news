@@ -41,7 +41,7 @@ namespace NewsMobileApp
             builder.Services.AddScoped<IImageCloudTool, ImageCloudTool>(_ =>
                 new ImageCloudTool("fc0f801a94e39de"));
             builder.Services.AddScoped<SectionsPage>();
-            builder.Services.AddScoped<ThrendsPage>();
+            builder.Services.AddScoped<TrendsPage>();
             builder.Services.AddScoped<ThrendsViewModel>();
             builder.Services.AddScoped<SectionViewModel>();
             builder.Services.AddScoped<ArticlesBySectionPage>();

@@ -1,6 +1,7 @@
 using NewsMobileApp.TempServices;
 using NewsMobileApp.ViewModels;
 using Newtonsoft.Json;
+using System.Net.Http.Headers;
 using System.Text.RegularExpressions;
 
 namespace NewsMobileApp.ViewsNative;
