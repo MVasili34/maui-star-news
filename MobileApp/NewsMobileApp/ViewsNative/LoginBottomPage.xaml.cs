@@ -1,9 +1,5 @@
-using System.Net.Mail;
-using CryptographyTool;
-using Microsoft.Win32;
 using NewsMobileApp.Models;
 using NewsMobileApp.TempServices;
-using Newtonsoft.Json;
 
 namespace NewsMobileApp.ViewsNative;
 

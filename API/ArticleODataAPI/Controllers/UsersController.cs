@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Services;
 using EntityModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ArticleODataAPI.Controllers;
 
@@ -9,11 +10,17 @@ namespace ArticleODataAPI.Controllers;
 public class UsersController : ControllerBase
 {
     private readonly IAutorizeService _autorizeService;
+    private readonly IConfiguration _configuration;
 
-    public UsersController(IAutorizeService autorizeService) => 
+    public UsersController(IAutorizeService autorizeService, 
+                           IConfiguration configuration)
+    {
         _autorizeService = autorizeService;
+        _configuration = configuration;
+    }
 
     [HttpGet]
+    [Authorize(Roles="Admin")]
     [ProducesResponseType(200, Type = typeof(IEnumerable<User>))]
     [ProducesResponseType(400)]
     public async Task<IActionResult> GetUsers([FromQuery] int? offset, [FromQuery] int? limit)
@@ -29,6 +36,7 @@ public class UsersController : ControllerBase
     }
 
     [HttpGet("{id:guid}", Name = nameof(GetUser))]
+    [Authorize(Roles = "Admin")]
     [ProducesResponseType(200, Type = typeof(User))]
     [ProducesResponseType(404)]
     public async Task<IActionResult> GetUser(Guid id)
@@ -41,55 +49,18 @@ public class UsersController : ControllerBase
         return Ok(user);
     }
 
-    [HttpPost("register")]
-    [ProducesResponseType(201, Type = typeof(RegisterModel))]
-    [ProducesResponseType(400)]
-    public async Task<IActionResult> RegisterUser([FromBody] RegisterModel user)
-    {
-        if (user is null)
-        {
-            return BadRequest();
-        }
-
-        User? registered = await _autorizeService.RegisterUserAsync(user);
-        if (registered is null)
-        {
-            return BadRequest("Пользователь с таким электронным адресом уже существует!");
-        }
-        return CreatedAtRoute(routeName: nameof(GetUser),
-                              routeValues: new { id = registered.UserId },
-                              value: registered);
-    }
-
-    [HttpPost("login")]
-    [ProducesResponseType(200)]
-    [ProducesResponseType(400)]
-    [ProducesResponseType(401)]
-    public async Task<IActionResult> LoginUser([FromBody] AuthorizeModel model)
-    {
-        if (model is null)
-        {
-            return BadRequest();
-        }
-        User? authorized = await _autorizeService.AutorizeUserAsync(model);
-        if (authorized is not null) 
-        {
-            return Ok(authorized);
-        }
-        return Unauthorized();
-    }
-
     [HttpPut("changepswd")]
+    [Authorize(Roles = "Admin,User,Writer")]
     [ProducesResponseType(204)]
     [ProducesResponseType(400)]
     [ProducesResponseType(404)]
     public async Task<IActionResult> UpdatePassword([FromBody] AuthorizeModel model)
     {
-        if(model is null)
+        if (model is null)
         {
             return BadRequest();
         }
-        if(await _autorizeService.ChangePasswordAsync(model) is null)
+        if (await _autorizeService.ChangePasswordAsync(model) is null)
         {
             return NotFound();
         }
@@ -97,6 +68,7 @@ public class UsersController : ControllerBase
     }
 
     [HttpPut("updadm/{id:guid}")]
+    [Authorize(Roles = "Admin")]
     [ProducesResponseType(204)]
     [ProducesResponseType(400)]
     [ProducesResponseType(404)]
@@ -121,6 +93,7 @@ public class UsersController : ControllerBase
     }
 
     [HttpPut("{id:guid}")]
+    [Authorize(Roles = "Admin,User,Writer")]
     [ProducesResponseType(204)]
     [ProducesResponseType(400)]
     [ProducesResponseType(404)]
@@ -145,6 +118,7 @@ public class UsersController : ControllerBase
     }
 
     [HttpDelete("{id:guid}")]
+    [Authorize(Roles = "Admin")]
     [ProducesResponseType(204)]
     [ProducesResponseType(400)]
     [ProducesResponseType(404)]
@@ -164,4 +138,6 @@ public class UsersController : ControllerBase
 
         return BadRequest();
     }
+
+
 }

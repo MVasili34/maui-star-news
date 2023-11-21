@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
 using EntityModels;
 using Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ArticleODataAPI.Controllers;
 
@@ -13,9 +14,11 @@ public class SectionsController : ODataController
     public SectionsController(IArticleService articleService) => _articleService = articleService;
 
     [EnableQuery]
+    [Authorize(Roles = "Admin,User,Writer")]
     public async Task<IEnumerable<Section>> GetSections() => await _articleService.RetrieveSectionsAsync();
 
     [HttpPost]
+    [Authorize(Roles = "Admin")]
     [ProducesResponseType(201,Type = typeof(Section))]
     [ProducesResponseType(400)]
     public async Task<IActionResult> PostSection([FromBody] Section section)
@@ -34,6 +37,7 @@ public class SectionsController : ODataController
     }
 
     [HttpPut]
+    [Authorize(Roles = "Admin")]
     [ProducesResponseType(204)]
     [ProducesResponseType(400)]
     [ProducesResponseType(404)]
@@ -54,6 +58,7 @@ public class SectionsController : ODataController
     }
 
     [HttpDelete]
+    [Authorize(Roles = "Admin")]
     [ProducesResponseType(204)]
     [ProducesResponseType(400)]
     [ProducesResponseType(404)]

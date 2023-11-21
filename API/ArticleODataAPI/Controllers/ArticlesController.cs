@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
 using EntityModels;
 using Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ArticleODataAPI.Controllers;
 
@@ -13,9 +14,11 @@ public class ArticlesController : ODataController
     public ArticlesController(IArticleService articleService) => _articleService = articleService;
 
     [EnableQuery]
+    [Authorize(Roles = "Admin,User,Writer")]
     public async Task<IEnumerable<Article>> GetArticles() => await _articleService.RetrieveArticlesAsync();
 
     [EnableQuery]
+    [Authorize(Roles = "Admin,User,Writer")]
     [ProducesResponseType(200,Type = typeof(Article))]
     [ProducesResponseType(404)]
     public async Task<IActionResult> GetArticle(Guid key)
@@ -29,6 +32,7 @@ public class ArticlesController : ODataController
     }
 
     [HttpPost]
+    [Authorize(Roles = "Admin,Writer")]
     [ProducesResponseType(201, Type = typeof(Article))]
     [ProducesResponseType(400)]
     public async Task<IActionResult> PostArticle([FromBody] Article article)
@@ -46,6 +50,7 @@ public class ArticlesController : ODataController
     }
 
     [HttpPut]
+    [Authorize(Roles = "Admin,Writer")]
     [ProducesResponseType(204)]
     [ProducesResponseType(404)]
     [ProducesResponseType(400)]
@@ -67,6 +72,7 @@ public class ArticlesController : ODataController
     }
 
     [HttpDelete]
+    [Authorize(Roles = "Admin,Writer")]
     [ProducesResponseType(204)]
     [ProducesResponseType(404)]
     [ProducesResponseType(400)]
