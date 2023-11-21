@@ -10,16 +10,11 @@ public class SectionsController : ODataController
 {
     private readonly IArticleService _articleService;
 
-    public SectionsController(IArticleService articleService)
-    {
-        _articleService = articleService;
-    }
+    public SectionsController(IArticleService articleService) => _articleService = articleService;
 
     [EnableQuery]
     public async Task<IEnumerable<Section>> GetSections() => await _articleService.RetrieveSectionsAsync();
 
-    //POST: api/Sections
-    //BODY: Section (JSON)
     [HttpPost]
     [ProducesResponseType(201,Type = typeof(Section))]
     [ProducesResponseType(400)]
@@ -38,8 +33,6 @@ public class SectionsController : ODataController
         return Created(addedSection);
     }
 
-    //PUT: api/Sections/[id]
-    //BODY: Section (JSON)
     [HttpPut]
     [ProducesResponseType(204)]
     [ProducesResponseType(400)]
@@ -60,7 +53,6 @@ public class SectionsController : ODataController
         return NoContent();
     }
 
-    //DELETE: api/Sections/[key]
     [HttpDelete]
     [ProducesResponseType(204)]
     [ProducesResponseType(400)]

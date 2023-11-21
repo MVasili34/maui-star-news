@@ -10,10 +10,7 @@ public class ArticlesController : ODataController
 {
     private readonly IArticleService _articleService;
 
-    public ArticlesController(IArticleService articleService)
-    {
-        _articleService = articleService;
-    }
+    public ArticlesController(IArticleService articleService) => _articleService = articleService;
 
     [EnableQuery]
     public async Task<IEnumerable<Article>> GetArticles() => await _articleService.RetrieveArticlesAsync();
@@ -31,8 +28,6 @@ public class ArticlesController : ODataController
         return Ok(article);
     }
 
-    //POST: api/Articles
-    //BODY: Client (JSON)
     [HttpPost]
     [ProducesResponseType(201, Type = typeof(Article))]
     [ProducesResponseType(400)]
@@ -50,8 +45,6 @@ public class ArticlesController : ODataController
         return Created(addedArticle);
     }
 
-    //PUT: api/Articles/[id]
-    //BODY: Article (JSON)
     [HttpPut]
     [ProducesResponseType(204)]
     [ProducesResponseType(404)]
@@ -73,7 +66,6 @@ public class ArticlesController : ODataController
         return NoContent();
     }
 
-    //DELETE: api/Articles/[key]
     [HttpDelete]
     [ProducesResponseType(204)]
     [ProducesResponseType(404)]
@@ -92,6 +84,5 @@ public class ArticlesController : ODataController
             return NoContent();
         }
         return BadRequest($"При удалении статьи {key} произошла ошибка");
-
     }
 }

@@ -10,19 +10,24 @@ public class UsersController : ControllerBase
 {
     private readonly IAutorizeService _autorizeService;
 
-    public UsersController(IAutorizeService autorizeService)
-    {
+    public UsersController(IAutorizeService autorizeService) => 
         _autorizeService = autorizeService;
+
+    [HttpGet]
+    [ProducesResponseType(200, Type = typeof(IEnumerable<User>))]
+    [ProducesResponseType(400)]
+    public async Task<IActionResult> GetUsers([FromQuery] int? offset, [FromQuery] int? limit)
+    {
+        try
+        {
+            return Ok(await _autorizeService.RetrieveUsersAsync(offset, limit));
+        }
+        catch (Exception ex) 
+        {
+            return BadRequest(ex.Message);
+        }
     }
 
-    //GET: api/User
-    //QUERY: offset (INT)
-    //QUERY: limit (INT)
-    [HttpGet]
-    public async Task<IEnumerable<User>> GetUsers([FromQuery] int? offset, [FromQuery] int? limit) => 
-        await _autorizeService.RetrieveUsersAsync(offset, limit);
-
-    //GET: api/User/[id]
     [HttpGet("{id:guid}", Name = nameof(GetUser))]
     [ProducesResponseType(200, Type = typeof(User))]
     [ProducesResponseType(404)]
@@ -36,8 +41,6 @@ public class UsersController : ControllerBase
         return Ok(user);
     }
 
-    //POST: api/User/register
-    //BODY: RegisterModel (JSON)
     [HttpPost("register")]
     [ProducesResponseType(201, Type = typeof(RegisterModel))]
     [ProducesResponseType(400)]
@@ -58,8 +61,6 @@ public class UsersController : ControllerBase
                               value: registered);
     }
 
-    //POST: api/User/login/
-    //BODY: AuthorizeModel (JSON)
     [HttpPost("login")]
     [ProducesResponseType(200)]
     [ProducesResponseType(400)]
@@ -78,8 +79,6 @@ public class UsersController : ControllerBase
         return Unauthorized();
     }
 
-    //PUT: api/User/changepswd/
-    //BODY: AuthorizeModel (JSON)
     [HttpPut("changepswd")]
     [ProducesResponseType(204)]
     [ProducesResponseType(400)]
@@ -97,8 +96,6 @@ public class UsersController : ControllerBase
         return NoContent();
     }
 
-    //PUT: api/User/[id]
-    //BODY: User (JSON)
     [HttpPut("updadm/{id:guid}")]
     [ProducesResponseType(204)]
     [ProducesResponseType(400)]
@@ -123,8 +120,6 @@ public class UsersController : ControllerBase
         return NoContent();
     }
 
-    //PUT: api/User/[id]
-    //BODY: User (JSON)
     [HttpPut("{id:guid}")]
     [ProducesResponseType(204)]
     [ProducesResponseType(400)]
@@ -149,7 +144,6 @@ public class UsersController : ControllerBase
         return NoContent();
     }
 
-    //DELETE: api/User/[id]
     [HttpDelete("{id:guid}")]
     [ProducesResponseType(204)]
     [ProducesResponseType(400)]

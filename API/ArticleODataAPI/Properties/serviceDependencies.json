@@ -1,7 +1,3 @@
 {
-  "dependencies": {
-    "apis1": {
-      "type": "apis"
-    }
-  }
+  "dependencies": {}
 }
