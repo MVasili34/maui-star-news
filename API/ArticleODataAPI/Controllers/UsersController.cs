@@ -9,15 +9,9 @@ namespace ArticleODataAPI.Controllers;
 [ApiController]
 public class UsersController : ControllerBase
 {
-    private readonly IAutorizeService _autorizeService;
-    private readonly IConfiguration _configuration;
+    private readonly IAuthUsersService _usersService;
 
-    public UsersController(IAutorizeService autorizeService, 
-                           IConfiguration configuration)
-    {
-        _autorizeService = autorizeService;
-        _configuration = configuration;
-    }
+    public UsersController(IAuthUsersService usersService) => _usersService = usersService;
 
     [HttpGet]
     [Authorize(Roles="Admin")]
@@ -27,7 +21,7 @@ public class UsersController : ControllerBase
     {
         try
         {
-            return Ok(await _autorizeService.RetrieveUsersAsync(offset, limit));
+            return Ok(await _usersService.RetrieveUsersAsync(offset, limit));
         }
         catch (Exception ex) 
         {
@@ -41,7 +35,7 @@ public class UsersController : ControllerBase
     [ProducesResponseType(404)]
     public async Task<IActionResult> GetUser(Guid id)
     {
-        User? user = await _autorizeService.RetrieveUserAsync(id);
+        User? user = await _usersService.RetrieveUserAsync(id);
         if(user is null)
         {
             return NotFound();
@@ -49,22 +43,22 @@ public class UsersController : ControllerBase
         return Ok(user);
     }
 
-    [HttpPut("changepswd")]
-    [Authorize(Roles = "Admin,User,Writer")]
-    [ProducesResponseType(204)]
+    [HttpPost("adminsetpswd")]
+    [Authorize(Roles = "Admin")]
+    [ProducesResponseType(200)]
     [ProducesResponseType(400)]
     [ProducesResponseType(404)]
-    public async Task<IActionResult> UpdatePassword([FromBody] AuthorizeModel model)
+    public async Task<IActionResult> UpdatePasswordByAdmin([FromBody] AuthorizeModel model)
     {
         if (model is null)
         {
             return BadRequest();
         }
-        if (await _autorizeService.ChangePasswordAsync(model) is null)
+        if (await _usersService.ChangePasswordAdminAsync(model) is null)
         {
             return NotFound();
         }
-        return NoContent();
+        return Ok();
     }
 
     [HttpPut("updadm/{id:guid}")]
@@ -79,13 +73,13 @@ public class UsersController : ControllerBase
             return BadRequest();
         }
 
-        User? existed = await _autorizeService.RetrieveUserAsync(id);
+        User? existed = await _usersService.RetrieveUserAsync(id);
         if (existed is null)
         {
             return NotFound();
         }
 
-        if (await _autorizeService.UpdateUserAdminAsync(id, user) is null)
+        if (await _usersService.UpdateUserAdminAsync(id, user) is null)
         {
             return BadRequest();
         }
@@ -104,13 +98,13 @@ public class UsersController : ControllerBase
             return BadRequest();
         }
 
-        User? existed = await _autorizeService.RetrieveUserAsync(id);
+        User? existed = await _usersService.RetrieveUserAsync(id);
         if (existed is null) 
         {
             return NotFound();
         }
 
-        if(await _autorizeService.UpdateUserAsync(id, user) is null)
+        if(await _usersService.UpdateUserAsync(id, user) is null)
         {
             return BadRequest();
         }
@@ -124,7 +118,7 @@ public class UsersController : ControllerBase
     [ProducesResponseType(404)]
     public async Task<IActionResult> DeleteUser(Guid id)
     {
-        bool? status = await _autorizeService.DeleteUserAsync(id);
+        bool? status = await _usersService.DeleteUserAsync(id);
 
         if (!status.HasValue)
         {

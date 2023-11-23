@@ -4,9 +4,9 @@ namespace ServicesTests.Tests;
 
 public class AuthorizeSeviceTests
 {
-    private readonly IAutorizeService _authorizeService;
+    private readonly IAuthUsersService _authorizeService;
 
-    public AuthorizeSeviceTests(IAutorizeService authorizeService)
+    public AuthorizeSeviceTests(IAuthUsersService authorizeService)
     {
         _authorizeService = authorizeService;
     }
@@ -73,14 +73,19 @@ public class AuthorizeSeviceTests
         generated.Password = "pa$$w0rd";
         User? registered = await _authorizeService.RegisterUserAsync(generated);
 
-        AuthorizeModel changePsw = new()
+        ChangePasswdModel changePsw = new()
         {
             EmailAddress = registered!.EmailAddress,
-            Password = "someNewPass"
+            OldPassword = "pa$$w0rd",
+            NewPassword = "someNewPass"
         };
         await _authorizeService.ChangePasswordAsync(changePsw);
 
-        User? logged = await _authorizeService.AutorizeUserAsync(changePsw);
+        User? logged = await _authorizeService.AutorizeUserAsync(new() { 
+            EmailAddress = changePsw.EmailAddress, 
+            Password = changePsw.NewPassword
+        });
+
         Assert.NotNull(logged);
     }
 

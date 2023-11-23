@@ -12,7 +12,8 @@ var builder = WebApplication.CreateBuilder(args);
 string connectionString = builder.Configuration.GetConnectionString("DbConnection")!;
 
 // Add services to the container.
-builder.Services.AddNewsAppDbContext(connectionString);
+//builder.Services.AddNewsAppDbContext(connectionString);
+builder.Services.AddNewsAppDbContext();
 
 builder.Services.AddControllers();
 
@@ -42,7 +43,7 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 builder.Services.AddScoped<IArticleService, ArticleService>();
-builder.Services.AddScoped<IAutorizeService, AutorizeService>();
+builder.Services.AddScoped<IAuthUsersService, AuthUsersService>();
 
 builder.Services.AddAuthentication().AddJwtBearer(options =>
 {

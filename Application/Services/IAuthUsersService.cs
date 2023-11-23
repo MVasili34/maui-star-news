@@ -1,6 +1,6 @@
 ﻿namespace Services;
 
-public interface IAutorizeService
+public interface IAuthUsersService
 {
     /// <summary>
     /// Метод постраничного получения пользователей из базы данных
@@ -35,9 +35,16 @@ public interface IAutorizeService
     /// <summary>
     /// Метод обновления пароля
     /// </summary>
-    /// <param name="model">Объект <see cref="User"/> с новым паролем</param>
+    /// <param name="model">Объект <see cref="ChangePasswdModel"/> со старым и новым паролем</param>
     /// <returns>Объект <see cref="User"/>, иначе <see langword="null"/></returns>
-    Task<User?> ChangePasswordAsync(AuthorizeModel model);
+    Task<User?> ChangePasswordAsync(ChangePasswdModel model);
+
+    /// <summary>
+    /// Метод обновления пароля администратором
+    /// </summary>
+    /// <param name="model">Объект <see cref="AuthorizeModel"/> с новым паролем</param>
+    /// <returns>Объект <see cref="User"/>, иначе <see langword="null"/></returns>
+    Task<User?> ChangePasswordAdminAsync(AuthorizeModel model);
 
     /// <summary>
     /// Метод обновления данных пользователя (права админа)

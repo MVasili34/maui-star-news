@@ -12,11 +12,11 @@ namespace ArticleODataAPI.Controllers;
 [ApiController]
 public class AuthController : ControllerBase
 {
-    private readonly IAutorizeService _autorizeService;
+    private readonly IAuthUsersService _autorizeService;
     private readonly IConfiguration _configuration;
 
     public AuthController(
-        IAutorizeService autorizeService,
+        IAuthUsersService autorizeService,
         IConfiguration configuration)
     {
         _autorizeService = autorizeService;
@@ -60,17 +60,34 @@ public class AuthController : ControllerBase
         return Unauthorized();
     }
 
+    [HttpPost("changepswd")]
+    [ProducesResponseType(200)]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(404)]
+    public async Task<IActionResult> UpdatePassword([FromBody] ChangePasswdModel model)
+    {
+        if (model is null)
+        {
+            return BadRequest();
+        }
+        User? changedPswd = await _autorizeService.ChangePasswordAsync(model);
+        if (changedPswd is null)
+        {
+            return NotFound();
+        }
+        return Ok();
+    }
+
     private string CreateToken(User user)
     {
         List<Claim> claims = new() {
-                new Claim(ClaimTypes.Name, user.EmailAddress),
-                new Claim(ClaimTypes.Role, user.RoleId switch 
-                { 
-                    1 => "User",
-                    2 => "Writer", 
-                    3 => "Admin",
-                    _ => "User"
-                }),
+            new Claim(ClaimTypes.Name, user.EmailAddress),
+            new Claim(ClaimTypes.Role, user.RoleId switch  { 
+                1 => "User",
+                2 => "Writer", 
+                3 => "Admin",
+                _ => "User"
+            }),
         };
 
         SymmetricSecurityKey key = new(Encoding.UTF8.GetBytes(_configuration.GetSection("AppSettings:Token").Value!));
@@ -82,8 +99,6 @@ public class AuthController : ControllerBase
                                      signingCredentials: creds
                                     );
 
-        var jwt = new JwtSecurityTokenHandler().WriteToken(token);
-
-        return jwt;
+        return new JwtSecurityTokenHandler().WriteToken(token);
     }
 }

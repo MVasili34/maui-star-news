@@ -1,15 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using CryptographyTool;
-using EntityModels;
 
 namespace Services;
 
-public class AutorizeService : IAutorizeService
+public class AuthUsersService : IAuthUsersService
 {
     private readonly NewsAppDbContext _newsAppContext;
     private readonly int _pageSize = 20;
 
-    public AutorizeService(NewsAppDbContext newsAppContext)
+    public AuthUsersService(NewsAppDbContext newsAppContext)
     {
         _newsAppContext = newsAppContext;
     }
@@ -53,7 +52,7 @@ public class AutorizeService : IAutorizeService
 
         if (existed is not null) 
         {
-            if(Protector.CheckPassword(authorize.Password, existed.PasswordSalt, existed.PasswordHash))
+            if (Protector.CheckPassword(authorize.Password, existed.PasswordSalt, existed.PasswordHash))
             {
                 existed.LastLogin = DateTime.Now;
                 if (await _newsAppContext.SaveChangesAsync() == 1)
@@ -65,19 +64,43 @@ public class AutorizeService : IAutorizeService
         return null;
     }
 
-    public async Task<User?> ChangePasswordAsync(AuthorizeModel model)
+    public async Task<User?> ChangePasswordAsync(ChangePasswdModel model)
     {
         User? existed = await _newsAppContext.Users.FirstOrDefaultAsync(user =>
             user.EmailAddress == model.EmailAddress);
 
         if (existed is not null) 
         {
+            if (Protector.CheckPassword(model.OldPassword, existed.PasswordSalt, existed.PasswordHash))
+            {
+                (string salt, string hashed) = Protector.Encrypt(model.NewPassword);
+                existed.PasswordSalt = salt;
+                existed.PasswordHash = hashed;
+
+                int affected = await _newsAppContext.SaveChangesAsync();
+                if (affected == 1)
+                {
+                    return existed;
+                }
+            }
+        }
+        return null;
+    }
+
+
+    public async Task<User?> ChangePasswordAdminAsync(AuthorizeModel model)
+    {
+        User? existed = await _newsAppContext.Users.FirstOrDefaultAsync(user =>
+            user.EmailAddress == model.EmailAddress);
+
+        if (existed is not null)
+        {
             (string salt, string hashed) = Protector.Encrypt(model.Password);
             existed.PasswordSalt = salt;
             existed.PasswordHash = hashed;
 
             int affected = await _newsAppContext.SaveChangesAsync();
-            if (affected == 1) 
+            if (affected == 1)
             {
                 return existed;
             }
@@ -136,7 +159,7 @@ public class AutorizeService : IAutorizeService
         {
             _newsAppContext.Users.Remove(existed);
             int affected = await _newsAppContext.SaveChangesAsync();
-            if (affected == 1) 
+            if (affected >= 1) 
             {
                 return true;
             }
