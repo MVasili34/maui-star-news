@@ -68,6 +68,28 @@ public partial class MainEventsPage : ContentPage
     private async void ToSection_Tapped(object sender, TappedEventArgs e) => await Navigation
         .PushAsync(new ArticlesBySectionPage(viewModel.Tags.First(x => x.SectionId == 2)));
 
+    private async void Refresher_Refreshing(object sender, EventArgs e)
+    {
+        Refresher.IsRefreshing = true;
+        try
+        {
+            _loaded = false;
+            LoadProcessSimulation();
+
+            await Task.WhenAll(viewModel.GetNewestArticles(true),
+                       viewModel.GetHystoricalArticles(true),
+                       viewModel.GetPopularTags(true));
+
+            _loaded = true;
+            LoadProcessSimulation();
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Ошибка!", ex.Message, "OK");
+        }
+        Refresher.IsRefreshing = false;
+    }
+
     private void LoadProcessSimulation()
     {
         LatestNews.IsVisible = _loaded;

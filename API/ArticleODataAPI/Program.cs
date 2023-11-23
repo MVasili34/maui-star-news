@@ -12,8 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 string connectionString = builder.Configuration.GetConnectionString("DbConnection")!;
 
 // Add services to the container.
-//builder.Services.AddNewsAppDbContext(connectionString);
-builder.Services.AddNewsAppDbContext();
+builder.Services.AddNewsAppDbContext(connectionString);
 
 builder.Services.AddControllers();
 

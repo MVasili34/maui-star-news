@@ -45,4 +45,18 @@ public partial class SectionsPage : ContentPage
         await Navigation.PushAsync(new ArticlesBySectionPage(
             section));
     }
+
+    private async void Refresher_Refreshing(object sender, EventArgs e)
+    {
+        Refresher.IsRefreshing = true;
+        try
+        {
+            await viewModel.SetSections(true);
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Ошибка!", ex.Message, "OK");
+        }
+        Refresher.IsRefreshing = false;
+    }
 }

@@ -10,7 +10,6 @@ namespace NewsMobileApp.TempServices;
 public class RequestsService : IRequestsService
 {
     private readonly IHttpClientFactory _clientFactory;
-    private readonly IImageCloudTool _cloudTool;
 
     public RequestsService(IHttpClientFactory clientFactory)
     {
@@ -203,6 +202,22 @@ public class RequestsService : IRequestsService
         return null;
     }
 
+    public async Task<bool> UpdateUserAsync(UserViewModel model)
+    {
+        HttpClient client = _clientFactory.CreateClient("NewsAPI");
+        client.DefaultRequestHeaders.Authorization = new("Bearer", await SecureStorage.GetAsync("ApiKey"));
+
+        using HttpResponseMessage response = await client.PutAsJsonAsync($"api/Users/{model.UserId}", model);
+
+        if (response.IsSuccessStatusCode)
+            return true;
+        if (response.StatusCode == HttpStatusCode.NotFound)
+            throw new HttpRequestException("Пользователя не существует!");
+        if (response.StatusCode == HttpStatusCode.BadRequest)
+            throw new HttpRequestException("Ошибка авторизации или обновления данных! - 400 BadRequest");
+        return false;
+    }
+
     public async Task<IEnumerable<UserViewModel>> GetUsersAsync(int? page, int? pageSize)
     {
         if (page is null || pageSize is null)
@@ -248,22 +263,16 @@ public class RequestsService : IRequestsService
         return await response.Content.ReadFromJsonAsync<UserViewModel>();
     }
 
-    public async Task<bool> ChangeUserPasswordAsync(AuthorizeModel oldPass, AuthorizeModel newPass)
+    public async Task<bool> ChangeUserPasswordAsync(ChangePasswordModel changedPass)
     {
         HttpClient client = _clientFactory.CreateClient("NewsAPI");
-        client.DefaultRequestHeaders.Authorization = new("Bearer", await SecureStorage.GetAsync("ApiKey"));
 
-        if (await LoginUserAsync(oldPass) is null) 
-        {
-            throw new UnauthorizedAccessException("При попытке входа произошла непредвиденная ошибка!");
-        }
+        using HttpResponseMessage response = await client.PostAsJsonAsync($"api/Auth/changepswd", changedPass);
 
-        using HttpResponseMessage response = await client.PutAsJsonAsync($"api/Users/changepswd", newPass);
-
-        if (response.StatusCode == HttpStatusCode.NoContent)
+        if (response.IsSuccessStatusCode)
             return true;
         if (response.StatusCode == HttpStatusCode.NotFound)
-            throw new HttpRequestException("Пользователь при обновлении пароля не найден!");
+            throw new HttpRequestException("Пользователь при обновлении пароля не найден либо неверный пароль!");
         if (response.StatusCode == HttpStatusCode.BadRequest)
             throw new HttpRequestException("При изменении пароля пользователя произошла ошибка! - 400 BadRequest");
         return false;

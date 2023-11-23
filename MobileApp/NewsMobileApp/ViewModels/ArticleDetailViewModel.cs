@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using ImagesCloudTool;
 using System.Runtime.CompilerServices;
-using Newtonsoft.Json;
 
 namespace NewsMobileApp.ViewModels;
 

@@ -14,24 +14,30 @@ public class MainPageViewModel
 
     public MainPageViewModel(IRequestsService requestService) => _requestService = requestService; 
 
-    public async Task GetNewestArticles()
+    public async Task GetNewestArticles(bool update = false)
     {
+        if (update) NewestArticles.Clear();
+
         foreach (var article in await _requestService.GetThrendArticlesAsync(0, 5))
         {
             NewestArticles.Add(article);
         }
     }
 
-    public async Task GetHystoricalArticles()
+    public async Task GetHystoricalArticles(bool update = false)
     {
+        if (update) HystoricalArticles.Clear();
+
         foreach (var article in await _requestService.GetArticlesBySectionAsync(2, 0, 5))
         {
             HystoricalArticles.Add(article);
         }
     }
 
-    public async Task GetPopularTags()
+    public async Task GetPopularTags(bool update = false)
     {
+        if (update) Tags.Clear();
+
         foreach (var tag in await _requestService.GetAllSectionsAsync())
         {
             Tags.Add(tag);

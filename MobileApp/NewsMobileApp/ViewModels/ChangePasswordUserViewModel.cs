@@ -57,20 +57,12 @@ public class ChangePasswordUserViewModel : INotifyPropertyChanged
     }
 
     /// <summary>
-    /// Getting <see cref="AuthorizeModel"/> with old password
+    /// Getting <see cref="ChangePasswordModel"/> with old and new password
     /// </summary>
     /// <param name="model"></param>
-    public static explicit operator AuthorizeModel(ChangePasswordUserViewModel model) => new() {
+    public static explicit operator ChangePasswordModel(ChangePasswordUserViewModel model) => new() {
         EmailAddress = model.EmailAddress,
-        Password = model.OldPassword
-    };
-
-    /// <summary>
-    /// Method for getting <see cref="AuthorizeModel"/> with new password
-    /// </summary>
-    /// <returns><see cref="AuthorizeModel"/> instance</returns>
-    public AuthorizeModel GetNewAuthorizeModel() => new() { 
-        EmailAddress = EmailAddress, 
-        Password = NewPassword1 
+        OldPassword = model.OldPassword,
+        NewPassword = model.NewPassword1
     };
 }

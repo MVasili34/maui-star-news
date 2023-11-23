@@ -55,7 +55,13 @@ public class ArticleService : IArticleService
         Article? existingArticle = await _newsAppContext.Articles.FindAsync(id);
         if (existingArticle is not null)
         {
-            _newsAppContext.Entry(existingArticle).CurrentValues.SetValues(article);
+            existingArticle.Title = article.Title;
+            existingArticle.Subtitle = article.Subtitle;
+            existingArticle.SectionId = article.SectionId;
+            existingArticle.Image = article.Image;
+            existingArticle.Text = article.Text;
+            existingArticle.PublisherId = article.PublisherId;
+
             int affected = await _newsAppContext.SaveChangesAsync();
             if (affected == 1) 
             {

@@ -80,7 +80,7 @@ namespace EntityModels.Migrations
 
                     b.HasIndex("SectionId");
 
-                    b.ToTable("article");
+                    b.ToTable("article", (string)null);
                 });
 
             modelBuilder.Entity("EntityModels.Role", b =>
@@ -107,7 +107,7 @@ namespace EntityModels.Migrations
                     b.HasKey("RoleId")
                         .HasName("role_pkey");
 
-                    b.ToTable("role");
+                    b.ToTable("role", (string)null);
 
                     b.HasData(
                         new
@@ -159,7 +159,7 @@ namespace EntityModels.Migrations
                     b.HasKey("SectionId")
                         .HasName("section_pkey");
 
-                    b.ToTable("section");
+                    b.ToTable("section", (string)null);
 
                     b.HasData(
                         new
@@ -293,7 +293,7 @@ namespace EntityModels.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("user");
+                    b.ToTable("user", (string)null);
                 });
 
             modelBuilder.Entity("EntityModels.Article", b =>

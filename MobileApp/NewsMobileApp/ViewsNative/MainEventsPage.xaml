@@ -6,29 +6,32 @@
              Title="Главная"
              BackgroundColor="{StaticResource MainBackGroundColor}"
              Shell.BackgroundColor="{StaticResource MainNavigationColor}">
-
-    <ScrollView>
-        <VerticalStackLayout>
-            <StackLayout Style="{StaticResource HeaderStack}">
-                <Label x:Name="Header1"
+    <RefreshView BackgroundColor="{StaticResource MainNavigationColor}"
+                 RefreshColor="{StaticResource Primary}" 
+                 x:Name="Refresher"
+                 Refreshing="Refresher_Refreshing">
+        <ScrollView>
+            <VerticalStackLayout>
+                <StackLayout Style="{StaticResource HeaderStack}">
+                    <Label x:Name="Header1"
                        Text="Популярные #темы" 
                        Style="{StaticResource SectionHeading}" 
                        TextColor="White"/>
-                <Frame x:Name="LoadSimHeader1" 
+                    <Frame x:Name="LoadSimHeader1" 
                        Style="{StaticResource LoadFrame}"
                        HeightRequest="35"
                        WidthRequest="170"
                        HorizontalOptions="Start"
                        Margin="0,0,3,5"/>
-            </StackLayout>
+                </StackLayout>
 
-            <FlexLayout x:Name="TagsToDisplay"
+                <FlexLayout x:Name="TagsToDisplay"
                         BindableLayout.ItemsSource="{Binding Tags}"
                         Wrap="Wrap"
                         Margin="20,0">
-                <BindableLayout.ItemTemplate >
-                    <DataTemplate >
-                        <Button
+                    <BindableLayout.ItemTemplate >
+                        <DataTemplate >
+                            <Button
                             BackgroundColor="#2b2a3a"
                             BorderColor="Transparent"
                             TextColor="White"
@@ -42,75 +45,75 @@
                             VerticalOptions="Center"
                             Clicked="Tag_Clicked"
                             CommandParameter="{Binding .}">
-                        </Button>
-                    </DataTemplate>
-                </BindableLayout.ItemTemplate>
-                <BindableLayout.EmptyView>
-                    <StackLayout>
-                        <VerticalStackLayout VerticalOptions="Start">
-                            <HorizontalStackLayout>
-                                <Frame x:Name="LoadBlock1" 
+                            </Button>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                    <BindableLayout.EmptyView>
+                        <StackLayout>
+                            <VerticalStackLayout VerticalOptions="Start">
+                                <HorizontalStackLayout>
+                                    <Frame x:Name="LoadBlock1" 
                                        Style="{StaticResource LoadFrame}"
                                        HeightRequest="35"
                                        WidthRequest="150"
                                        Margin="0,0,3,5"/>
 
-                                <Frame x:Name="LoadBlock2" 
+                                    <Frame x:Name="LoadBlock2" 
                                        Style="{StaticResource LoadFrame}"
                                        HeightRequest="35"
                                        WidthRequest="150"
                                        Margin="0,0,3,5"/>
 
-                            </HorizontalStackLayout>
-                            <HorizontalStackLayout>
-                                <Frame x:Name="LoadBlock3" 
+                                </HorizontalStackLayout>
+                                <HorizontalStackLayout>
+                                    <Frame x:Name="LoadBlock3" 
                                        Style="{StaticResource LoadFrame}"
                                        HeightRequest="35"
                                        WidthRequest="150"
                                        Margin="0,0,3,5"/>
 
-                                <Frame x:Name="LoadBlock4" 
+                                    <Frame x:Name="LoadBlock4" 
                                        Style="{StaticResource LoadFrame}"
                                        HeightRequest="35"
                                        WidthRequest="150"
                                        Margin="0,0,3,5"/>
 
-                            </HorizontalStackLayout>
-                            <Frame x:Name="LoadBlock5" 
+                                </HorizontalStackLayout>
+                                <Frame x:Name="LoadBlock5" 
                                    Style="{StaticResource LoadFrame}"
                                    HeightRequest="35"
                                    WidthRequest="150"
                                    HorizontalOptions="Start"
                                    Margin="0,0,3,5"/>
-                        </VerticalStackLayout>
-                    </StackLayout>
-                </BindableLayout.EmptyView>
-            </FlexLayout>
+                            </VerticalStackLayout>
+                        </StackLayout>
+                    </BindableLayout.EmptyView>
+                </FlexLayout>
 
-            <BoxView />
+                <BoxView />
 
-            <StackLayout Style="{StaticResource HeaderStack}">
-                <Label x:Name="Header2"
+                <StackLayout Style="{StaticResource HeaderStack}">
+                    <Label x:Name="Header2"
                        Text="Последние новости"
                        Style="{StaticResource SectionHeading}"
                        TextColor="White"/>
-                <Label x:Name="ShowAll1" Text="Все" Style="{StaticResource ShowAll}">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="ShowAllThrebds_Tapped" />
-                    </Label.GestureRecognizers>
-                </Label>
-                <Frame x:Name="LoadSimHeader2" 
+                    <Label x:Name="ShowAll1" Text="Все" Style="{StaticResource ShowAll}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ShowAllThrebds_Tapped" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Frame x:Name="LoadSimHeader2" 
                        Style="{StaticResource LoadFrame}"
                        HeightRequest="35"
                        WidthRequest="170"
                        HorizontalOptions="Start"
                        Margin="0,0,3,5"/>
-            </StackLayout>
-            <Frame x:Name="Display1" 
+                </StackLayout>
+                <Frame x:Name="Display1" 
                 Style="{StaticResource LoadFrame}"
                 HeightRequest="260"
                 WidthRequest="350" />
-            <CollectionView
+                <CollectionView
                         ItemsSource="{Binding NewestArticles}"
                         x:Name="LatestNews"
                         HeightRequest="260"
@@ -118,39 +121,39 @@
                         Margin="20,0,0,0"
                         SelectionChanged="LatestNews_SelectionChanged">
 
-                <CollectionView.ItemsLayout>
-                    <LinearItemsLayout
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout
                                 Orientation="Horizontal"
                                 ItemSpacing="20"/>
-                </CollectionView.ItemsLayout>
+                    </CollectionView.ItemsLayout>
 
-                <CollectionView.ItemTemplate >
-                    <DataTemplate x:DataType="models:Article">
-                        <StackLayout Orientation="Vertical" 
+                    <CollectionView.ItemTemplate >
+                        <DataTemplate x:DataType="models:Article">
+                            <StackLayout Orientation="Vertical" 
                                      Margin="0,0,0,0" 
                                      WidthRequest="300" 
                                      HeightRequest="260" 
                                      BackgroundColor="{StaticResource MainBackGroundColor}">
 
-                            <Frame Padding="0" IsClippedToBounds="True" BorderColor="Transparent">
-                                <Image Source="{Binding Image}" HeightRequest="180" WidthRequest="300" Aspect="AspectFill" />
-                            </Frame>
-                            <Label Text="{Binding Title}" 
+                                <Frame Padding="0" IsClippedToBounds="True" BorderColor="Transparent">
+                                    <Image Source="{Binding Image}" HeightRequest="180" WidthRequest="300" Aspect="AspectFill" />
+                                </Frame>
+                                <Label Text="{Binding Title}" 
                                    Margin="0,4,0,0" 
                                    FontSize="18" 
                                    TextColor="White"
                                    FontFamily="
                                    " 
                                    MaxLines="2"/>
-                            <StackLayout Orientation="Horizontal" Spacing="4">
-                                <Label Text="{Binding Section.Name}" TextColor="{StaticResource Primary}"/>
-                                <Label Text="·" FontAttributes="Bold" TextColor="{StaticResource Gray200}"/>
-                                <Label Text="{Binding PublishTime}" TextColor="{StaticResource Gray200}"/>
+                                <StackLayout Orientation="Horizontal" Spacing="4">
+                                    <Label Text="{Binding Section.Name}" TextColor="{StaticResource Primary}"/>
+                                    <Label Text="·" FontAttributes="Bold" TextColor="{StaticResource Gray200}"/>
+                                    <Label Text="{Binding PublishTime}" TextColor="{StaticResource Gray200}"/>
+                                </StackLayout>
                             </StackLayout>
-                        </StackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-                <!--Fix must come on .NET 8
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    <!--Fix must come on .NET 8
                 <CollectionView.EmptyView>
                     <VerticalStackLayout>
                     <Frame x:Name="LoadBlock1" 
@@ -164,32 +167,32 @@
                     </Frame>
                     </VerticalStackLayout>
                 </CollectionView.EmptyView> -->
-            </CollectionView>
+                </CollectionView>
 
-            <BoxView />
+                <BoxView />
 
-            <StackLayout Style="{StaticResource HeaderStack}">
-                <Label x:Name="Header3"
+                <StackLayout Style="{StaticResource HeaderStack}">
+                    <Label x:Name="Header3"
                        Text="История и культура"
                        Style="{StaticResource SectionHeading}" 
                        TextColor="White"/>
-                <Label x:Name="ShowAll2" Text="Все" Style="{StaticResource ShowAll}">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="ToSection_Tapped" />
-                    </Label.GestureRecognizers>
-                </Label>
-                <Frame x:Name="LoadSimHeader3" 
+                    <Label x:Name="ShowAll2" Text="Все" Style="{StaticResource ShowAll}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ToSection_Tapped" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Frame x:Name="LoadSimHeader3" 
+                           Style="{StaticResource LoadFrame}"
+                           HeightRequest="35"
+                           WidthRequest="170"
+                           HorizontalOptions="Start"
+                           Margin="0,0,3,5"/>
+                </StackLayout>
+                <Frame x:Name="Display2"
                        Style="{StaticResource LoadFrame}"
-                       HeightRequest="35"
-                       WidthRequest="170"
-                       HorizontalOptions="Start"
-                       Margin="0,0,3,5"/>
-            </StackLayout>
-            <Frame x:Name="Display2"
-                Style="{StaticResource LoadFrame}"
-                HeightRequest="260"
-                WidthRequest="350"/>
-            <CollectionView
+                       HeightRequest="260"
+                       WidthRequest="350"/>
+                <CollectionView
                  ItemsSource="{Binding HystoricalArticles}"
                  x:Name="RecommendedNews"
                  HeightRequest="260"
@@ -197,38 +200,38 @@
                  Margin="20,0,0,0"
                  SelectionChanged="LatestNews_SelectionChanged">
 
-                <CollectionView.ItemsLayout>
-                    <LinearItemsLayout
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout
                      Orientation="Horizontal"
                      ItemSpacing="20"/>
-                </CollectionView.ItemsLayout>
+                    </CollectionView.ItemsLayout>
 
-                <CollectionView.ItemTemplate >
-                    <DataTemplate x:DataType="models:Article">
-                        <StackLayout Orientation="Vertical" 
-                                     Margin="0,0,0,0" 
-                                     WidthRequest="300" 
-                                     HeightRequest="260" 
-                                     BackgroundColor="{StaticResource MainBackGroundColor}">
+                    <CollectionView.ItemTemplate >
+                        <DataTemplate x:DataType="models:Article">
+                            <StackLayout Orientation="Vertical" 
+                                         Margin="0,0,0,0" 
+                                         WidthRequest="300" 
+                                         HeightRequest="260" 
+                                         BackgroundColor="{StaticResource MainBackGroundColor}">
 
-                            <Frame Padding="0" IsClippedToBounds="True" BorderColor="Transparent">
-                                <Image Source="{Binding Image}" HeightRequest="180" WidthRequest="300" Aspect="AspectFill" />
-                            </Frame>
-                            <Label Text="{Binding Title}" 
-                                   Margin="0,4,0,0" 
-                                   FontSize="18" 
-                                   TextColor="White"
-                                   FontFamily="PopsSBold" 
-                                   MaxLines="2"/>
-                            <StackLayout Orientation="Horizontal" Spacing="4">
-                                <Label Text="{Binding Section.Name}" TextColor="{StaticResource Primary}"/>
-                                <Label Text="·" FontAttributes="Bold" TextColor="{StaticResource Gray200}"/>
-                                <Label Text="{Binding PublishTime}" TextColor="{StaticResource Gray200}"/>
+                                <Frame Padding="0" IsClippedToBounds="True" BorderColor="Transparent">
+                                    <Image Source="{Binding Image}" HeightRequest="180" WidthRequest="300" Aspect="AspectFill" />
+                                </Frame>
+                                <Label Text="{Binding Title}" 
+                                       Margin="0,4,0,0" 
+                                       FontSize="18" 
+                                       TextColor="White"
+                                       FontFamily="PopsSBold" 
+                                       MaxLines="2"/>
+                                <StackLayout Orientation="Horizontal" Spacing="4">
+                                    <Label Text="{Binding Section.Name}" TextColor="{StaticResource Primary}"/>
+                                    <Label Text="·" FontAttributes="Bold" TextColor="{StaticResource Gray200}"/>
+                                    <Label Text="{Binding PublishTime}" TextColor="{StaticResource Gray200}"/>
+                                </StackLayout>
                             </StackLayout>
-                        </StackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-                <!--Fix must come on .NET 8
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    <!--Fix must come on .NET 8
                 <CollectionView.EmptyView>
                     <VerticalStackLayout>
                     <Frame x:Name="LoadBlock2" 
@@ -242,14 +245,15 @@
                     </Frame>
                     </VerticalStackLayout>
                 </CollectionView.EmptyView> -->
-            </CollectionView>
-            <BoxView/>
-            <Label Text="Copyright © 2023 StarNews. All Rights Reserved."
-                   TextColor="#ACACAC" 
-                   Margin="10,20,0,15"
-                   FontSize="15"/>
-        </VerticalStackLayout>
+                </CollectionView>
+                <BoxView/>
+                <Label Text="Copyright © 2023 StarNews. All Rights Reserved."
+                       TextColor="#ACACAC" 
+                       Margin="10,20,0,15"
+                       FontSize="15"/>
+            </VerticalStackLayout>
 
 
-    </ScrollView>
+        </ScrollView>
+    </RefreshView>
 </ContentPage>

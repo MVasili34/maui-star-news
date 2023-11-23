@@ -41,6 +41,7 @@
                 <Label 
                   Margin="0,20,0,20"
                   Text="Добавление/изменение статьи"
+                  FontFamily="NotoSerif"
                   FontAttributes="Bold"
                   HorizontalOptions="Center"
                   FontSize="20"/>

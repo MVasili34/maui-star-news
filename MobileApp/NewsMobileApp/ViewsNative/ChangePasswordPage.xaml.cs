@@ -31,14 +31,11 @@ public partial class ChangePasswordPage : ContentPage
             if (!StrongPasswordChecker.PasswordCheck(viewModel.NewPassword1))
                 throw new Exception("Слишком слабый пароль! Критерии:\n1) Не менее 8 симмволов;\n2) Одна прописная буква;" +
                     "\n3) Одна строчная буква;\n4) Одна цифра;\n5) Один специальный символ;\n6) Без пробелов;");
-            AuthorizeModel signin = (AuthorizeModel)viewModel;
-            AuthorizeModel changing = viewModel.GetNewAuthorizeModel();
             Submit.IsEnabled = false;
-
-            if (!await _requestService.ChangeUserPasswordAsync(signin, changing))
+            if (!await _requestService.ChangeUserPasswordAsync((ChangePasswordModel)viewModel))
                 throw new Exception("Произошла ошибка сервера!");
             await DisplayAlert("Успех!", "Пароль изменён.", "OK");
-            Preferences.Set("password", changing.Password);
+            Preferences.Set("password", viewModel.NewPassword1);
             await Navigation.PopAsync();
         }
         catch (HttpRequestException ex)
