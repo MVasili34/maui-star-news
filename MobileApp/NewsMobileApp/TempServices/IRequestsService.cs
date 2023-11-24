@@ -7,7 +7,7 @@ namespace NewsMobileApp.TempServices;
 public interface IRequestsService
 {
     Task<IEnumerable<Section>> GetAllSectionsAsync();
-    Task<IEnumerable<Article>> GetThrendArticlesAsync(int? page, int? pageSize);
+    Task<IEnumerable<Article>> GetThrendArticlesAsync(int page, int pageSize);
     Task<IEnumerable<Article>> GetArticlesBySectionAsync(int sectionId, int? page, int? pageSize);
     Task<IEnumerable<Article>> GetThrendArticlesSearchAsync(string searchText, int? page, int? pageSize);
     Task<IEnumerable<Article>> GetArticlesSectionSearchAsync(string searchText, int sectionId, int? page, int? pageSize);
@@ -22,5 +22,7 @@ public interface IRequestsService
     Task<IEnumerable<DiagramData>> GetDiagramAsync(DateTime start, DateTime end);
     Task<UserViewModel> GetUserByIdAsync(string id);
     Task<bool> ChangeUserPasswordAsync(ChangePasswordModel changedPass);
+    Task<bool> UpdateUserAdminAsync(UserViewModel model);
+    Task<bool> UpdateUserPswByAdminAsync(AuthorizeModel model);
     Task<bool> DeleteUserAsync(Guid id);
 }

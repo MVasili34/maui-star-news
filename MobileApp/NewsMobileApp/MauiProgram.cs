@@ -36,7 +36,6 @@ namespace NewsMobileApp
                     new MediaTypeWithQualityHeaderValue("application/json", 1.0));
             });
             builder.Services.AddMauiBlazorWebView();
-            builder.Services.AddScoped<INewsService, NewsAppService>();
             builder.Services.AddScoped<IRequestsService, RequestsService>();
             builder.Services.AddScoped<IImageCloudTool, ImageCloudTool>(_ =>
                 new ImageCloudTool("fc0f801a94e39de"));

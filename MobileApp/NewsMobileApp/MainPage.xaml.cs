@@ -7,7 +7,6 @@ namespace NewsMobileApp;
 
 public partial class MainPage : ContentPage
 {
-    private bool _status = false;
     private IRequestsService _requestService;
 
     public MainPage(IServiceProvider service)
@@ -46,10 +45,9 @@ public partial class MainPage : ContentPage
                 Password = Preferences.Get("password", string.Empty)
             };
             
-            UserViewModel model = await _requestService.LoginUserAsync(authmodel);
-            
-            if (model is null)
+            UserViewModel model = await _requestService.LoginUserAsync(authmodel) ?? 
                 throw new Exception("Произошла ошибка сервера!");
+
             Preferences.Set("userId", model.UserId.ToString());
             Preferences.Set("userName", model.UserName);
             Preferences.Set("emailAddress", model.EmailAddress);
@@ -66,7 +64,6 @@ public partial class MainPage : ContentPage
         {
             await DisplayAlert("Ошибка!", ex.Message, "OK");
         }
-        _status = true;
     }
 
     private async void Register_Tapped(object sender, TappedEventArgs e) =>

@@ -3,7 +3,6 @@ using NewsMobileApp.Models.ODataModels;
 using NewsMobileApp.ViewModels;
 using System.Net.Http.Json;
 using System.Net;
-using ImagesCloudTool;
 
 namespace NewsMobileApp.TempServices;
 
@@ -30,11 +29,8 @@ public class RequestsService : IRequestsService
         return sections.Value;
     }
 
-    public async Task<IEnumerable<Article>> GetThrendArticlesAsync(int? page, int? pageSize)
+    public async Task<IEnumerable<Article>> GetThrendArticlesAsync(int page = 0, int pageSize = 10)
     {
-        if(page is null || pageSize is null)
-            throw new ArgumentNullException("Недопутстимые номера страниц");
-
         HttpClient client = _clientFactory.CreateClient("NewsAPI");
         client.DefaultRequestHeaders.Authorization = new("Bearer", await SecureStorage.GetAsync("ApiKey"));
 
@@ -202,6 +198,21 @@ public class RequestsService : IRequestsService
         return null;
     }
 
+    public async Task<bool> ChangeUserPasswordAsync(ChangePasswordModel changedPass)
+    {
+        HttpClient client = _clientFactory.CreateClient("NewsAPI");
+
+        using HttpResponseMessage response = await client.PostAsJsonAsync($"api/Auth/changepswd", changedPass);
+
+        if (response.IsSuccessStatusCode)
+            return true;
+        if (response.StatusCode == HttpStatusCode.NotFound)
+            throw new HttpRequestException("Пользователь при обновлении пароля не найден либо неверный пароль!");
+        if (response.StatusCode == HttpStatusCode.BadRequest)
+            throw new HttpRequestException("При изменении пароля пользователя произошла ошибка! - 400 BadRequest");
+        return false;
+    }
+
     public async Task<bool> UpdateUserAsync(UserViewModel model)
     {
         HttpClient client = _clientFactory.CreateClient("NewsAPI");
@@ -263,16 +274,33 @@ public class RequestsService : IRequestsService
         return await response.Content.ReadFromJsonAsync<UserViewModel>();
     }
 
-    public async Task<bool> ChangeUserPasswordAsync(ChangePasswordModel changedPass)
+    public async Task<bool> UpdateUserAdminAsync(UserViewModel model)
     {
         HttpClient client = _clientFactory.CreateClient("NewsAPI");
+        client.DefaultRequestHeaders.Authorization = new("Bearer", await SecureStorage.GetAsync("ApiKey"));
 
-        using HttpResponseMessage response = await client.PostAsJsonAsync($"api/Auth/changepswd", changedPass);
+        using HttpResponseMessage response = await client.PutAsJsonAsync($"api/Users/updadm/{model.UserId}", model);
+
+        if (response.StatusCode == HttpStatusCode.NoContent)
+            return true;
+        if (response.StatusCode == HttpStatusCode.NotFound)
+            throw new HttpRequestException("Пользователь для обновления данных не найден!");
+        if (response.StatusCode == HttpStatusCode.BadRequest)
+            throw new HttpRequestException("При обновлении пользователя произошла ошибка! - 400 BadRequest");
+        return false;
+    }
+
+    public async Task<bool> UpdateUserPswByAdminAsync(AuthorizeModel model)
+    {
+        HttpClient client = _clientFactory.CreateClient("NewsAPI");
+        client.DefaultRequestHeaders.Authorization = new("Bearer", await SecureStorage.GetAsync("ApiKey"));
+
+        using HttpResponseMessage response = await client.PostAsJsonAsync($"api/Users/adminsetpswd", model);
 
         if (response.IsSuccessStatusCode)
             return true;
         if (response.StatusCode == HttpStatusCode.NotFound)
-            throw new HttpRequestException("Пользователь при обновлении пароля не найден либо неверный пароль!");
+            throw new HttpRequestException("Пользователь при обновлении пароля не найден!");
         if (response.StatusCode == HttpStatusCode.BadRequest)
             throw new HttpRequestException("При изменении пароля пользователя произошла ошибка! - 400 BadRequest");
         return false;

@@ -1,7 +1,5 @@
 using NewsMobileApp.TempServices;
 using NewsMobileApp.ViewModels;
-using Newtonsoft.Json;
-using System.Net.Http.Headers;
 using System.Text.RegularExpressions;
 
 namespace NewsMobileApp.ViewsNative;
@@ -41,9 +39,10 @@ public partial class AccountSettingsPage : ContentPage
         {
             if (string.IsNullOrWhiteSpace(viewModel.UserName) || viewModel.UserName.Length < 3)
                 throw new InvalidDataException("Недопустимый никнейм.");
-            //if (viewModel.EmailAddress is null)
-            //throw new Exception("Произошла ошибка!\nПожалуйста, выполните повторный вход.");
-            if (!string.IsNullOrEmpty(viewModel.Phone) && !Regex.IsMatch(viewModel.Phone, @"^(373)?0?[6-9]{3}[0-9]{5}$"))
+            if (viewModel.EmailAddress is null)
+                throw new Exception("Произошла ошибка!\nПожалуйста, выполните повторный вход.");
+            if (!string.IsNullOrEmpty(viewModel.Phone) && 
+                !Regex.IsMatch(viewModel.Phone, @"^(373)?0?[6-9]{3}[0-9]{5}$"))
                 throw new InvalidDataException("Неверный номер телефона.");
             string password = await Shell.Current.DisplayPromptAsync("Пароль", "Для изменения данных введите пароль:",
                 accept: "OK", cancel: "Отмена");
@@ -54,12 +53,28 @@ public partial class AccountSettingsPage : ContentPage
             viewModel.PasswordHash = password;
             viewModel.DateOfBirth = DateOnly.FromDateTime(DatePicker.Date);
             Submit.IsEnabled = false;
-            await Task.Delay(5000);
-            string serialized = JsonConvert.SerializeObject(viewModel);
-            await DisplayAlert("Success", $"{serialized}", "OK");
+
+            if(!await _requestsService.UpdateUserAsync(viewModel))
+            {
+                await DisplayAlert("Ошибка!", "Данные не были изменены.", "OK");
+                return;
+            }
+
+            Preferences.Set("userName", viewModel.UserName);
+            Preferences.Set("phone", viewModel.Phone);
+            if (viewModel.DateOfBirth.HasValue)
+                Preferences.Set("dateOfBirth", viewModel.DateOfBirth.Value.ToDateTime(new(0, 0, 0)));
+            else
+                Preferences.Set("dateOfBirth", null);
+
+            await DisplayAlert("Успех!", "Данные успешно изменены.", "OK");
             await Navigation.PopAsync(animated: true);
         }
-        catch(Exception ex) 
+        catch (HttpRequestException ex)
+        {
+            await DisplayAlert("Ошибка!", ex.Message, "OK");
+        }
+        catch (Exception ex) 
         {
             await DisplayAlert("Ошибка!", ex.Message, "OK");
         }
