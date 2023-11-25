@@ -12,5 +12,7 @@ public class Article
 
     public string Image { get; set; }
 
-    public DateTime PublishTime {  get; set; }
+    public DateTime PublishTime { get; set; }
+
+    public Guid? PublisherId { get; set; }
 }

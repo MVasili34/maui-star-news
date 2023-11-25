@@ -63,6 +63,6 @@ public class ArticleViewModel : ViewModelBase
     public Guid? PublisherId
     {
         get => _publisherId;
-        init => _publisherId = value;
+        set => _publisherId = value;
     }
 }

@@ -95,11 +95,15 @@ public partial class ArticleDetailPage : ContentPage
 				await DisplayAlert("Bad", $"Не прикреплено изображение", "OK");
 				return;
 			}
-
 			if (!(new FileInfo(FilePathLabel.Text)).Exists)
 			{
 				throw new FileNotFoundException();
 			}
+			if (Preferences.Get("userId", null) is null)
+			{
+				throw new Exception("Некорректный автор статьи!");
+			}
+			viewModel.Article.PublisherId = new Guid(Preferences.Get("userId", null));
 			viewModel.Article.Image = FilePathLabel.Text;
 			viewModel.Article.SectionId = ((Section)ComboBox1.SelectedItem).SectionId;
 			BlockUI(true);

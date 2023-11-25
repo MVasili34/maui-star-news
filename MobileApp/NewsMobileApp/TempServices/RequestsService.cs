@@ -35,7 +35,7 @@ public class RequestsService : IRequestsService
         HttpClient client = _clientFactory.CreateClient("NewsAPI");
         client.DefaultRequestHeaders.Authorization = new("Bearer", await SecureStorage.GetAsync("ApiKey"));
 
-        string requestUri = "api/Articles?$select=ArticleId,Title,Subtitle,Image,PublishTime&$expand=Section($select=SectionId,Name)" +
+        string requestUri = "api/Articles?$select=ArticleId,Title,Subtitle,Image,PublishTime,PublisherId&$expand=Section($select=SectionId,Name)" +
             $"&$orderby=PublishTime%20desc&$skip={page*pageSize}&$top={pageSize}";
 
         using HttpRequestMessage request = new(method: HttpMethod.Get, requestUri: requestUri);
@@ -55,7 +55,7 @@ public class RequestsService : IRequestsService
         HttpClient client = _clientFactory.CreateClient("NewsAPI");
         client.DefaultRequestHeaders.Authorization = new("Bearer", await SecureStorage.GetAsync("ApiKey"));
 
-        string requestUri = $"api/Articles?$filter=(SectionId eq {sectionId})&$select=ArticleId,Title,Subtitle,Image,PublishTime&$expand=Section($select=SectionId,Name)" +
+        string requestUri = $"api/Articles?$filter=(SectionId eq {sectionId})&$select=ArticleId,Title,Subtitle,Image,PublishTime,PublisherId&$expand=Section($select=SectionId,Name)" +
             $"&$orderby=PublishTime%20desc&$skip={page * pageSize}&$top={pageSize}";
 
         using HttpRequestMessage request = new(method: HttpMethod.Get, requestUri: requestUri);
@@ -75,7 +75,7 @@ public class RequestsService : IRequestsService
         HttpClient client = _clientFactory.CreateClient("NewsAPI");
         client.DefaultRequestHeaders.Authorization = new("Bearer", await SecureStorage.GetAsync("ApiKey"));
 
-        string requestUri = $"api/Articles?$filter=contains(Title,%27{searchText}%27)&$select=ArticleId,Title,Subtitle,Image,PublishTime&$expand=Section($select=SectionId,Name)" +
+        string requestUri = $"api/Articles?$filter=contains(Title,%27{searchText}%27)&$select=ArticleId,Title,Subtitle,Image,PublishTime,PublisherId&$expand=Section($select=SectionId,Name)" +
             $"&$orderby=PublishTime%20desc&$skip={page * pageSize}&$top={pageSize}";
 
         using HttpRequestMessage request = new(method: HttpMethod.Get, requestUri: requestUri);
@@ -95,7 +95,7 @@ public class RequestsService : IRequestsService
         HttpClient client = _clientFactory.CreateClient("NewsAPI");
         client.DefaultRequestHeaders.Authorization = new("Bearer", await SecureStorage.GetAsync("ApiKey"));
 
-        string requestUri = $"api/Articles?$filter=contains(Title,%27{searchText}%27)and(SectionId eq {sectionId})&$select=ArticleId,Title,Subtitle,Image,PublishTime&$expand=Section($select=SectionId,Name)" +
+        string requestUri = $"api/Articles?$filter=contains(Title,%27{searchText}%27)and(SectionId eq {sectionId})&$select=ArticleId,Title,Subtitle,Image,PublishTime,PublisherId&$expand=Section($select=SectionId,Name)" +
             $"&$orderby=PublishTime%20desc&$skip={page * pageSize}&$top={pageSize}";
 
         using HttpRequestMessage request = new(method: HttpMethod.Get, requestUri: requestUri);
