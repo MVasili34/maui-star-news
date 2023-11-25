@@ -25,7 +25,6 @@ public partial class AccountSettingsPage : ContentPage
         viewModel.EmailAddress = Preferences.Get("emailAddress", null);
         DatePicker.Date = Preferences.Get("dateOfBirth", DateTime.Now.AddYears(-6));
         viewModel.Phone = Preferences.Get("phone", null);
-        viewModel.PasswordSalt = string.Empty;
         viewModel.PasswordHash = string.Empty;
         viewModel.RoleId = Preferences.Get("roleId", 1);
         viewModel.Registered = Preferences.Get("registered", DateTime.Now);

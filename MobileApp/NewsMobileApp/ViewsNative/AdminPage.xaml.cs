@@ -105,6 +105,26 @@ public partial class AdminPage : ContentPage
         _loaded = true;
         LoadProcessSimulation();
     }
+
+    private async void Refresher_Refreshing(object sender, EventArgs e)
+    {
+        Refresher.IsRefreshing = true;
+        try
+        {
+            _loaded = false;
+            LoadProcessSimulation();
+            await Task.WhenAll(viewModel.AddUsers(true, _limit, 0), viewModel.GetDiagtamData(true));
+            _offset = 1;
+            _loaded = true;
+            LoadProcessSimulation();
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Ошибка!", ex.Message, "OK");
+        }
+        Refresher.IsRefreshing = false;
+    }
+
     private void LoadProcessSimulation()
     {
         LoadingText1.IsVisible = _loaded;

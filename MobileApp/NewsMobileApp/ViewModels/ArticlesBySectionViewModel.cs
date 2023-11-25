@@ -10,6 +10,10 @@ public class ArticlesBySectionViewModel
 
     public ObservableCollection<Article> Articles { get; set; } = new();
     private readonly int _sectionId = 0;
+    private bool _searching = false;
+    private string _currentSearch = string.Empty;
+    private const int _limit = 10;
+    private int _offset = 0;
 
     public ArticlesBySectionViewModel(int sectionId)
     {
@@ -18,25 +22,48 @@ public class ArticlesBySectionViewModel
         _sectionId = sectionId;
     }
 
-    public async Task AddArticles(bool clear = false, int limit = 20, int offset = 0)
+    public async Task AddArticles(bool clear = false)
     {
-        if (clear) Articles.Clear();
-
-        foreach (var article in await _requestService.GetArticlesBySectionAsync(_sectionId, offset, limit))
+        if (clear)
         {
-            Articles.Add(article);
+            Articles.Clear();
+            _offset = 0;
         }
-    }
 
-    public async Task SearchArticle(string text, int limit = 20, int offset = 0)
-    {
-        IEnumerable<Article> found = await _requestService.GetArticlesSectionSearchAsync(text, _sectionId, offset, limit);
-        if (found.Any())
+        try
         {
-            foreach (var article in found)
+            IEnumerable<Article> current;
+            if (!_searching)
+            {
+                current = await _requestService.GetArticlesBySectionAsync(_sectionId, _offset, _limit);
+            }
+            else
+            {
+                current = await _requestService.GetArticlesSectionSearchAsync(_currentSearch, _sectionId, _offset, _limit);
+            }
+            _offset++;
+            foreach (var article in current)
             {
                 Articles.Add(article);
             }
         }
+        catch (Exception ex)
+        {
+            await App.Current.MainPage.DisplayAlert("Ошибка!", ex.Message, "OK");
+        }
+    }
+
+    public void SearchArticle(string text)
+    {
+        _searching = true;
+        _offset = 0;
+        _currentSearch = text;
+    }
+
+    public void RefreshCollection()
+    {
+        _searching = false;
+        _offset = 0;
+        _currentSearch = string.Empty;
     }
 }

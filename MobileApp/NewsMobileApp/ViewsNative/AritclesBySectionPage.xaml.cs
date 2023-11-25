@@ -9,22 +9,22 @@ public partial class ArticlesBySectionPage : ContentPage
     private ArticlesBySectionViewModel viewModel => BindingContext as ArticlesBySectionViewModel;
     private bool _loaded = false;
     private bool _scrolled = true;
-    private bool _searching = false;
-    private string _currentSearch = string.Empty;
-    private const int _limit = 10;
-    private int _offset = 0;
 
     public ArticlesBySectionPage(Section section)
     {
         InitializeComponent();
         PageTitle.Text = section.Name;
-        //AdmindButton.IsVisible = false;
         BindingContext = new ArticlesBySectionViewModel(section.SectionId);
     }
 
     protected async override void OnAppearing()
     {
         base.OnAppearing();
+        if (Preferences.Get("roleId", 1) != 1)
+        {
+            AdmindButton.IsEnabled = true;
+            AdmindButton.IsVisible = true;
+        }
         if (this.AnimationIsRunning("TransitionAnimation"))
             return;
 
@@ -33,8 +33,7 @@ public partial class ArticlesBySectionPage : ContentPage
         parentAnimation.Commit(this, "TransitionAnimation", length: 2000, repeat: () => true);
         try
         {
-            await viewModel.AddArticles(limit: _limit, offset: _offset);
-            _offset++;
+            await viewModel.AddArticles();
             _loaded = true;
             LoadProcessSimulation();
         }
@@ -59,19 +58,14 @@ public partial class ArticlesBySectionPage : ContentPage
         {
             if (string.IsNullOrEmpty(SearchText.Text) || string.IsNullOrWhiteSpace(SearchText.Text))
             {
-                await viewModel.AddArticles(true, _limit, 0);
-                _offset = 1;
-                _searching = false;
+                viewModel.RefreshCollection();
+                await viewModel.AddArticles(true);
                 _loaded = true;
                 LoadProcessSimulation();
                 return;
             }
-            _currentSearch = SearchText.Text;
-            viewModel.Articles.Clear();
-            _searching = true;
-            _offset = 0;
-            await viewModel.SearchArticle(_currentSearch, limit: _limit, offset: _offset++);
-
+            viewModel.SearchArticle(SearchText.Text);
+            await viewModel.AddArticles(true);
         }
         catch (Exception ex)
         {
@@ -88,10 +82,9 @@ public partial class ArticlesBySectionPage : ContentPage
         {
             _loaded = false;
             LoadProcessSimulation();
-            await viewModel.AddArticles(true, _limit, 0);
-            _offset = 1;
+            viewModel.RefreshCollection();
+            await viewModel.AddArticles(true);
             SearchText.Text = string.Empty;
-            _searching = false;
             _loaded = true;
             LoadProcessSimulation();
         }
@@ -113,22 +106,7 @@ public partial class ArticlesBySectionPage : ContentPage
         if (currentScrollPosition + scrollViewHeight >= contentHeight - 100 && _scrolled)
         {
             _scrolled = false;
-            try
-            {
-                if (!_searching)
-                {
-                    await viewModel.AddArticles(limit: _limit, offset: _offset);
-                }
-                else
-                {
-                    await viewModel.SearchArticle(_currentSearch, limit: _limit, offset: _offset);
-                }
-                _offset++;
-            }
-            catch (Exception ex)
-            {
-                await DisplayAlert("Ошибка!", ex.Message, "OK");
-            }
+            await viewModel.AddArticles();
             _scrolled = true;
         }
     }

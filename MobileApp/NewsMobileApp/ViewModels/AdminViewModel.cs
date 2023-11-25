@@ -38,8 +38,13 @@ public class AdminViewModel
          );
     }
 
-    public async Task GetDiagtamData()
+    public async Task GetDiagtamData(bool update = false)
     {   
+        if(update)
+        {
+            Parallel.For(0, _data.Count, i => { _data[i].Value = 0; });
+        }    
+
         List<DiagramData> data = (await _requestService.GetDiagramAsync(_startDate, _endDate)).OrderBy(x => x.PublishTime).ToList();
         Parallel.For(0, _data.Count, i => {
             _data[i].Value += data.Where(d => d.PublishTime.Date.Equals(_data[i].DateTime.Date)).Sum(d => d.Total);

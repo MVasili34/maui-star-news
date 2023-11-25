@@ -6,7 +6,7 @@
              Title="Настройки аккаунта"
              Shell.BackgroundColor="{StaticResource MainNavigationColor}"
              BackgroundColor="{StaticResource MainBackGroundColor}">
-    <ScrollView>
+    <ScrollView x:DataType="viewmodels:UserViewModel">
         <VerticalStackLayout IsEnabled="True" x:Name="AllBlocks">
         <Label 
             Margin="0,20,0,20"

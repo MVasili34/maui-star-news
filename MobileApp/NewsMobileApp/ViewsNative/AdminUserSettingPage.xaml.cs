@@ -1,6 +1,5 @@
 using NewsMobileApp.TempServices;
 using NewsMobileApp.ViewModels;
-using NewsMobileApp.Models;
 using CryptographyTool;
 
 namespace NewsMobileApp.ViewsNative;
@@ -95,7 +94,7 @@ public partial class AdminUserSettingPage : ContentPage
         {
             if (!StrongPasswordChecker.PasswordCheck(PasswordField.Text))
                 throw new Exception("Слабый пароль.");
-            AuthorizeModel model = new() { 
+            AuthorizeViewModel model = new() { 
                 EmailAddress = viewModel.EmailAddress,
                 Password = PasswordField.Text
             };

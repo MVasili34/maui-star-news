@@ -1,32 +1,23 @@
 ﻿using NewsMobileApp.Models;
 using NewsMobileApp.TempServices;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using ImagesCloudTool;
-using System.Runtime.CompilerServices;
 
 namespace NewsMobileApp.ViewModels;
 
-public class ArticleDetailViewModel : INotifyPropertyChanged
+public class ArticleDetailViewModel : ViewModelBase
 {
-    public event PropertyChangedEventHandler PropertyChanged;
-    private void NotifyPropertyChanged([CallerMemberName] string propertyName = "") =>
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-
     private readonly IRequestsService _requestService;
     private readonly IImageCloudTool _imageTool;
+    public ObservableCollection<Section> Sections { get; set; } = new();
 
     private ArticleViewModel _article = new();
+
     public ArticleViewModel Article
     {
         get => _article;
-        set
-        {
-            _article = value;
-            NotifyPropertyChanged(nameof(Article));
-        }
+        set => SetProperty(ref _article, value);
     }
-    public ObservableCollection<Section> Sections { get; set; } = new();
 
     public ArticleDetailViewModel()
     {

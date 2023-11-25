@@ -1,12 +1,7 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
+﻿namespace NewsMobileApp.ViewModels;
 
-namespace NewsMobileApp.ViewModels;
-
-public class ArticleViewModel : INotifyPropertyChanged
+public class ArticleViewModel : ViewModelBase
 {
-    public event PropertyChangedEventHandler PropertyChanged;
-
     private Guid _articleId;
     private string _title;
     private string _subtitle;
@@ -17,88 +12,52 @@ public class ArticleViewModel : INotifyPropertyChanged
     private DateTime? _publishTime = null;
     private Guid? _publisherId;
 
-    private void NotifyPropertyChanged([CallerMemberName] string propertyName = "") =>
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-
     public Guid ArticleId
     {
         get => _articleId;
-        set
-        {
-            _articleId = value;
-            NotifyPropertyChanged(nameof(ArticleId));
-        }
+        set => SetProperty(ref _articleId, value);
     }
 
     public string Title
     {
         get => _title;
-        set
-        {
-            _title = value;
-            NotifyPropertyChanged();
-        }
+        set => SetProperty(ref _title, value);
     }
 
     public string Subtitle
     {
         get => _subtitle;
-        set
-        {
-            _subtitle = value;
-            NotifyPropertyChanged();
-        }
+        set => SetProperty(ref _subtitle, value);
     }
 
     public int SectionId
     {
         get => _sectionId;
-        set
-        {
-            _sectionId = value;
-            NotifyPropertyChanged();
-        }
+        set => SetProperty(ref _sectionId, value);
     }
 
     public string Image
     {
         get => _image;
-        set
-        {
-            _image = value;
-            NotifyPropertyChanged();
-        }
+        set => SetProperty(ref _image, value);
     }
 
     public int Views
     {
         get => _views;
-        set
-        {
-            _views = value;
-            NotifyPropertyChanged();
-        }
+        set => SetProperty(ref _views, value);
     }
 
     public string Text
     {
         get => _text;
-        set
-        {
-            _text = value;
-            NotifyPropertyChanged();
-        }
+        set => SetProperty(ref _text, value);
     }
 
     public DateTime? PublishTime
     {
         get => _publishTime;
-        set
-        {
-            _publishTime = value;
-            NotifyPropertyChanged();
-        }
-
+        set => SetProperty(ref _publishTime, value);
     }
 
     public Guid? PublisherId

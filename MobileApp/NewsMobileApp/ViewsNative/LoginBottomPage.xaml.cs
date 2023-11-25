@@ -1,4 +1,3 @@
-using NewsMobileApp.Models;
 using NewsMobileApp.TempServices;
 using System.Net.Mail;
 using CryptographyTool;
@@ -8,7 +7,7 @@ namespace NewsMobileApp.ViewsNative;
 
 public partial class LoginBottomPage
 {
-    private AuthorizeModel viewModel => BindingContext as AuthorizeModel;
+    private AuthorizeViewModel viewModel => BindingContext as AuthorizeViewModel;
     private readonly IRequestsService _requestService;
 
 	public LoginBottomPage(IRequestsService requestService)
@@ -16,7 +15,7 @@ public partial class LoginBottomPage
 		InitializeComponent();
   
         _requestService = requestService;
-        BindingContext = new AuthorizeModel()
+        BindingContext = new AuthorizeViewModel()
         {
             EmailAddress = Preferences.Get("emailAddress", string.Empty),
             Password = Preferences.Get("password", string.Empty)

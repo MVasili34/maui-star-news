@@ -1,6 +1,5 @@
 ﻿using NewsMobileApp.ViewsNative;
 using NewsMobileApp.ViewModels;
-using NewsMobileApp.Models;
 using NewsMobileApp.TempServices;
 
 namespace NewsMobileApp;
@@ -39,7 +38,7 @@ public partial class MainPage : ContentPage
         }
         try
         {
-            AuthorizeModel authmodel = new()
+            AuthorizeViewModel authmodel = new()
             {
                 EmailAddress = Preferences.Get("emailAddress", string.Empty),
                 Password = Preferences.Get("password", string.Empty)

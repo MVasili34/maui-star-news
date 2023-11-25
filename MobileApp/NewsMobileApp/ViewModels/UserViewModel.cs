@@ -3,73 +3,48 @@ using System.Runtime.CompilerServices;
 
 namespace NewsMobileApp.ViewModels;
 
-public class UserViewModel : INotifyPropertyChanged
+public class UserViewModel : ViewModelBase
 {
-    public event PropertyChangedEventHandler PropertyChanged;
 
     private Guid _userId;
     private string _userName;
     private string _emailAddress;
     private string _phone;
     private DateOnly? _dateOfBirth;
-    private string _passwordSalt;
+    private string _passwordSalt = string.Empty;
     private string _passwordHash;
     private int _roleId;
     private DateTime _registered;
     private DateTime? _lastLogin;
 
-
-    private void NotifyPropertyChanged([CallerMemberName] string propertyName = "") =>
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-
     public Guid UserId
     {
         get => _userId;
-        set
-        {
-            _userId = value;
-            NotifyPropertyChanged(nameof(UserId));
-        }
+        set => SetProperty(ref _userId, value);
     }
 
     public string UserName
     {
         get => _userName;
-        set
-        {
-            _userName = value;
-            NotifyPropertyChanged();
-        }
+        set => SetProperty(ref _userName, value);
     }
 
     public string EmailAddress
     {
         get => _emailAddress;
-        set
-        {
-            _emailAddress = value;
-            NotifyPropertyChanged(nameof(EmailAddress));
-        }
+        set => SetProperty(ref _emailAddress, value);
     }
 
     public string Phone
     {
         get => _phone;
-        set 
-        {
-            _phone = value;
-            NotifyPropertyChanged();
-        }
+        set => SetProperty(ref _phone, value);
     }
 
     public DateOnly? DateOfBirth
     {
         get => _dateOfBirth;
-        set
-        {
-            _dateOfBirth = value;
-            NotifyPropertyChanged();
-        }
+        set => SetProperty(ref _dateOfBirth, value);
     }
 
     public string PasswordSalt
@@ -81,31 +56,19 @@ public class UserViewModel : INotifyPropertyChanged
     public string PasswordHash
     {
         get => _passwordHash;
-        set
-        {
-            _passwordHash = value;
-            NotifyPropertyChanged();
-        }
+        set => SetProperty(ref _passwordHash, value);
     }
 
     public int RoleId
     {
         get => _roleId;
-        set
-        {
-            _roleId = value;
-            NotifyPropertyChanged();
-        }
+        set => SetProperty(ref _roleId, value);
     }
 
     public DateTime Registered
     {
         get => _registered;
-        set
-        {
-            _registered = value;
-            NotifyPropertyChanged();
-        }
+        set => SetProperty(ref _registered, value);
     }
 
     public DateTime? LastLogin

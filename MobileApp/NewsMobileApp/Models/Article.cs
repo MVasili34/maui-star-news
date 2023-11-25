@@ -1,71 +1,16 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
+﻿namespace NewsMobileApp.Models;
 
-namespace NewsMobileApp.Models;
-
-public class Article : INotifyPropertyChanged
+public class Article
 {
-    public event PropertyChangedEventHandler PropertyChanged;
+    public Guid ArticleId { get; set; }
 
-    private Guid _articleId;
-    private string _title;
-    private string _subtitle;
-    private Section _section;
-    private string _image;
-    private DateTime _publishTime;
+    public string Title { get; set; }
 
-    private void NotifyPropertyChanged([CallerMemberName] string propertyName = "") =>
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    public string Subtitle { get; set; }
 
-    public Guid ArticleId
-    {
-        get => _articleId;
-        set => _articleId = value;
-    }
+    public Section Section { get; set; }
 
-    public string Title
-    {
-        get => _title;
-        set
-        {
-            _title = value;
-            NotifyPropertyChanged();
-        }
-    }
+    public string Image { get; set; }
 
-    public string Subtitle
-    {
-        get => _subtitle;
-        set
-        {
-            _subtitle = value;
-            NotifyPropertyChanged();
-        }
-    }
-
-    public Section Section
-    {
-        get => _section;
-        set
-        {
-            _section = value;
-            NotifyPropertyChanged();
-        }
-    }
-
-    public string Image
-    {
-        get => _image;
-        set
-        {
-            _image = value;
-            NotifyPropertyChanged();
-        }
-    }
-
-    public DateTime PublishTime
-    {
-        get => _publishTime;
-        set => _publishTime = value;
-    }
+    public DateTime PublishTime {  get; set; }
 }

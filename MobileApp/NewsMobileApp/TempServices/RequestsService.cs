@@ -15,6 +15,7 @@ public class RequestsService : IRequestsService
         _clientFactory = clientFactory;
     }
 
+    #region Articles Actions Section
     public async Task<IEnumerable<Section>> GetAllSectionsAsync()
     {
         HttpClient client = _clientFactory.CreateClient("NewsAPI");
@@ -166,6 +167,9 @@ public class RequestsService : IRequestsService
         return false;
     }
 
+    #endregion
+
+    #region Manage User Data Section
     public async Task<UserViewModel> RegisterUserAsync(RegisterModel model)
     {
         HttpClient client = _clientFactory.CreateClient("NewsAPI");
@@ -179,7 +183,7 @@ public class RequestsService : IRequestsService
         return null;
     }
 
-    public async Task<UserViewModel> LoginUserAsync(AuthorizeModel model)
+    public async Task<UserViewModel> LoginUserAsync(AuthorizeViewModel model)
     {
         HttpClient client = _clientFactory.CreateClient("NewsAPI");
 
@@ -198,7 +202,7 @@ public class RequestsService : IRequestsService
         return null;
     }
 
-    public async Task<bool> ChangeUserPasswordAsync(ChangePasswordModel changedPass)
+    public async Task<bool> ChangeUserPasswordAsync(ChangePasswordViewModel changedPass)
     {
         HttpClient client = _clientFactory.CreateClient("NewsAPI");
 
@@ -290,7 +294,7 @@ public class RequestsService : IRequestsService
         return false;
     }
 
-    public async Task<bool> UpdateUserPswByAdminAsync(AuthorizeModel model)
+    public async Task<bool> UpdateUserPswByAdminAsync(AuthorizeViewModel model)
     {
         HttpClient client = _clientFactory.CreateClient("NewsAPI");
         client.DefaultRequestHeaders.Authorization = new("Bearer", await SecureStorage.GetAsync("ApiKey"));
@@ -323,4 +327,6 @@ public class RequestsService : IRequestsService
             throw new HttpRequestException("При удалении пользователя произошла ошибка! - 400 BadRequest");
         return false;
     }
+
+    #endregion
 }

@@ -1,4 +1,3 @@
-using NewsMobileApp.Models;
 using NewsMobileApp.TempServices;
 using System.Net.Mail;
 using CryptographyTool;

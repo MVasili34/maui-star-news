@@ -7,6 +7,10 @@
              BackgroundColor="{StaticResource MainBackGroundColor}"
              Shell.BackgroundColor="{StaticResource MainNavigationColor}"
              xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui">
+    <RefreshView BackgroundColor="{StaticResource MainNavigationColor}"
+                 RefreshColor="{StaticResource Primary}" 
+                 Refreshing="Refresher_Refreshing"
+                 x:Name="Refresher">
     <ScrollView Scrolled="OnScrollViewScrolled">
         <VerticalStackLayout Padding="16">
             <Label 
@@ -107,4 +111,5 @@
             </VerticalStackLayout>
         </VerticalStackLayout>
     </ScrollView>
+    </RefreshView>
 </ContentPage>

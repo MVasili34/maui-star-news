@@ -1,38 +1,22 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
+﻿namespace NewsMobileApp.ViewModels;
 
-namespace NewsMobileApp.ViewModels;
-
-public class EmailViewModel : INotifyPropertyChanged
+public class EmailViewModel : ViewModelBase
 {
-    public event PropertyChangedEventHandler PropertyChanged;
-
-    private string _to { get; set; } = "vasili.dubov4@mail.ru";
-    private string _subject { get; set; }
-    private string _body { get; set; }
-
-    private void NotifyPropertyChanged([CallerMemberName] string propertyName = "") =>
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    private readonly string _to = "vasili.dubov4@mail.ru";
+    private string _subject;
+    private string _body;
 
     public string To => _to;
 
     public string Subject
     {
         get => _subject;
-        set
-        {
-            _subject = value;
-            NotifyPropertyChanged(nameof(Subject));
-        }
+        set => SetProperty(ref _subject, value);
     }
 
     public string Body
     {
         get => _body;
-        set
-        {
-            _body = value;
-            NotifyPropertyChanged(nameof(Body));
-        }
+        set => SetProperty(ref _body, value);
     }
 }

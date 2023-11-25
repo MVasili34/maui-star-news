@@ -16,13 +16,13 @@ public interface IRequestsService
     Task<bool> UpdateArticleAsync(ArticleViewModel article);
     Task<bool> DeleteArticleAsync(Guid articleId);
     Task<UserViewModel> RegisterUserAsync(RegisterModel model);
-    Task<UserViewModel> LoginUserAsync(AuthorizeModel model);
+    Task<UserViewModel> LoginUserAsync(AuthorizeViewModel model);
     Task<bool> UpdateUserAsync(UserViewModel model);
     Task<IEnumerable<UserViewModel>> GetUsersAsync(int? page, int? pageSize);
     Task<IEnumerable<DiagramData>> GetDiagramAsync(DateTime start, DateTime end);
     Task<UserViewModel> GetUserByIdAsync(string id);
-    Task<bool> ChangeUserPasswordAsync(ChangePasswordModel changedPass);
+    Task<bool> ChangeUserPasswordAsync(ChangePasswordViewModel changedPass);
     Task<bool> UpdateUserAdminAsync(UserViewModel model);
-    Task<bool> UpdateUserPswByAdminAsync(AuthorizeModel model);
+    Task<bool> UpdateUserPswByAdminAsync(AuthorizeViewModel model);
     Task<bool> DeleteUserAsync(Guid id);
 }

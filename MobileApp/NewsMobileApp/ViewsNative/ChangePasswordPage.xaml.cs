@@ -1,19 +1,18 @@
 using NewsMobileApp.TempServices;
 using NewsMobileApp.ViewModels;
 using CryptographyTool;
-using NewsMobileApp.Models;
 
 namespace NewsMobileApp.ViewsNative;
 
 public partial class ChangePasswordPage : ContentPage
 {
-    private ChangePasswordUserViewModel viewModel => BindingContext as ChangePasswordUserViewModel;
+    private ChangePasswordViewModel viewModel => BindingContext as ChangePasswordViewModel;
     private readonly IRequestsService _requestService;
 
 	public ChangePasswordPage()
 	{
 		InitializeComponent();
-        BindingContext = new ChangePasswordUserViewModel {
+        BindingContext = new ChangePasswordViewModel {
             EmailAddress = Preferences.Get("emailAddress", "Error!")
         };
         _requestService = Application.Current.Handler
@@ -26,16 +25,16 @@ public partial class ChangePasswordPage : ContentPage
     {
         try
         {
-            if (viewModel.NewPassword1 != viewModel.NewPassword2)
+            if (viewModel.NewPassword != viewModel.NewPasswordVerify)
                 throw new Exception("Новые пароли разные!");
-            if (!StrongPasswordChecker.PasswordCheck(viewModel.NewPassword1))
+            if (!StrongPasswordChecker.PasswordCheck(viewModel.NewPassword))
                 throw new Exception("Слишком слабый пароль! Критерии:\n1) Не менее 8 симмволов;\n2) Одна прописная буква;" +
                     "\n3) Одна строчная буква;\n4) Одна цифра;\n5) Один специальный символ;\n6) Без пробелов;");
             Submit.IsEnabled = false;
-            if (!await _requestService.ChangeUserPasswordAsync((ChangePasswordModel)viewModel))
+            if (!await _requestService.ChangeUserPasswordAsync(viewModel))
                 throw new Exception("Произошла ошибка сервера!");
             await DisplayAlert("Успех!", "Пароль изменён.", "OK");
-            Preferences.Set("password", viewModel.NewPassword1);
+            Preferences.Set("password", viewModel.NewPassword);
             await Navigation.PopAsync();
         }
         catch (HttpRequestException ex)
