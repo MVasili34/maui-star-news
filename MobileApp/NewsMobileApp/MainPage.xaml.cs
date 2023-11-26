@@ -18,14 +18,10 @@ public partial class MainPage : ContentPage
 
     private async void OnSigninClicked(object sender, EventArgs e)
     {
-#if WINDOWS
-        Application.Current.MainPage = new AppShell();
-#endif
-#if ANDROID
-        LoginBottomPage pageSheet = new(_requestService);
-        pageSheet.HasHandle = true;
+        LoginBottomPage pageSheet = new(_requestService) {
+            HasHandle = true
+        };
         await pageSheet.ShowAsync();
-#endif
     }
 
     protected async override void OnAppearing()

@@ -9,7 +9,7 @@
         <Tab x:Name="HomeTab" Icon="home.png" Title="Главная">
             <ShellContent ContentTemplate="{DataTemplate views:MainEventsPage}" Route="home" />
         </Tab>
-        <Tab x:Name="ThrendsTab" Icon="fire.png" Title="Тренд">
+        <Tab x:Name="ThrendsTab" Icon="fire.png" Title="Тренды">
             <ShellContent ContentTemplate="{DataTemplate views:TrendsPage}" Route="thrend" />
         </Tab>
         <Tab x:Name="SectionsTab" Icon="categories.png" Title="Секции">

@@ -75,12 +75,12 @@ else
             {
                 throw new ArgumentNullException();
             }
-            string apiKey = Preferences.Get("apiKey", string.Empty);
+            string apiKey = await SecureStorage.GetAsync("AIKey");
             ArticleRetell retell = new(apiKey);
             string result = await retell.ConvertArticle(Text);
             
             if (result is null)
-                {
+            {
                 throw new ArgumentNullException();
             }
             RetellText = result;

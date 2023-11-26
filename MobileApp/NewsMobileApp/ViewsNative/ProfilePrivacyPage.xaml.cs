@@ -21,13 +21,7 @@ public partial class ProfilePrivacyPage : ContentPage
 
     private void Logout_Clicked(object sender, EventArgs e)
     {
-        Preferences.Set("userId", null);
-        Preferences.Set("userName", null);
-        Preferences.Set("emailAddress", null);
-        Preferences.Set("phone", null);
-        Preferences.Set("dateOfBirth", null);
-        Preferences.Set("password", null);
-        Preferences.Set("roleId", 3);
+        Preferences.Clear();
         Application.Current.MainPage = new MainPage(Handler
           .MauiContext.Services);
     }

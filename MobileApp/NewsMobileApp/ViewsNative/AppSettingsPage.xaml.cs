@@ -7,10 +7,10 @@ public partial class AppSettingsPage : ContentPage
 		InitializeComponent();
     }
 
-    protected override void OnAppearing()
+    protected override async void OnAppearing()
     {
         base.OnAppearing();
-        TextBox.Text = Preferences.Get("apiKey", string.Empty);
+        TextBox.Text = await SecureStorage.GetAsync("AIKey");
     }
 
     private async void Submit_Clicked(object sender, EventArgs e)
@@ -21,7 +21,7 @@ public partial class AppSettingsPage : ContentPage
             {
                 return;
             }
-            Preferences.Set("apiKey", TextBox.Text);
+            await SecureStorage.SetAsync("AIKey", TextBox.Text);
             await DisplayAlert("Успех!", "Настройки успешно установлены", "OK");
             await Navigation.PopAsync(true);
         }
