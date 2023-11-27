@@ -3,10 +3,10 @@
 public class AnimationCreator
 {
     /// <summary>
-    /// Method for adding skeleton loading Effect to Frames
+    /// Method for adding skeleton loading effect to Frames
     /// </summary>
-    /// <param name="frames">Frame or Frames</param>
-    /// <returns>Animation instance</returns>
+    /// <param name="frames">Collection of Frames</param>
+    /// <returns><see cref="Animation"/> instance</returns>
     public static Animation SetAnimations(params Frame[] frames)
     {
         var parentAnimation = new Animation();

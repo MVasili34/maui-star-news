@@ -1,6 +1,6 @@
 ﻿namespace NewsMobileApp.ViewModels;
 
-public class RegisterModel : ViewModelBase
+public class RegisterViewModel : ViewModelBase
 {
     private string _userName = null!;
 

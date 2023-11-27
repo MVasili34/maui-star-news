@@ -59,7 +59,7 @@ else
     {
         try
         {
-            _article = await requestService.GetArticleById(ArticleId);
+            _article = await requestService.GetArticleByIdAsync(ArticleId);
         }
         catch(Exception ex)
         {

@@ -7,14 +7,14 @@ namespace NewsMobileApp.ViewsNative;
 
 public partial class RegisterPage : ContentPage
 {
-    private RegisterModel viewModel => BindingContext as RegisterModel;
+    private RegisterViewModel viewModel => BindingContext as RegisterViewModel;
     private readonly IRequestsService _requestsService;
 
 	public RegisterPage(IRequestsService requestsService)
 	{
 		InitializeComponent();
         _requestsService = requestsService;
-        BindingContext = new RegisterModel();
+        BindingContext = new RegisterViewModel();
     }
 
     private async void Register_Clicked(object sender, EventArgs e)

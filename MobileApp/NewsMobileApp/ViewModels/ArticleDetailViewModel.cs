@@ -40,7 +40,7 @@ public class ArticleDetailViewModel : ViewModelBase
         {
             Sections.Add(section);
         }
-        Article = await _requestService.GetArticleById(articleId);
+        Article = await _requestService.GetArticleByIdAsync(articleId);
         SelectedSection = Sections.FirstOrDefault(s => s.SectionId == Article.SectionId);
     }
 

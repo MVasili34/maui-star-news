@@ -5,7 +5,7 @@
              xmlns:viewmodels="clr-namespace:NewsMobileApp.ViewModels"
              Title="RegisterPage"
              BackgroundColor="{StaticResource MainBackGroundColor}">
-    <VerticalStackLayout x:DataType="viewmodels:RegisterModel">
+    <VerticalStackLayout x:DataType="viewmodels:RegisterViewModel">
         <ImageButton
             x:Name="BackButton"
             Margin="8, 8, 0, 0"

@@ -104,12 +104,12 @@ public class RequestsService : IRequestsService
         return articles.Value;
     }
 
-    public async Task<ArticleViewModel> GetArticleById(Guid? guid)
+    public async Task<ArticleViewModel> GetArticleByIdAsync(Guid? id)
     {
         HttpClient client = _clientFactory.CreateClient("NewsAPI");
         client.DefaultRequestHeaders.Authorization = new("Bearer", await SecureStorage.GetAsync("ApiKey"));
 
-        using HttpRequestMessage request = new(method: HttpMethod.Get, requestUri: $"api/Articles({guid})");
+        using HttpRequestMessage request = new(method: HttpMethod.Get, requestUri: $"api/Articles({id})");
 
         using HttpResponseMessage response = await client.SendAsync(request);
 
@@ -167,7 +167,7 @@ public class RequestsService : IRequestsService
     #endregion
 
     #region Manage User Data Section
-    public async Task<UserViewModel> RegisterUserAsync(RegisterModel model)
+    public async Task<UserViewModel> RegisterUserAsync(RegisterViewModel model)
     {
         HttpClient client = _clientFactory.CreateClient("NewsAPI");
 
