@@ -10,12 +10,9 @@ public class RequestsService : IRequestsService
 {
     private readonly IHttpClientFactory _clientFactory;
 
-    public RequestsService(IHttpClientFactory clientFactory)
-    {
-        _clientFactory = clientFactory;
-    }
+    public RequestsService(IHttpClientFactory clientFactory) => _clientFactory = clientFactory;
 
-    #region Articles Actions Section
+    #region Articles Actions Sectionc
     public async Task<IEnumerable<Section>> GetAllSectionsAsync()
     {
         HttpClient client = _clientFactory.CreateClient("NewsAPI");

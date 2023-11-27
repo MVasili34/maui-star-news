@@ -24,7 +24,6 @@ public partial class ArticleDetailPage : ContentPage
 		InitializeComponent();
 		_articleId = articleId;
         BindingContext = new ArticleDetailViewModel();
-        //ComboBox1.SelectedIndex = _articleViewModel.SectionId - 1;
         Submit.IsVisible = false;
         LoadingState();
     }
@@ -46,12 +45,10 @@ public partial class ArticleDetailPage : ContentPage
 			if (_articleId is null)
 			{
 				await viewModel.InitializeArticle();
-				ComboBox1.SelectedIndex = 0;
 			}
 			else
 			{
 				await viewModel.InitializeArticle(_articleId);
-				ComboBox1.SelectedIndex = viewModel.Article.SectionId - 1;
 			}
 			_loaded = true;
 			LoadingState();
@@ -70,9 +67,7 @@ public partial class ArticleDetailPage : ContentPage
 			if (photo is not null)
 			{
 				FileImage.Source = ImageSource.FromFile(photo.FullPath);
-				FileImage.WidthRequest = 100;
-				FileImage.HeightRequest = 70;
-				FilePathLabel.Text = photo.FullPath;
+                viewModel.Article.Image = photo.FullPath;
 				_pictureChanged = true;
 			}
 			else
@@ -89,23 +84,7 @@ public partial class ArticleDetailPage : ContentPage
     private async void Submit_Clicked(object sender, EventArgs e)
     {
 		try
-		{
-			if (FilePathLabel.Text is null)
-			{
-				await DisplayAlert("Bad", $"Не прикреплено изображение", "OK");
-				return;
-			}
-			if (!(new FileInfo(FilePathLabel.Text)).Exists)
-			{
-				throw new FileNotFoundException();
-			}
-			if (Preferences.Get("userId", null) is null)
-			{
-				throw new Exception("Некорректный автор статьи!");
-			}
-			viewModel.Article.PublisherId = new Guid(Preferences.Get("userId", null));
-			viewModel.Article.Image = FilePathLabel.Text;
-			viewModel.Article.SectionId = ((Section)ComboBox1.SelectedItem).SectionId;
+		{	
 			BlockUI(true);
 			await viewModel.PublishArticle();
             await DisplayAlert("Успех!", "Статья опубликована.", "OK");
@@ -118,7 +97,6 @@ public partial class ArticleDetailPage : ContentPage
 		catch (Exception ex)
 		{
 			await DisplayAlert("Ошибка!", ex.Message, "ОК");
-			ComboBox1.SelectedIndex--;
 		}
         BlockUI(false);
     }
@@ -127,18 +105,6 @@ public partial class ArticleDetailPage : ContentPage
     {
         try
         {
-            if (FilePathLabel.Text is null)
-            {
-                await DisplayAlert("Bad", $"Не прикреплено изображение", "OK");
-                return;
-            }
-
-            if (_pictureChanged && !(new FileInfo(FilePathLabel.Text)).Exists)
-            {
-                throw new FileNotFoundException();
-            }
-            viewModel.Article.Image = FilePathLabel.Text;
-            viewModel.Article.SectionId = ((Section)ComboBox1.SelectedItem).SectionId;
             BlockUI(true);
             await viewModel.ChangeArticle(_pictureChanged);
 			await DisplayAlert("Успех!", "Статья изменена.", "OK");

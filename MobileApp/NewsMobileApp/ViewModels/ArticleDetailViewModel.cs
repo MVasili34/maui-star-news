@@ -11,12 +11,19 @@ public class ArticleDetailViewModel : ViewModelBase
     private readonly IImageCloudTool _imageTool;
     public ObservableCollection<Section> Sections { get; set; } = new();
 
+    private Section _selectedSection = new();
     private ArticleViewModel _article = new();
 
     public ArticleViewModel Article
     {
         get => _article;
         set => SetProperty(ref _article, value);
+    }
+
+    public Section SelectedSection
+    {
+        get => _selectedSection;
+        set => SetProperty(ref _selectedSection, value);
     }
 
     public ArticleDetailViewModel()
@@ -34,6 +41,7 @@ public class ArticleDetailViewModel : ViewModelBase
             Sections.Add(section);
         }
         Article = await _requestService.GetArticleById(articleId);
+        SelectedSection = Sections.FirstOrDefault(s => s.SectionId == Article.SectionId);
     }
 
     public async Task InitializeArticle()
@@ -42,11 +50,37 @@ public class ArticleDetailViewModel : ViewModelBase
         {
             Sections.Add(section);
         }
+        SelectedSection = Sections.First();
         _article.ArticleId = Guid.NewGuid();
     }
 
     public async Task PublishArticle()
     {
+        if (string.IsNullOrWhiteSpace(Article.Title) ||
+            Article.Title.Length > 100)
+        {
+            throw new Exception("Либо слишком короткое название статьи либо слишком длинное!");
+        }
+        if (string.IsNullOrWhiteSpace(Article.Subtitle) ||
+            Article.Subtitle.Length > 100)
+        {
+            throw new Exception("Либо слишком короткое описание статьи либо слишком длинное!");
+        }
+        if (string.IsNullOrWhiteSpace(Article.Text))
+        {
+            throw new Exception("Текст статьи пустой!");
+        }
+        if (Article.Image is null || !new FileInfo(Article.Image).Exists)
+        {
+            throw new FileNotFoundException();
+        }
+        if (Preferences.Get("userId", null) is null)
+        {
+            throw new Exception("Некорректный автор статьи!");
+        }
+
+        Article.PublisherId = new Guid(Preferences.Get("userId", null));
+        Article.SectionId = SelectedSection.SectionId;
         Article.Image = await _imageTool.UploadImageAsync(Article.Image) ?? 
             throw new HttpRequestException("Ошибка запроса Imgur!");
 
@@ -57,6 +91,30 @@ public class ArticleDetailViewModel : ViewModelBase
 
     public async Task ChangeArticle(bool changesRequired)
     {
+        if (string.IsNullOrWhiteSpace(Article.Title) ||
+            Article.Title.Length > 100)
+        {
+            throw new Exception("Либо слишком короткое название статьи либо слишком длинное!");
+        }
+        if (string.IsNullOrWhiteSpace(Article.Subtitle) ||
+            Article.Subtitle.Length > 100)
+        {
+            throw new Exception("Либо слишком короткое описание статьи либо слишком длинное!");
+        }
+        if (string.IsNullOrWhiteSpace(Article.Text))
+        {
+            throw new Exception("Текст статьи пустой!");
+        }
+        if (Article.Image is null)
+        {
+            throw new FileNotFoundException();
+        }
+        if (changesRequired && !new FileInfo(Article.Image).Exists)
+        {
+            throw new FileNotFoundException();
+        }
+
+        Article.SectionId = SelectedSection.SectionId;
         if (changesRequired)
         {
             Article.Image = await _imageTool.UploadImageAsync(Article.Image) ??

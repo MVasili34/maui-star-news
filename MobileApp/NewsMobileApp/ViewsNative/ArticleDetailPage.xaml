@@ -121,9 +121,9 @@
                     <RoundRectangle CornerRadius="6"/>
                  </Border.StrokeShape>
                  <Picker 
+                         SelectedItem="{Binding SelectedSection}"
                          ItemsSource="{Binding Sections}"
                          ItemDisplayBinding="{Binding Name}"
-                         SelectedIndex="{Binding Article.SectionId}"
                          x:Name="ComboBox1" 
                          WidthRequest="345" 
                          FontSize="18" 
@@ -173,6 +173,9 @@
                           HorizontalOptions="Center"
                           TextColor="White"/>
                     <Image x:Name="FileImage"
+                           Source="{Binding Article.Image}"
+                           WidthRequest="100"
+                           HeightRequest="80"
                            Margin="0,0,0,5"/>
                 </VerticalStackLayout>
             </Frame>
