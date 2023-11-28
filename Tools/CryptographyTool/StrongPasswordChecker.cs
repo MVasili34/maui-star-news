@@ -3,11 +3,11 @@
 public static class StrongPasswordChecker
 {
     /// <summary>
-    /// Метод проверки сложности пароля (не менее 1 прописной буквы, <br />
-    ///  строчной буквы, цифры, специального символа и ни одного пробела)
+    /// Check if the password is strong (at least 1 upper letter, <br />
+    /// lower letter, number, special symbol and no spaces)
     /// </summary>
-    /// <param name="password">Строка (предполагаемый пароль)</param>
-    /// <returns><see href="true"/>, если пароль сильный, иначе <see href="false"/></returns>
+    /// <param name="password">Password to check</param>
+    /// <returns><see href="true"/> if password is strong, <see href="false"/> otherwise</returns>
     public static bool PasswordCheck(string password)
     {
         if (string.IsNullOrEmpty(password))

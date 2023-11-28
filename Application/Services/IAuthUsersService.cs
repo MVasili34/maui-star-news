@@ -3,70 +3,103 @@
 public interface IAuthUsersService
 {
     /// <summary>
-    /// Метод постраничного получения пользователей из базы данных
+    /// Gets paginated collection of registered users asynchronously from database.
     /// </summary>
-    /// <param name="offset">Номер страницы (начиная с 0)</param>
-    /// <param name="limit">Число пользователей на странице</param>
-    /// <returns><see langword="limit" /> пользователей с <see langword="offset" /> страницы</returns>
+    /// <param name="offset">Page number (from 0)</param>
+    /// <param name="limit">Amount of objects in the page</param>
+    /// <returns>
+    /// A <see cref="Task"/> that represents the asynchronous operation. 
+    /// The <see cref="Task"/> result contains a paginated collection of <see cref="User"/> objects.
+    /// </returns>
     Task<IEnumerable<User>> RetrieveUsersAsync(int? offset, int? limit);
 
     /// <summary>
-    /// Метод получения пользователя по идентификатору из базы данных
+    /// Gets a user by ID asynchronously from database.
     /// </summary>
-    /// <param name="id">Идентификатор пользователя</param>
-    /// <returns>Объект <see cref="User" />, иначе <see langword="null" /></returns>
+    /// <param name="id">User ID</param>
+    /// <returns>
+    /// A <see cref="Task"/> that represents the asynchronous operation. 
+    /// The <see cref="Task"/> result contains found <see cref="User"/> object, 
+    /// <see href="null"/> otherwise.
+    /// </returns>
     Task<User?> RetrieveUserAsync(Guid id);
 
     /// <summary>
-    /// Метод авторизации пользователя
+    /// Authorizes a user and gets him from database asynchronously.
     /// </summary>
-    /// <param name="user">Объект <see cref="User"/> с вложенным паролем</param>
-    /// <returns>Объект <see cref="User"/>, иначе <see langword="null"/>.
-    /// Если же пользователя не существуюет вовсе, то <see langword="null"/></returns>
+    /// <param name="user"><see cref="AuthorizeModel"/> record with valid authorize data</param>
+    /// <returns>
+    /// A <see cref="Task"/> that represents the asynchronous operation. <br/>
+    /// The <see cref="Task"/> result contains authorized <see cref="User"/> 
+    /// object or <see href="null"/> - if invalid authorize data or user doesn't exist.
+    /// </returns>
     Task<User?> AutorizeUserAsync(AuthorizeModel user);
 
     /// <summary>
-    /// Метод регистрации пользователя по предоставленным данным
+    /// Registers a user and gets him from database asynchronously.
     /// </summary>
-    /// <param name="user">Запись <see cref="RegisterModel"/> с вложенным паролем</param>
-    /// <returns>Объект <see cref="User"/>, если регистрация успешно, иначе <see langword="null"/></returns>
+    /// <param name="user"><see cref="AuthorizeModel"/> record with valid register data</param>
+    /// <returns>
+    /// A <see cref="Task"/> that represents the asynchronous operation. 
+    /// The <see cref="Task"/> result contains registered <see cref="User"/> object if success, 
+    /// <see href="null"/> otherwise.
+    /// </returns>
     Task<User?> RegisterUserAsync(RegisterModel user);
 
     /// <summary>
-    /// Метод обновления пароля
+    /// Changes a user's password asynchronously.
     /// </summary>
-    /// <param name="model">Объект <see cref="ChangePasswdModel"/> со старым и новым паролем</param>
-    /// <returns>Объект <see cref="User"/>, иначе <see langword="null"/></returns>
+    /// <param name="model"><see cref="ChangePasswdModel"/> record with old and new password</param>
+    /// <returns>
+    /// A <see cref="Task"/> that represents the asynchronous operation. 
+    /// The <see cref="Task"/> result contains <see cref="User"/> object if success, 
+    /// <see href="null"/> otherwise.
+    /// </returns>
     Task<User?> ChangePasswordAsync(ChangePasswdModel model);
 
     /// <summary>
-    /// Метод обновления пароля администратором
+    /// Changes a user's password by admin claims asynchronously.
     /// </summary>
-    /// <param name="model">Объект <see cref="AuthorizeModel"/> с новым паролем</param>
-    /// <returns>Объект <see cref="User"/>, иначе <see langword="null"/></returns>
+    /// <param name="model"><see cref="AuthorizeModel"/> record with new password</param>
+    /// <returns>
+    /// A <see cref="Task"/> that represents the asynchronous operation. 
+    /// The <see cref="Task"/> result contains <see cref="User"/> object if success, 
+    /// <see href="null"/> otherwise.
+    /// </returns>
     Task<User?> ChangePasswordAdminAsync(AuthorizeModel model);
 
     /// <summary>
-    /// Метод обновления данных пользователя (права админа)
+    /// Updates a user's data by admin claims asynchronously.
     /// </summary>
-    /// <param name="id">Идентификатор пользователя</param>
-    /// <param name="user">Объект <see cref="User"/></param>
-    /// <returns><see cref="User"/>, если данные обновлены, иначе <see langword="null"/></returns>
+    /// <param name="id">User's ID</param>
+    /// <param name="user"><see cref="User"/> object with new data</param>
+    /// <returns>
+    /// A <see cref="Task"/> that represents the asynchronous operation. 
+    /// The <see cref="Task"/> result contains updated <see cref="User"/> object if success, 
+    /// <see href="null"/> otherwise.
+    /// </returns>
     Task<User?> UpdateUserAdminAsync(Guid id, User user);
 
     /// <summary>
-    /// Метод обновления данных пользователя
+    /// Updates a user's data asynchronously.
     /// </summary>
-    /// <param name="id">Идентификатор пользователя</param>
-    /// <param name="user">Объект <see cref="User"/></param>
-    /// <returns><see cref="User"/>, если данные обновлены, иначе <see langword="null"/></returns>
+    /// <param name="id">User's ID</param>
+    /// <param name="user"><see cref="User"/> object with new data</param>
+    /// <returns>
+    /// A <see cref="Task"/> that represents the asynchronous operation. 
+    /// The <see cref="Task"/> result contains updated <see cref="User"/> object if success, 
+    /// <see href="null"/> otherwise.
+    /// </returns>
     Task<User?> UpdateUserAsync(Guid id, User user);
 
     /// <summary>
-    /// Метод удаления пользователя по идентификатору 
+    /// Deletes a user asynchronously from database.
     /// </summary>
-    /// <param name="id">Идентификатор пользователя</param>
-    /// <returns>Если пользователь удалён, то <see langword="true"/>, иначе <see langword="false"/>.
-    /// Если же пользователя не существуюет вовсе, то <see langword="null"/></returns>
+    /// <param name="id">User's ID</param>
+    /// <returns>
+    /// A <see cref="Task"/> that represents the asynchronous operation.
+    /// The <see cref="Task"/> result is <see href="true"/> or <see href="false"/> 
+    /// indicating success or failure respectively. <br/> If user doesn't even exist - <see href="null"/>
+    /// </returns>
     Task<bool?> DeleteUserAsync(Guid id);
 }

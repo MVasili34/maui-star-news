@@ -3,66 +3,93 @@
 public interface IArticleService
 {
     /// <summary>
-    /// Метод получения статьи по идентификатору
+    /// Gets required article by id asynchronously from database.
     /// </summary>
-    /// <param name="id">Идентификатор</param>
-    /// <returns>Объект <see cref="Article" />, иначе <see langword="null" /></returns>
+    /// <param name="id">Article ID</param>
+    /// <returns>
+    /// A <see cref="Task"/> that represents the asynchronous operation. 
+    /// The <see cref="Task"/> result contains found <see cref="Article"/> object, 
+    /// <see href="null"/> otherwise.
+    /// </returns>
     Task<Article?> RetrieveArticleAsync(Guid id);
 
     /// <summary>
-    /// Метод получения всех статей из базы данных
-    /// (для реализации OData сервиса)
+    /// Gets all articles from database asynchronously.
     /// </summary>
-    /// <returns>Все статьи из базы данных</returns>
+    /// <returns>Collection of <see cref="Article"/> objects.</returns>
     Task<IEnumerable<Article>> RetrieveArticlesAsync();
 
     /// <summary>
-    /// Метод получения всех категорий новостей
+    /// Gets all sections from database asynchronously.
     /// </summary>
-    /// <returns>Все категории из базы данных</returns>
+    /// <returns>Collection of <see cref="Section"/> objects.</returns>
     Task<IEnumerable<Section>> RetrieveSectionsAsync();
 
     /// <summary>
-    /// Метод добавления статьи в базу данных
+    /// Publishes an article and get's this article from database asynchronously.
     /// </summary>
-    /// <param name="article">Объект Article</param>
-    /// <returns>Объект <see cref="Article" />, иначе <see langword="null" /></returns>
+    /// <param name="article"><see cref="Article"/> object needs to pe published</param>
+    /// <returns>
+    /// A <see cref="Task"/> that represents the asynchronous operation. 
+    /// The <see cref="Task"/> result contains published <see cref="Article"/> object, 
+    /// <see href="null"/> otherwise.
+    /// </returns>
     Task<Article?> AddArticleAsync(Article article);
 
     /// <summary>
-    /// Метод добавления категорий новостей в базу данных
+    /// Adds new section to database asynchronously.
     /// </summary>
-    /// <param name="section">Объект Section</param>
-    /// <returns>Объект <see cref="Section" />, иначе <see langword="null" /></returns>
+    /// <param name="section"><see cref="Section"/> object</param>
+    /// <returns>
+    /// A <see cref="Task"/> that represents the asynchronous operation. 
+    /// The <see cref="Task"/> result contains added <see cref="Section"/> object, 
+    /// <see href="null"/> otherwise.
+    /// </returns>
     Task<Section?> AddSectionAsync(Section section);
 
     /// <summary>
-    /// Метод обновления статьи по идентификатору
+    /// Updates article by ID in database asynchronously.
     /// </summary>
-    /// <param name="id">Идентификатор статьи</param>
-    /// <param name="article">Объект Article</param>
-    /// <returns>Объект <see cref="Article" />, иначе <see langword="null" /></returns>
+    /// <param name="id">Article ID</param>
+    /// <param name="article">Article object</param>
+    /// <returns>
+    /// A <see cref="Task"/> that represents the asynchronous operation. 
+    /// The <see cref="Task"/> result contains updated <see cref="Article"/> object, 
+    /// <see href="null"/> otherwise.
+    /// </returns>
     Task<Article?> UpdateArticleAsync(Guid id, Article article);
 
     /// <summary>
-    /// Метод обновления секции по идентификатору
+    /// Updates section by ID in database asynchronously.
     /// </summary>
-    /// <param name="id">Идентификатор секции</param>
-    /// <param name="section">Объект Section</param>
-    /// <returns>Объект <see cref="Section" />, иначе <see langword="null" /></returns>
+    /// <param name="id">Section ID</param>
+    /// <param name="section">Section object</param>
+    /// <returns>
+    /// A <see cref="Task"/> that represents the asynchronous operation. 
+    /// The <see cref="Task"/> result contains updated <see cref="Section"/> object, 
+    /// <see href="null"/> otherwise.
+    /// </returns>
     Task<Section?> UpdateSectionAsync(int id, Section section);
 
     /// <summary>
-    /// Метод удаления статьи по идентификатору из базы данных
+    /// Deletes an article asynchronously from database.
     /// </summary>
-    /// <param name="id">Идентификатор статьи</param>
-    /// <returns>Состояние операции, иначе <see langword="null" /></returns>
+    /// <param name="id">Article ID</param>
+    /// <returns>
+    /// A <see cref="Task"/> that represents the asynchronous operation.
+    /// The <see cref="Task"/> result is <see href="true"/> or <see href="false"/> 
+    /// indicating success or failure respectively.
+    /// </returns>
     Task<bool?> DeleteArticleAsync(Guid id);
 
     /// <summary>
-    /// Метод удаления секции по идентификатору, а также всех связанных с ней статей
+    /// Deletes a section asynchronously from database.
     /// </summary>
-    /// <param name="id">Идентификатор секции</param>
-    /// <returns>Состояние операции, иначе <see langword="null" /></returns>
+    /// <param name="id">Section ID</param>
+    /// <returns>
+    /// A <see cref="Task"/> that represents the asynchronous operation.
+    /// The <see cref="Task"/> result is <see href="true"/> or <see href="false"/> 
+    /// indicating success or failure respectively.
+    /// </returns>
     Task<bool?> DeleteSectionAsync(int id);
 }

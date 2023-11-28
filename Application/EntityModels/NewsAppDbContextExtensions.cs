@@ -1,17 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-
 namespace EntityModels;
 
 public static class NewsAppDbContextExtensions
 {
     /// <summary>
-    /// Метод расширения для добавления контекста базы данных в
-    /// коллекцию сервисов зависимостей, применяя IServiceCollection
+    /// Adds <see cref="NewsAppDbContext"/> to the specified <see cref="IServiceCollection"/>.
     /// </summary>
-    /// <param name="services"></param>
-    /// <param name="connectionString"></param>
-    /// <returns>ServiceCollection для добавления других сервисов</returns>
+    /// <param name="services">The service collection</param>
+    /// <param name="connectionString">Connection string</param>
+    /// <returns><see cref="ServiceCollection"/> to add more services.</returns>
     public static IServiceCollection AddNewsAppDbContext(
         this IServiceCollection services, 
         string connectionString = "Host=localhost;Port=5432;Database=NewsAppDB;" +

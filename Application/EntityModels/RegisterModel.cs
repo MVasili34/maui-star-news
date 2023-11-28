@@ -1,9 +1,7 @@
 ﻿namespace EntityModels;
 
 /// <summary>
-/// Специальная запись для регистрации пользователей, независящая
-/// от сущностныъ моделей <para />
-/// Определён метод приведения записи к типу <see cref="User"/>
+/// Record to register users
 /// </summary>
 public record RegisterModel
 {
@@ -13,10 +11,10 @@ public record RegisterModel
     public int RoleId { get; set; } = 1;
 
     /// <summary>
-    /// Метод приведения записи к объекту типа <see cref="User"/>
+    /// Castring record to <see cref="User"/> instance
     /// </summary>
-    /// <param name="model">Объект <see cref="User"/></param>
-    public static explicit operator User(RegisterModel model) => new User()
+    /// <param name="model"><see cref="RegisterModel"/> instance</param>
+    public static explicit operator User(RegisterModel model) => new User
     {
         UserName = model.UserName,
         EmailAddress = model.EmailAddress,

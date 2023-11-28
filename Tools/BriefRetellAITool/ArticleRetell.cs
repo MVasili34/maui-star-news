@@ -9,19 +9,19 @@ namespace BriefRetellAITool;
 
 public class ArticleRetell
 {
-    private string _apiKey = null!;
+    private readonly string _apiKey = null!;
 
     public ArticleRetell(string apiKey) => _apiKey = apiKey;
 
     /// <summary>
-    /// Метод получения краткого пересказа статьи 
+    /// Method for getting brief retell of the text
     /// </summary>
-    /// <param name="articleText">Не пустой текст статьи типа <see cref="string"/></param>
-    /// <returns>Пересказ статьи, иначе <see href="null"/></returns>
-    /// <exception cref="ArgumentNullException">Если текст статьи пустой</exception>
-    /// <exception cref="KeyNotFoundException">Проблемы авторизации OpenAI</exception>
-    /// <exception cref="OverflowException">Проблемы ключа OpenAI</exception>
-    /// <exception cref="Exception">Прочие проблемы</exception>
+    /// <param name="articleText">Non empty text of <see cref="string"/> type</param>
+    /// <returns>Short text version, else <see href="null"/></returns>
+    /// <exception cref="ArgumentNullException">If article text is empty</exception>
+    /// <exception cref="KeyNotFoundException">Authorization problems with OpenAI</exception>
+    /// <exception cref="OverflowException">Invalid OpenAI key</exception>
+    /// <exception cref="Exception">Other problems</exception>
     public async Task<string?> ConvertArticle(string articleText)
     {
         if(string.IsNullOrWhiteSpace(articleText))

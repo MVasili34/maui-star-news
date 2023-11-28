@@ -3,9 +3,9 @@
 public interface IImageCloudTool
 {
     /// <summary>
-    /// Метод загрузки изображений на облачный сервис - <see href="Imgur"/>
+    /// Uploads image to the cloud service - <see href="Imgur"/>
     /// </summary>
-    /// <param name="filePath">Полный путь к файлу</param>
-    /// <returns><see cref="Uri"/>-адрес изображения, если загрузка прошла успешно, иначе <see href="null"/></returns>
+    /// <param name="filePath">Full path to the file</param>
+    /// <returns><see cref="Uri"/>-address of image if uploaded, <see href="null"/> otherwise.</returns>
     Task<string?> UploadImageAsync(string filePath);
 }

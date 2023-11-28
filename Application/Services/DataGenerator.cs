@@ -5,9 +5,11 @@ namespace Services;
 public class DataGenerator
 {
     /// <summary>
-    /// Метод генерации случайного пользователя
+    /// Generates <see cref="User"/> instance with random data.
     /// </summary>
-    /// <returns>Случайный объект <see cref="User"/></returns>
+    /// <returns>
+    /// A <see cref="User"/> object with random data.
+    /// </returns>
     public static User GenerateUser() => new Faker<User>("ru")
         .RuleFor(user => user.UserName, user => user.Name.FirstName())
         .RuleFor(user => user.EmailAddress, user => user.Internet.Email())
@@ -20,18 +22,22 @@ public class DataGenerator
         .Generate();
 
     /// <summary>
-    /// Метод генерации случайных данных для регистрации
+    /// Generates <see cref="RegisterModel"/> instance with random data.
     /// </summary>
-    /// <returns>Случайная запись <see cref="RegisterModel"/></returns>
+    /// <returns>
+    /// A <see cref="RegisterModel"/> object with random data.
+    /// </returns>
     public static RegisterModel GenerateRegisterMode() => new Faker<RegisterModel>("ru")
         .RuleFor(user => user.UserName, user => user.Name.FirstName())
         .RuleFor(user => user.EmailAddress, user => user.Internet.Email())
         .Generate();
 
     /// <summary>
-    /// Метод генерации случайной статьи
+    /// Generates <see cref="Article"/> instance with random data.
     /// </summary>
-    /// <returns>Случайный объект <see cref="Article"/></returns>
+    /// <returns>
+    /// A <see cref="Article"/> object with random data.
+    /// </returns>
     public static Article GenerateArticle() => new Faker<Article>("ru")
         .RuleFor(art => art.Title, art => art.Name.FullName())
         .RuleFor(art => art.Subtitle, art => art.Lorem.Word())
@@ -41,9 +47,11 @@ public class DataGenerator
         .Generate();
 
     /// <summary>
-    /// Метод генерации случайной категории
+    /// Generates <see cref="Section"/> instance with random data.
     /// </summary>
-    /// <returns>Случайный объект <see cref="Section"/></returns>
+    /// <returns>
+    /// A <see cref="Section"/> object with random data.
+    /// </returns>
     public static Section GenerateSection() => new Faker<Section>("ru")
         .RuleFor(sect => sect.Name, sect => sect.Lorem.Word())
         .RuleFor(sect => sect.Description, sect => sect.Lorem.Word())

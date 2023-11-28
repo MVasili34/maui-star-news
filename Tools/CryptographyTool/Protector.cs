@@ -4,13 +4,16 @@ using static System.Convert;
 
 namespace CryptographyTool;
 
+/// <summary>
+/// The <see cref="Protector"/> class provides methods for password encryption and verification.
+/// </summary>
 public class Protector
 {
     /// <summary>
-    /// Метод шифрования данных
+    /// Encrypts password by hashing him with <see cref="SHA256"/>
     /// </summary>
-    /// <param name="password">Входная строка</param>
-    /// <returns>Кортеж (соль + хешированная и подсоленная строка)</returns>
+    /// <param name="password">The password to encrypt</param>
+    /// <returns>A tuple containing the salt and the hashed password.</returns>
     public static (string salt, string hashed) Encrypt(string password)
     {
         RandomNumberGenerator random = RandomNumberGenerator.Create();
@@ -24,12 +27,12 @@ public class Protector
     }
 
     /// <summary>
-    /// Метод проверки пароля
+    /// Checks if a password matches the hashed password.
     /// </summary>
-    /// <param name="password">Входной нехешированный пароль</param>
-    /// <param name="salt">Соль</param>
-    /// <param name="hashedPassword">Подсоленный и хешированный пароль</param>
-    /// <returns><see langword="true" />, если подсоленные хеши паролей равны, иначе <see langword="false" /></returns>
+    /// <param name="password">The password to check</param>
+    /// <param name="salt">The salt used in the original encryption</param>
+    /// <param name="hashedPassword">The original hashed and salted password</param>
+    /// <returns><see langword="true" /> if the password matches the hashed password, <see langword="false" /> otherwise.</returns>
     public static bool CheckPassword(string password, string salt, string hashedPassword)
     {
 
@@ -39,18 +42,14 @@ public class Protector
     }
 
     /// <summary>
-    /// Метод подсоления и хеширования строки
+    /// Salts and hashes a password.
     /// </summary>
-    /// <param name="password">Входная трока</param>
-    /// <param name="saltText">Соль</param>
-    /// <returns>Подсоленная и хешированная строка</returns>
+    /// <param name="password">The password to salt and hash</param>
+    /// <param name="saltText">The salt to use in the hashing process</param>
+    /// <returns>The salted and hashed password.</returns>
     private static string SaltAndHashPassword(string password, string saltText)
     {
-        using (SHA256 arm = SHA256.Create())
-        {
-            string saltedPassword = password + saltText;
-            return ToBase64String(arm.ComputeHash(
-                Encoding.Unicode.GetBytes(saltedPassword)));
-        }
+        string saltedPassword = password + saltText;
+        return ToBase64String(SHA256.HashData(Encoding.Unicode.GetBytes(saltedPassword)));
     }
 }
