@@ -4,8 +4,8 @@
              x:Class="NewsMobileApp.ViewsNative.AdminUserSettingPage"
              xmlns:viewmodels="clr-namespace:NewsMobileApp.ViewModels"
              Title="Управление данными"
-             BackgroundColor="{StaticResource MainBackGroundColor}"
-             Shell.BackgroundColor="{StaticResource MainNavigationColor}">
+             Shell.BackgroundColor="{AppThemeBinding Dark={StaticResource MainNavigationColor}, Light=#E6E6E6}"
+             BackgroundColor="{AppThemeBinding Dark={StaticResource MainBackGroundColor}, Light=White}">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Удалить" Clicked="Delete_Clicked"/>
     </ContentPage.ToolbarItems>
@@ -208,13 +208,11 @@
             <Label 
                     Text="{Binding Registered, StringFormat='Зарегистрирован: {0}'}" 
                     HorizontalOptions="Start"
-                    TextColor="White"
                     Margin="20,0,0,0"
                     FontSize="16"/>
             <Label 
                     Text="{Binding LastLogin, StringFormat='Последний логин: {0}'}" 
                     HorizontalOptions="Start"
-                    TextColor="White"
                     Margin="20,10,0,0"
                     FontSize="16"/>
             

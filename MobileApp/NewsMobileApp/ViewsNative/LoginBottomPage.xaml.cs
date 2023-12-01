@@ -55,7 +55,7 @@ public partial class LoginBottomPage
         }
         catch (ArgumentException)
         {
-            await Application.Current.MainPage.DisplayAlert("Ошибка!", "Для регистрации необходим действительный адрес электронной почты.", "OK");
+            await Application.Current.MainPage.DisplayAlert("Ошибка!", "Для авторизации необходим действительный адрес электронной почты.", "OK");
         }
         catch (Exception ex)
         {
@@ -81,7 +81,7 @@ public partial class LoginBottomPage
     }
 
     private void EmailShow_TextChanged(object sender, TextChangedEventArgs e) => 
-        EmailSend.TextColor = Color.Parse("#ffffff");
+        EmailSend.TextColor = Application.Current.PlatformAppTheme == AppTheme.Dark ? Color.Parse("#ffffff") : Color.Parse("#000000");
 
     private void BlockControls(bool isBusy)
     {

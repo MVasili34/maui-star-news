@@ -5,8 +5,8 @@
              xmlns:viewmodels="clr-namespace:NewsMobileApp.ViewModels"
              xmlns:models="clr-namespace:NewsMobileApp.Models"
              Title="Администрирование"
-             Shell.BackgroundColor="{StaticResource MainNavigationColor}"
-             BackgroundColor="{StaticResource MainBackGroundColor}">
+             Shell.BackgroundColor="{AppThemeBinding Dark={StaticResource MainNavigationColor}, Light=#E6E6E6}"
+             BackgroundColor="{AppThemeBinding Dark={StaticResource MainBackGroundColor}, Light=White}">
     <ScrollView>
         <VerticalStackLayout>
             <VerticalStackLayout x:Name="LoadBlocks">
@@ -150,7 +150,7 @@
                             <Button x:Name="PickImageButton"
                                     CornerRadius="5"
                                     HeightRequest="50"
-                                    BackgroundColor="{StaticResource  MainBlocksColor}"
+                                    BackgroundColor="{AppThemeBinding Dark={StaticResource  MainBlocksColor}, Light={StaticResource Gray500}}"
                                     Clicked="PickImageButton_Clicked"/>
                             <Label Text="Загрузить"
                                    FontSize="18"

@@ -3,13 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NewsMobileApp.ViewsNative.ProfilePrivacyPage"
              Title="Профиль"
-             BackgroundColor="{StaticResource MainBackGroundColor}"
-             Shell.BackgroundColor="{StaticResource MainNavigationColor}">
+             BackgroundColor="{AppThemeBinding Dark={StaticResource MainBackGroundColor}, Light=White}"
+             Shell.BackgroundColor="{AppThemeBinding Dark={StaticResource MainNavigationColor}, Light=#E6E6E6}">
     <ScrollView >
         <VerticalStackLayout Padding="20">
             <StackLayout Orientation="Horizontal" Margin="20,0" Spacing="10">
                 <Frame WidthRequest="75" HeightRequest="75" Padding="0" CornerRadius="38"
-                   BackgroundColor="{StaticResource MainBlocksColor}" BorderColor="Transparent">
+                   BackgroundColor="{AppThemeBinding Dark={StaticResource MainBlocksColor}, Light=White}" BorderColor="Transparent">
                     <Image Source="profileicon.png" 
                            VerticalOptions="Center"
                            HorizontalOptions="Center"/>
@@ -20,13 +20,11 @@
                        Text="John Smith"
                        FontSize="28"
                        FontFamily="PopsBold"
-                       VerticalOptions="Center"
-                       TextColor="White"/>
+                       VerticalOptions="Center"/>
                     <Label x:Name="UserEmail"
                        Text="test123@gmail.com"
                        FontSize="15"
-                       Margin="2,-6,0,0"
-                       TextColor="White"/>
+                       Margin="2,-6,0,0"/>
                 </VerticalStackLayout>
             </StackLayout>
 
@@ -41,7 +39,7 @@
             <Grid>
                 <Button CornerRadius="5"
                     HeightRequest="50"
-                    BackgroundColor="{StaticResource MainBlocksColor}"
+                    BackgroundColor="{AppThemeBinding Dark={StaticResource MainBlocksColor}, Light={StaticResource Gray300}}"
                     Clicked="AccountSettings_Clicked"/>
                 <Image Source="profsetting.png" 
                        VerticalOptions="Center"
@@ -65,7 +63,7 @@
             <Grid>
                 <Button CornerRadius="5"
                     HeightRequest="50"
-                    BackgroundColor="{StaticResource  MainBlocksColor}"
+                    BackgroundColor="{AppThemeBinding Dark={StaticResource MainBlocksColor}, Light={StaticResource Gray300}}"
                     Clicked="AppSettings_Clicked"/>
                 <Image Source="appsetting.png" 
                        VerticalOptions="Center"
@@ -92,7 +90,7 @@
                     IsEnabled="False"
                     CornerRadius="5"
                     HeightRequest="50"
-                    BackgroundColor="{StaticResource MainBlocksColor}"
+                    BackgroundColor="{AppThemeBinding Dark={StaticResource MainBlocksColor}, Light={StaticResource Gray300}}"
                     Clicked="AdmindButton_Clicked"/>
                 <Image Source="adminpanel.png" 
                        VerticalOptions="Center"
@@ -122,7 +120,7 @@
             <Grid>
                 <Button CornerRadius="5"
                     HeightRequest="50"
-                    BackgroundColor="{StaticResource  MainBlocksColor}"
+                    BackgroundColor="{AppThemeBinding Dark={StaticResource MainBlocksColor}, Light={StaticResource Gray300}}"
                     Clicked="Support_Clicked"/>
                 <Image Source="contact.png" 
                        VerticalOptions="Center"
@@ -153,7 +151,7 @@
             <Grid>
                 <Button CornerRadius="5"
                     HeightRequest="50"
-                    BackgroundColor="{StaticResource  MainBlocksColor}"
+                    BackgroundColor="{AppThemeBinding Dark={StaticResource MainBlocksColor}, Light={StaticResource Gray300}}"
                     Clicked="Privacy_Clicked"/>
                 <Label Text="Private policy"
                    FontSize="18"
@@ -172,7 +170,7 @@
             <Grid>
                 <Button CornerRadius="5"
                     HeightRequest="50"
-                    BackgroundColor="{StaticResource  MainBlocksColor}"
+                    BackgroundColor="{AppThemeBinding Dark={StaticResource MainBlocksColor}, Light={StaticResource Gray300}}"
                     Clicked="TermsOfUse_Clicked"/>
                 <Label Text="Terms of use"
                    FontSize="18"
@@ -191,7 +189,7 @@
             <Grid>
                 <Button CornerRadius="5"
                     HeightRequest="50"
-                    BackgroundColor="{StaticResource  MainBlocksColor}"
+                    BackgroundColor="{AppThemeBinding Dark={StaticResource MainBlocksColor}, Light={StaticResource Gray300}}"
                     Clicked="ProcessingData_Clicked"/>
                 <Label Text="Processing of personal data"
                    FontSize="18"
@@ -217,7 +215,7 @@
                 <Button x:Name="Logout"
                     CornerRadius="5"
                     HeightRequest="50"
-                    BackgroundColor="{StaticResource  MainBlocksColor}"
+                    BackgroundColor="{AppThemeBinding Dark={StaticResource MainBlocksColor}, Light={StaticResource Gray300}}"
                     Clicked="Logout_Clicked"/>
                 <Label Text="Выйти"
                    FontSize="18"

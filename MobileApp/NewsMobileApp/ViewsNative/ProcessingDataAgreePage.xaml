@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NewsMobileApp.ViewsNative.ProcessingDataAgreePage"
-             BackgroundColor="{StaticResource MainBackGroundColor}"
+             BackgroundColor="{AppThemeBinding Dark={StaticResource MainBackGroundColor}, Light={StaticResource White}}"
+             Shell.BackgroundColor="{AppThemeBinding Dark={StaticResource MainNavigationColor}, Light=#E6E6E6}"
              xmlns:pages="clr-namespace:NewsMobileApp.Views">
     <BlazorWebView x:Name="blazorWebView" HostPage="wwwroot/index.html">
         <BlazorWebView.RootComponents>

@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NewsMobileApp.ViewsNative.AppSettingsPage"
              Title="Настройки"
-             BackgroundColor="{StaticResource MainBackGroundColor}"
-             Shell.BackgroundColor="{StaticResource MainNavigationColor}">
+             Shell.BackgroundColor="{AppThemeBinding Dark={StaticResource MainNavigationColor}, Light=#E6E6E6}"
+             BackgroundColor="{AppThemeBinding Dark={StaticResource MainBackGroundColor}, Light=White}">
     <ScrollView >
         <VerticalStackLayout Padding="20">
             <Label 

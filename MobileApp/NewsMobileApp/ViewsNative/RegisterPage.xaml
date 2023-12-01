@@ -4,23 +4,23 @@
              x:Class="NewsMobileApp.ViewsNative.RegisterPage"
              xmlns:viewmodels="clr-namespace:NewsMobileApp.ViewModels"
              Title="RegisterPage"
-             BackgroundColor="{StaticResource MainBackGroundColor}">
+             BackgroundColor="{AppThemeBinding Dark={StaticResource MainBackGroundColor}, Light={StaticResource White}}">
     <VerticalStackLayout x:DataType="viewmodels:RegisterViewModel">
         <ImageButton
             x:Name="BackButton"
             Margin="8, 8, 0, 0"
             WidthRequest="35"
             HeightRequest="35"
-            Source="imgback.png"
+            Source="{AppThemeBinding Dark=imgback.png, Light=backlight.png}"
             HorizontalOptions="Start"
             VerticalOptions="Center"
             BackgroundColor="Transparent"
             Clicked="BackButton_Clicked" />
         
         <Image
-            Source="loginimg.svg"
+            Source="{AppThemeBinding Dark=loginimg.svg, Light=loginlight.svg}"
             HorizontalOptions="Center"
-            BackgroundColor="{StaticResource MainBackGroundColor}"
+            BackgroundColor="{AppThemeBinding Dark={StaticResource MainBackGroundColor}, Light={StaticResource White}}"
             WidthRequest="130"
             HeightRequest="130"/>
 
@@ -192,7 +192,6 @@
             <CheckBox x:Name="showPassword"
                   CheckedChanged="ShowPassword_CheckedChanged" />
             <Label Text="Показать пароль"
-                   TextColor="White"
                    FontSize="17"
                    VerticalOptions="Center"/>
         </StackLayout>

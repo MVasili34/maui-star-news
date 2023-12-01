@@ -78,7 +78,7 @@ public partial class RegisterPage : ContentPage
     }
 
     private void EmailSend_TextChanged(object sender, TextChangedEventArgs e) =>
-        EmailSend.TextColor = Color.Parse("#ffffff");
+        EmailSend.TextColor = Application.Current.PlatformAppTheme == AppTheme.Dark ? Color.Parse("#ffffff") : Color.Parse("#000000");
 
     private async void BackButton_Clicked(object sender, EventArgs e) => await Navigation.PopModalAsync();
 

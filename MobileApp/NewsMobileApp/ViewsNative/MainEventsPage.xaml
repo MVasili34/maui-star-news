@@ -4,9 +4,9 @@
              x:Class="NewsMobileApp.ViewsNative.MainEventsPage"
              xmlns:models="clr-namespace:NewsMobileApp.Models"
              Title="Главная"
-             BackgroundColor="{StaticResource MainBackGroundColor}"
-             Shell.BackgroundColor="{StaticResource MainNavigationColor}">
-    <RefreshView BackgroundColor="{StaticResource MainNavigationColor}"
+             BackgroundColor="{AppThemeBinding Dark={StaticResource MainBackGroundColor}, Light=White}"
+             Shell.BackgroundColor="{AppThemeBinding Dark={StaticResource MainNavigationColor}, Light=#E6E6E6}">
+    <RefreshView BackgroundColor="{AppThemeBinding Dark={StaticResource MainNavigationColor}, Light=#E6E6E6}"
                  RefreshColor="{StaticResource Primary}" 
                  x:Name="Refresher"
                  Refreshing="Refresher_Refreshing">
@@ -15,8 +15,7 @@
                 <StackLayout Style="{StaticResource HeaderStack}">
                     <Label x:Name="Header1"
                        Text="Популярные #темы" 
-                       Style="{StaticResource SectionHeading}" 
-                       TextColor="White"/>
+                       Style="{StaticResource SectionHeading}" />
                     <Frame x:Name="LoadSimHeader1" 
                        Style="{StaticResource LoadFrame}"
                        HeightRequest="35"
@@ -32,9 +31,9 @@
                     <BindableLayout.ItemTemplate >
                         <DataTemplate >
                             <Button
-                            BackgroundColor="#2b2a3a"
+                            BackgroundColor="{AppThemeBinding Dark=#2b2a3a, Light={StaticResource Gray200}}"
                             BorderColor="Transparent"
-                            TextColor="White"
+                            TextColor="{AppThemeBinding Dark=White, Light=Black}"
                             CornerRadius="5"
                             FontSize="14"
                             Padding="8, 2"
@@ -95,8 +94,7 @@
                 <StackLayout Style="{StaticResource HeaderStack}">
                     <Label x:Name="Header2"
                        Text="Последние новости"
-                       Style="{StaticResource SectionHeading}"
-                       TextColor="White"/>
+                       Style="{StaticResource SectionHeading}"/>
                     <Label x:Name="ShowAll1" Text="Все" Style="{StaticResource ShowAll}">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Tapped="ShowAllThrebds_Tapped" />
@@ -133,7 +131,7 @@
                                      Margin="0,0,0,0" 
                                      WidthRequest="300" 
                                      HeightRequest="260" 
-                                     BackgroundColor="{StaticResource MainBackGroundColor}">
+                                     BackgroundColor="{AppThemeBinding Dark={StaticResource MainBackGroundColor}, Light=White}">
 
                                 <Frame Padding="0" IsClippedToBounds="True" BorderColor="Transparent">
                                     <Image Source="{Binding Image}" HeightRequest="180" WidthRequest="300" Aspect="AspectFill" />
@@ -141,14 +139,13 @@
                                 <Label Text="{Binding Title}" 
                                    Margin="0,4,0,0" 
                                    FontSize="18" 
-                                   TextColor="White"
-                                   FontFamily="
-                                   " 
+                                   TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                                   FontFamily="PopsSBold" 
                                    MaxLines="2"/>
                                 <StackLayout Orientation="Horizontal" Spacing="4">
                                     <Label Text="{Binding Section.Name}" TextColor="{StaticResource Primary}"/>
                                     <Label Text="·" FontAttributes="Bold" TextColor="{StaticResource Gray200}"/>
-                                    <Label Text="{Binding PublishTime}" TextColor="{StaticResource Gray200}"/>
+                                    <Label Text="{Binding PublishTime}" TextColor="{AppThemeBinding Dark={StaticResource Gray200}, Light={StaticResource Gray500}}"/>
                                 </StackLayout>
                             </StackLayout>
                         </DataTemplate>
@@ -174,8 +171,7 @@
                 <StackLayout Style="{StaticResource HeaderStack}">
                     <Label x:Name="Header3"
                        Text="История и культура"
-                       Style="{StaticResource SectionHeading}" 
-                       TextColor="White"/>
+                       Style="{StaticResource SectionHeading}" />
                     <Label x:Name="ShowAll2" Text="Все" Style="{StaticResource ShowAll}">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Tapped="ToSection_Tapped" />
@@ -212,7 +208,7 @@
                                          Margin="0,0,0,0" 
                                          WidthRequest="300" 
                                          HeightRequest="260" 
-                                         BackgroundColor="{StaticResource MainBackGroundColor}">
+                                         BackgroundColor="{AppThemeBinding Dark={StaticResource MainBackGroundColor}, Light=White}">
 
                                 <Frame Padding="0" IsClippedToBounds="True" BorderColor="Transparent">
                                     <Image Source="{Binding Image}" HeightRequest="180" WidthRequest="300" Aspect="AspectFill" />
@@ -220,13 +216,13 @@
                                 <Label Text="{Binding Title}" 
                                        Margin="0,4,0,0" 
                                        FontSize="18" 
-                                       TextColor="White"
+                                       TextColor="{AppThemeBinding Light=Black, Dark=White}"
                                        FontFamily="PopsSBold" 
                                        MaxLines="2"/>
                                 <StackLayout Orientation="Horizontal" Spacing="4">
                                     <Label Text="{Binding Section.Name}" TextColor="{StaticResource Primary}"/>
                                     <Label Text="·" FontAttributes="Bold" TextColor="{StaticResource Gray200}"/>
-                                    <Label Text="{Binding PublishTime}" TextColor="{StaticResource Gray200}"/>
+                                    <Label Text="{Binding PublishTime}" TextColor="{AppThemeBinding Dark={StaticResource Gray200}, Light={StaticResource Gray500}}"/>
                                 </StackLayout>
                             </StackLayout>
                         </DataTemplate>

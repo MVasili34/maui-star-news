@@ -6,13 +6,13 @@
              xmlns:viewmodels="clr-namespace:NewsMobileApp.ViewModels"
              x:Class="NewsMobileApp.ViewsNative.LoginBottomPage"
              Padding="5, 0" 
-             BackgroundColor="{StaticResource MainBackGroundColor}">
+             BackgroundColor="{AppThemeBinding Dark={StaticResource MainBackGroundColor}, Light={StaticResource White}}">
     <VerticalStackLayout x:DataType="viewmodels:AuthorizeViewModel">
 
         <Image
-            Source="loginimg.svg"
+            Source="{AppThemeBinding Dark=loginimg.svg, Light=loginlight.svg}"
             HorizontalOptions="Center"
-            BackgroundColor="{StaticResource MainBackGroundColor}"
+            BackgroundColor="{AppThemeBinding Dark={StaticResource MainBackGroundColor}, Light={StaticResource White}}"
             WidthRequest="130"
             HeightRequest="130"/>
 
@@ -59,6 +59,7 @@
 
                 <Entry
                     Text="{Binding EmailAddress}"
+                    TextColor="{StaticResource White}"
                     x:Name="EmailSend"
                     Placeholder="Адрес электронной почты..."
                     Grid.Column="1"
@@ -97,6 +98,7 @@
                 <Entry
                     Text="{Binding Password}"
                     x:Name="PasswordShow"
+                    TextColor="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Black}}"
                     Placeholder="Пароль..."
                     Grid.Column="1"
                     FontSize="20"
@@ -114,7 +116,6 @@
             <CheckBox x:Name="showPassword"
                       CheckedChanged="ShowPassword_CheckedChanged" />
             <Label Text="Показать пароль"
-                   TextColor="White"
                    FontSize="17"
                    VerticalOptions="Center"/>
         </StackLayout>
@@ -129,7 +130,7 @@
                 Margin="15, 10, 15, 10"
                 />
         <StackLayout Orientation="Horizontal" Spacing="4" HorizontalOptions="Center" Margin="0,0,0,15">
-            <Label Text="У вас ещё нет аккаунта?" TextColor="White" FontSize="16"/>
+            <Label Text="У вас ещё нет аккаунта?" FontSize="16"/>
             <Label Text="Зарегистрируйтесь" 
                    x:Name="RegisterButton"
                    TextColor="{StaticResource Primary}" 

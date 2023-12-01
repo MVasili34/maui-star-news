@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NewsMobileApp.ViewsNative.TermsOfUseAgreePage"
-             BackgroundColor="{StaticResource MainBackGroundColor}"
+             BackgroundColor="{AppThemeBinding Dark={StaticResource MainBackGroundColor}, Light={StaticResource White}}"
+             Shell.BackgroundColor="{AppThemeBinding Dark={StaticResource MainNavigationColor}, Light=#E6E6E6}"
              xmlns:pages="clr-namespace:NewsMobileApp.Views">
     <ScrollView>
     <VerticalStackLayout>
@@ -11,13 +12,13 @@
                Margin="0,10,20,0"
                FontSize="28"
                HorizontalOptions="End"
-               TextColor="White"
+               TextColor="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Black}}"
                FontAttributes="Bold">
             <Label.GestureRecognizers>
                 <TapGestureRecognizer Tapped="Exit_Tapped" />
             </Label.GestureRecognizers>
         </Label>
-        <BlazorWebView x:Name="blazorWebView" HostPage="wwwroot/index.html">
+            <BlazorWebView x:Name="blazorWebView" HostPage="wwwroot/index.html" BackgroundColor="{AppThemeBinding Dark={StaticResource MainBackGroundColor}, Light={StaticResource White}}">
             <BlazorWebView.RootComponents>
                 <RootComponent x:Name="RootComponentControl" Selector="#app" ComponentType="{x:Type pages:TermsOfUse}"  />
             </BlazorWebView.RootComponents>

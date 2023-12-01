@@ -4,8 +4,8 @@
              x:Class="NewsMobileApp.ViewsNative.AccountSettingsPage"
              xmlns:viewmodels="clr-namespace:NewsMobileApp.ViewModels"
              Title="Настройки аккаунта"
-             Shell.BackgroundColor="{StaticResource MainNavigationColor}"
-             BackgroundColor="{StaticResource MainBackGroundColor}">
+             Shell.BackgroundColor="{AppThemeBinding Dark={StaticResource MainNavigationColor}, Light=#E6E6E6}"
+             BackgroundColor="{AppThemeBinding Dark={StaticResource MainBackGroundColor}, Light=White}">
     <ScrollView x:DataType="viewmodels:UserViewModel">
         <VerticalStackLayout IsEnabled="True" x:Name="AllBlocks">
         <Label 
@@ -80,14 +80,14 @@
                FontSize="18"
                VerticalOptions="Center"
                HorizontalOptions="Start"
-               TextColor="White"
+               TextColor="{AppThemeBinding Dark=White, Light=Black}"
                Margin="15,0,0,0"/>
         <Label Text="❯" 
                VerticalOptions="Center" 
                HorizontalOptions="End"
                FontSize="18"
                Margin="0,0,15,0"
-               TextColor="White"/>
+               TextColor="{AppThemeBinding Dark=White, Light=Black}"/>
         </Grid>
 
         <ContentView HeightRequest="10" />

@@ -5,9 +5,9 @@
              xmlns:viewmodels="clr-namespace:NewsMobileApp.ViewModels"
              xmlns:models="clr-namespace:NewsMobileApp.Models"
              Title="Категории"
-             Shell.BackgroundColor="{StaticResource MainNavigationColor}"
-             BackgroundColor="{StaticResource MainBackGroundColor}">
-    <RefreshView BackgroundColor="{StaticResource MainNavigationColor}"
+             Shell.BackgroundColor="{AppThemeBinding Dark={StaticResource MainNavigationColor}, Light=#E6E6E6}"
+             BackgroundColor="{AppThemeBinding Dark={StaticResource MainBackGroundColor}, Light=White}">
+    <RefreshView BackgroundColor="{AppThemeBinding Dark={StaticResource MainNavigationColor}, Light=#E6E6E6}"
                  RefreshColor="{StaticResource Primary}" 
                  x:Name="Refresher"
                  Refreshing="Refresher_Refreshing">
@@ -23,7 +23,7 @@
                 Margin="-10,0">
                     <BindableLayout.ItemTemplate>
                         <DataTemplate x:DataType="models:Section">
-                            <Frame BackgroundColor="{StaticResource MainBlocksColor}"
+                            <Frame BackgroundColor="{AppThemeBinding Dark={StaticResource MainBlocksColor}, Light=#E4F4FF}"
                        FlexLayout.Basis="160"
                        FlexLayout.Grow="0.75"
                        FlexLayout.Shrink="0.5"
@@ -35,11 +35,11 @@
                                 <VerticalStackLayout Padding="20,6" VerticalOptions="Center" Spacing="10">
                                     <Label Text="{Binding MaterialIcon}"
                                FontFamily="MaterialIcons"
-                               TextColor="{StaticResource White}"
+                               TextColor="{AppThemeBinding Dark=White, Light=Black}"
                                FontSize="34"
                                HorizontalOptions="Center" />
                                     <Label Text="{Binding Name}"
-                               TextColor="{StaticResource White}"
+                               TextColor="{AppThemeBinding Dark=White, Light=Black}"
                                HorizontalOptions="Center"
                                FontSize="16"
                                FontFamily="PopsSBold" />

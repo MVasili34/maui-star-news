@@ -4,10 +4,10 @@
              x:Class="NewsMobileApp.ViewsNative.AdminPage"
              xmlns:viewmodel="clr-namespace:NewsMobileApp.ViewModels"
              Title="Администратор"
-             BackgroundColor="{StaticResource MainBackGroundColor}"
-             Shell.BackgroundColor="{StaticResource MainNavigationColor}"
+             Shell.BackgroundColor="{AppThemeBinding Dark={StaticResource MainNavigationColor}, Light=#E6E6E6}"
+             BackgroundColor="{AppThemeBinding Dark={StaticResource MainBackGroundColor}, Light=White}"
              xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui">
-    <RefreshView BackgroundColor="{StaticResource MainNavigationColor}"
+    <RefreshView BackgroundColor="{AppThemeBinding Dark={StaticResource MainNavigationColor}, Light=#E6E6E6}"
                  RefreshColor="{StaticResource Primary}" 
                  Refreshing="Refresher_Refreshing"
                  x:Name="Refresher">
@@ -57,6 +57,7 @@
 
                     <Entry
                     x:Name="SearchText"
+                    TextColor="{AppThemeBinding Dark=White, Light=Black}"
                     Placeholder="Поиск пользователя..."
                     Grid.Column="1"
                     FontSize="20"
@@ -77,7 +78,7 @@
                       >
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="viewmodel:UserViewModel">
-                        <StackLayout Orientation="Vertical" BackgroundColor="{StaticResource MainBackGroundColor}">
+                        <StackLayout Orientation="Vertical" BackgroundColor="{AppThemeBinding Dark={StaticResource MainBackGroundColor}, Light=White}">
                             <Label Text="{Binding UserName}" FontSize="18" />
                             <Label Text="{Binding EmailAddress}" FontSize="16"/>
                             <BoxView Margin="0,0"/>

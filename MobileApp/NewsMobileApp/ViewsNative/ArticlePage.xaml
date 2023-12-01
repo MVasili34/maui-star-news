@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NewsMobileApp.ViewsNative.ArticlePage"
              Title="Статья"
-             BackgroundColor="{StaticResource MainBackGroundColor}"
+             Shell.BackgroundColor="{AppThemeBinding Dark={StaticResource MainNavigationColor}, Light=#E6E6E6}"
+             BackgroundColor="{AppThemeBinding Dark={StaticResource MainBackGroundColor}, Light=White}"
              xmlns:pages="clr-namespace:NewsMobileApp.Views">
     <ContentPage.ToolbarItems>
         <ToolbarItem IconImageSource="share.png" Clicked="Share_Clicked"  />
@@ -13,12 +14,13 @@
             <Label Text="Статья" 
                    FontSize="19" 
                    FontAttributes="Bold" 
+                   TextColor="{AppThemeBinding Dark=White, Light={StaticResource Primary}}"
                    Margin="0,14,0,0"   />
             <Button Text="Изменить"
                     IsEnabled="false"
                     IsVisible="false"
                     Margin="32,0,0,0"
-                    TextColor="White"
+                    TextColor="{AppThemeBinding Dark=White, Light=Black}"
                     BorderColor="Transparent"
                     BackgroundColor="Transparent"
                     x:Name="EditButton" 
@@ -32,7 +34,7 @@
                     IsEnabled="false"
                     IsVisible="false"
                     Margin="-15,0,0,0"
-                    TextColor="White"
+                    TextColor="{AppThemeBinding Dark=White, Light=Black}"
                     BorderColor="Transparent"
                     BackgroundColor="Transparent"
                     x:Name="DeleteButton" 

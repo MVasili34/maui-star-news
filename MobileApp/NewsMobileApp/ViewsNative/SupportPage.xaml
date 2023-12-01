@@ -4,8 +4,8 @@
              x:Class="NewsMobileApp.ViewsNative.SupportPage"
              xmlns:viewmodel="clr-namespace:NewsMobileApp.ViewModels"
              Title="Поддержка"
-             Shell.BackgroundColor="{StaticResource MainNavigationColor}"
-             BackgroundColor="{StaticResource MainBackGroundColor}">
+             Shell.BackgroundColor="{AppThemeBinding Dark={StaticResource MainNavigationColor}, Light=#E6E6E6}"
+             BackgroundColor="{AppThemeBinding Dark={StaticResource MainBackGroundColor}, Light=White}">
     <ScrollView>
     <VerticalStackLayout>
         <Label 

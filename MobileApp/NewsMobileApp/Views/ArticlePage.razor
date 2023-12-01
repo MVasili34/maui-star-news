@@ -1,6 +1,7 @@
 ﻿@page "/articlepage/{articleid}"
 @inject IRequestsService requestService
 
+<div style="background-color: @_background">
 @if(_article is null)
 {
     <div style="  display: flex;justify-content: center;align-items:center; flex-direction:column">
@@ -21,11 +22,10 @@ else
 {
     <div>
     <img src="@_article.Image" height="300" style="width: 100%">
-        <p style="margin: 10px 20px 0 10px; font-size: 26px; font-family: 'Noto Serif', serif;">
+            <p style="margin: 10px 20px 0 10px; font-size: 26px; font-family: 'Noto Serif', serif; color: @_font">
         @_article.Title
     </p>
     <div style="display: flex; margin: 10px 20px 0 10px;"> 
-        <!--<span class="material-symbols-outlined" style="color:#C8C8C8; font-size:35px">account_circle</span> -->
         <div>
                 <p style="color:#C8C8C8; margin-left: 10px; margin-top: -5px">
                     <span class="material-symbols-outlined" style="font-size: 14px;">
@@ -41,22 +41,30 @@ else
             </button>
 
     </div>
-        <p style="text-align: justify; text-justify: auto; margin: 0 20px 0 10px; font-size:16px; white-space: pre-wrap;"> 
+        <p style="text-align: justify; text-justify: auto; margin: 0 20px 0 10px; font-size:16px; white-space: pre-wrap; color: @_font"> 
             @_article.Text 
         </p>
     </div>
     <hr/>
     <p style="color: #C8C8C8; margin-left: 10px;">	Copyright &copy; 2023 StarNews. All Rights Reserved.</p>
 }
+</div>
 
 @code {
 
     [Parameter]
     public Guid ArticleId { get; set; }
     private ArticleViewModel _article;
+    private string _background = "#18191D";
+    private string _font = "#ffffff";
 
     protected async override Task OnParametersSetAsync()
     {
+        if (Application.Current.PlatformAppTheme != AppTheme.Dark)
+        {
+            _font = "#000000";
+            _background = "#ffffff";
+        }
         try
         {
             _article = await requestService.GetArticleByIdAsync(ArticleId);

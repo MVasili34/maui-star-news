@@ -1,6 +1,6 @@
-﻿<br />
-<h3 style="text-align:center;">Соглашение об обработке персональных данных</h3>
-<p style="text-align: justify; text-justify: auto; margin: 0 20px 0 10px; font-size:16px; white-space: pre-wrap;">
+﻿<div style="background-color: @_background">
+<h3 style="text-align:center; color: @_font; padding-top: 15px">Соглашение об обработке персональных данных</h3>
+<p style="text-align: justify; text-justify: auto; margin: 0 20px 0 10px; font-size:16px; white-space: pre-wrap; color: @_font ">
     Последнее обновление: 2.10.2023
 
     Настоящее Соглашение о обработке персональных данных (далее - "Соглашение") определяет условия и порядок обработки персональных данных пользователей (далее - "Пользователь" или "Вы") в рамках использования приложения (далее - "Приложение"), предоставляемого NewsAppStudio (далее - "Мы", "Наша компания" или "Мы").
@@ -53,7 +53,19 @@
     newsapp.studio@gmail.com
 
 </p>
+</div>
 
 @code {
+    private string _background = "#18191D";
+    private string _font = "#ffffff";
 
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        if (Application.Current.PlatformAppTheme != AppTheme.Dark)
+        {
+            _font = "#000000";
+            _background = "#ffffff";
+        }
+    }
 }

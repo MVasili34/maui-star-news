@@ -4,20 +4,21 @@
              x:Class="NewsMobileApp.ViewsNative.TrendsPage"
              xmlns:models="clr-namespace:NewsMobileApp.Models"
              Title="В тренде"
-             Shell.BackgroundColor="{StaticResource MainNavigationColor}"
-             BackgroundColor="{StaticResource MainBackGroundColor}">
+             Shell.BackgroundColor="{AppThemeBinding Dark={StaticResource MainNavigationColor}, Light=#E6E6E6}"
+             BackgroundColor="{AppThemeBinding Dark={StaticResource MainBackGroundColor}, Light=White}">
     <Shell.TitleView>
         <HorizontalStackLayout>
             <Label Text="В тренде" 
                    FontSize="19" 
                    FontAttributes="Bold" 
+                   TextColor="{AppThemeBinding Dark=White, Light={StaticResource Primary}}"
                    Margin="0,14,0,0"   />
             <Button Text="Добавить"
                     IsVisible="false"
                     IsEnabled="false"
                     Clicked="AdmindButton_Clicked"
                     Margin="180,0,0,0"
-                    TextColor="White"
+                    TextColor="{AppThemeBinding Dark=White, Light=Black}"
                     BorderColor="Transparent"
                     BackgroundColor="Transparent"
                     x:Name="AdmindButton" 
@@ -28,7 +29,7 @@
         </HorizontalStackLayout>
     </Shell.TitleView>
 
-    <RefreshView BackgroundColor="{StaticResource MainNavigationColor}"
+    <RefreshView BackgroundColor="{AppThemeBinding Dark={StaticResource MainNavigationColor}, Light=#E6E6E6}"
                  RefreshColor="{StaticResource Primary}" 
                  Refreshing="RefreshView_Refreshing"
                  x:Name="Refresher">
@@ -60,7 +61,7 @@
 
             <Entry
                     x:Name="SearchText"
-                    TextColor="White"
+                    TextColor="{AppThemeBinding Dark=White, Light=Black}"
                     Placeholder="Поиск статьи..."
                     Grid.Column="1"
                     FontSize="20"

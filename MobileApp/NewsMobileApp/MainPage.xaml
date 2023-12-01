@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:NewsMobileApp"
              x:Class="NewsMobileApp.MainPage"
-             BackgroundColor="{StaticResource MainNavigationColor}">
+             BackgroundColor="{AppThemeBinding Dark={StaticResource MainNavigationColor}, Light={StaticResource White}}">
     <ScrollView>
         <VerticalStackLayout
         Spacing="25"
@@ -17,7 +17,7 @@
                CornerRadius="10"
                HeightRequest="440"
                WidthRequest="500">
-                <Image Source="main.png" HeightRequest="450" WidthRequest="380" Aspect="AspectFill" />
+                <Image Source="{AppThemeBinding Dark=main.png, Light=mainlight.png}" HeightRequest="450" WidthRequest="380" Aspect="AspectFill" />
             </Frame>
 
             <Label
@@ -51,7 +51,7 @@
             HorizontalOptions="Center" />
 
             <StackLayout Orientation="Horizontal" Spacing="4" HorizontalOptions="Center">
-                <Label Text="У вас ещё нет аккаунта?" TextColor="White" FontSize="16"/>
+                <Label Text="У вас ещё нет аккаунта?" FontSize="16"/>
                 <Label Text="Зарегистрируйтесь" 
                x:Name="RegisterButton"
                TextColor="{StaticResource Primary}" 

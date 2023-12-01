@@ -31,7 +31,7 @@
         <Setter Property="FontFamily" Value="NotoSerif"/>
         <Setter Property="FontSize" Value="20"/>
         <Setter Property="HorizontalOptions" Value="StartAndExpand"/>
-        <Setter Property="TextColor" Value="White" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light=Black, Dark=White}" />
     </Style>
 
     <Style TargetType="Label" x:Key="ShowAll">
@@ -57,7 +57,6 @@
     </Style>
 
     <Style TargetType="BoxView">
-        <!--<Setter Property="Color" Value="{AppThemeBinding Light={StaticResource Gray950}, Dark={StaticResource Gray200}}" /> -->
         <Setter Property="HeightRequest" Value="1"/>
         <Setter Property="Color" Value="Gray"/>
         <Setter Property="Margin" Value="0,10,0,0"/>
@@ -198,7 +197,7 @@
     </Style>
 
     <Style TargetType="Label">
-        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
         <Setter Property="BackgroundColor" Value="Transparent" />
         <Setter Property="FontFamily" Value="OpenSansRegular" />
         <Setter Property="FontSize" Value="14" />
@@ -421,17 +420,17 @@
         <Setter Property="Shell.DisabledColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray950}}" />
         <Setter Property="Shell.UnselectedColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray200}}" />
         <Setter Property="Shell.NavBarHasShadow" Value="False" />
-        <Setter Property="Shell.TabBarBackgroundColor" Value="#282E33" />
+        <Setter Property="Shell.TabBarBackgroundColor" Value="{AppThemeBinding Dark=#282E33, Light=#E6E6E6}"/>
         <Setter Property="Shell.TabBarTitleColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}" />
 
         <Setter Property="Shell.TabBarForegroundColor" Value="{StaticResource Primary}" />
 
-        <Setter Property="Shell.TitleColor" Value="{StaticResource White}" />
+        <Setter Property="Shell.TitleColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}" />
 
 
         <Setter Property="Shell.ForegroundColor" Value="{StaticResource White}" />
 
-        <Setter Property="Shell.TabBarUnselectedColor" Value="#e0e0e0" />
+        <Setter Property="Shell.TabBarUnselectedColor" Value="{AppThemeBinding Dark=AliceBlue, Light={StaticResource Gray500}}" />
     </Style>
 
     <Style TargetType="NavigationPage">

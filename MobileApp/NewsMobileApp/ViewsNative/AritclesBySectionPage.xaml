@@ -4,13 +4,14 @@
              x:Class="NewsMobileApp.ViewsNative.ArticlesBySectionPage"
              xmlns:models="clr-namespace:NewsMobileApp.Models"
              Title="Section"
-             Shell.BackgroundColor="{StaticResource MainNavigationColor}"
-             BackgroundColor="{StaticResource MainBackGroundColor}">
+             Shell.BackgroundColor="{AppThemeBinding Dark={StaticResource MainNavigationColor}, Light=#E6E6E6}"
+             BackgroundColor="{AppThemeBinding Dark={StaticResource MainBackGroundColor}, Light=White}">
     <Shell.TitleView>
         <HorizontalStackLayout>
             <Label x:Name="PageTitle" 
                   Text="Section" 
                   FontSize="19" 
+                  TextColor="{AppThemeBinding Dark=White, Light={StaticResource Primary}}"
                   FontAttributes="Bold" 
                   Margin="0,14,0,0"   />
             <Button Text="Добавить"
@@ -18,7 +19,7 @@
                    IsEnabled="false"
                    Clicked="AdmindButton_Clicked"
                    Margin="100,0,0,0"
-                   TextColor="White"
+                   TextColor="{AppThemeBinding Dark=White, Light=Black}"
                    BorderColor="Transparent"
                    BackgroundColor="Transparent"
                    x:Name="AdmindButton" 
@@ -29,7 +30,7 @@
         </HorizontalStackLayout>
     </Shell.TitleView>
 
-    <RefreshView BackgroundColor="{StaticResource MainNavigationColor}"
+    <RefreshView BackgroundColor="{AppThemeBinding Dark={StaticResource MainNavigationColor}, Light=#E6E6E6}"
                 RefreshColor="{StaticResource Primary}" 
                 Refreshing="RefreshView_Refreshing"
                 x:Name="Refresher">
@@ -60,7 +61,7 @@
                             VerticalOptions="Center" />
 
                         <Entry
-                            TextColor="White"
+                            TextColor="{AppThemeBinding Dark=White, Light=Black}"
                             x:Name="SearchText"
                             Placeholder="Поиск статьи..."
                             Grid.Column="1"
