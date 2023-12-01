@@ -46,4 +46,4 @@ API will be running on http://localhost:8080.
 > Please note, that some app functions like Imgur API or OpenAI may required your personal service key. You can change Imgur API Key in <a href="MobileApp/NewsMobileApp/MauiProgram.cs">configuration file</a> of .NET MAUI App.
 
 ## Extra Content
-You can read full article about this project and understand why some controversial decisions were made.
+You can read <a href="https://www.linkedin.com/pulse/net-maui-technology-fusion-harnessing-power-odata-postgresql-%25D0%25B4%25D1%258B%25D0%25B1%25D0%25BE%25D0%25B2-tagce?trackingId=GtxFpHTtS4S6ZzKEiDOsjw%3D%3D&lipi=urn%3Ali%3Apage%3Ad_flagship3_detail_base%3B%2BGLuRqjbR4OD%2Fyzjt7iwuw%3D%3D">full article</a> about this project and understand why some controversial decisions were made.
