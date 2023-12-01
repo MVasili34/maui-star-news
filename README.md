@@ -40,11 +40,10 @@ You can find screenshots of the application below along with instructions on how
 API will be running on http://localhost:8080.
 
 > [!WARNING]
-> The application has been initialy configured to work in the local network with opened ports and that's why in Android manifest file IP address is not 10.0.0.2. Please, changed its value to 10.0.0.2 if you want to run this app on emulated device and also don't forget to change > this settings in <a href="MobileApp/NewsMobileApp/MauiProgram.cs">configuration file</a> of .NET MAUI App.
+> The application has been initialy configured to work in the local network with opened ports and that's why in Android manifest file IP address is not 10.0.2.2. Please, changed its value to 10.0.2.2 if you want to run this app on emulated device and also don't forget to change this settings in <a href="MobileApp/NewsMobileApp/MauiProgram.cs">configuration file</a> of .NET MAUI App.
 
 > [!NOTE]
-> Please note, that some app functions like Imgur API or OpenAI may required your personal service key.
-> You can change Imgur API Key in <a href="MobileApp/NewsMobileApp/MauiProgram.cs">configuration file</a> of .NET MAUI App.
+> Please note, that some app functions like Imgur API or OpenAI may required your personal service key. You can change Imgur API Key in <a href="MobileApp/NewsMobileApp/MauiProgram.cs">configuration file</a> of .NET MAUI App.
 
 ## Extra Content
 You can read full article about this project and understand why some controversial decisions were made.
