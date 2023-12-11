@@ -13,7 +13,7 @@ You can find screenshots of the application below along with instructions on how
 ![image](https://github.com/MVasili34/maui-star-news/assets/117523384/5628dd12-b114-493d-8ca2-2272f2530a2c)
 
 ## Some screenshots
-![image](https://github.com/MVasili34/maui-star-news/assets/117523384/e6598700-511a-41d2-aead-d35c37ffba54)
+![image](https://github.com/MVasili34/maui-star-news/assets/117523384/d666553c-1381-45c8-a8ac-8ec3bdd1f4c8)
 
 ## Local deployment
 > [!IMPORTANT]
