@@ -10,7 +10,7 @@ You can find screenshots of the application below along with instructions on how
 > App wasn't localized into English, screens with localized English UI - only for preview
 
 ## Application architecture
-![image](https://github.com/MVasili34/maui-news-app/assets/117523384/910b26fb-d332-409a-8b0c-dda4bd19d2f6)
+![image](https://github.com/MVasili34/maui-star-news/assets/117523384/5628dd12-b114-493d-8ca2-2272f2530a2c)
 
 ## Some screenshots
 ![image](https://github.com/MVasili34/maui-star-news/assets/117523384/e6598700-511a-41d2-aead-d35c37ffba54)
@@ -40,11 +40,10 @@ You can find screenshots of the application below along with instructions on how
 API will be running on http://localhost:8080.
 
 > [!WARNING]
-> The application has been initialy configured to work in the local network with opened ports and that's why in Android manifest file IP address is not 10.0.0.2. Please, changed its value to 10.0.0.2 if you want to run this app on emulated device and also don't forget to change > this settings in <a href="MobileApp/NewsMobileApp/MauiProgram.cs">configuration file</a> of .NET MAUI App.
+> The application has been initialy configured to work in the local network with opened ports and that's why in Android manifest file IP address is not 10.0.2.2. Please, change its value to 10.0.2.2 if you want to run this app on emulated device and also don't forget to change this settings in <a href="MobileApp/NewsMobileApp/MauiProgram.cs">configuration file</a> of .NET MAUI App.
 
 > [!NOTE]
-> Please note, that some app functions like Imgur API or OpenAI may required your personal service key.
-> You can change Imgur API Key in <a href="MobileApp/NewsMobileApp/MauiProgram.cs">configuration file</a> of .NET MAUI App.
+> Please note, that some app functions like Imgur API or OpenAI may required your personal service key. You can change Imgur API Key in <a href="MobileApp/NewsMobileApp/MauiProgram.cs">configuration file</a> of .NET MAUI App.
 
 ## Extra Content
-You can read full article about this project and understand why some controversial decisions were made.
+You can read <a href="https://www.linkedin.com/pulse/net-maui-technology-fusion-harnessing-power-odata-postgresql-%25D0%25B4%25D1%258B%25D0%25B1%25D0%25BE%25D0%25B2-tagce?trackingId=GtxFpHTtS4S6ZzKEiDOsjw%3D%3D&lipi=urn%3Ali%3Apage%3Ad_flagship3_detail_base%3B%2BGLuRqjbR4OD%2Fyzjt7iwuw%3D%3D">full article</a> about this project and understand why some controversial decisions were made.
