@@ -8,4 +8,5 @@ public class DiagramData
     public string Id { get; set; }
     public DateTime PublishTime { get; set; }
     public int Total { get; set; }
+    public int TotalViews { get; set; }
 }

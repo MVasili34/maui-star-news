@@ -253,7 +253,7 @@ public class RequestsService : IRequestsService
         client.DefaultRequestHeaders.Authorization = new("Bearer", await SecureStorage.GetAsync("ApiKey"));
 
         string requestUri = $"api/Articles?$filter=(PublishTime ge {start:yyyy-MM-ddTHH:mm:ssZ}) and (PublishTime le {end:yyyy-MM-ddTHH:mm:ssZ})" +
-            $"&$apply=groupby((PublishTime),aggregate(ArticleId with countdistinct as total))";
+            $"&$apply=groupby((PublishTime),aggregate(ArticleId with countdistinct as total,Views with sum as totalViews))";
 
         using HttpRequestMessage request = new(method: HttpMethod.Get, requestUri: requestUri);
 

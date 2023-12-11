@@ -9,15 +9,28 @@ using NewsMobileApp.Models.ODataModels;
 
 namespace NewsMobileApp.ViewModels;
 
-public class AdminViewModel
+public class AdminViewModel : ViewModelBase
 {
     private readonly IRequestsService _requestService;
+    private IEnumerable<DiagramData> _diagramData;
     private static readonly DateTime _startDate = DateTime.Now.AddDays(-6);
     private static readonly DateTime _endDate = DateTime.Now;
     private readonly ObservableCollection<DateTimePoint> _data = new ObservableCollection<DateTimePoint>(Enumerable.Range(0, 
         (int)(_endDate - _startDate).TotalDays + 1).Select(x => new DateTimePoint(_startDate.AddDays(x), 0)));
+    private int _views;
+    private int _publications;
     public ObservableCollection<UserViewModel> Users { get; set; } = new();
     public ObservableCollection<ISeries> Series { get; set; } = new();
+    public int Views 
+    {
+        get => _views;
+        set => SetProperty(ref _views, value);
+    }
+    public int Publications 
+    {
+        get => _publications;
+        set => SetProperty(ref _publications, value);
+    }
 
     public AdminViewModel()
     {
@@ -43,12 +56,15 @@ public class AdminViewModel
         if(update)
         {
             Parallel.For(0, _data.Count, i => { _data[i].Value = 0; });
-        }    
+        }
 
-        List<DiagramData> data = (await _requestService.GetDiagramAsync(_startDate, _endDate)).OrderBy(x => x.PublishTime).ToList();
+        _diagramData = (await _requestService.GetDiagramAsync(_startDate, _endDate)).OrderBy(x => x.PublishTime);
         Parallel.For(0, _data.Count, i => {
-            _data[i].Value += data.Where(d => d.PublishTime.Date.Equals(_data[i].DateTime.Date)).Sum(d => d.Total);
+            _data[i].Value += _diagramData.Where(d => d.PublishTime.Date.Equals(_data[i].DateTime.Date)).Sum(d => d.Total);
         });
+        Views = _diagramData.Sum(x => x.TotalViews);
+        Publications = _diagramData.Sum(x => x.Total);
+
     }
 
 
@@ -71,5 +87,4 @@ public class AdminViewModel
             Users.Add(found);
         }
     }
-
 }

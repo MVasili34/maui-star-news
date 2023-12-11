@@ -24,6 +24,43 @@
                  x:Name="Finance" HeightRequest="350" Series="{Binding Series}"
                  Margin="-20,0,-40,0">
             </lvc:CartesianChart>
+
+                <HorizontalStackLayout>
+                    <Frame HeightRequest="95" 
+                           WidthRequest="170"
+                           Margin="0,0,20,20" 
+                           BackgroundColor="#3A328C">
+                        <StackLayout Margin="-10, -10, -10,-10">
+                            <Label Text="{Binding Views}"
+                                   TextColor="White"
+                                   HorizontalOptions="Start" 
+                                   Margin="6,5,30,5" 
+                                   FontFamily="NotoSerif" 
+                                   FontSize="25"/>
+                            <Label Text="Просмотры" 
+                                   TextColor="White"
+                                   FontFamily="NotoSerif" 
+                                   FontSize="18" />
+                        </StackLayout>
+                    </Frame>
+                    <Frame WidthRequest="170" 
+                           Margin="0,0,20,20" 
+                           BackgroundColor="#8C2661">
+                        <StackLayout  Margin="-10, -10, -10,-10">
+                            <Label Text="{Binding Publications}" 
+                                   HorizontalOptions="Start"
+                                   TextColor="White"
+                                   Margin="6,5,30,5" 
+                                   FontFamily="NotoSerif" 
+                                   FontSize="25"/>
+                            <Label Text="Публикации" 
+                                   TextColor="White"
+                                   FontFamily="NotoSerif" 
+                                   FontSize="18" />
+                        </StackLayout>
+                    </Frame>
+                </HorizontalStackLayout>
+
             <Label 
             Text="Управление пользователями"
             FontFamily="NotoSerif"

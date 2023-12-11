@@ -39,7 +39,7 @@ public partial class SupportPage : ContentPage
                 Body = _emailViewModel.Body ,
             };
 
-            message.Body += $"\n\n--\nОбращение пользователя: {Guid.NewGuid()}" +
+            message.Body += $"\n\n--\nОбращение пользователя: {Preferences.Get("userId", Guid.NewGuid().ToString())}" +
                 $"\n Идентификатор обращения: {Guid.NewGuid()}";
 
 
