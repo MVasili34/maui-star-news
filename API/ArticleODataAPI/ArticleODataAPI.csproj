@@ -21,8 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Application\EntityModels\EntityModels.csproj" />
-    <ProjectReference Include="..\..\Application\Services\Services.csproj" />
+    <ProjectReference Include="..\..\AppServices\EntityModels\EntityModels.csproj" />
+    <ProjectReference Include="..\..\AppServices\Services\Services.csproj" />
   </ItemGroup>
 
 </Project>

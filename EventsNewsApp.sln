@@ -5,7 +5,7 @@ VisualStudioVersion = 17.7.34018.315
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{90B4124F-AF4C-47A3-BD3F-754101A5FAF9}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{F5B117B0-43BF-4A7D-8BC6-572491EAED06}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AppServices", "AppServices", "{F5B117B0-43BF-4A7D-8BC6-572491EAED06}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{DAFF931B-BD21-4040-AD4A-44AF68FD24A8}"
 EndProject
@@ -13,11 +13,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MobileApp", "MobileApp", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApp", "WebApp", "{CF26BA79-A26B-461A-94DA-6467A99EB769}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Application\Services\Services.csproj", "{D307CD15-90DE-45BA-92B7-81554AC3898E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "AppServices\Services\Services.csproj", "{D307CD15-90DE-45BA-92B7-81554AC3898E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntityModels", "Application\EntityModels\EntityModels.csproj", "{45C6A4C2-E3BB-45B5-A271-09770D0D217B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntityModels", "AppServices\EntityModels\EntityModels.csproj", "{45C6A4C2-E3BB-45B5-A271-09770D0D217B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServicesTests.Tests", "Application\ServicesTests.Tests\ServicesTests.Tests.csproj", "{794C7053-4C6A-43EB-8FC7-A8B4A335729D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServicesTests.Tests", "AppServices\ServicesTests.Tests\ServicesTests.Tests.csproj", "{794C7053-4C6A-43EB-8FC7-A8B4A335729D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptographyTool", "Tools\CryptographyTool\CryptographyTool.csproj", "{B7C725A3-0D66-4174-9C7A-1B6A4F13EDAD}"
 EndProject

@@ -29,7 +29,7 @@
                     <Frame HeightRequest="95" 
                            WidthRequest="170"
                            Margin="0,0,20,20" 
-                           BackgroundColor="#3A328C">
+                           BackgroundColor="{AppThemeBinding Dark=#3A328C, Light=#467DD4}">
                         <StackLayout Margin="-10, -10, -10,-10">
                             <Label Text="{Binding Views}"
                                    TextColor="White"
@@ -45,7 +45,7 @@
                     </Frame>
                     <Frame WidthRequest="170" 
                            Margin="0,0,20,20" 
-                           BackgroundColor="#8C2661">
+                           BackgroundColor="{AppThemeBinding Dark=#8C2661, Light=#ED40A4}">
                         <StackLayout  Margin="-10, -10, -10,-10">
                             <Label Text="{Binding Publications}" 
                                    HorizontalOptions="Start"

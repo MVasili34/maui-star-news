@@ -6,8 +6,8 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
 COPY ["API/ArticleODataAPI/ArticleODataAPI.csproj", "API/ArticleODataAPI/"]
-COPY ["Application/EntityModels/EntityModels.csproj", "Application/EntityModels/"]
-COPY ["Application/Services/Services.csproj", "Application/Services/"]
+COPY ["AppServices/EntityModels/EntityModels.csproj", "AppServices/EntityModels/"]
+COPY ["AppServices/Services/Services.csproj", "AppServices/Services/"]
 COPY ["Tools/CryptographyTool/CryptographyTool.csproj", "/Tools/CryptographyTool/"]
 RUN dotnet restore "API/ArticleODataAPI/ArticleODataAPI.csproj"
 COPY . .
