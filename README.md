@@ -10,7 +10,7 @@ You can find screenshots of the application below along with instructions on how
 > App wasn't localized into English, screens with localized English UI - only for preview
 
 ## Application architecture
-![image](https://github.com/MVasili34/maui-star-news/assets/117523384/5628dd12-b114-493d-8ca2-2272f2530a2c)
+![image](https://github.com/MVasili34/maui-star-news/assets/117523384/08e8d6dc-7a34-4d0e-97fa-559d86a7b7f4)
 
 ## Some screenshots
 ![image](https://github.com/MVasili34/maui-star-news/assets/117523384/d666553c-1381-45c8-a8ac-8ec3bdd1f4c8)
